@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="expenseDetailVM"
+            type="com.tva.cashcoach.modules.expensedetail.data.viewmodel.ExpenseDetailVM" />
+    </data>
+
+    <LinearLayout
+        android:gravity="start"
+        android:id="@+id/linearColumnrectangle208"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        style="@style/groupStylewhite_A700">
+
+        <LinearLayout
+            android:gravity="center_horizontal"
+            android:id="@+id/linearColumnarrowleft"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            style="@style/groupStylered_1">
+
+            <androidx.appcompat.widget.Toolbar
+                android:gravity="center_horizontal"
+                android:id="@+id/toolbarToolbar"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_20pxh"
+                android:layout_marginStart="@dimen/_20pxh"
+                android:layout_marginTop="@dimen/_18pxv"
+                android:layout_width="match_parent"
+                app:contentInsetStart="0dp">
+
+                <LinearLayout
+                    android:id="@+id/linearRowarrowleft"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/imageBack"
+                        android:layout_height="@dimen/_16pxh"
+                        android:layout_marginBottom="@dimen/_3pxv"
+                        android:layout_marginTop="@dimen/_5pxv"
+                        android:layout_width="@dimen/_24pxh"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/img_arrowleft_deep_purple_a200"
+                        tools:ignore="ContentDescription"
+                        tools:src="@drawable/img_arrowleft_deep_purple_a200" />
+
+                    <TextView
+                        android:ellipsize="end"
+                        android:id="@+id/txtTitle"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/_1pxv"
+                        android:layout_marginStart="@dimen/_64pxh"
+                        android:layout_marginTop="@dimen/_3pxv"
+                        android:layout_weight="0.77"
+                        android:layout_width="0dp"
+                        android:singleLine="true"
+                        android:text="@{expenseDetailVM.expenseDetailModel.txtTitle}"
+                        style="@style/txtIntersemibold18_3"
+                        tools:text="@string/msg_detail_transact" />
+
+                    <ImageView
+                        android:id="@+id/imageTrash"
+                        android:layout_height="@dimen/_26pxh"
+                        android:layout_marginStart="@dimen/_64pxh"
+                        android:layout_width="@dimen/_24pxh"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/img_trash_white_a700"
+                        tools:ignore="ContentDescription"
+                        tools:src="@drawable/img_trash_white_a700" />
+                </LinearLayout>
+            </androidx.appcompat.widget.Toolbar>
+
+            <TextView
+                android:ellipsize="end"
+                android:id="@+id/txtPrice"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_20pxh"
+                android:layout_marginStart="@dimen/_20pxh"
+                android:layout_marginTop="@dimen/_30pxv"
+                android:layout_width="wrap_content"
+                android:lineSpacingExtra="@dimen/_11pxh"
+                android:singleLine="true"
+                android:text="@{expenseDetailVM.expenseDetailModel.txtPrice}"
+                style="@style/txtInterbold48"
+                tools:text="@string/lbl_1202" />
+
+            <TextView
+                android:ellipsize="end"
+                android:id="@+id/txtGroceries"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_20pxh"
+                android:layout_marginStart="@dimen/_20pxh"
+                android:layout_marginTop="@dimen/_9pxv"
+                android:layout_width="wrap_content"
+                android:singleLine="true"
+                android:text="@{expenseDetailVM.expenseDetailModel.txtGroceries}"
+                style="@style/txtIntermedium16_3"
+                tools:text="@string/lbl_groceries" />
+
+            <LinearLayout
+                android:gravity="center_vertical"
+                android:id="@+id/linearRowweekday"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_49pxv"
+                android:layout_marginEnd="@dimen/_20pxh"
+                android:layout_marginStart="@dimen/_20pxh"
+                android:layout_marginTop="@dimen/_8pxv"
+                android:layout_width="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:ellipsize="end"
+                    android:id="@+id/txtWeekday"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_1pxv"
+                    android:layout_weight="0.79"
+                    android:layout_width="0dp"
+                    android:lineSpacingExtra="@dimen/_3pxh"
+                    android:singleLine="true"
+                    android:text="@{expenseDetailVM.expenseDetailModel.txtWeekday}"
+                    style="@style/txtIntermedium13_1"
+                    tools:text="@string/msg_saturday_4_june" />
+
+                <TextView
+                    android:ellipsize="end"
+                    android:id="@+id/txtTime"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_1pxv"
+                    android:layout_marginStart="@dimen/_13pxh"
+                    android:layout_weight="0.21"
+                    android:layout_width="0dp"
+                    android:lineSpacingExtra="@dimen/_3pxh"
+                    android:singleLine="true"
+                    android:text="@{expenseDetailVM.expenseDetailModel.txtTime}"
+                    style="@style/txtIntermedium13_1"
+                    tools:text="@string/lbl_16_20" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/frameExpenseDetail"
+            android:layout_height="@dimen/_748pxv"
+            android:layout_width="match_parent"
+            style="@style/groupStylewhite_A700">
+
+            <View
+                android:background="@color/gray_100"
+                android:id="@+id/viewRectangle208"
+                android:layout_gravity="start"
+                android:layout_height="@dimen/_724pxh"
+                android:layout_marginBottom="@dimen/_10pxv"
+                android:layout_width="@dimen/_375pxh" />
+
+            <LinearLayout
+                android:id="@+id/linearColumnlinethree"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_1pxh"
+                android:layout_marginTop="@dimen/_24pxv"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                style="@style/groupStylewhite_A700">
+
+                <View
+                    android:background="@color/gray_300"
+                    android:id="@+id/lineLineThree"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_height="@dimen/_2pxv"
+                    android:layout_marginEnd="@dimen/_15pxh"
+                    android:layout_marginStart="@dimen/_15pxh"
+                    android:layout_marginTop="@dimen/_207pxv"
+                    android:layout_width="@dimen/_343pxh" />
+
+                <TextView
+                    android:ellipsize="end"
+                    android:id="@+id/txtDescription"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_15pxh"
+                    android:layout_marginStart="@dimen/_15pxh"
+                    android:layout_marginTop="@dimen/_12pxv"
+                    android:layout_width="wrap_content"
+                    android:singleLine="true"
+                    android:text="@{expenseDetailVM.expenseDetailModel.txtDescription}"
+                    style="@style/txtIntersemibold16_2"
+                    tools:text="@string/lbl_description" />
+
+                <TextView
+                    android:gravity="center_horizontal"
+                    android:id="@+id/txtDescriptionOne"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_15pxh"
+                    android:layout_marginStart="@dimen/_15pxh"
+                    android:layout_marginTop="@dimen/_12pxv"
+                    android:layout_width="match_parent"
+                    android:text="@{expenseDetailVM.expenseDetailModel.txtDescriptionOne}"
+                    style="@style/txtIntermedium16_1"
+                    tools:text="@string/msg_amet_minim_moll" />
+
+                <TextView
+                    android:ellipsize="end"
+                    android:id="@+id/txtAttachment"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_15pxh"
+                    android:layout_marginStart="@dimen/_15pxh"
+                    android:layout_marginTop="@dimen/_11pxv"
+                    android:layout_width="wrap_content"
+                    android:singleLine="true"
+                    android:text="@{expenseDetailVM.expenseDetailModel.txtAttachment}"
+                    style="@style/txtIntersemibold16_2"
+                    tools:text="@string/lbl_attachment" />
+
+                <ImageView
+                    android:gravity="center_horizontal"
+                    android:id="@+id/imageRectangle"
+                    android:layout_height="@dimen/_116pxh"
+                    android:layout_marginEnd="@dimen/_15pxh"
+                    android:layout_marginStart="@dimen/_15pxh"
+                    android:layout_marginTop="@dimen/_15pxv"
+                    android:layout_width="match_parent"
+                    android:scaleType="fitXY"
+                    cornerRadius="@{@dimen/_8pxh}"
+                    imageRes="@{@drawable/img_rectangle207}"
+                    tools:ignore="ContentDescription"
+                    tools:src="@drawable/img_rectangle207" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:id="@+id/btnEdit"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_94pxv"
+                    android:layout_marginEnd="@dimen/_15pxh"
+                    android:layout_marginStart="@dimen/_15pxh"
+                    android:layout_marginTop="@dimen/_76pxv"
+                    android:layout_width="match_parent"
+                    android:paddingBottom="@dimen/_17pxv"
+                    android:paddingEnd="@dimen/_30pxh"
+                    android:paddingStart="@dimen/_30pxh"
+                    android:paddingTop="@dimen/_17pxv"
+                    android:singleLine="true"
+                    android:text="@string/lbl_edit"
+                    android:textAllCaps="false"
+                    style="@style/btnSolidRounded_3"
+                    tools:text="@string/lbl_edit" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearRowtype"
+                android:layout_gravity="top|center"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_144pxv"
+                android:layout_marginEnd="@dimen/_16pxh"
+                android:layout_marginStart="@dimen/_16pxh"
+                android:layout_marginTop="@dimen/_144pxv"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                style="@style/groupStylewhite_1">
+
+                <LinearLayout
+                    android:gravity="center_horizontal"
+                    android:id="@+id/linearColumntype"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_12pxv"
+                    android:layout_marginStart="@dimen/_26pxh"
+                    android:layout_marginTop="@dimen/_13pxv"
+                    android:layout_weight="0.38"
+                    android:layout_width="0dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:ellipsize="end"
+                        android:id="@+id/txtType"
+                        android:layout_gravity="start"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_16pxh"
+                        android:layout_marginStart="@dimen/_16pxh"
+                        android:layout_width="wrap_content"
+                        android:lineSpacingExtra="@dimen/_3pxh"
+                        android:singleLine="true"
+                        android:text="@{expenseDetailVM.expenseDetailModel.txtType}"
+                        style="@style/txtIntermedium14"
+                        tools:text="@string/lbl_type" />
+
+                    <TextView
+                        android:ellipsize="end"
+                        android:gravity="start"
+                        android:id="@+id/txtExpense"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_10pxh"
+                        android:layout_marginTop="@dimen/_8pxv"
+                        android:layout_width="match_parent"
+                        android:singleLine="true"
+                        android:text="@{expenseDetailVM.expenseDetailModel.txtExpense}"
+                        style="@style/txtIntersemibold16_3"
+                        tools:text="@string/lbl_expense" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:gravity="center_horizontal"
+                    android:id="@+id/linearColumncategory"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_12pxv"
+                    android:layout_marginTop="@dimen/_13pxv"
+                    android:layout_weight="0.44"
+                    android:layout_width="0dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:ellipsize="end"
+                        android:gravity="start"
+                        android:id="@+id/txtCategory"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_55pxh"
+                        android:layout_marginStart="@dimen/_5pxh"
+                        android:layout_width="match_parent"
+                        android:lineSpacingExtra="@dimen/_3pxh"
+                        android:singleLine="true"
+                        android:text="@{expenseDetailVM.expenseDetailModel.txtCategory}"
+                        style="@style/txtIntermedium14"
+                        tools:text="@string/lbl_category" />
+
+                    <TextView
+                        android:ellipsize="end"
+                        android:gravity="start"
+                        android:id="@+id/txtShopping"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_50pxh"
+                        android:layout_marginTop="@dimen/_8pxv"
+                        android:layout_width="match_parent"
+                        android:singleLine="true"
+                        android:text="@{expenseDetailVM.expenseDetailModel.txtShopping}"
+                        style="@style/txtIntersemibold16_3"
+                        tools:text="@string/lbl_shopping" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:gravity="start"
+                    android:id="@+id/linearColumnwallet"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_12pxv"
+                    android:layout_marginEnd="@dimen/_37pxh"
+                    android:layout_marginTop="@dimen/_13pxv"
+                    android:layout_weight="0.18"
+                    android:layout_width="0dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:ellipsize="end"
+                        android:gravity="center_horizontal"
+                        android:id="@+id/txtWallet"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_3pxh"
+                        android:layout_marginStart="@dimen/_3pxh"
+                        android:layout_width="match_parent"
+                        android:lineSpacingExtra="@dimen/_3pxh"
+                        android:singleLine="true"
+                        android:text="@{expenseDetailVM.expenseDetailModel.txtWallet}"
+                        style="@style/txtIntermedium14"
+                        tools:text="@string/lbl_wallet" />
+
+                    <TextView
+                        android:ellipsize="end"
+                        android:id="@+id/txtMainWallet"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:singleLine="true"
+                        android:text="@{expenseDetailVM.expenseDetailModel.txtMainWallet}"
+                        style="@style/txtIntersemibold16_3"
+                        tools:text="@string/lbl_main_wallet" />
+                </LinearLayout>
+            </LinearLayout>
+        </FrameLayout>
+    </LinearLayout>
+</layout>

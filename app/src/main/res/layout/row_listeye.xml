@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="listeyeRowModel"
+            type="com.tva.cashcoach.modules.homescreen.data.model.ListeyeRowModel" />
+    </data>
+
+    <LinearLayout
+        android:id="@+id/linearRoweye"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:orientation="horizontal"
+        style="@style/groupStyleteal_500cornerRadius">
+
+        <ImageButton
+            android:background="@drawable/rectangle_bg_gray_50_radius_16"
+            android:id="@+id/btnEye"
+            android:layout_height="@dimen/_48pxh"
+            android:layout_marginBottom="@dimen/_15pxv"
+            android:layout_marginStart="@dimen/_16pxh"
+            android:layout_marginTop="@dimen/_17pxv"
+            android:layout_width="@dimen/_48pxh"
+            android:paddingHorizontal="@dimen/_10pxh"
+            android:paddingVertical="@dimen/_10pxv"
+            android:scaleType="fitCenter"
+            android:src="@drawable/img_eye_black_900"
+            tools:ignore="ContentDescription" />
+
+        <LinearLayout
+            android:gravity="start"
+            android:id="@+id/linearColumnincome"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_13pxv"
+            android:layout_marginEnd="@dimen/_16pxh"
+            android:layout_marginStart="@dimen/_10pxh"
+            android:layout_marginTop="@dimen/_18pxv"
+            android:layout_weight="0.61"
+            android:layout_width="0dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:ellipsize="end"
+                android:id="@+id/txtIncome"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_10pxh"
+                android:layout_width="match_parent"
+                android:singleLine="true"
+                android:text="@{listeyeRowModel.txtIncome}"
+                style="@style/txtIntermedium14_1"
+                tools:text="@string/lbl_income" />
+
+            <TextView
+                android:ellipsize="end"
+                android:id="@+id/txtPriceOne"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_4pxv"
+                android:layout_width="match_parent"
+                android:singleLine="true"
+                android:text="@{listeyeRowModel.txtPriceOne}"
+                style="@style/txtIntersemibold22"
+                tools:text="@string/lbl_1_680" />
+        </LinearLayout>
+    </LinearLayout>
+</layout>

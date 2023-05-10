@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="accountsRowModel"
+            type="com.tva.cashcoach.modules.accounts.data.model.AccountsRowModel" />
+    </data>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:ellipsize="end"
+        android:gravity="center"
+        android:id="@+id/btnRowprice"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:singleLine="true"
+        android:textAllCaps="false"
+        style="@style/btnSolid" />
+</layout>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="listframefiveRowModel"
+            type="com.tva.cashcoach.modules.homescreen.data.model.ListframefiveRowModel" />
+    </data>
+
+    <LinearLayout
+        android:id="@+id/linearRowframefive"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        style="@style/groupStylegray_50cornerRadius">
+
+        <ImageButton
+            android:background="@drawable/rectangle_bg_black_900_radius_16"
+            android:id="@+id/btnFrameFive"
+            android:layout_height="@dimen/_60pxh"
+            android:layout_marginBottom="@dimen/_15pxv"
+            android:layout_marginStart="@dimen/_17pxh"
+            android:layout_marginTop="@dimen/_14pxv"
+            android:layout_width="@dimen/_60pxh"
+            android:paddingHorizontal="@dimen/_15pxh"
+            android:paddingVertical="@dimen/_15pxv"
+            android:scaleType="fitCenter"
+            android:src="@drawable/img_frame5"
+            tools:ignore="ContentDescription" />
+
+        <LinearLayout
+            android:gravity="start"
+            android:id="@+id/linearColumnshopping"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_20pxv"
+            android:layout_marginStart="@dimen/_9pxh"
+            android:layout_marginTop="@dimen/_20pxv"
+            android:layout_weight="0.61"
+            android:layout_width="0dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:ellipsize="end"
+                android:id="@+id/txtShopping"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_10pxh"
+                android:layout_width="wrap_content"
+                android:singleLine="true"
+                android:text="@{listframefiveRowModel.txtShopping}"
+                style="@style/txtIntermedium16"
+                tools:text="@string/lbl_shopping" />
+
+            <TextView
+                android:ellipsize="end"
+                android:id="@+id/txtBuyanAvocado"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_10pxh"
+                android:layout_marginTop="@dimen/_11pxv"
+                android:layout_width="wrap_content"
+                android:singleLine="true"
+                android:text="@{listframefiveRowModel.txtBuyanAvocado}"
+                style="@style/txtIntermedium13"
+                tools:text="@string/lbl_groceries" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:gravity="end"
+            android:id="@+id/linearColumnprice"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_21pxv"
+            android:layout_marginEnd="@dimen/_16pxh"
+            android:layout_marginStart="@dimen/_9pxh"
+            android:layout_marginTop="@dimen/_19pxv"
+            android:layout_weight="0.18"
+            android:layout_width="0dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:ellipsize="end"
+                android:gravity="start"
+                android:id="@+id/txtPriceThree"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:singleLine="true"
+                android:text="@{listframefiveRowModel.txtPriceThree}"
+                style="@style/txtIntersemibold16"
+                tools:text="@string/lbl_120" />
+
+            <TextView
+                android:ellipsize="end"
+                android:id="@+id/txtTime"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_1pxh"
+                android:layout_marginStart="@dimen/_15pxh"
+                android:layout_marginTop="@dimen/_12pxv"
+                android:layout_width="match_parent"
+                android:singleLine="true"
+                android:text="@{listframefiveRowModel.txtTime}"
+                style="@style/txtIntermedium13"
+                tools:text="@string/lbl_10_00" />
+        </LinearLayout>
+    </LinearLayout>
+</layout>

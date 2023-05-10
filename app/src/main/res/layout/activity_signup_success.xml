@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="signupSuccessVM"
+            type="com.tva.cashcoach.modules.signupsuccess.data.viewmodel.SignupSuccessVM" />
+    </data>
+
+    <LinearLayout
+        android:gravity="center_horizontal"
+        android:id="@+id/linearSignupsuccess"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        style="@style/groupStylewhite_A700">
+
+        <ImageView
+            android:id="@+id/imageCheckmark"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="@dimen/_96pxh"
+            android:layout_marginEnd="@dimen/_111pxh"
+            android:layout_marginStart="@dimen/_111pxh"
+            android:layout_marginTop="@dimen/_291pxv"
+            android:layout_width="@dimen/_96pxh"
+            android:scaleType="fitXY"
+            android:src="@drawable/img_checkmark"
+            tools:ignore="ContentDescription"
+            tools:src="@drawable/img_checkmark" />
+
+        <TextView
+            android:ellipsize="end"
+            android:id="@+id/txtYoureallset"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_20pxv"
+            android:layout_marginEnd="@dimen/_111pxh"
+            android:layout_marginStart="@dimen/_111pxh"
+            android:layout_marginTop="@dimen/_15pxv"
+            android:layout_width="wrap_content"
+            android:singleLine="true"
+            android:text="@{signupSuccessVM.signupSuccessModel.txtYoureallset}"
+            style="@style/txtIntermedium24"
+            tools:text="@string/lbl_you_re_all_set" />
+    </LinearLayout>
+</layout>

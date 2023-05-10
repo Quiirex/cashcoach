@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="splashScreenVM"
+            type="com.tva.cashcoach.modules.splashscreen.data.viewmodel.SplashScreenVM" />
+    </data>
+
+    <LinearLayout
+        android:gravity="center_horizontal"
+        android:id="@+id/linearSplashscreen"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        style="@style/groupStyleblack_900">
+
+        <TextView
+            android:ellipsize="end"
+            android:gravity="center_horizontal"
+            android:id="@+id/txtCashCoach"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/_20pxv"
+            android:layout_marginEnd="@dimen/_72pxh"
+            android:layout_marginStart="@dimen/_72pxh"
+            android:layout_marginTop="@dimen/_324pxv"
+            android:layout_width="match_parent"
+            android:singleLine="true"
+            android:text="@{splashScreenVM.splashScreenModel.txtCashCoach}"
+            style="@style/txtInterbold38"
+            tools:text="@string/lbl_cashcoach" />
+    </LinearLayout>
+</layout>

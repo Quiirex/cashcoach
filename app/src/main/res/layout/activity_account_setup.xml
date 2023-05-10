@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="accountSetupVM"
+            type="com.tva.cashcoach.modules.accountsetup.data.viewmodel.AccountSetupVM" />
+    </data>
+
+    <LinearLayout
+        android:gravity="start"
+        android:id="@+id/linearAccountsetup"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        style="@style/groupStylewhite_A700">
+
+        <TextView
+            android:id="@+id/txtLetssetupyo"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_16pxh"
+            android:layout_marginStart="@dimen/_16pxh"
+            android:layout_marginTop="@dimen/_67pxv"
+            android:layout_width="match_parent"
+            android:text="@{accountSetupVM.accountSetupModel.txtLetssetupyo}"
+            style="@style/txtIntermedium36"
+            tools:text="@string/msg_let_s_set_up_yo" />
+
+        <TextView
+            android:ellipsize="end"
+            android:id="@+id/txtDontworryyo"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_16pxh"
+            android:layout_marginStart="@dimen/_16pxh"
+            android:layout_marginTop="@dimen/_18pxv"
+            android:layout_width="match_parent"
+            android:lineSpacingExtra="@dimen/_3pxh"
+            android:singleLine="true"
+            android:text="@{accountSetupVM.accountSetupModel.txtDontworryyo}"
+            style="@style/txtIntermedium14_2"
+            tools:text="@string/msg_don_t_worry_yo" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:ellipsize="end"
+            android:gravity="center"
+            android:id="@+id/btnLetsGo"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_28pxv"
+            android:layout_marginEnd="@dimen/_16pxh"
+            android:layout_marginStart="@dimen/_16pxh"
+            android:layout_marginTop="@dimen/_493pxv"
+            android:layout_width="match_parent"
+            android:paddingBottom="@dimen/_17pxv"
+            android:paddingEnd="@dimen/_30pxh"
+            android:paddingStart="@dimen/_30pxh"
+            android:paddingTop="@dimen/_17pxv"
+            android:singleLine="true"
+            android:text="@string/lbl_let_s_go"
+            android:textAllCaps="false"
+            style="@style/btnSolidRounded_3"
+            tools:text="@string/lbl_let_s_go" />
+    </LinearLayout>
+</layout>

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="profileVM"
+            type="com.tva.cashcoach.modules.profile.data.viewmodel.ProfileVM" />
+    </data>
+
+    <LinearLayout
+        android:gravity="center_horizontal"
+        android:id="@+id/linearColumnrectanglethirtyone"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        style="@style/groupStylewhite_A700">
+
+        <LinearLayout
+            android:gravity="start"
+            android:id="@+id/linearColumnrectanglenine"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_19pxh"
+            android:layout_marginStart="@dimen/_20pxh"
+            android:layout_marginTop="@dimen/_28pxv"
+            android:layout_width="match_parent"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbarToolbar"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                app:contentInsetStart="0dp">
+
+                <LinearLayout
+                    android:id="@+id/linearRowrectanglenine"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/imageUserAvatar"
+                        android:layout_height="@dimen/_80pxh"
+                        android:layout_width="@dimen/_80pxh"
+                        android:scaleType="centerCrop"
+                        circular="@{true}"
+                        imageRes="@{@drawable/img_avatar}"
+                        tools:ignore="ContentDescription"
+                        tools:src="@drawable/img_avatar" />
+
+                    <LinearLayout
+                        android:gravity="start"
+                        android:id="@+id/linearColumnname"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/_14pxv"
+                        android:layout_marginStart="@dimen/_17pxh"
+                        android:layout_marginTop="@dimen/_16pxv"
+                        android:layout_weight="0.6"
+                        android:layout_width="0dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:ellipsize="end"
+                            android:id="@+id/txtName"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/_10pxh"
+                            android:layout_width="wrap_content"
+                            android:singleLine="true"
+                            android:text="@{profileVM.profileModel.txtName}"
+                            style="@style/txtIntermedium14"
+                            tools:text="@string/lbl_name" />
+
+                        <TextView
+                            android:ellipsize="end"
+                            android:id="@+id/txtNameSurname"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/_10pxh"
+                            android:layout_marginTop="@dimen/_2pxv"
+                            android:layout_width="match_parent"
+                            android:singleLine="true"
+                            android:text="@{profileVM.profileModel.txtNameSurname}"
+                            style="@style/txtIntersemibold24"
+                            tools:text="@string/lbl_luka_mlinari" />
+                    </LinearLayout>
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        android:id="@+id/btnEdit"
+                        android:layout_height="@dimen/_40pxh"
+                        android:layout_marginBottom="@dimen/_14pxv"
+                        android:layout_marginStart="@dimen/_17pxh"
+                        android:layout_marginTop="@dimen/_26pxv"
+                        android:layout_width="@dimen/_40pxh"
+                        android:paddingHorizontal="@dimen/_9pxh"
+                        android:paddingVertical="@dimen/_9pxv"
+                        android:singleLine="true"
+                        android:textAllCaps="false"
+                        style="@style/btnRoundedOutline" />
+                </LinearLayout>
+            </androidx.appcompat.widget.Toolbar>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:drawablePadding="@dimen/_23pxh"
+                android:drawableStart="@drawable/img_eye_white_a700"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:id="@+id/btnAccount"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_42pxv"
+                android:layout_width="match_parent"
+                android:paddingBottom="@dimen/_30pxv"
+                android:paddingEnd="@dimen/_30pxh"
+                android:paddingStart="@dimen/_30pxh"
+                android:paddingTop="@dimen/_30pxv"
+                android:singleLine="true"
+                android:textAllCaps="false"
+                style="@style/btnSolidRoundedTopCorner" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:ellipsize="end"
+                android:gravity="center"
+                android:id="@+id/btnRowsettings"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:singleLine="true"
+                android:textAllCaps="false"
+                style="@style/btnSolid" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:ellipsize="end"
+                android:gravity="center"
+                android:id="@+id/btnRowarrowright"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:singleLine="true"
+                android:textAllCaps="false"
+                style="@style/btnSolidRoundedBottomCorner" />
+        </LinearLayout>
+
+        <ScrollView
+            android:clipToPadding="false"
+            android:fillViewport="true"
+            android:gravity="start"
+            android:id="@+id/scrollViewScrollview"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_width="match_parent">
+
+            <View
+                android:background="@color/gray_101"
+                android:id="@+id/viewRectangleThirtyOne"
+                android:layout_height="@dimen/_789pxh"
+                android:layout_width="@dimen/_375pxh" />
+        </ScrollView>
+    </LinearLayout>
+</layout>

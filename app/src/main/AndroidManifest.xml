@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:name="com.tva.cashcoach.appcomponents.di.MyApp"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.MyApp"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name="com.tva.cashcoach.modules.accounts.ui.AccountsActivity"
+            android:screenOrientation="fullSensor" />
+        <activity
+            android:name="com.tva.cashcoach.modules.financialreportlinechart.ui.FinancialReportLineChartActivity"
+            android:screenOrientation="fullSensor" />
+        <activity
+            android:name="com.tva.cashcoach.modules.income.ui.IncomeActivity"
+            android:screenOrientation="fullSensor" />
+        <activity
+            android:name="com.tva.cashcoach.modules.addnewwallet.ui.AddNewWalletActivity"
+            android:screenOrientation="fullSensor" />
+        <activity
+            android:exported="true"
+            android:name="com.tva.cashcoach.modules.splashscreen.ui.SplashScreenActivity"
+            android:screenOrientation="fullSensor">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.tva.cashcoach.modules.financialreportpiechart.ui.FinancialReportPieChartActivity"
+            android:screenOrientation="fullSensor" />
+        <activity
+            android:name="com.tva.cashcoach.modules.settingslanguage.ui.SettingsLanguageActivity"
+            android:screenOrientation="fullSensor" />
+        <activity
+            android:name="com.tva.cashcoach.modules.signupsuccess.ui.SignupSuccessActivity"
+            android:screenOrientation="fullSensor" />
+        <activity
+            android:name="com.tva.cashcoach.modules.settingstheme.ui.SettingsThemeActivity"
+            android:screenOrientation="fullSensor" />
+        <activity
+            android:name="com.tva.cashcoach.modules.homescreencontainer.ui.HomeScreenContainerActivity"
+            android:screenOrientation="fullSensor" />
+        <activity
+            android:name="com.tva.cashcoach.modules.settings.ui.SettingsActivity"
+            android:screenOrientation="fullSensor" />
+        <activity
+            android:name="com.tva.cashcoach.modules.signup.ui.SignUpActivity"
+            android:screenOrientation="fullSensor" />
+        <activity
+            android:name="com.tva.cashcoach.modules.expensedetail.ui.ExpenseDetailActivity"
+            android:screenOrientation="fullSensor" />
+        <activity
+            android:name="com.tva.cashcoach.modules.incomedetail.ui.IncomeDetailActivity"
+            android:screenOrientation="fullSensor" />
+        <activity
+            android:name="com.tva.cashcoach.modules.newexpense.ui.NewExpenseActivity"
+            android:screenOrientation="fullSensor" />
+        <activity
+            android:name="com.tva.cashcoach.modules.forgotpassword.ui.ForgotPasswordActivity"
+            android:screenOrientation="fullSensor" />
+        <activity
+            android:name="com.tva.cashcoach.modules.login.ui.LoginActivity"
+            android:screenOrientation="fullSensor" />
+        <activity
+            android:name="com.tva.cashcoach.modules.settingscurrency.ui.SettingsCurrencyActivity"
+            android:screenOrientation="fullSensor" />
+        <activity
+            android:name="com.tva.cashcoach.modules.accountsetup.ui.AccountSetupActivity"
+            android:screenOrientation="fullSensor" />
+    </application>
+</manifest>
