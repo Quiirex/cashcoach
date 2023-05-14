@@ -92,7 +92,6 @@
                     style="@style/txtIntermedium14"
                     android:layout_width="148dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_0pxh"
                     android:layout_marginEnd="@dimen/_16pxh"
                     android:ellipsize="end"
                     android:gravity="center_horizontal"

@@ -35,9 +35,6 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
     }
 
     override fun setUpClicks() {
-        binding.imageBack.setOnClickListener {
-            finish()
-        }
         binding.txtConfirmation.setOnClickListener {
             val destIntent = SignUpActivity.getIntent(this, null)
             startActivityForResult(destIntent, REQUEST_CODE_SIGN_UP_ACTIVITY)
@@ -57,7 +54,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
 
     companion object {
         const val TAG: String = "LOGIN_ACTIVITY"
-        
+
         fun getIntent(context: Context, bundle: Bundle?): Intent {
             val destIntent = Intent(context, LoginActivity::class.java)
             destIntent.putExtra("bundle", bundle)
