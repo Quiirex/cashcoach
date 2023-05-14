@@ -36,8 +36,6 @@
             android:layout_gravity="center_horizontal"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/_20pxv"
-            android:layout_marginEnd="@dimen/_111pxh"
-            android:layout_marginStart="@dimen/_111pxh"
             android:layout_marginTop="@dimen/_15pxv"
             android:layout_width="wrap_content"
             android:singleLine="true"

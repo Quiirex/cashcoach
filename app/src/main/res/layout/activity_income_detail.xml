@@ -92,7 +92,7 @@
                 android:singleLine="true"
                 android:text="@{incomeDetailVM.incomeDetailModel.txtPrice}"
                 style="@style/txtInterbold48"
-                tools:text="@string/lbl_1_6202" />
+                tools:text="" />
 
             <TextView
                 android:ellipsize="end"
@@ -150,7 +150,7 @@
 
         <FrameLayout
             android:id="@+id/frameIncomeDetail"
-            android:layout_height="@dimen/_724pxv"
+            android:layout_height="@dimen/_500pxv"
             android:layout_width="match_parent"
             style="@style/groupStylewhite_A700">
 
@@ -169,7 +169,7 @@
                     android:layout_height="@dimen/_2pxv"
                     android:layout_marginEnd="@dimen/_16pxh"
                     android:layout_marginStart="@dimen/_16pxh"
-                    android:layout_marginTop="@dimen/_231pxv"
+                    android:layout_marginTop="@dimen/_80pxv"
                     android:layout_width="@dimen/_343pxh" />
 
                 <TextView
@@ -232,7 +232,7 @@
                     android:layout_marginBottom="@dimen/_20pxv"
                     android:layout_marginEnd="@dimen/_16pxh"
                     android:layout_marginStart="@dimen/_16pxh"
-                    android:layout_marginTop="@dimen/_76pxv"
+                    android:layout_marginTop="@dimen/_60pxv"
                     android:layout_width="match_parent"
                     android:paddingBottom="@dimen/_17pxv"
                     android:paddingEnd="@dimen/_30pxh"
@@ -252,7 +252,6 @@
                 android:layout_marginBottom="@dimen/_144pxv"
                 android:layout_marginEnd="@dimen/_16pxh"
                 android:layout_marginStart="@dimen/_16pxh"
-                android:layout_marginTop="@dimen/_144pxv"
                 android:layout_width="match_parent"
                 android:orientation="horizontal"
                 style="@style/groupStylewhite_1">

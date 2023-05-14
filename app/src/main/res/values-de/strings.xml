@@ -31,7 +31,7 @@
     <string name="lbl_english_en">Englisch (EN)</string>
     <string name="lbl_let_s_go">Los geht\'s</string>
     <string name="msg_recent_transact">Neueste Transaktionen</string>
-    <string name="lbl_terms">bedingungen</string>
+    <string name="lbl_terms">Mit der Anmeldung erklären Sie sich mit den Nutzungsbedingungen und der Datenschutzrichtlinie einverstanden.</string>
     <string name="lbl_password">Passwort</string>
     <string name="lbl_yesterday">Gestern</string>
     <string name="lbl_language">Sprache</string>
@@ -79,4 +79,5 @@
     <string name="msg_please_enter_valid_pa">Bitte gültiges Passwort eingeben</string>
     <string name="msg_please_enter_valid_email">Bitte gültige E-Mail eingeben</string>
     <string name="msg_please_enter_valid_text">Bitte gültigen Text eingeben</string>
+    <string name="add_attachment">Add Attachment</string>
 </resources>

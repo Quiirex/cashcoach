@@ -14,7 +14,7 @@ import com.tva.cashcoach.modules.login.data.viewmodel.LoginVM
 import com.tva.cashcoach.modules.signup.ui.SignUpActivity
 
 class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login) {
-    private val viewModel: LoginVM by viewModels<LoginVM>()
+    private val viewModel: LoginVM by viewModels()
 
     private val REQUEST_CODE_SIGN_UP_ACTIVITY: Int = 265
 
@@ -24,7 +24,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
 
     private val REQUEST_CODE_FORGOT_PASSWORD_ACTIVITY: Int = 984
 
-    override fun onInitialized(): Unit {
+    override fun onInitialized() {
         viewModel.navArguments = intent.extras?.getBundle("bundle")
         binding.loginVM = viewModel
         googleLogin = GoogleHelper(this,
@@ -34,7 +34,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
             })
     }
 
-    override fun setUpClicks(): Unit {
+    override fun setUpClicks() {
         binding.imageBack.setOnClickListener {
             finish()
         }
@@ -57,8 +57,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
 
     companion object {
         const val TAG: String = "LOGIN_ACTIVITY"
-
-
+        
         fun getIntent(context: Context, bundle: Bundle?): Intent {
             val destIntent = Intent(context, LoginActivity::class.java)
             destIntent.putExtra("bundle", bundle)

@@ -139,21 +139,5 @@
                 android:textAllCaps="false"
                 style="@style/btnSolidRoundedBottomCorner" />
         </LinearLayout>
-
-        <ScrollView
-            android:clipToPadding="false"
-            android:fillViewport="true"
-            android:gravity="start"
-            android:id="@+id/scrollViewScrollview"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:layout_width="match_parent">
-
-            <View
-                android:background="@color/gray_101"
-                android:id="@+id/viewRectangleThirtyOne"
-                android:layout_height="@dimen/_789pxh"
-                android:layout_width="@dimen/_375pxh" />
-        </ScrollView>
     </LinearLayout>
 </layout>

@@ -13,7 +13,6 @@
     <FrameLayout
         android:id="@+id/frameHomescreen"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/_12pxv"
         android:layout_width="match_parent"
         style="@style/groupStylewhite_A700">
 
@@ -21,7 +20,6 @@
             android:id="@+id/linearColumnavatar"
             android:layout_gravity="top|start"
             android:layout_height="match_parent"
-            android:layout_marginBottom="@dimen/_10pxv"
             android:layout_width="match_parent"
             android:orientation="vertical">
 
@@ -88,7 +86,7 @@
                 android:singleLine="true"
                 android:text="@{homeScreenVM.homeScreenModel.txtPrice}"
                 style="@style/txtIntersemibold40"
-                tools:text="@string/lbl_1_200" />
+                tools:text="" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:gravity="center_horizontal"

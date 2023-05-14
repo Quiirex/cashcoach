@@ -92,7 +92,7 @@
                 android:singleLine="true"
                 android:text="@{expenseDetailVM.expenseDetailModel.txtPrice}"
                 style="@style/txtInterbold48"
-                tools:text="@string/lbl_1202" />
+                tools:text="" />
 
             <TextView
                 android:ellipsize="end"
@@ -106,7 +106,7 @@
                 android:singleLine="true"
                 android:text="@{expenseDetailVM.expenseDetailModel.txtGroceries}"
                 style="@style/txtIntermedium16_3"
-                tools:text="@string/lbl_groceries" />
+                tools:text="" />
 
             <LinearLayout
                 android:gravity="center_vertical"
@@ -150,7 +150,7 @@
 
         <FrameLayout
             android:id="@+id/frameExpenseDetail"
-            android:layout_height="@dimen/_748pxv"
+            android:layout_height="@dimen/_600pxv"
             android:layout_width="match_parent"
             style="@style/groupStylewhite_A700">
 
@@ -158,7 +158,7 @@
                 android:background="@color/gray_100"
                 android:id="@+id/viewRectangle208"
                 android:layout_gravity="start"
-                android:layout_height="@dimen/_724pxh"
+                android:layout_height="@dimen/_600pxh"
                 android:layout_marginBottom="@dimen/_10pxv"
                 android:layout_width="@dimen/_375pxh" />
 
@@ -167,7 +167,7 @@
                 android:layout_gravity="center"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_1pxh"
-                android:layout_marginTop="@dimen/_24pxv"
+                android:layout_marginTop="@dimen/_20pxv"
                 android:layout_width="match_parent"
                 android:orientation="vertical"
                 style="@style/groupStylewhite_A700">
@@ -179,7 +179,6 @@
                     android:layout_height="@dimen/_2pxv"
                     android:layout_marginEnd="@dimen/_15pxh"
                     android:layout_marginStart="@dimen/_15pxh"
-                    android:layout_marginTop="@dimen/_207pxv"
                     android:layout_width="@dimen/_343pxh" />
 
                 <TextView
@@ -262,7 +261,6 @@
                 android:layout_marginBottom="@dimen/_144pxv"
                 android:layout_marginEnd="@dimen/_16pxh"
                 android:layout_marginStart="@dimen/_16pxh"
-                android:layout_marginTop="@dimen/_144pxv"
                 android:layout_width="match_parent"
                 android:orientation="horizontal"
                 style="@style/groupStylewhite_1">

@@ -37,7 +37,6 @@
             android:layout_marginTop="@dimen/_18pxv"
             android:layout_width="match_parent"
             android:lineSpacingExtra="@dimen/_3pxh"
-            android:singleLine="true"
             android:text="@{accountSetupVM.accountSetupModel.txtDontworryyo}"
             style="@style/txtIntermedium14_2"
             tools:text="@string/msg_don_t_worry_yo" />
@@ -50,7 +49,7 @@
             android:layout_marginBottom="@dimen/_28pxv"
             android:layout_marginEnd="@dimen/_16pxh"
             android:layout_marginStart="@dimen/_16pxh"
-            android:layout_marginTop="@dimen/_493pxv"
+            android:layout_marginTop="@dimen/_460pxv"
             android:layout_width="match_parent"
             android:paddingBottom="@dimen/_17pxv"
             android:paddingEnd="@dimen/_30pxh"

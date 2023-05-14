@@ -78,7 +78,7 @@
             android:layout_marginStart="@dimen/_16pxh"
             android:layout_marginTop="@dimen/_19pxv"
             android:layout_weight="0.62"
-            android:layout_width="0dp"
+            android:layout_width="375dp"
             android:singleLine="true"
             android:textAllCaps="false"
             style="@style/btnSolid_1" />
@@ -92,7 +92,7 @@
             android:layout_marginStart="@dimen/_16pxh"
             android:layout_marginTop="@dimen/_19pxv"
             android:layout_weight="0.54"
-            android:layout_width="0dp"
+            android:layout_width="375dp"
             android:singleLine="true"
             android:textAllCaps="false"
             style="@style/btnSolid_1" />
@@ -106,7 +106,7 @@
             android:layout_marginStart="@dimen/_16pxh"
             android:layout_marginTop="@dimen/_17pxv"
             android:layout_weight="0.52"
-            android:layout_width="0dp"
+            android:layout_width="375dp"
             android:singleLine="true"
             android:textAllCaps="false"
             style="@style/btnSolid_1" />
@@ -120,7 +120,7 @@
             android:layout_marginStart="@dimen/_16pxh"
             android:layout_marginTop="@dimen/_17pxv"
             android:layout_weight="0.88"
-            android:layout_width="0dp"
+            android:layout_width="375dp"
             android:singleLine="true"
             android:textAllCaps="false"
             style="@style/btnSolid_1" />
@@ -134,7 +134,7 @@
             android:layout_marginStart="@dimen/_16pxh"
             android:layout_marginTop="@dimen/_19pxv"
             android:layout_weight="0.84"
-            android:layout_width="0dp"
+            android:layout_width="375dp"
             android:singleLine="true"
             android:textAllCaps="false"
             style="@style/btnSolid_1" />

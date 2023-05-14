@@ -42,7 +42,7 @@
     <string name="lbl_03_30" translatable="false">03:30</string>
     <string name="msg_recent_transact">Recent Transactions</string>
     <string name="lbl_120" translatable="false">- 120\u20ac</string>
-    <string name="lbl_terms">terms</string>
+    <string name="lbl_terms">By signing up, you agree to the Terms of Service and Privacy Policy</string>
     <string name="lbl_password">Password</string>
     <string name="lbl_yesterday">Yesterday</string>
     <string name="lbl_language">Language</string>
@@ -70,7 +70,7 @@
     <string name="lbl_see_all">See All</string>
     <string name="lbl_cashcoach" translatable="false">CashCoach.</string>
     <string name="lbl_12" translatable="false">- 12\u20ac</string>
-    <string name="msg_don_t_worry_e">Don\\u2019t worry. Enter your email and we\\u2019ll send you a link to reset your password.</string>
+    <string name="msg_don_t_worry_e">Don\'t worry. Enter your email and we\'ll send you a link to reset your password.</string>
     <string name="lbl_sign_up">Sign Up</string>
     <string name="lbl_how_much">How much?</string>
     <string name="lbl_name">Name</string>
@@ -108,4 +108,5 @@
     <string name="msg_please_enter_valid_pa">Please enter valid password</string>
     <string name="msg_please_enter_valid_email">Please enter valid email</string>
     <string name="msg_please_enter_valid_text">Please enter valid text</string>
+    <string name="add_attachment">Add Attachment</string>
 </resources>

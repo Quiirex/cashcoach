@@ -55,6 +55,7 @@
                         tools:src="@drawable/img_arrowleft" />
 
                     <TextView
+                        android:layout_gravity="center"
                         android:ellipsize="end"
                         android:id="@+id/txtTitle"
                         android:layout_height="wrap_content"
@@ -87,17 +88,17 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/txtCurrentBudget"
+                    style="@style/txtIntermedium14"
+                    android:layout_width="148dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_0pxh"
+                    android:layout_marginEnd="@dimen/_16pxh"
                     android:ellipsize="end"
                     android:gravity="center_horizontal"
-                    android:id="@+id/txtCurrentBudget"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/_16pxh"
-                    android:layout_marginStart="@dimen/_16pxh"
-                    android:layout_width="match_parent"
                     android:lineSpacingExtra="@dimen/_3pxh"
                     android:singleLine="true"
                     android:text="@{accountsVM.accountsModel.txtCurrentBudget}"
-                    style="@style/txtIntermedium14"
                     tools:text="@string/lbl_current_budget" />
 
                 <TextView
@@ -110,7 +111,7 @@
                     android:singleLine="true"
                     android:text="@{accountsVM.accountsModel.txtPrice}"
                     style="@style/txtIntersemibold40"
-                    tools:text="@string/lbl_1_200" />
+                    tools:text="" />
             </LinearLayout>
 
             <ImageView
@@ -143,7 +144,7 @@
             android:layout_marginBottom="@dimen/_20pxv"
             android:layout_marginEnd="@dimen/_16pxh"
             android:layout_marginStart="@dimen/_16pxh"
-            android:layout_marginTop="@dimen/_211pxv"
+            android:layout_marginTop="@dimen/_290pxv"
             android:layout_width="match_parent"
             android:paddingBottom="@dimen/_17pxv"
             android:paddingEnd="@dimen/_30pxh"

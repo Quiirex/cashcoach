@@ -31,7 +31,7 @@
     <string name="lbl_english_en">Angleščina (EN)</string>
     <string name="lbl_let_s_go">Gremo</string>
     <string name="msg_recent_transact">Zadnje transakcije</string>
-    <string name="lbl_terms">pogoji</string>
+    <string name="lbl_terms">S prijavo se strinjate s pogoji storitve in pravilnikom o zasebnosti.</string>
     <string name="lbl_password">Geslo</string>
     <string name="lbl_yesterday">Včeraj</string>
     <string name="lbl_language">Jezik</string>
@@ -79,4 +79,5 @@
     <string name="msg_please_enter_valid_pa">Prosimo, vnesite veljavno geslo</string>
     <string name="msg_please_enter_valid_email">Prosimo, vnesite veljavni e-poštni naslov</string>
     <string name="msg_please_enter_valid_text">Prosimo, vnesite veljavno besedilo</string>
+    <string name="add_attachment">Add Attachment</string>
 </resources>

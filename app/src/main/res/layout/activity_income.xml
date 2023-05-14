@@ -79,20 +79,6 @@
             android:layout_marginTop="@dimen/_12pxv"
             android:layout_width="@dimen/_86pxh">
 
-            <TextView
-                android:ellipsize="end"
-                android:gravity="top|start"
-                android:id="@+id/txtOne"
-                android:layout_gravity="end"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_1pxv"
-                android:layout_marginStart="@dimen/_10pxh"
-                android:layout_width="match_parent"
-                android:singleLine="true"
-                android:text="@{incomeVM.incomeModel.txtOne}"
-                style="@style/txtIntersemibold64_1"
-                tools:text="@string/lbl" />
-
             <EditText
                 android:background="@android:color/transparent"
                 android:ellipsize="end"
@@ -106,7 +92,7 @@
                 android:layout_width="match_parent"
                 android:singleLine="true"
                 android:text="@={incomeVM.incomeModel.etZeroValue}"
-                android:textColorHint="@color/black_900"
+                android:textColorHint="@color/white"
                 style="@style/etIntersemibold64"
                 tools:ignore="Autofill" />
         </FrameLayout>
@@ -114,14 +100,13 @@
         <FrameLayout
             android:id="@+id/frameStackinputdescripti"
             android:layout_height="@dimen/_392pxv"
-            android:layout_marginTop="@dimen/_140pxv"
+            android:layout_marginTop="@dimen/_113pxv"
             android:layout_width="match_parent">
 
             <LinearLayout
                 android:id="@+id/linearColumninputdescripti"
                 android:layout_gravity="top|start"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_10pxv"
                 android:layout_width="match_parent"
                 android:orientation="vertical"
                 style="@style/groupStylewhite_A700cornerRadius">
@@ -167,6 +152,8 @@
                     android:layout_marginEnd="@dimen/_16pxh"
                     android:layout_marginStart="@dimen/_16pxh"
                     android:layout_marginTop="@dimen/_16pxv"
+                    android:paddingTop="@dimen/_19pxv"
+                    android:paddingBottom="@dimen/_10pxv"
                     android:layout_width="match_parent"
                     tools:listitem="@layout/spinner_item" />
 
@@ -179,9 +166,12 @@
                     android:layout_marginEnd="@dimen/_16pxh"
                     android:layout_marginStart="@dimen/_16pxh"
                     android:layout_marginTop="@dimen/_16pxv"
+                    android:paddingTop="@dimen/_19pxv"
+                    android:paddingBottom="@dimen/_19pxv"
                     android:layout_width="match_parent"
                     android:singleLine="true"
                     android:textAllCaps="false"
+                    android:text="@string/add_attachment"
                     style="@style/btnSolidRoundedOutline" />
             </LinearLayout>
 
@@ -189,7 +179,6 @@
                 android:id="@+id/linearColumncontinue"
                 android:layout_gravity="bottom|start"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10pxv"
                 android:layout_width="match_parent"
                 android:orientation="vertical"
                 style="@style/groupStylewhite_A700">
