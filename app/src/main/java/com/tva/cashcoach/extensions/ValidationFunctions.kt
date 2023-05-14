@@ -5,7 +5,7 @@ import android.widget.Toast
 import com.tva.cashcoach.R
 import com.tva.cashcoach.appcomponents.di.MyApp
 
-public fun String?.isNumeric(isMandatory: Boolean = false): Boolean {
+fun String?.isNumeric(isMandatory: Boolean = false): Boolean {
     if (isNullOrEmpty()) {
         if (isMandatory) {
             Toast.makeText(
@@ -38,7 +38,7 @@ public fun String?.isNumeric(isMandatory: Boolean = false): Boolean {
  * - length of at least 4
  * ⚫ no white space allowed
  */
-public fun String?.isValidPassword(isMandatory: Boolean = false): Boolean {
+fun String?.isValidPassword(isMandatory: Boolean = false): Boolean {
     if (isNullOrEmpty()) {
         if (isMandatory) {
             Toast.makeText(
@@ -63,7 +63,7 @@ public fun String?.isValidPassword(isMandatory: Boolean = false): Boolean {
     return result
 }
 
-public fun String?.isValidEmail(isMandatory: Boolean = false): Boolean {
+fun String?.isValidEmail(isMandatory: Boolean = false): Boolean {
     if (isNullOrEmpty()) {
         if (isMandatory) {
             Toast.makeText(
@@ -86,7 +86,7 @@ public fun String?.isValidEmail(isMandatory: Boolean = false): Boolean {
     return result
 }
 
-public fun String?.isText(isMandatory: Boolean = false): Boolean {
+fun String?.isText(isMandatory: Boolean = false): Boolean {
     if (isNullOrEmpty()) {
         if (isMandatory) {
             Toast.makeText(

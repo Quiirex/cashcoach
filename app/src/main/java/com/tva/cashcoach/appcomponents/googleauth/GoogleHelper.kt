@@ -23,7 +23,6 @@ class GoogleHelper(
     private val startForGoogleResult =
         activity.registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
             if (result.resultCode == Activity.RESULT_OK) {
-                // Handle Result
                 handleResult(result.data)
             }
         }
