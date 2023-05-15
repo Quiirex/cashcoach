@@ -3,6 +3,7 @@ package com.tva.cashcoach.appcomponents.base
 import android.os.Bundle
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 
@@ -21,6 +22,7 @@ abstract class BaseActivity<T : ViewDataBinding>(@LayoutRes val layoutId: Int) :
     lateinit var binding: T
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        installSplashScreen()
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this@BaseActivity, layoutId) as T
         binding.lifecycleOwner = this
