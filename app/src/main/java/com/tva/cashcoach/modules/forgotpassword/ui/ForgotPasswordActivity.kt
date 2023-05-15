@@ -11,14 +11,14 @@ import com.tva.cashcoach.modules.forgotpassword.data.viewmodel.ForgotPasswordVM
 
 class ForgotPasswordActivity :
     BaseActivity<ActivityForgotPasswordBinding>(R.layout.activity_forgot_password) {
-    private val viewModel: ForgotPasswordVM by viewModels<ForgotPasswordVM>()
+    private val viewModel: ForgotPasswordVM by viewModels()
 
-    override fun onInitialized(): Unit {
+    override fun onInitialized() {
         viewModel.navArguments = intent.extras?.getBundle("bundle")
         binding.forgotPasswordVM = viewModel
     }
 
-    override fun setUpClicks(): Unit {
+    override fun setUpClicks() {
         binding.imageBack.setOnClickListener {
             finish()
         }
