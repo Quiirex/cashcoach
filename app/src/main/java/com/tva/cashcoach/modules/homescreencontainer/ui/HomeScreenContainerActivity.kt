@@ -16,12 +16,11 @@ import com.tva.cashcoach.modules.transaction.ui.TransactionFragment
 
 class HomeScreenContainerActivity :
     BaseActivity<ActivityHomeScreenContainerBinding>(R.layout.activity_home_screen_container) {
-    private val viewModel: HomeScreenContainerVM by viewModels<HomeScreenContainerVM>()
+    private val viewModel: HomeScreenContainerVM by viewModels()
 
     private val REQUEST_CODE_FINANCIAL_REPORT_LINE_CHART_ACTIVITY: Int = 276
 
-
-    override fun onInitialized(): Unit {
+    override fun onInitialized() {
         viewModel.navArguments = intent.extras?.getBundle("bundle")
         binding.homeScreenContainerVM = viewModel
         val destFragment = HomeScreenFragment.getInstance(null)
@@ -37,7 +36,7 @@ class HomeScreenContainerActivity :
         )
     }
 
-    override fun setUpClicks(): Unit {
+    override fun setUpClicks() {
         binding.linearHome.setOnClickListener {
             val destFragment = HomeScreenFragment.getInstance(null)
             this.loadFragment(
@@ -85,8 +84,7 @@ class HomeScreenContainerActivity :
 
     companion object {
         const val TAG: String = "HOME_SCREEN_CONTAINER_ACTIVITY"
-
-
+        
         fun getIntent(context: Context, bundle: Bundle?): Intent {
             val destIntent = Intent(context, HomeScreenContainerActivity::class.java)
             destIntent.putExtra("bundle", bundle)
