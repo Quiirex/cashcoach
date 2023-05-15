@@ -14,10 +14,9 @@ import com.tva.cashcoach.modules.homescreen.data.viewmodel.HomeScreenVM
 import com.tva.cashcoach.modules.profile.ui.ProfileFragment
 
 class HomeScreenFragment : BaseFragment<FragmentHomeScreenBinding>(R.layout.fragment_home_screen) {
-    private val viewModel: HomeScreenVM by viewModels<HomeScreenVM>()
+    private val viewModel: HomeScreenVM by viewModels()
 
     private val REQUEST_CODE_PROFILE_FRAGMENT: Int = 668
-
 
     override fun onInitialized(): Unit {
         viewModel.navArguments = arguments
@@ -28,13 +27,13 @@ class HomeScreenFragment : BaseFragment<FragmentHomeScreenBinding>(R.layout.frag
             SpinnerDropdownMonthModel("Item4"),
             SpinnerDropdownMonthModel("Item5")
         )
-        val spinnerDropdownMonthAdapter =
-            SpinnerDropdownMonthAdapter(
-                requireActivity(),
-                R.layout.spinner_item,
-                viewModel.spinnerDropdownMonthList.value ?: mutableListOf()
-            )
-        binding.spinnerDropdownMonth.adapter = spinnerDropdownMonthAdapter
+//        val spinnerDropdownMonthAdapter =
+//            SpinnerDropdownMonthAdapter(
+//                requireActivity(),
+//                R.layout.spinner_item,
+//                viewModel.spinnerDropdownMonthList.value ?: mutableListOf()
+//            )
+//        binding.spinnerDropdownMonth.adapter = spinnerDropdownMonthAdapter
         val listeyeAdapter = ListeyeAdapter(viewModel.listeyeList.value ?: mutableListOf())
         binding.recyclerListeye.adapter = listeyeAdapter
         listeyeAdapter.setOnItemClickListener(
@@ -63,7 +62,7 @@ class HomeScreenFragment : BaseFragment<FragmentHomeScreenBinding>(R.layout.frag
         binding.homeScreenVM = viewModel
     }
 
-    override fun setUpClicks(): Unit {
+    override fun setUpClicks() {
         binding.imageAvatar.setOnClickListener {
             val destFragment = ProfileFragment.getInstance(null)
             requireActivity().loadFragment(
@@ -84,7 +83,7 @@ class HomeScreenFragment : BaseFragment<FragmentHomeScreenBinding>(R.layout.frag
         view: View,
         position: Int,
         item: ListeyeRowModel
-    ): Unit {
+    ) {
         when (view.id) {
         }
     }
@@ -93,14 +92,13 @@ class HomeScreenFragment : BaseFragment<FragmentHomeScreenBinding>(R.layout.frag
         view: View,
         position: Int,
         item: ListframefiveRowModel
-    ): Unit {
+    ) {
         when (view.id) {
         }
     }
 
     companion object {
         const val TAG: String = "HOME_SCREEN_FRAGMENT"
-
 
         fun getInstance(bundle: Bundle?): HomeScreenFragment {
             val fragment = HomeScreenFragment()

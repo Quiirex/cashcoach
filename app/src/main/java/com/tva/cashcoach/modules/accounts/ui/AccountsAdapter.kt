@@ -29,7 +29,7 @@ class AccountsAdapter(
     // TODO uncomment following line after integration with data source
     // return list.size
 
-    public fun updateData(newData: List<AccountsRowModel>) {
+    fun updateData(newData: List<AccountsRowModel>) {
         list = newData
         notifyDataSetChanged()
     }

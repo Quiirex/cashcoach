@@ -30,7 +30,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
         googleLogin = GoogleHelper(this,
             { accountInfo ->
             }, { error ->
-
+                
             })
     }
 
