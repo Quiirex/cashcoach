@@ -9,10 +9,8 @@ import org.koin.core.KoinComponent
 
 class LoginVM : ViewModel(), KoinComponent {
     val loginModel: MutableLiveData<LoginModel> = MutableLiveData(LoginModel())
-
-
+    
     var navArguments: Bundle? = null
-
 
     lateinit var googleAuthResponse: GoogleSignInAccount
 }

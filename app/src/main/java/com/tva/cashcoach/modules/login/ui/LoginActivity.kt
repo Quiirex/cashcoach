@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.tva.cashcoach.R
 import com.tva.cashcoach.appcomponents.base.BaseActivity
 import com.tva.cashcoach.appcomponents.googleauth.GoogleHelper
@@ -23,6 +24,11 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
     private val REQUEST_CODE_HOME_SCREEN_CONTAINER_ACTIVITY: Int = 303
 
     private val REQUEST_CODE_FORGOT_PASSWORD_ACTIVITY: Int = 984
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        installSplashScreen()
+        super.onCreate(savedInstanceState)
+    }
 
     override fun onInitialized() {
         viewModel.navArguments = intent.extras?.getBundle("bundle")
