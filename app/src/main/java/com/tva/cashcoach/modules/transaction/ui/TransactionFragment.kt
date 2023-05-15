@@ -24,13 +24,13 @@ class TransactionFragment :
             SpinnerDropdownMonthModel("Item4"),
             SpinnerDropdownMonthModel("Item5")
         )
-        val spinnerDropdownMonthAdapter =
-            SpinnerDropdownMonthAdapter(
-                requireActivity(),
-                R.layout.spinner_item,
-                viewModel.spinnerDropdownMonthList.value ?: mutableListOf()
-            )
-        binding.spinnerDropdownMonth.adapter = spinnerDropdownMonthAdapter
+//        val spinnerDropdownMonthAdapter =
+//            SpinnerDropdownMonthAdapter(
+//                requireActivity(),
+//                R.layout.spinner_item,
+//                viewModel.spinnerDropdownMonthList.value ?: mutableListOf()
+//            )
+//        binding.spinnerDropdownMonth.adapter = spinnerDropdownMonthAdapter
         val listtrashAdapter = ListtrashAdapter(viewModel.listtrashList.value ?: mutableListOf())
         binding.recyclerListtrash.adapter = listtrashAdapter
         listtrashAdapter.setOnItemClickListener(

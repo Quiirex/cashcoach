@@ -30,13 +30,13 @@ class FinancialReportLineChartActivity :
             SpinnerDropdownMonthModel("Item4"),
             SpinnerDropdownMonthModel("Item5")
         )
-        val spinnerDropdownMonthAdapter =
-            SpinnerDropdownMonthAdapter(
-                this,
-                R.layout.spinner_item,
-                viewModel.spinnerDropdownMonthList.value ?: mutableListOf()
-            )
-        binding.spinnerDropdownMonth.adapter = spinnerDropdownMonthAdapter
+//        val spinnerDropdownMonthAdapter =
+//            SpinnerDropdownMonthAdapter(
+//                this,
+//                R.layout.spinner_item,
+//                viewModel.spinnerDropdownMonthList.value ?: mutableListOf()
+//            )
+//        binding.spinnerDropdownMonth.adapter = spinnerDropdownMonthAdapter
         viewModel.spinnerDropdownTransaList.value = mutableListOf(
             SpinnerDropdownTransaModel("Item1"),
             SpinnerDropdownTransaModel("Item2"),
@@ -44,13 +44,13 @@ class FinancialReportLineChartActivity :
             SpinnerDropdownTransaModel("Item4"),
             SpinnerDropdownTransaModel("Item5")
         )
-        val spinnerDropdownTransaAdapter =
-            SpinnerDropdownTransaAdapter(
-                this,
-                R.layout.spinner_item,
-                viewModel.spinnerDropdownTransaList.value ?: mutableListOf()
-            )
-        binding.spinnerDropdownTransa.adapter = spinnerDropdownTransaAdapter
+//        val spinnerDropdownTransaAdapter =
+//            SpinnerDropdownTransaAdapter(
+//                this,
+//                R.layout.spinner_item,
+//                viewModel.spinnerDropdownTransaList.value ?: mutableListOf()
+//            )
+//        binding.spinnerDropdownTransa.adapter = spinnerDropdownTransaAdapter
         val listtrashAdapter = ListtrashAdapter(viewModel.listtrashList.value ?: mutableListOf())
         binding.recyclerListtrash.adapter = listtrashAdapter
         listtrashAdapter.setOnItemClickListener(

@@ -3,6 +3,8 @@ package com.tva.cashcoach.modules.login.ui
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import androidx.activity.viewModels
 import com.tva.cashcoach.R
 import com.tva.cashcoach.appcomponents.base.BaseActivity
@@ -29,8 +31,16 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
         binding.loginVM = viewModel
         googleLogin = GoogleHelper(this,
             { accountInfo ->
+                Log.d(TAG, "User signed in successfully: ${accountInfo.email}")
+                Toast.makeText(
+                    this,
+                    "User signed in successfully: ${accountInfo.email}",
+                    Toast.LENGTH_SHORT
+                ).show()
+                val destIntent = HomeScreenContainerActivity.getIntent(this, null)
+                startActivity(destIntent)
             }, { error ->
-                
+                Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
             })
     }
 

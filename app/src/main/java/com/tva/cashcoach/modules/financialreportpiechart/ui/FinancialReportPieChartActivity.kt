@@ -26,13 +26,13 @@ class FinancialReportPieChartActivity :
             SpinnerDropdownCategoModel("Item4"),
             SpinnerDropdownCategoModel("Item5")
         )
-        val spinnerDropdownCategoAdapter =
-            SpinnerDropdownCategoAdapter(
-                this,
-                R.layout.spinner_item,
-                viewModel.spinnerDropdownCategoList.value ?: mutableListOf()
-            )
-        binding.spinnerDropdownCatego.adapter = spinnerDropdownCategoAdapter
+//        val spinnerDropdownCategoAdapter =
+//            SpinnerDropdownCategoAdapter(
+//                this,
+//                R.layout.spinner_item,
+//                viewModel.spinnerDropdownCategoList.value ?: mutableListOf()
+//            )
+//        binding.spinnerDropdownCatego.adapter = spinnerDropdownCategoAdapter
         binding.financialReportPieChartVM = viewModel
     }
 

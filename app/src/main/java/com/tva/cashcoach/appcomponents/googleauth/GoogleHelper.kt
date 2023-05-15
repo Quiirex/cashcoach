@@ -49,6 +49,7 @@ class GoogleHelper(
      * */
     private fun configureGoogleSignIn() {
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestProfile()
             .requestEmail()
             .build()
         mGoogleSignInClient = GoogleSignIn.getClient(activity, gso)
