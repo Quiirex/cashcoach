@@ -14,53 +14,53 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name="com.tva.cashcoach.modules.accounts.ui.AccountsActivity"
-            android:screenOrientation="fullSensor" />
+            android:screenOrientation="locked" />
         <activity
             android:name="com.tva.cashcoach.modules.financialreportlinechart.ui.FinancialReportLineChartActivity"
-            android:screenOrientation="fullSensor" />
+            android:screenOrientation="locked" />
         <activity
             android:name="com.tva.cashcoach.modules.income.ui.IncomeActivity"
-            android:screenOrientation="fullSensor" />
+            android:screenOrientation="locked" />
         <activity
             android:name="com.tva.cashcoach.modules.addnewwallet.ui.AddNewWalletActivity"
-            android:screenOrientation="fullSensor" />
+            android:screenOrientation="locked" />
         <activity
             android:name="com.tva.cashcoach.modules.financialreportpiechart.ui.FinancialReportPieChartActivity"
-            android:screenOrientation="fullSensor" />
+            android:screenOrientation="locked" />
         <activity
             android:name="com.tva.cashcoach.modules.settingslanguage.ui.SettingsLanguageActivity"
-            android:screenOrientation="fullSensor" />
+            android:screenOrientation="locked" />
         <activity
             android:name="com.tva.cashcoach.modules.signupsuccess.ui.SignupSuccessActivity"
-            android:screenOrientation="fullSensor" />
+            android:screenOrientation="locked" />
         <activity
             android:name="com.tva.cashcoach.modules.settingstheme.ui.SettingsThemeActivity"
-            android:screenOrientation="fullSensor" />
+            android:screenOrientation="locked" />
         <activity
             android:name="com.tva.cashcoach.modules.homescreencontainer.ui.HomeScreenContainerActivity"
-            android:screenOrientation="fullSensor" />
+            android:screenOrientation="locked" />
         <activity
             android:name="com.tva.cashcoach.modules.settings.ui.SettingsActivity"
-            android:screenOrientation="fullSensor" />
+            android:screenOrientation="locked" />
         <activity
             android:name="com.tva.cashcoach.modules.signup.ui.SignUpActivity"
-            android:screenOrientation="fullSensor" />
+            android:screenOrientation="locked" />
         <activity
             android:name="com.tva.cashcoach.modules.expensedetail.ui.ExpenseDetailActivity"
-            android:screenOrientation="fullSensor" />
+            android:screenOrientation="locked" />
         <activity
             android:name="com.tva.cashcoach.modules.incomedetail.ui.IncomeDetailActivity"
-            android:screenOrientation="fullSensor" />
+            android:screenOrientation="locked" />
         <activity
             android:name="com.tva.cashcoach.modules.newexpense.ui.NewExpenseActivity"
-            android:screenOrientation="fullSensor" />
+            android:screenOrientation="locked" />
         <activity
             android:name="com.tva.cashcoach.modules.forgotpassword.ui.ForgotPasswordActivity"
-            android:screenOrientation="fullSensor" />
+            android:screenOrientation="locked" />
         <activity
             android:exported="true"
             android:name="com.tva.cashcoach.modules.login.ui.LoginActivity"
-            android:screenOrientation="fullSensor">
+            android:screenOrientation="locked">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -68,9 +68,9 @@
         </activity>
         <activity
             android:name="com.tva.cashcoach.modules.settingscurrency.ui.SettingsCurrencyActivity"
-            android:screenOrientation="fullSensor" />
+            android:screenOrientation="locked" />
         <activity
             android:name="com.tva.cashcoach.modules.accountsetup.ui.AccountSetupActivity"
-            android:screenOrientation="fullSensor" />
+            android:screenOrientation="locked" />
     </application>
 </manifest>
