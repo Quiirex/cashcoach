@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "337861660196",
+    "project_id": "cashcoach-6d3cd",
+    "storage_bucket": "cashcoach-6d3cd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:337861660196:android:2fc06158a09252806792b1",
+        "android_client_info": {
+          "package_name": "com.tva.cashcoach"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "337861660196-q5u2naq5pqmk1bent9vaiullhjhlhmkj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tva.cashcoach",
+            "certificate_hash": "3e4f1bfd46f9fa275ac0b6e10a8c4ca23d5552b5"
+          }
+        },
+        {
+          "client_id": "337861660196-gfr7d3as1el012stvglf1uglc9gaelmh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2FxN6YRDcKL4_H-Fu-YZM16ytGtVb40c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "337861660196-gfr7d3as1el012stvglf1uglc9gaelmh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
