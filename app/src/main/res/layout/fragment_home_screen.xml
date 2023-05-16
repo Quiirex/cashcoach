@@ -13,6 +13,7 @@
     <FrameLayout
         android:id="@+id/frameHomescreen"
         android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/_12pxv"
         android:layout_width="match_parent"
         style="@style/groupStylewhite_A700">
 
@@ -20,6 +21,7 @@
             android:id="@+id/linearColumnavatar"
             android:layout_gravity="top|start"
             android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/_10pxv"
             android:layout_width="match_parent"
             android:orientation="vertical">
 
@@ -86,105 +88,215 @@
                 android:singleLine="true"
                 android:text="@{homeScreenVM.homeScreenModel.txtPrice}"
                 style="@style/txtIntersemibold40"
-                tools:text="" />
+                tools:text="0€" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:gravity="center_horizontal"
-                android:id="@+id/recyclerListeye"
+            <LinearLayout
+                android:id="@+id/linearListeye"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/_14pxh"
                 android:layout_marginStart="@dimen/_14pxh"
                 android:layout_marginTop="@dimen/_25pxv"
                 android:layout_width="match_parent"
-                android:orientation="horizontal"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                itemSpace="@{@dimen/_16pxh}"
-                tools:itemCount="2"
-                tools:listitem="@layout/row_listeye" />
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/linearRoweye"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:orientation="horizontal"
+                    style="@style/groupStyleteal_500cornerRadius">
+
+                    <ImageButton
+                        android:background="@drawable/rectangle_bg_gray_50_radius_16"
+                        android:id="@+id/btnEye"
+                        android:layout_height="@dimen/_48pxh"
+                        android:layout_marginBottom="@dimen/_15pxv"
+                        android:layout_marginStart="@dimen/_16pxh"
+                        android:layout_marginTop="@dimen/_17pxv"
+                        android:layout_width="@dimen/_48pxh"
+                        android:paddingHorizontal="@dimen/_10pxh"
+                        android:paddingVertical="@dimen/_10pxv"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/img_ticket_black_900"
+                        tools:ignore="ContentDescription" />
+
+                    <LinearLayout
+                        android:gravity="start"
+                        android:id="@+id/linearColumnincome"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/_13pxv"
+                        android:layout_marginEnd="@dimen/_16pxh"
+                        android:layout_marginStart="@dimen/_10pxh"
+                        android:layout_marginTop="@dimen/_18pxv"
+                        android:layout_weight="0.61"
+                        android:layout_width="0dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/txtIncome"
+                            style="@style/txtIntermedium14_1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/_10pxh"
+                            android:ellipsize="end"
+                            android:singleLine="true"
+                            android:text="@{homeScreenVM.homeScreenModel.txtIncome}"
+                            tools:text="@string/lbl_income" />
+
+                        <TextView
+                            android:ellipsize="end"
+                            android:id="@+id/txtPriceOne"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_4pxv"
+                            android:layout_width="match_parent"
+                            android:singleLine="true"
+                            android:text="@{homeScreenVM.homeScreenModel.txtPriceOne}"
+                            style="@style/txtIntersemibold22"
+                            tools:text="@string/lbl_1_680" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearRowtelevision"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_16pxh"
+                    android:layout_width="wrap_content"
+                    android:orientation="horizontal"
+                    style="@style/groupStylered_A200cornerRadius">
+
+                    <ImageButton
+                        android:background="@drawable/rectangle_bg_gray_50_radius_16"
+                        android:id="@+id/btnTelevision"
+                        android:layout_height="@dimen/_48pxh"
+                        android:layout_marginBottom="@dimen/_15pxv"
+                        android:layout_marginStart="@dimen/_16pxh"
+                        android:layout_marginTop="@dimen/_17pxv"
+                        android:layout_width="@dimen/_48pxh"
+                        android:paddingHorizontal="@dimen/_9pxh"
+                        android:paddingVertical="@dimen/_9pxv"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/img_television"
+                        tools:ignore="ContentDescription" />
+
+                    <LinearLayout
+                        android:gravity="start"
+                        android:id="@+id/linearColumnexpenses"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/_13pxv"
+                        android:layout_marginEnd="@dimen/_27pxh"
+                        android:layout_marginStart="@dimen/_8pxh"
+                        android:layout_marginTop="@dimen/_19pxv"
+                        android:layout_weight="0.58"
+                        android:layout_width="0dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:ellipsize="end"
+                            android:id="@+id/txtExpenses"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:singleLine="true"
+                            android:text="@{homeScreenVM.homeScreenModel.txtExpenses}"
+                            style="@style/txtIntermedium14_1"
+                            tools:text="@string/lbl_expenses" />
+
+                        <TextView
+                            android:ellipsize="end"
+                            android:id="@+id/txtPriceTwo"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/_6pxh"
+                            android:layout_marginTop="@dimen/_2pxv"
+                            android:layout_width="match_parent"
+                            android:singleLine="true"
+                            android:text="@{homeScreenVM.homeScreenModel.txtPriceTwo}"
+                            style="@style/txtIntersemibold22"
+                            tools:text="@string/lbl_800" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
 
             <LinearLayout
-                android:gravity="start"
                 android:id="@+id/linearTabs"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/_14pxh"
+                style="@style/groupStylecornerRadius"
+                android:layout_width="match_parent"
+                android:layout_height="39dp"
                 android:layout_marginStart="@dimen/_14pxh"
                 android:layout_marginTop="@dimen/_32pxv"
-                android:layout_width="match_parent"
-                android:orientation="horizontal"
-                style="@style/groupStylecornerRadius">
+                android:layout_marginEnd="@dimen/_14pxh"
+                android:gravity="start"
+                android:orientation="horizontal">
 
                 <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnToday"
+                    style="@style/btnSolid"
+                    android:layout_width="103dp"
+                    android:layout_height="@dimen/_34pxv"
+                    android:alpha="1.0"
                     android:ellipsize="end"
                     android:gravity="center"
-                    android:id="@+id/btnToday"
-                    android:layout_height="@dimen/_34pxv"
-                    android:layout_width="@dimen/_90pxh"
                     android:lineSpacingExtra="@dimen/_3pxh"
-                    android:paddingBottom="@dimen/_8pxv"
-                    android:paddingEnd="@dimen/_24pxh"
                     android:paddingStart="@dimen/_24pxh"
-                    android:paddingTop="@dimen/_8pxv"
+                    android:paddingTop="@dimen/_10pxv"
+                    android:paddingEnd="@dimen/_24pxh"
+                    android:paddingBottom="@dimen/_8pxv"
                     android:singleLine="true"
                     android:text="@string/lbl_today"
                     android:textAllCaps="false"
-                    style="@style/btnSolidRounded"
                     tools:text="@string/lbl_today" />
 
-                <TextView
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnWeek"
+                    style="@style/btnSolid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_34pxv"
+                    android:alpha="1.0"
                     android:ellipsize="end"
-                    android:id="@+id/txtWeek"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/_8pxv"
-                    android:layout_marginStart="@dimen/_24pxh"
-                    android:layout_marginTop="@dimen/_8pxv"
-                    android:layout_weight="0.19"
-                    android:layout_width="0dp"
+                    android:gravity="center"
                     android:lineSpacingExtra="@dimen/_3pxh"
+                    android:paddingStart="@dimen/_24pxh"
+                    android:paddingTop="@dimen/_10pxv"
+                    android:paddingEnd="@dimen/_24pxh"
+                    android:paddingBottom="@dimen/_8pxv"
                     android:singleLine="true"
-                    android:text="@{homeScreenVM.homeScreenModel.txtWeek}"
-                    style="@style/txtIntermedium14"
+                    android:text="@string/lbl_week"
+                    android:textAllCaps="false"
                     tools:text="@string/lbl_week" />
 
-                <TextView
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnMonth"
+                    style="@style/btnSolid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_34pxv"
+                    android:alpha="1.0"
                     android:ellipsize="end"
-                    android:id="@+id/txtMonth"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/_8pxv"
-                    android:layout_marginStart="@dimen/_48pxh"
-                    android:layout_marginTop="@dimen/_8pxv"
-                    android:layout_weight="0.22"
-                    android:layout_width="0dp"
+                    android:gravity="center"
                     android:lineSpacingExtra="@dimen/_3pxh"
+                    android:paddingStart="@dimen/_24pxh"
+                    android:paddingTop="@dimen/_10pxv"
+                    android:paddingEnd="@dimen/_24pxh"
+                    android:paddingBottom="@dimen/_8pxv"
                     android:singleLine="true"
-                    android:text="@{homeScreenVM.homeScreenModel.txtMonth}"
-                    style="@style/txtIntermedium14"
+                    android:text="@string/lbl_month"
+                    android:textAllCaps="false"
                     tools:text="@string/lbl_month" />
 
-                <LinearLayout
-                    android:gravity="center_horizontal"
-                    android:id="@+id/linearColumnyear"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/_8pxv"
-                    android:layout_marginEnd="@dimen/_24pxh"
-                    android:layout_marginStart="@dimen/_48pxh"
-                    android:layout_marginTop="@dimen/_8pxv"
-                    android:layout_weight="0.15"
-                    android:layout_width="0dp"
-                    android:orientation="vertical"
-                    style="@style/groupStylecornerRadius_1">
-
-                    <TextView
-                        android:ellipsize="end"
-                        android:gravity="start"
-                        android:id="@+id/txtYear"
-                        android:layout_height="match_parent"
-                        android:layout_width="match_parent"
-                        android:lineSpacingExtra="@dimen/_3pxh"
-                        android:singleLine="true"
-                        android:text="@{homeScreenVM.homeScreenModel.txtYear}"
-                        style="@style/txtIntermedium14"
-                        tools:text="@string/lbl_year" />
-                </LinearLayout>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnYear"
+                    style="@style/btnSolid"
+                    android:layout_width="96dp"
+                    android:layout_height="@dimen/_34pxv"
+                    android:alpha="1.0"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:lineSpacingExtra="@dimen/_3pxh"
+                    android:paddingStart="@dimen/_24pxh"
+                    android:paddingTop="@dimen/_10pxv"
+                    android:paddingEnd="@dimen/_24pxh"
+                    android:paddingBottom="@dimen/_8pxv"
+                    android:singleLine="true"
+                    android:text="@string/lbl_year"
+                    android:textAllCaps="false"
+                    tools:text="@string/lbl_year" />
             </LinearLayout>
 
             <LinearLayout
@@ -196,17 +308,17 @@
                 style="@style/groupStylewhite_A700">
 
                 <TextView
-                    android:ellipsize="end"
                     android:id="@+id/txtSpendFrequency"
+                    style="@style/txtIntersemibold18"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/_16pxv"
                     android:layout_marginStart="@dimen/_16pxh"
-                    android:layout_marginTop="@dimen/_17pxv"
+                    android:layout_marginTop="@dimen/_14pxv"
+                    android:layout_marginBottom="@dimen/_16pxv"
                     android:layout_weight="0.7"
                     android:layout_width="0dp"
+                    android:ellipsize="end"
                     android:singleLine="true"
                     android:text="@{homeScreenVM.homeScreenModel.txtSpendFrequency}"
-                    style="@style/txtIntersemibold18"
                     tools:text="@string/msg_recent_transact" />
 
                 <androidx.appcompat.widget.AppCompatButton
@@ -216,9 +328,8 @@
                     android:layout_height="@dimen/_32pxv"
                     android:layout_marginBottom="@dimen/_12pxv"
                     android:layout_marginEnd="@dimen/_16pxh"
-                    android:layout_marginStart="@dimen/_85pxh"
-                    android:layout_marginTop="@dimen/_12pxv"
-                    android:layout_width="@dimen/_78pxh"
+                    android:layout_marginTop="@dimen/_15pxv"
+                    android:layout_width="@dimen/_80pxh"
                     android:lineSpacingExtra="@dimen/_3pxh"
                     android:paddingBottom="@dimen/_7pxv"
                     android:paddingEnd="@dimen/_16pxh"
@@ -227,7 +338,7 @@
                     android:singleLine="true"
                     android:text="@string/lbl_see_all"
                     android:textAllCaps="false"
-                    style="@style/btnSolidRounded_1"
+                    style="@style/btnSolidRounded"
                     tools:text="@string/lbl_see_all" />
             </LinearLayout>
 
