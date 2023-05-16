@@ -55,7 +55,7 @@
                         android:id="@+id/linearHome"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/_1pxv"
-                        android:layout_marginTop="@dimen/_12pxv"
+                        android:paddingTop="@dimen/_13pxh"
                         android:layout_weight="1"
                         android:layout_width="0dp"
                         android:orientation="vertical">
@@ -68,7 +68,7 @@
                             android:scaleType="fitXY"
                             android:src="@drawable/img_home"
                             tools:ignore="ContentDescription"
-                            tools:src="@drawable/img_home" />
+                            tools:src="@drawable/img_home_gray_400" />
 
                         <TextView
                             android:ellipsize="end"
@@ -77,11 +77,11 @@
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="@dimen/_2pxh"
                             android:layout_marginStart="@dimen/_2pxh"
-                            android:layout_marginTop="@dimen/_7pxv"
+                            android:layout_marginTop="@dimen/_6pxv"
                             android:layout_width="match_parent"
                             android:singleLine="true"
                             android:text="@{homeScreenContainerVM.homeScreenContainerModel.txtHomeOne}"
-                            style="@style/txtIntermedium10"
+                            style="@style/txtIntermedium10_1"
                             tools:text="@string/lbl_home" />
                     </LinearLayout>
 
@@ -89,7 +89,7 @@
                         android:id="@+id/linearTransaction"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/_1pxv"
-                        android:layout_marginTop="@dimen/_13pxv"
+                        android:paddingTop="@dimen/_13pxh"
                         android:layout_weight="1"
                         android:layout_width="0dp"
                         android:orientation="vertical">
@@ -141,7 +141,7 @@
                     <LinearLayout
                         android:id="@+id/linearBudget"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_12pxv"
+                        android:paddingTop="@dimen/_13pxh"
                         android:layout_weight="1"
                         android:layout_width="0dp"
                         android:orientation="vertical">
@@ -163,7 +163,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="@dimen/_2pxh"
                             android:layout_marginStart="@dimen/_2pxh"
-                            android:layout_marginTop="@dimen/_8pxv"
+                            android:layout_marginTop="@dimen/_7pxv"
                             android:layout_width="match_parent"
                             android:singleLine="true"
                             android:text="@{homeScreenContainerVM.homeScreenContainerModel.txtReport}"
@@ -175,7 +175,7 @@
                         android:id="@+id/linearProfile"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/_1pxv"
-                        android:layout_marginTop="@dimen/_12pxv"
+                        android:paddingTop="@dimen/_13pxh"
                         android:layout_weight="1"
                         android:layout_width="0dp"
                         android:orientation="vertical">
