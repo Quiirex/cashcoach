@@ -9,7 +9,7 @@ import com.tva.cashcoach.appcomponents.di.MyApp
 /**
  * class which used to manage application shared preference
  */
-class PreferenceHelper() {
+class PreferenceHelper {
     private val masterKeyAlias: String = createGetMasterKey()
 
     private val sharedPreference: SharedPreferences = EncryptedSharedPreferences.create(
@@ -28,5 +28,55 @@ class PreferenceHelper() {
      */
     private fun createGetMasterKey(): String {
         return MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC)
+    }
+
+    /**
+     * Put a string value in the shared preferences.
+     *
+     * @param key the key to store the value under
+     * @param value the value to store
+     */
+    fun putString(key: String, value: String) {
+        sharedPreference.edit().putString(key, value).apply()
+    }
+
+    /**
+     * Get a string value from the shared preferences.
+     *
+     * @param key the key to retrieve the value for
+     * @param defaultValue the default value to return if the key is not found
+     * @return the string value for the key, or the default value if the key is not found
+     */
+    fun getString(key: String, defaultValue: String): String {
+        return sharedPreference.getString(key, defaultValue) ?: defaultValue
+    }
+
+    /**
+     * Put an integer value in the shared preferences.
+     *
+     * @param key the key to store the value under
+     * @param value the value to store
+     */
+    fun putInt(key: String, value: Int) {
+        sharedPreference.edit().putInt(key, value).apply()
+    }
+
+    /**
+     * Get an integer value from the shared preferences.
+     *
+     * @param key the key to retrieve the value for
+     * @param defaultValue the default value to return if the key is not found
+     * @return the integer value for the key, or the default value if the key is not found
+     */
+    fun getInt(key: String, defaultValue: Int): Int {
+        return sharedPreference.getInt(key, defaultValue)
+    }
+
+    /**
+     * Remove a value from the shared preferences.
+     * @param key the key to remove the value for
+     */
+    fun removeValue(key: String) {
+        sharedPreference.edit().remove(key).apply()
     }
 }
