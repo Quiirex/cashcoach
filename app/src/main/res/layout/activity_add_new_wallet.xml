@@ -97,6 +97,7 @@
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:orientation="vertical"
+            android:layout_marginTop="@dimen/_27pxh"
             style="@style/groupStylewhite_A700cornerRadius">
 
             <EditText
@@ -135,29 +136,29 @@
         </LinearLayout>
 
         <LinearLayout
-            android:gravity="center_horizontal"
             android:id="@+id/linearColumncontinue"
-            android:layout_height="wrap_content"
+            style="@style/groupStylewhite_A700"
             android:layout_width="match_parent"
-            android:orientation="vertical"
-            style="@style/groupStylewhite_A700">
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
 
             <androidx.appcompat.widget.AppCompatButton
-                android:ellipsize="end"
-                android:gravity="center"
                 android:id="@+id/btnContinue"
+                style="@style/btnSolidRounded_3"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="@dimen/_16pxh"
                 android:layout_marginVertical="@dimen/_5pxv"
-                android:layout_width="match_parent"
-                android:paddingBottom="@dimen/_17pxv"
-                android:paddingEnd="@dimen/_30pxh"
+                android:ellipsize="end"
+                android:gravity="center"
                 android:paddingStart="@dimen/_30pxh"
                 android:paddingTop="@dimen/_17pxv"
+                android:paddingEnd="@dimen/_30pxh"
+                android:paddingBottom="@dimen/_17pxv"
                 android:singleLine="true"
                 android:text="@string/lbl_continue"
                 android:textAllCaps="false"
-                style="@style/btnSolidRounded_3"
                 tools:text="@string/lbl_continue" />
         </LinearLayout>
     </LinearLayout>
