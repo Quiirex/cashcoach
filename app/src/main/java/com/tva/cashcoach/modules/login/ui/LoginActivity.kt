@@ -57,13 +57,13 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
             val password = binding.etInputPassword.text.toString()
 
             if (email.isEmpty()) {
-                binding.etInputEmail.error = "Email is required"
+                binding.etInputEmail.error = getString(R.string.email_is_required)
                 binding.etInputEmail.requestFocus()
                 return@setOnClickListener
             }
 
             if (password.isEmpty()) {
-                binding.etInputPassword.error = "Password is required"
+                binding.etInputPassword.error = getString(R.string.password_is_required)
                 binding.etInputPassword.requestFocus()
                 return@setOnClickListener
             }
