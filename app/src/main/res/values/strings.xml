@@ -13,7 +13,7 @@
     <string name="msg_add_new_walle">+ Add new wallet</string>
     <string name="lbl_salary">Salary</string>
     <string name="lbl_home">Home</string>
-    <string name="msg_already_have_an">Already have an account? Login</string>
+    <string name="msg_already_have_an">Already have an account? Log in</string>
     <string name="lbl_description">Description</string>
     <string name="lbl_slovenian_slo">Slovenian (SLO)</string>
     <string name="msg_financial_repor">Financial Report</string>

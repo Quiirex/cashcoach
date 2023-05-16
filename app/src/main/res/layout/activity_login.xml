@@ -85,6 +85,7 @@
                 android:singleLine="true"
                 android:text="@={loginVM.loginModel.etInputEmailValue}"
                 android:textColorHint="@color/gray_500"
+                android:textColor="@color/black"
                 style="@style/etSolidRoundedOutline"
                 tools:ignore="Autofill" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -92,9 +93,9 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/_10pxh"
             app:boxStrokeColor="@color/black"
             app:hintTextColor="@color/black"
-            android:layout_marginTop="@dimen/_16pxv"
             app:passwordToggleEnabled="true"
             app:boxBackgroundMode="none">
 
@@ -118,6 +119,7 @@
                 app:endIconMode="@drawable/img_eye"
                 android:text="@={loginVM.loginModel.etInputPasswordValue}"
                 android:textColorHint="@color/gray_500"
+                android:textColor="@color/black"
                 style="@style/etSolidRoundedOutline_1"
                 tools:ignore="Autofill" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -186,7 +188,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_12pxh"
                 android:layout_marginTop="@dimen/_13pxv"
-                android:layout_marginEnd="@dimen/_69pxh"
+                android:layout_marginEnd="@dimen/_40pxh"
                 android:layout_marginBottom="@dimen/_14pxv"
                 android:layout_weight="0.86"
                 android:ellipsize="end"

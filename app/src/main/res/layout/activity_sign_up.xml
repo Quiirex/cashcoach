@@ -76,119 +76,170 @@
                 </androidx.appcompat.widget.Toolbar>
             </LinearLayout>
 
-            <EditText
-                android:background="@drawable/rectangle_bg_white_a700_border_gray_100_radius_16"
-                android:ellipsize="end"
-                android:hint="@string/lbl_name"
-                android:id="@+id/etInputName"
-                android:inputType="text"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/_15pxh"
-                android:layout_marginStart="@dimen/_16pxh"
-                android:layout_marginTop="@dimen/_31pxv"
                 android:layout_width="match_parent"
-                android:lineSpacingExtra="@dimen/_4pxh"
-                android:paddingBottom="@dimen/_17pxv"
-                android:paddingEnd="@dimen/_30pxh"
-                android:paddingStart="@dimen/_16pxh"
-                android:paddingTop="@dimen/_18pxv"
-                android:singleLine="true"
-                android:text="@={signUpVM.signUpModel.etInputNameValue}"
-                android:textColorHint="@color/gray_500"
-                style="@style/etSolidRoundedOutline"
-                tools:ignore="Autofill" />
+                app:boxStrokeColor="@color/black"
+                app:hintTextColor="@color/black"
+                app:boxBackgroundMode="none">
 
-            <EditText
-                android:background="@drawable/rectangle_bg_white_a700_border_gray_100_radius_16"
-                android:ellipsize="end"
-                android:hint="@string/lbl_surname"
-                android:id="@+id/etInputSurname"
-                android:inputType="text"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/_15pxh"
-                android:layout_marginStart="@dimen/_16pxh"
-                android:layout_marginTop="@dimen/_12pxv"
-                android:layout_width="match_parent"
-                android:lineSpacingExtra="@dimen/_4pxh"
-                android:paddingBottom="@dimen/_17pxv"
-                android:paddingEnd="@dimen/_30pxh"
-                android:paddingStart="@dimen/_16pxh"
-                android:paddingTop="@dimen/_18pxv"
-                android:singleLine="true"
-                android:text="@={signUpVM.signUpModel.etInputSurnameValue}"
-                android:textColorHint="@color/gray_500"
-                style="@style/etSolidRoundedOutline"
-                tools:ignore="Autofill" />
+                <EditText
+                    android:background="@drawable/rectangle_bg_white_a700_border_gray_100_radius_16"
+                    android:ellipsize="end"
+                    android:hint="@string/lbl_name"
+                    android:id="@+id/etInputName"
+                    android:inputType="text"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_15pxh"
+                    android:layout_marginStart="@dimen/_16pxh"
+                    android:layout_marginTop="@dimen/_31pxv"
+                    android:layout_width="match_parent"
+                    android:lineSpacingExtra="@dimen/_4pxh"
+                    android:paddingBottom="@dimen/_17pxv"
+                    android:paddingEnd="@dimen/_30pxh"
+                    android:paddingStart="@dimen/_16pxh"
+                    android:paddingTop="@dimen/_18pxv"
+                    android:singleLine="true"
+                    android:text="@={signUpVM.signUpModel.etInputNameValue}"
+                    android:textColorHint="@color/gray_500"
+                    android:textColor="@color/black"
+                    style="@style/etSolidRoundedOutline"
+                    tools:ignore="Autofill" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <EditText
-                android:background="@drawable/rectangle_bg_white_a700_border_gray_100_radius_16"
-                android:ellipsize="end"
-                android:hint="@string/lbl_email"
-                android:id="@+id/etInputEmail"
-                android:inputType="textEmailAddress"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/_15pxh"
-                android:layout_marginStart="@dimen/_16pxh"
-                android:layout_marginTop="@dimen/_12pxv"
                 android:layout_width="match_parent"
-                android:lineSpacingExtra="@dimen/_4pxh"
-                android:paddingBottom="@dimen/_17pxv"
-                android:paddingEnd="@dimen/_30pxh"
-                android:paddingStart="@dimen/_16pxh"
-                android:paddingTop="@dimen/_18pxv"
-                android:singleLine="true"
-                android:text="@={signUpVM.signUpModel.etInputEmailValue}"
-                android:textColorHint="@color/gray_500"
-                style="@style/etSolidRoundedOutline"
-                tools:ignore="Autofill" />
+                android:layout_marginTop="@dimen/_10pxh"
+                app:boxStrokeColor="@color/black"
+                app:hintTextColor="@color/black"
+                app:boxBackgroundMode="none">
 
-            <EditText
-                android:background="@drawable/rectangle_bg_white_a700_border_gray_100_radius_17"
-                android:drawableEnd="@drawable/img_eye"
-                android:drawablePadding="@dimen/_30pxh"
-                android:ellipsize="end"
-                android:hint="@string/lbl_password"
-                android:id="@+id/etInputPassword"
-                android:inputType="textPassword"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/_15pxh"
-                android:layout_marginStart="@dimen/_16pxh"
-                android:layout_marginTop="@dimen/_12pxv"
-                android:layout_width="match_parent"
-                android:lineSpacingExtra="@dimen/_4pxh"
-                android:paddingBottom="@dimen/_17pxv"
-                android:paddingEnd="@dimen/_21pxh"
-                android:paddingStart="@dimen/_16pxh"
-                android:paddingTop="@dimen/_18pxv"
-                android:singleLine="true"
-                android:text="@={signUpVM.signUpModel.etInputPasswordValue}"
-                android:textColorHint="@color/gray_500"
-                style="@style/etSolidRoundedOutline_1"
-                tools:ignore="Autofill" />
+                <EditText
+                    android:background="@drawable/rectangle_bg_white_a700_border_gray_100_radius_16"
+                    android:ellipsize="end"
+                    android:hint="@string/lbl_surname"
+                    android:id="@+id/etInputSurname"
+                    android:inputType="text"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_15pxh"
+                    android:layout_marginStart="@dimen/_16pxh"
+                    android:layout_marginTop="@dimen/_12pxv"
+                    android:layout_width="match_parent"
+                    android:lineSpacingExtra="@dimen/_4pxh"
+                    android:paddingBottom="@dimen/_17pxv"
+                    android:paddingEnd="@dimen/_30pxh"
+                    android:paddingStart="@dimen/_16pxh"
+                    android:paddingTop="@dimen/_18pxv"
+                    android:singleLine="true"
+                    android:text="@={signUpVM.signUpModel.etInputSurnameValue}"
+                    android:textColorHint="@color/gray_500"
+                    android:textColor="@color/black"
+                    style="@style/etSolidRoundedOutline"
+                    tools:ignore="Autofill" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <EditText
-                android:background="@drawable/rectangle_bg_white_a700_border_gray_100_radius_17"
-                android:drawableEnd="@drawable/img_eye"
-                android:drawablePadding="@dimen/_30pxh"
-                android:ellipsize="end"
-                android:hint="@string/msg_confirm_passwor"
-                android:id="@+id/etInputPasswordOne"
-                android:inputType="textPassword"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/_16pxh"
-                android:layout_marginStart="@dimen/_16pxh"
-                android:layout_marginTop="@dimen/_12pxv"
                 android:layout_width="match_parent"
-                android:lineSpacingExtra="@dimen/_4pxh"
-                android:paddingBottom="@dimen/_17pxv"
-                android:paddingEnd="@dimen/_21pxh"
-                android:paddingStart="@dimen/_16pxh"
-                android:paddingTop="@dimen/_18pxv"
-                android:singleLine="true"
-                android:text="@={signUpVM.signUpModel.etInputPasswordOneValue}"
-                android:textColorHint="@color/gray_500"
-                style="@style/etSolidRoundedOutline_1"
-                tools:ignore="Autofill" />
+                android:layout_marginTop="@dimen/_10pxh"
+                app:boxStrokeColor="@color/black"
+                app:hintTextColor="@color/black"
+                app:boxBackgroundMode="none">
+
+                <EditText
+                    android:background="@drawable/rectangle_bg_white_a700_border_gray_100_radius_16"
+                    android:ellipsize="end"
+                    android:hint="@string/lbl_email"
+                    android:id="@+id/etInputEmail"
+                    android:inputType="textEmailAddress"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_15pxh"
+                    android:layout_marginStart="@dimen/_16pxh"
+                    android:layout_marginTop="@dimen/_12pxv"
+                    android:layout_width="match_parent"
+                    android:lineSpacingExtra="@dimen/_4pxh"
+                    android:paddingBottom="@dimen/_17pxv"
+                    android:paddingEnd="@dimen/_30pxh"
+                    android:paddingStart="@dimen/_16pxh"
+                    android:paddingTop="@dimen/_18pxv"
+                    android:singleLine="true"
+                    android:text="@={signUpVM.signUpModel.etInputEmailValue}"
+                    android:textColorHint="@color/gray_500"
+                    android:textColor="@color/black"
+                    style="@style/etSolidRoundedOutline"
+                    tools:ignore="Autofill" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/_10pxh"
+                app:boxStrokeColor="@color/black"
+                app:hintTextColor="@color/black"
+                app:passwordToggleEnabled="true"
+                app:boxBackgroundMode="none">
+
+                <EditText
+                    android:background="@drawable/rectangle_bg_white_a700_border_gray_100_radius_17"
+                    android:drawableEnd="@drawable/img_eye"
+                    android:drawablePadding="@dimen/_30pxh"
+                    android:ellipsize="end"
+                    android:hint="@string/lbl_password"
+                    android:id="@+id/etInputPassword"
+                    android:inputType="textPassword"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_15pxh"
+                    android:layout_marginStart="@dimen/_16pxh"
+                    android:layout_marginTop="@dimen/_12pxv"
+                    android:layout_width="match_parent"
+                    android:lineSpacingExtra="@dimen/_4pxh"
+                    android:paddingBottom="@dimen/_17pxv"
+                    android:paddingEnd="@dimen/_21pxh"
+                    android:paddingStart="@dimen/_16pxh"
+                    android:paddingTop="@dimen/_18pxv"
+                    android:singleLine="true"
+                    android:text="@={signUpVM.signUpModel.etInputPasswordValue}"
+                    android:textColorHint="@color/gray_500"
+                    android:textColor="@color/black"
+                    style="@style/etSolidRoundedOutline_1"
+                    tools:ignore="Autofill" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/_10pxh"
+                app:boxStrokeColor="@color/black"
+                app:hintTextColor="@color/black"
+                app:passwordToggleEnabled="true"
+                app:boxBackgroundMode="none">
+
+                <EditText
+                    android:background="@drawable/rectangle_bg_white_a700_border_gray_100_radius_17"
+                    android:drawableEnd="@drawable/img_eye"
+                    android:drawablePadding="@dimen/_30pxh"
+                    android:ellipsize="end"
+                    android:hint="@string/msg_confirm_passwor"
+                    android:id="@+id/etInputPasswordOne"
+                    android:inputType="textPassword"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_16pxh"
+                    android:layout_marginStart="@dimen/_16pxh"
+                    android:layout_marginTop="@dimen/_12pxv"
+                    android:layout_width="match_parent"
+                    android:lineSpacingExtra="@dimen/_4pxh"
+                    android:paddingBottom="@dimen/_17pxv"
+                    android:paddingEnd="@dimen/_21pxh"
+                    android:paddingStart="@dimen/_16pxh"
+                    android:paddingTop="@dimen/_18pxv"
+                    android:singleLine="true"
+                    android:text="@={signUpVM.signUpModel.etInputPasswordOneValue}"
+                    android:textColorHint="@color/gray_500"
+                    android:textColor="@color/black"
+                    style="@style/etSolidRoundedOutline_1"
+                    tools:ignore="Autofill" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <LinearLayout
                 android:gravity="start"
@@ -202,6 +253,7 @@
 
                 <androidx.appcompat.widget.AppCompatCheckBox
                     android:ellipsize="end"
+                    app:buttonTint="@color/black"
                     android:id="@+id/checkBoxTerms"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/_10pxv"
@@ -210,7 +262,7 @@
                     android:layout_width="0dp"
                     android:text="@string/lbl_terms"
                     android:textColor="@color/black_900"
-                    android:textSize="@dimen/_15pxh"
+                    android:textSize="@dimen/_14sp"
                     tools:text="@string/lbl_terms" />
             </LinearLayout>
 
@@ -223,12 +275,12 @@
                 android:layout_marginBottom="@dimen/_14pxv"
                 android:layout_marginEnd="@dimen/_137pxh"
                 android:layout_marginStart="@dimen/_137pxh"
-                android:layout_marginTop="@dimen/_14pxv"
+                android:layout_marginTop="@dimen/_4pxv"
                 android:layout_width="@dimen/_343pxh"
                 android:singleLine="true"
                 android:textAllCaps="false"
                 android:textSize="@dimen/_16pxh"
-                android:text="Sign Up"
+                android:text="@string/lbl_sign_up"
                 style="@style/btnSolidRounded_3" />
 
             <TextView
@@ -273,7 +325,7 @@
                     android:id="@+id/txtSignUpwithGo"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/_14pxv"
-                    android:layout_marginEnd="@dimen/_62pxh"
+                    android:layout_marginEnd="@dimen/_40pxh"
                     android:layout_marginStart="@dimen/_12pxh"
                     android:layout_marginTop="@dimen/_15pxv"
                     android:layout_weight="0.87"
@@ -296,7 +348,6 @@
                 android:singleLine="true"
                 android:text="@{signUpVM.signUpModel.txtConfirmation}"
                 style="@style/txtIntermedium16_1"
-                textUnderline="true"
                 tools:text="@string/msg_already_have_an" />
         </LinearLayout>
     </FrameLayout>
