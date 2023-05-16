@@ -84,4 +84,6 @@
     <string name="error_invalid_email">E-pošta je neveljavna</string>
     <string name="error_passwords_mismatch">Gesli se ne ujemajata</string>
     <string name="error_terms_not_checked">Sprejeti morate pogoje storitve.</string>
+    <string name="error_contains_numeric">Polje ne sme vsebovati številk</string>
+    <string name="error_invalid_password">Geslo mora vsebovati: \n- vsaj 1 veliko črko \n- vsaj 1 malo črko \n- vsaj 1 številko \n- vsaj 1 posebni znak \n- vsaj 10 znakov \n- brez presledkov</string>
 </resources>

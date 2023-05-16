@@ -113,4 +113,8 @@
     <string name="error_invalid_email">Email is invalid</string>
     <string name="error_passwords_mismatch">The passwords do not match</string>
     <string name="error_terms_not_checked">You need to accept the Terms of Service</string>
+    <string name="error_contains_numeric">Field must not contain numbers</string>
+    <string name="error_invalid_password">Password must contain: \n- At least 1 Uppercase letter \n- At least 1 Lowercase letter \n- At least 1 Digit \n- At least 1 Special character \n- At least 10 characters \n- No whitespace</string>
+    <string name="email_is_required">E-mail is required</string>
+    <string name="password_is_required">Password is required</string>
 </resources>
