@@ -3,15 +3,18 @@ package com.tva.cashcoach.modules.signup.ui
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
 import com.tva.cashcoach.R
+import com.tva.cashcoach.appcomponents.auth.AuthHelper
 import com.tva.cashcoach.appcomponents.base.BaseActivity
-import com.tva.cashcoach.appcomponents.googleauth.GoogleHelper
+import com.tva.cashcoach.appcomponents.googleauth.GoogleAuthHelper
 import com.tva.cashcoach.databinding.ActivitySignUpBinding
 import com.tva.cashcoach.extensions.containsNumber
 import com.tva.cashcoach.extensions.isValidEmail
 import com.tva.cashcoach.extensions.isValidPassword
 import com.tva.cashcoach.modules.accountsetup.ui.AccountSetupActivity
+import com.tva.cashcoach.modules.homescreencontainer.ui.HomeScreenContainerActivity
 import com.tva.cashcoach.modules.login.ui.LoginActivity
 import com.tva.cashcoach.modules.signup.data.viewmodel.SignUpVM
 
@@ -20,25 +23,53 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
 
     private val REQUEST_CODE_LOGIN_ACTIVITY: Int = 544
 
-
     private val REQUEST_CODE_ACCOUNT_SETUP_ACTIVITY: Int = 264
 
+    private val REQUEST_CODE_HOME_SCREEN_CONTAINER_ACTIVITY: Int = 303
 
-    private lateinit var googleLogin: GoogleHelper
+    private lateinit var googleAuth: GoogleAuthHelper
+
+    private lateinit var auth: AuthHelper
 
     override fun onInitialized() {
         viewModel.navArguments = intent.extras?.getBundle("bundle")
         binding.signUpVM = viewModel
-        googleLogin = GoogleHelper(this,
-            { accountInfo ->
-            }, { error ->
+        googleAuth = GoogleAuthHelper(this,
+            {
+                val destIntent = HomeScreenContainerActivity.getIntent(this, null)
+                startActivityForResult(destIntent, REQUEST_CODE_HOME_SCREEN_CONTAINER_ACTIVITY)
+            }, {
+                Toast.makeText(
+                    this,
+                    getString(R.string.an_error_occurred_please_try_again_later),
+                    Toast.LENGTH_SHORT
+                ).show()
+            })
+        auth = AuthHelper(this,
+            {
+                val destIntent = AccountSetupActivity.getIntent(this, null)
+                startActivityForResult(destIntent, REQUEST_CODE_ACCOUNT_SETUP_ACTIVITY)
+            }, { errorCode ->
+                when (errorCode) {
+                    "ERROR_EMAIL_ALREADY_IN_USE" -> {
+                        binding.etInputEmail.error = getString(R.string.error_email_already_in_use)
+                        binding.etInputEmail.requestFocus()
+                    }
 
+                    else -> {
+                        Toast.makeText(
+                            this,
+                            getString(R.string.an_error_occurred_please_try_again_later),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
             })
     }
 
     override fun setUpClicks() {
         binding.linearButtonGoogleSignUp.setOnClickListener {
-            googleLogin.login()
+            googleAuth.login()
         }
         binding.imageBack.setOnClickListener {
             finish()
@@ -127,9 +158,7 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
                 return@setOnClickListener
             }
 
-            // Validation passed, proceed with sign up
-            val destIntent = AccountSetupActivity.getIntent(this, null)
-            startActivityForResult(destIntent, REQUEST_CODE_ACCOUNT_SETUP_ACTIVITY)
+            auth.signUp(email, password, name, surname)
         }
     }
 
