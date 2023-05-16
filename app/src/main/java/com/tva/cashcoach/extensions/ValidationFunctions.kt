@@ -1,111 +1,51 @@
 package com.tva.cashcoach.extensions
 
 import android.util.Patterns
-import android.widget.Toast
-import com.tva.cashcoach.R
-import com.tva.cashcoach.appcomponents.di.MyApp
 
-fun String?.isNumeric(isMandatory: Boolean = false): Boolean {
+fun String?.isNumeric(): Boolean {
     if (isNullOrEmpty()) {
-        if (isMandatory) {
-            Toast.makeText(
-                MyApp.getInstance(),
-                R.string.msg_please_enter_valid_nu,
-                Toast.LENGTH_SHORT
-            ).show()
-        }
-        return !isMandatory
+        return false
     }
     val numberRegex = "^[0-9]*${'$'}".toRegex()
-    val result =
-        numberRegex.matches(this)
-    if (!result) {
-        Toast.makeText(
-            MyApp.getInstance(),
-            R.string.msg_please_enter_valid_nu,
-            Toast.LENGTH_SHORT
-        ).show()
+    return numberRegex.matches(this)
+}
+
+fun String?.containsNumber(): Boolean {
+    if (isNullOrEmpty()) {
+        return false
     }
-    return result
+    val numberRegex = ".*[0-9].*".toRegex()
+    return numberRegex.matches(this)
 }
 
 /**
- * Password should have,
- * - at least a upper case letter
- * - at least a lower case letter
- * - at least a digit
- * - at least a special character [@#$%^&+=]
- * - length of at least 4
- * ⚫ no white space allowed
+ * - at least 1 uppercase letter
+ * - at least 1 lowercase letter
+ * - at least 1 digit
+ * - at least 1 special character [@#$%^&+=]
+ * - length of at least 10 characters
+ * - no white space allowed
  */
-fun String?.isValidPassword(isMandatory: Boolean = false): Boolean {
+fun String?.isValidPassword(): Boolean {
     if (isNullOrEmpty()) {
-        if (isMandatory) {
-            Toast.makeText(
-                MyApp.getInstance(),
-                R.string.msg_please_enter_valid_pa,
-                Toast.LENGTH_SHORT
-            ).show()
-        }
-        return !isMandatory
+        return false
     }
     val passwordRegex =
-        "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#${'$'}%^&+=])(?=\\S+${'$'}).{4,}${'$'}".toRegex()
-    val result =
-        passwordRegex.matches(this)
-    if (!result) {
-        Toast.makeText(
-            MyApp.getInstance(),
-            R.string.msg_please_enter_valid_pa,
-            Toast.LENGTH_SHORT
-        ).show()
-    }
-    return result
+        "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=\\S+$).{10,}$".toRegex()
+    return passwordRegex.matches(this)
 }
 
-fun String?.isValidEmail(isMandatory: Boolean = false): Boolean {
+fun String?.isValidEmail(): Boolean {
     if (isNullOrEmpty()) {
-        if (isMandatory) {
-            Toast.makeText(
-                MyApp.getInstance(),
-                R.string.msg_please_enter_valid_email,
-                Toast.LENGTH_SHORT
-            ).show()
-        }
-        return !isMandatory
+        return false
     }
-    val result =
-        Patterns.EMAIL_ADDRESS.matcher(this).matches()
-    if (!result) {
-        Toast.makeText(
-            MyApp.getInstance(),
-            R.string.msg_please_enter_valid_email,
-            Toast.LENGTH_SHORT
-        ).show()
-    }
-    return result
+    return !Patterns.EMAIL_ADDRESS.matcher(this).matches()
 }
 
-fun String?.isText(isMandatory: Boolean = false): Boolean {
+fun String?.isText(): Boolean {
     if (isNullOrEmpty()) {
-        if (isMandatory) {
-            Toast.makeText(
-                MyApp.getInstance(),
-                R.string.msg_please_enter_valid_text,
-                Toast.LENGTH_SHORT
-            ).show()
-        }
-        return !isMandatory
+        return false
     }
     val textRegex = "[a-zA-Z ]+".toRegex()
-    val result =
-        textRegex.matches(this)
-    if (!result) {
-        Toast.makeText(
-            MyApp.getInstance(),
-            R.string.msg_please_enter_valid_text,
-            Toast.LENGTH_SHORT
-        ).show()
-    }
-    return result
+    return textRegex.matches(this)
 }
