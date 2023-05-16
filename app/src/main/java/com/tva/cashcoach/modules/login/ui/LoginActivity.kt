@@ -3,12 +3,12 @@ package com.tva.cashcoach.modules.login.ui
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import com.tva.cashcoach.R
+import com.tva.cashcoach.appcomponents.auth.AuthHelper
 import com.tva.cashcoach.appcomponents.base.BaseActivity
-import com.tva.cashcoach.appcomponents.googleauth.GoogleHelper
+import com.tva.cashcoach.appcomponents.googleauth.GoogleAuthHelper
 import com.tva.cashcoach.databinding.ActivityLoginBinding
 import com.tva.cashcoach.modules.forgotpassword.ui.ForgotPasswordActivity
 import com.tva.cashcoach.modules.homescreencontainer.ui.HomeScreenContainerActivity
@@ -20,27 +20,49 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
 
     private val REQUEST_CODE_SIGN_UP_ACTIVITY: Int = 265
 
-    private lateinit var googleLogin: GoogleHelper
-
     private val REQUEST_CODE_HOME_SCREEN_CONTAINER_ACTIVITY: Int = 303
 
     private val REQUEST_CODE_FORGOT_PASSWORD_ACTIVITY: Int = 984
 
+    private lateinit var googleAuth: GoogleAuthHelper
+
+    private lateinit var auth: AuthHelper
+
     override fun onInitialized() {
         viewModel.navArguments = intent.extras?.getBundle("bundle")
         binding.loginVM = viewModel
-        googleLogin = GoogleHelper(this,
-            { accountInfo ->
-                Log.d(TAG, "User signed in successfully: ${accountInfo.email}")
+        googleAuth = GoogleAuthHelper(this,
+            {
+                val destIntent = HomeScreenContainerActivity.getIntent(this, null)
+                startActivityForResult(destIntent, REQUEST_CODE_HOME_SCREEN_CONTAINER_ACTIVITY)
+            }, {
                 Toast.makeText(
                     this,
-                    "User signed in successfully: ${accountInfo.email}",
+                    getString(R.string.an_error_occurred_please_try_again_later),
                     Toast.LENGTH_SHORT
                 ).show()
+            })
+        auth = AuthHelper(this,
+            {
                 val destIntent = HomeScreenContainerActivity.getIntent(this, null)
-                startActivity(destIntent)
-            }, { error ->
-                Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
+                startActivityForResult(destIntent, REQUEST_CODE_HOME_SCREEN_CONTAINER_ACTIVITY)
+            }, { errorCode ->
+                when (errorCode) {
+                    "ERROR_INVALID_CREDENTIALS" -> {
+                        binding.etInputPassword.error =
+                            getString(R.string.error_invalid_credentials)
+                        binding.etInputEmail.error = getString(R.string.error_invalid_credentials)
+                        binding.etInputPassword.requestFocus()
+                    }
+
+                    else -> {
+                        Toast.makeText(
+                            this,
+                            getString(R.string.an_error_occurred_please_try_again_later),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
             })
     }
 
@@ -50,7 +72,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
             startActivityForResult(destIntent, REQUEST_CODE_SIGN_UP_ACTIVITY)
         }
         binding.linearButtonLoginGoogle.setOnClickListener {
-            googleLogin.login()
+            googleAuth.login()
         }
         binding.btnLogin.setOnClickListener {
             val email = binding.etInputEmail.text.toString()
@@ -68,9 +90,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
                 return@setOnClickListener
             }
 
-            // Perform login with email and password
-            val destIntent = HomeScreenContainerActivity.getIntent(this, null)
-            startActivityForResult(destIntent, REQUEST_CODE_HOME_SCREEN_CONTAINER_ACTIVITY)
+            auth.login(email, password)
         }
         binding.txtForgotPassword.setOnClickListener {
             val destIntent = ForgotPasswordActivity.getIntent(this, null)
