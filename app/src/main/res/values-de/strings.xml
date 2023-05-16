@@ -80,4 +80,8 @@
     <string name="msg_please_enter_valid_email">Bitte gültige E-Mail eingeben</string>
     <string name="msg_please_enter_valid_text">Bitte gültigen Text eingeben</string>
     <string name="add_attachment">Add Attachment</string>
+    <string name="error_field_required">Feld ist erforderlich</string>
+    <string name="error_invalid_email">E-Mail ist ungültig</string>
+    <string name="error_passwords_mismatch">Die Kennwörter stimmen nicht überein</string>
+    <string name="error_terms_not_checked">Sie müssen die Allgemeinen Geschäftsbedingungen akzeptieren</string>
 </resources>

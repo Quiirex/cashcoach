@@ -80,4 +80,8 @@
     <string name="msg_please_enter_valid_email">Prosimo, vnesite veljavni e-poštni naslov</string>
     <string name="msg_please_enter_valid_text">Prosimo, vnesite veljavno besedilo</string>
     <string name="add_attachment">Add Attachment</string>
+    <string name="error_field_required">Polje je obvezno</string>
+    <string name="error_invalid_email">E-pošta je neveljavna</string>
+    <string name="error_passwords_mismatch">Gesli se ne ujemajata</string>
+    <string name="error_terms_not_checked">Sprejeti morate pogoje storitve.</string>
 </resources>

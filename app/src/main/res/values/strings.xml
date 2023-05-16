@@ -109,4 +109,8 @@
     <string name="msg_please_enter_valid_email">Please enter valid email</string>
     <string name="msg_please_enter_valid_text">Please enter valid text</string>
     <string name="add_attachment">Add Attachment</string>
+    <string name="error_field_required">Field is required</string>
+    <string name="error_invalid_email">Email is invalid</string>
+    <string name="error_passwords_mismatch">The passwords do not match</string>
+    <string name="error_terms_not_checked">You need to accept the Terms of Service</string>
 </resources>

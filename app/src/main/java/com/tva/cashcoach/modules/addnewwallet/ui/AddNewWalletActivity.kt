@@ -9,12 +9,15 @@ import com.tva.cashcoach.appcomponents.base.BaseActivity
 import com.tva.cashcoach.databinding.ActivityAddNewWalletBinding
 import com.tva.cashcoach.modules.addnewwallet.data.model.SpinnerDropdownWalletModel
 import com.tva.cashcoach.modules.addnewwallet.data.viewmodel.AddNewWalletVM
+import com.tva.cashcoach.modules.signupsuccess.ui.SignupSuccessActivity
 
 class AddNewWalletActivity :
     BaseActivity<ActivityAddNewWalletBinding>(R.layout.activity_add_new_wallet) {
-    private val viewModel: AddNewWalletVM by viewModels<AddNewWalletVM>()
+    private val viewModel: AddNewWalletVM by viewModels()
 
-    override fun onInitialized(): Unit {
+    private val REQUEST_CODE_HOME_SCREEN_CONTAINER_ACTIVITY: Int = 303
+
+    override fun onInitialized() {
         viewModel.navArguments = intent.extras?.getBundle("bundle")
         viewModel.spinnerDropdownWalletList.value = mutableListOf(
             SpinnerDropdownWalletModel("Item1"),
@@ -23,19 +26,23 @@ class AddNewWalletActivity :
             SpinnerDropdownWalletModel("Item4"),
             SpinnerDropdownWalletModel("Item5")
         )
-        val spinnerDropdownWalletAdapter =
-            SpinnerDropdownWalletAdapter(
-                this,
-                R.layout.spinner_item,
-                viewModel.spinnerDropdownWalletList.value ?: mutableListOf()
-            )
-        binding.spinnerDropdownWallet.adapter = spinnerDropdownWalletAdapter
+//        val spinnerDropdownWalletAdapter =
+//            SpinnerDropdownWalletAdapter(
+//                this,
+//                R.layout.spinner_item,
+//                viewModel.spinnerDropdownWalletList.value ?: mutableListOf()
+//            )
+//        binding.spinnerDropdownWallet.adapter = spinnerDropdownWalletAdapter
         binding.addNewWalletVM = viewModel
     }
 
-    override fun setUpClicks(): Unit {
+    override fun setUpClicks() {
         binding.imageBack.setOnClickListener {
             finish()
+        }
+        binding.btnContinue.setOnClickListener {
+            val destIntent = SignupSuccessActivity.getIntent(this, null)
+            startActivityForResult(destIntent, REQUEST_CODE_HOME_SCREEN_CONTAINER_ACTIVITY)
         }
     }
 

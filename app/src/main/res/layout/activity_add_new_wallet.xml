@@ -46,16 +46,15 @@
                     tools:src="@drawable/img_arrowleft" />
 
                 <TextView
-                    android:id="@+id/txtTitle"
-                    style="@style/txtIntersemibold18_3"
-                    android:gravity="center"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/_10pxh"
-                    android:layout_weight="0.85"
                     android:ellipsize="end"
+                    android:id="@+id/txtTitle"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_73pxh"
+                    android:layout_weight="0.85"
+                    android:layout_width="0dp"
                     android:singleLine="true"
                     android:text="@{addNewWalletVM.addNewWalletModel.txtTitle}"
+                    style="@style/txtIntersemibold18_3"
                     tools:text="@string/lbl_add_new_wallet" />
             </LinearLayout>
         </androidx.appcompat.widget.Toolbar>
@@ -66,7 +65,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/_16pxh"
             android:layout_marginStart="@dimen/_16pxh"
-            android:layout_marginTop="@dimen/_347pxv"
+            android:layout_marginTop="@dimen/_300pxv"
             android:layout_width="wrap_content"
             android:singleLine="true"
             android:text="@{addNewWalletVM.addNewWalletModel.txtBalance}"
@@ -82,12 +81,11 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/_16pxh"
             android:layout_marginStart="@dimen/_16pxh"
-            android:paddingStart="@dimen/_500pxh"
-            android:paddingEnd="@dimen/_500pxh"
             android:layout_width="wrap_content"
             android:singleLine="true"
             android:text="@={addNewWalletVM.addNewWalletModel.etPriceValue}"
-            android:textColorHint="@color/black_900"
+            android:textColorHint="@color/gray_400"
+            android:textSize="@dimen/_60sp"
             style="@style/etIntersemibold64"
             tools:ignore="Autofill" />
 
@@ -97,7 +95,6 @@
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:orientation="vertical"
-            android:layout_marginTop="@dimen/_27pxh"
             style="@style/groupStylewhite_A700cornerRadius">
 
             <EditText
@@ -131,34 +128,36 @@
                 android:layout_marginEnd="@dimen/_16pxh"
                 android:layout_marginStart="@dimen/_16pxh"
                 android:layout_marginTop="@dimen/_16pxv"
+                android:paddingTop="@dimen/_16pxh"
+                android:paddingBottom="@dimen/_16pxh"
                 android:layout_width="match_parent"
                 tools:listitem="@layout/spinner_item" />
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/linearColumncontinue"
-            style="@style/groupStylewhite_A700"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:orientation="vertical">
+            android:id="@+id/linearColumncontinue"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            style="@style/groupStylewhite_A700">
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnContinue"
-                style="@style/btnSolidRounded_3"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginHorizontal="@dimen/_16pxh"
-                android:layout_marginVertical="@dimen/_5pxv"
                 android:ellipsize="end"
                 android:gravity="center"
+                android:id="@+id/btnContinue"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_16pxh"
+                android:layout_marginVertical="@dimen/_16pxv"
+                android:layout_width="match_parent"
+                android:paddingBottom="@dimen/_17pxv"
+                android:paddingEnd="@dimen/_30pxh"
                 android:paddingStart="@dimen/_30pxh"
                 android:paddingTop="@dimen/_17pxv"
-                android:paddingEnd="@dimen/_30pxh"
-                android:paddingBottom="@dimen/_17pxv"
                 android:singleLine="true"
                 android:text="@string/lbl_continue"
                 android:textAllCaps="false"
+                style="@style/btnSolidRounded_3"
                 tools:text="@string/lbl_continue" />
         </LinearLayout>
     </LinearLayout>
