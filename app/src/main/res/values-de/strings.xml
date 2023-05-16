@@ -86,4 +86,11 @@
     <string name="error_terms_not_checked">Sie müssen die Allgemeinen Geschäftsbedingungen akzeptieren</string>
     <string name="error_contains_numeric">Feld darf keine Zahlen enthalten</string>
     <string name="error_invalid_password">Das Passwort muss enthalten: \n- Mindestens 1 Großbuchstabe \n- Mindestens 1 Kleinbuchstabe \n- Mindestens 1 Ziffer \n- Mindestens 1 Sonderzeichen \n- Mindestens 10 Zeichen \n- Keine Leerzeichen</string>
+    <string name="email_is_required">E-Mail ist erforderlich</string>
+    <string name="password_is_required">Passwort ist erforderlich</string>
+    <string name="an_error_occurred_please_try_again_later">Es ist ein Fehler aufgetreten, bitte versuchen Sie es später noch einmal</string>
+    <string name="error_email_already_in_use">E-Mail ist bereits im Einsatz</string>
+    <string name="error_invalid_credentials">Ungültige Berechtigungsnachweise</string>
+    <string name="password_reset_email_sent">Wenn die von Ihnen eingegebene E-Mail mit einem Konto übereinstimmt, senden wir Ihnen einen Code zum Zurücksetzen</string>
+    <string name="error_email_empty">Bitte geben Sie Ihre E-Mail ein</string>
 </resources>

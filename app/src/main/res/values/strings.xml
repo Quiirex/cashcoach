@@ -117,4 +117,9 @@
     <string name="error_invalid_password">Password must contain: \n- At least 1 Uppercase letter \n- At least 1 Lowercase letter \n- At least 1 Digit \n- At least 1 Special character \n- At least 10 characters \n- No whitespace</string>
     <string name="email_is_required">E-mail is required</string>
     <string name="password_is_required">Password is required</string>
+    <string name="an_error_occurred_please_try_again_later">An error occurred, please try again later</string>
+    <string name="error_email_already_in_use">E-mail is already in use</string>
+    <string name="error_invalid_credentials">Invalid credentials</string>
+    <string name="password_reset_email_sent">If the email you entered matches an account, we\'ll send a reset code</string>
+    <string name="error_email_empty">Please enter your email</string>
 </resources>

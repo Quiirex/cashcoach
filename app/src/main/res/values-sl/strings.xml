@@ -86,4 +86,11 @@
     <string name="error_terms_not_checked">Sprejeti morate pogoje storitve.</string>
     <string name="error_contains_numeric">Polje ne sme vsebovati številk</string>
     <string name="error_invalid_password">Geslo mora vsebovati: \n- vsaj 1 veliko črko \n- vsaj 1 malo črko \n- vsaj 1 številko \n- vsaj 1 posebni znak \n- vsaj 10 znakov \n- brez presledkov</string>
+    <string name="email_is_required">E-pošta je obvezna</string>
+    <string name="password_is_required">Geslo je obvezno</string>
+    <string name="an_error_occurred_please_try_again_later">Prišlo je do napake, poskusite znova pozneje</string>
+    <string name="error_email_already_in_use">E-poštni naslov že uporabljen</string>
+    <string name="error_invalid_credentials">Neveljavne poverilnice</string>
+    <string name="password_reset_email_sent">Če se vneseni e-poštni naslov ujema z računom, vam bomo poslali kodo za ponastavitev</string>
+    <string name="error_email_empty">Vnesite svoj e-poštni naslov</string>
 </resources>
