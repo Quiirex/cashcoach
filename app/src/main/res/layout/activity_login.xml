@@ -58,51 +58,69 @@
             </androidx.appcompat.widget.Toolbar>
         </LinearLayout>
 
-        <EditText
-            android:background="@drawable/rectangle_bg_white_a700_border_gray_100_radius_16"
-            android:ellipsize="end"
-            android:hint="@string/lbl_email"
-            android:id="@+id/etInputEmail"
-            android:inputType="textEmailAddress"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/_16pxh"
-            android:layout_marginStart="@dimen/_16pxh"
-            android:layout_marginTop="@dimen/_56pxv"
             android:layout_width="match_parent"
-            android:lineSpacingExtra="@dimen/_4pxh"
-            android:paddingBottom="@dimen/_17pxv"
-            android:paddingEnd="@dimen/_30pxh"
-            android:paddingStart="@dimen/_16pxh"
-            android:paddingTop="@dimen/_18pxv"
-            android:singleLine="true"
-            android:text="@={loginVM.loginModel.etInputEmailValue}"
-            android:textColorHint="@color/gray_500"
-            style="@style/etSolidRoundedOutline"
-            tools:ignore="Autofill" />
+            app:boxStrokeColor="@color/black"
+            app:hintTextColor="@color/black"
+            android:layout_marginTop="@dimen/_16pxv"
+            app:boxBackgroundMode="none">
 
-        <EditText
-            android:background="@drawable/rectangle_bg_white_a700_border_gray_100_radius_17"
-            android:drawableEnd="@drawable/img_eye"
-            android:drawablePadding="@dimen/_30pxh"
-            android:ellipsize="end"
-            android:hint="@string/lbl_password"
-            android:id="@+id/etInputPassword"
-            android:inputType="textPassword"
+            <EditText
+                android:background="@drawable/rectangle_bg_white_a700_border_gray_100_radius_16"
+                android:ellipsize="end"
+                android:hint="@string/lbl_email"
+                android:id="@+id/etInputEmail"
+                android:inputType="textEmailAddress"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_16pxh"
+                android:layout_marginStart="@dimen/_16pxh"
+                android:layout_marginTop="@dimen/_56pxv"
+                android:layout_width="match_parent"
+                android:lineSpacingExtra="@dimen/_4pxh"
+                android:paddingBottom="@dimen/_17pxv"
+                android:paddingEnd="@dimen/_30pxh"
+                android:paddingStart="@dimen/_16pxh"
+                android:paddingTop="@dimen/_18pxv"
+                android:singleLine="true"
+                android:text="@={loginVM.loginModel.etInputEmailValue}"
+                android:textColorHint="@color/gray_500"
+                style="@style/etSolidRoundedOutline"
+                tools:ignore="Autofill" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/_16pxh"
-            android:layout_marginStart="@dimen/_16pxh"
-            android:layout_marginTop="@dimen/_24pxv"
             android:layout_width="match_parent"
-            android:lineSpacingExtra="@dimen/_4pxh"
-            android:paddingBottom="@dimen/_17pxv"
-            android:paddingEnd="@dimen/_21pxh"
-            android:paddingStart="@dimen/_16pxh"
-            android:paddingTop="@dimen/_18pxv"
-            android:singleLine="true"
-            android:text="@={loginVM.loginModel.etInputPasswordValue}"
-            android:textColorHint="@color/gray_500"
-            style="@style/etSolidRoundedOutline_1"
-            tools:ignore="Autofill" />
+            app:boxStrokeColor="@color/black"
+            app:hintTextColor="@color/black"
+            android:layout_marginTop="@dimen/_16pxv"
+            app:passwordToggleEnabled="true"
+            app:boxBackgroundMode="none">
+
+            <EditText
+                android:background="@drawable/rectangle_bg_white_a700_border_gray_100_radius_17"
+                android:ellipsize="end"
+                android:hint="@string/lbl_password"
+                android:id="@+id/etInputPassword"
+                android:inputType="textPassword"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_16pxh"
+                android:layout_marginStart="@dimen/_16pxh"
+                android:layout_marginTop="@dimen/_24pxv"
+                android:layout_width="match_parent"
+                android:lineSpacingExtra="@dimen/_4pxh"
+                android:paddingBottom="@dimen/_17pxv"
+                android:paddingEnd="@dimen/_21pxh"
+                android:paddingStart="@dimen/_16pxh"
+                android:paddingTop="@dimen/_18pxv"
+                android:singleLine="true"
+                app:endIconMode="@drawable/img_eye"
+                android:text="@={loginVM.loginModel.etInputPasswordValue}"
+                android:textColorHint="@color/gray_500"
+                style="@style/etSolidRoundedOutline_1"
+                tools:ignore="Autofill" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <androidx.appcompat.widget.AppCompatButton
             android:ellipsize="end"

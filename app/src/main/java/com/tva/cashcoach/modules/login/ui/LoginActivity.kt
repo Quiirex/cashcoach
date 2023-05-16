@@ -53,12 +53,56 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
             googleLogin.login()
         }
         binding.btnLogin.setOnClickListener {
+            val email = binding.etInputEmail.text.toString()
+            val password = binding.etInputPassword.text.toString()
+
+            if (email.isEmpty()) {
+                binding.etInputEmail.error = "Email is required"
+                binding.etInputEmail.requestFocus()
+                return@setOnClickListener
+            }
+
+            if (password.isEmpty()) {
+                binding.etInputPassword.error = "Password is required"
+                binding.etInputPassword.requestFocus()
+                return@setOnClickListener
+            }
+
+            // Perform login with email and password
             val destIntent = HomeScreenContainerActivity.getIntent(this, null)
             startActivityForResult(destIntent, REQUEST_CODE_HOME_SCREEN_CONTAINER_ACTIVITY)
         }
         binding.txtForgotPassword.setOnClickListener {
             val destIntent = ForgotPasswordActivity.getIntent(this, null)
             startActivityForResult(destIntent, REQUEST_CODE_FORGOT_PASSWORD_ACTIVITY)
+        }
+    }
+
+    @Deprecated("Deprecated in Java")
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        when (requestCode) {
+            REQUEST_CODE_HOME_SCREEN_CONTAINER_ACTIVITY -> {
+                binding.etInputEmail.text.clear()
+                binding.etInputPassword.text.clear()
+                binding.etInputEmail.clearFocus()
+                binding.etInputPassword.clearFocus()
+            }
+
+            REQUEST_CODE_SIGN_UP_ACTIVITY -> {
+                binding.etInputEmail.text.clear()
+                binding.etInputPassword.text.clear()
+                binding.etInputEmail.clearFocus()
+                binding.etInputPassword.clearFocus()
+            }
+
+            REQUEST_CODE_FORGOT_PASSWORD_ACTIVITY -> {
+                binding.etInputEmail.text.clear()
+                binding.etInputPassword.text.clear()
+                binding.etInputEmail.clearFocus()
+                binding.etInputPassword.clearFocus()
+            }
         }
     }
 

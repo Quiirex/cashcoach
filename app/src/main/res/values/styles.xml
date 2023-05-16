@@ -497,4 +497,9 @@
     <style name="groupStylered_A200cornerRadius">
         <item name="android:background">@drawable/rectangle_bg_red_a200_radius_28</item>
     </style>
+
+    <style name="hintStyle" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
 </resources>
