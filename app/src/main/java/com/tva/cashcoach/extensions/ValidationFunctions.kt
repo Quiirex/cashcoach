@@ -2,6 +2,11 @@ package com.tva.cashcoach.extensions
 
 import android.util.Patterns
 
+/**
+ * Checks if a string is numeric.
+ *
+ * @return True if the string is numeric, false otherwise.
+ */
 fun String?.isNumeric(): Boolean {
     if (isNullOrEmpty()) {
         return false
@@ -10,6 +15,11 @@ fun String?.isNumeric(): Boolean {
     return numberRegex.matches(this)
 }
 
+/**
+ * Checks if a string contains at least one number.
+ *
+ * @return True if the string contains at least one number, false otherwise.
+ */
 fun String?.containsNumber(): Boolean {
     if (isNullOrEmpty()) {
         return false
@@ -19,12 +29,12 @@ fun String?.containsNumber(): Boolean {
 }
 
 /**
- * - at least 1 uppercase letter
- * - at least 1 lowercase letter
- * - at least 1 digit
- * - at least 1 special character [@#$%^&+=]
- * - length of at least 10 characters
- * - no white space allowed
+ * Checks if a string is a valid password.
+ *
+ * A valid password must contain at least 10 characters, including at least one uppercase letter,
+ * one lowercase letter, one number, and one special character.
+ *
+ * @return True if the string is a valid password, false otherwise.
  */
 fun String?.isValidPassword(): Boolean {
     if (isNullOrEmpty()) {
@@ -35,6 +45,11 @@ fun String?.isValidPassword(): Boolean {
     return passwordRegex.matches(this)
 }
 
+/**
+ * Checks if a string is a valid email address.
+ *
+ * @return True if the string is a valid email address, false otherwise.
+ */
 fun String?.isValidEmail(): Boolean {
     if (isNullOrEmpty()) {
         return false
@@ -42,6 +57,11 @@ fun String?.isValidEmail(): Boolean {
     return !Patterns.EMAIL_ADDRESS.matcher(this).matches()
 }
 
+/**
+ * Checks if a string contains only letters and spaces.
+ *
+ * @return True if the string contains only letters and spaces, false otherwise.
+ */
 fun String?.isText(): Boolean {
     if (isNullOrEmpty()) {
         return false
