@@ -93,4 +93,7 @@
     <string name="error_invalid_credentials">Ungültige Berechtigungsnachweise</string>
     <string name="password_reset_email_sent">Wenn die von Ihnen eingegebene E-Mail mit einem Konto übereinstimmt, senden wir Ihnen einen Code zum Zurücksetzen</string>
     <string name="error_email_empty">Bitte geben Sie Ihre E-Mail ein</string>
+    <string name="lbl_log_out">Abmelden</string>
+    <string name="accounts">Konten</string>
+    <string name="lbl_accounts">Konten</string>
 </resources>

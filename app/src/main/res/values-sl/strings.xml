@@ -93,4 +93,7 @@
     <string name="error_invalid_credentials">Neveljavne poverilnice</string>
     <string name="password_reset_email_sent">Če se vneseni e-poštni naslov ujema z računom, vam bomo poslali kodo za ponastavitev</string>
     <string name="error_email_empty">Vnesite svoj e-poštni naslov</string>
+    <string name="lbl_log_out">Odjavite se</string>
+    <string name="accounts">Računi</string>
+    <string name="lbl_accounts">Računi</string>
 </resources>

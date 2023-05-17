@@ -23,7 +23,7 @@ class PreferenceHelper {
     /**
      * Creates or gets the master key provided,
      * The encryption scheme is required fields to ensure that the type of encryption used is clear to developers.
-     *
+     *2
      * @return the string value of encrypted key
      */
     private fun createGetMasterKey(): String {

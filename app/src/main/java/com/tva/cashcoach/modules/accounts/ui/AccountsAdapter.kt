@@ -53,10 +53,10 @@ class AccountsAdapter(
         val binding: RowAccountsBinding = RowAccountsBinding.bind(itemView)
 
         init {
-            binding.btnRowprice.setOnClickListener {
+            /*binding.btnRowprice.setOnClickListener {
                 // TODO replace with value from datasource
                 clickListener?.onItemClick(it, adapterPosition, AccountsRowModel())
-            }
+            }*/
         }
     }
 }
