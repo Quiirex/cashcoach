@@ -71,13 +71,6 @@
             style="@style/txtIntersemibold18_4"
             tools:text="@string/lbl_how_much" />
 
-        <FrameLayout
-            android:id="@+id/frameStackone"
-            android:layout_height="@dimen/_78pxv"
-            android:layout_marginEnd="@dimen/_25pxh"
-            android:layout_marginStart="@dimen/_25pxh"
-            android:layout_marginTop="@dimen/_12pxv"
-            android:layout_width="@dimen/_86pxh">
 
             <EditText
                 android:background="@android:color/transparent"
@@ -87,6 +80,7 @@
                 android:inputType="number"
                 android:layout_gravity="start"
                 android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/_25pxv"
                 android:layout_marginEnd="@dimen/_10pxh"
                 android:layout_marginTop="@dimen/_1pxv"
                 android:layout_width="match_parent"
@@ -95,110 +89,83 @@
                 android:textColorHint="@color/white"
                 style="@style/etIntersemibold64"
                 tools:ignore="Autofill" />
-        </FrameLayout>
 
         <FrameLayout
             android:id="@+id/frameStackinputdescripti"
             android:layout_height="@dimen/_392pxv"
-            android:layout_marginTop="@dimen/_113pxv"
+            android:layout_marginTop="@dimen/_160pxv"
             android:layout_width="match_parent">
 
             <LinearLayout
                 android:id="@+id/linearColumninputdescripti"
-                android:layout_gravity="top|start"
-                android:layout_height="wrap_content"
+                style="@style/groupStylewhite_A700cornerRadius"
                 android:layout_width="match_parent"
-                android:orientation="vertical"
-                style="@style/groupStylewhite_A700cornerRadius">
+                android:layout_height="339dp"
+                android:layout_gravity="top|start"
+                android:orientation="vertical">
 
                 <Spinner
-                    android:background="@drawable/layer_list_bg_white_a700_border_gray_100_radius_16"
-                    android:gravity="center_horizontal"
                     android:id="@+id/spinnerDropdownCatego"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/_16pxh"
                     android:layout_marginStart="@dimen/_16pxh"
                     android:layout_marginTop="@dimen/_24pxv"
-                    android:layout_width="match_parent"
+                    android:layout_marginEnd="@dimen/_16pxh"
+                    android:background="@drawable/layer_list_bg_white_a700_border_gray_100_radius_16"
+                    android:gravity="center_horizontal"
                     tools:listitem="@layout/spinner_item" />
 
                 <EditText
+                    android:id="@+id/etInputDescripti"
+                    style="@style/etSolidRoundedOutline"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_16pxh"
+                    android:layout_marginTop="@dimen/_16pxv"
+                    android:layout_marginEnd="@dimen/_16pxh"
                     android:background="@drawable/rectangle_bg_white_a700_border_gray_100_radius_16"
                     android:ellipsize="end"
                     android:hint="@string/lbl_description"
-                    android:id="@+id/etInputDescripti"
                     android:inputType="text"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/_16pxh"
-                    android:layout_marginStart="@dimen/_16pxh"
-                    android:layout_marginTop="@dimen/_16pxv"
-                    android:layout_width="match_parent"
                     android:lineSpacingExtra="@dimen/_4pxh"
-                    android:paddingBottom="@dimen/_16pxv"
-                    android:paddingEnd="@dimen/_30pxh"
                     android:paddingStart="@dimen/_16pxh"
                     android:paddingTop="@dimen/_19pxv"
+                    android:paddingEnd="@dimen/_30pxh"
+                    android:paddingBottom="@dimen/_16pxv"
                     android:singleLine="true"
                     android:text="@={incomeVM.incomeModel.etInputDescriptiValue}"
                     android:textColorHint="@color/gray_500"
-                    style="@style/etSolidRoundedOutline"
                     tools:ignore="Autofill" />
 
                 <Spinner
-                    android:background="@drawable/layer_list_bg_white_a700_border_gray_100_radius_16"
-                    android:gravity="center_horizontal"
                     android:id="@+id/spinnerDropdownWallet"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/_16pxh"
                     android:layout_marginStart="@dimen/_16pxh"
                     android:layout_marginTop="@dimen/_16pxv"
+                    android:layout_marginEnd="@dimen/_16pxh"
+                    android:background="@drawable/layer_list_bg_white_a700_border_gray_100_radius_16"
+                    android:gravity="center_horizontal"
                     android:paddingTop="@dimen/_19pxv"
                     android:paddingBottom="@dimen/_10pxv"
-                    android:layout_width="match_parent"
                     tools:listitem="@layout/spinner_item" />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:ellipsize="end"
-                    android:gravity="center"
-                    android:id="@+id/btnRowairplane"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/_24pxv"
-                    android:layout_marginEnd="@dimen/_16pxh"
-                    android:layout_marginStart="@dimen/_16pxh"
-                    android:layout_marginTop="@dimen/_16pxv"
-                    android:paddingTop="@dimen/_19pxv"
-                    android:paddingBottom="@dimen/_19pxv"
-                    android:layout_width="match_parent"
-                    android:singleLine="true"
-                    android:textAllCaps="false"
-                    android:text="@string/add_attachment"
-                    style="@style/btnSolidRoundedOutline" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/linearColumncontinue"
-                android:layout_gravity="bottom|start"
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent"
-                android:orientation="vertical"
-                style="@style/groupStylewhite_A700">
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:ellipsize="end"
-                    android:gravity="center"
                     android:id="@+id/btnContinue"
-                    android:layout_height="match_parent"
+                    style="@style/btnSolidRounded_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/_16pxh"
                     android:layout_marginVertical="@dimen/_16pxv"
-                    android:layout_width="match_parent"
-                    android:paddingBottom="@dimen/_17pxv"
-                    android:paddingEnd="@dimen/_30pxh"
+                    android:ellipsize="end"
+                    android:gravity="center"
                     android:paddingStart="@dimen/_30pxh"
                     android:paddingTop="@dimen/_17pxv"
+                    android:paddingEnd="@dimen/_30pxh"
+                    android:paddingBottom="@dimen/_17pxv"
                     android:singleLine="true"
                     android:text="@string/lbl_continue"
                     android:textAllCaps="false"
-                    style="@style/btnSolidRounded_3"
                     tools:text="@string/lbl_continue" />
             </LinearLayout>
         </FrameLayout>

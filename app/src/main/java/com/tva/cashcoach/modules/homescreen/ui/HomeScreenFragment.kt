@@ -1,17 +1,24 @@
 package com.tva.cashcoach.modules.homescreen.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import com.tva.cashcoach.R
 import com.tva.cashcoach.appcomponents.base.BaseFragment
+import com.tva.cashcoach.appcomponents.model.expense.Expense
 import com.tva.cashcoach.databinding.FragmentHomeScreenBinding
+import com.tva.cashcoach.modules.forgotpassword.ui.ForgotPasswordActivity
 import com.tva.cashcoach.modules.homescreen.data.model.ListframefiveRowModel
 import com.tva.cashcoach.modules.homescreen.data.model.SpinnerDropdownMonthModel
 import com.tva.cashcoach.modules.homescreen.data.viewmodel.HomeScreenVM
+import com.tva.cashcoach.modules.income.ui.IncomeActivity
+import com.tva.cashcoach.modules.newexpense.ui.NewExpenseActivity
 
 class HomeScreenFragment : BaseFragment<FragmentHomeScreenBinding>(R.layout.fragment_home_screen) {
     private val viewModel: HomeScreenVM by viewModels()
+
+    private val OPEN_INCOME_ACTIVITY: Int = 666
 
     override fun onInitialized() {
         viewModel.navArguments = arguments
@@ -39,6 +46,17 @@ class HomeScreenFragment : BaseFragment<FragmentHomeScreenBinding>(R.layout.frag
                 }
             }
         )
+
+        binding.btnEye.setOnClickListener {
+            val intent = Intent(context, IncomeActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.btnTelevision.setOnClickListener {
+            val intent = Intent(context, NewExpenseActivity::class.java)
+            startActivity(intent)
+        }
+
         viewModel.listframefiveList.observe(requireActivity()) {
             listframefiveAdapter.updateData(it)
         }

@@ -52,13 +52,6 @@
                         tools:ignore="ContentDescription"
                         tools:src="@drawable/img_avatar" />
 
-                    <Spinner
-                        android:id="@+id/spinnerDropdownMonth"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_186pxh"
-                        android:layout_weight="0.77"
-                        android:layout_width="0dp"
-                        tools:listitem="@layout/spinner_item" />
                 </LinearLayout>
             </androidx.appcompat.widget.Toolbar>
 

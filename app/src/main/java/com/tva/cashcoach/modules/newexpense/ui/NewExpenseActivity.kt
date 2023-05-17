@@ -23,13 +23,13 @@ class NewExpenseActivity : BaseActivity<ActivityNewExpenseBinding>(R.layout.acti
             SpinnerDropdownCategoModel("Item4"),
             SpinnerDropdownCategoModel("Item5")
         )
-        val spinnerDropdownCategoAdapter =
-            SpinnerDropdownCategoAdapter(
-                this,
-                R.layout.spinner_item,
-                viewModel.spinnerDropdownCategoList.value ?: mutableListOf()
-            )
-        binding.spinnerDropdownCatego.adapter = spinnerDropdownCategoAdapter
+//        val spinnerDropdownCategoAdapter =
+//            SpinnerDropdownCategoAdapter(
+//                this,
+//                R.layout.spinner_item,
+//                viewModel.spinnerDropdownCategoList.value ?: mutableListOf()
+//            )
+//        binding.spinnerDropdownCatego.adapter = spinnerDropdownCategoAdapter
         viewModel.spinnerDropdownWalletList.value = mutableListOf(
             SpinnerDropdownWalletModel("Item1"),
             SpinnerDropdownWalletModel("Item2"),
@@ -37,13 +37,13 @@ class NewExpenseActivity : BaseActivity<ActivityNewExpenseBinding>(R.layout.acti
             SpinnerDropdownWalletModel("Item4"),
             SpinnerDropdownWalletModel("Item5")
         )
-        val spinnerDropdownWalletAdapter =
-            SpinnerDropdownWalletAdapter(
-                this,
-                R.layout.spinner_item,
-                viewModel.spinnerDropdownWalletList.value ?: mutableListOf()
-            )
-        binding.spinnerDropdownWallet.adapter = spinnerDropdownWalletAdapter
+//        val spinnerDropdownWalletAdapter =
+//            SpinnerDropdownWalletAdapter(
+//                this,
+//                R.layout.spinner_item,
+//                viewModel.spinnerDropdownWalletList.value ?: mutableListOf()
+//            )
+//        binding.spinnerDropdownWallet.adapter = spinnerDropdownWalletAdapter
         binding.newExpenseVM = viewModel
     }
 
