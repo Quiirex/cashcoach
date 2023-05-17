@@ -122,4 +122,7 @@
     <string name="error_invalid_credentials">Invalid credentials</string>
     <string name="password_reset_email_sent">If the email you entered matches an account, we\'ll send a reset code</string>
     <string name="error_email_empty">Please enter your email</string>
+    <string name="lbl_log_out">Log out</string>
+    <string name="accounts">Accounts</string>
+    <string name="lbl_accounts">Accounts</string>
 </resources>

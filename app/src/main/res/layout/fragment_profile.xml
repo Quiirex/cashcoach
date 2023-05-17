@@ -41,7 +41,7 @@
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:id="@+id/imageUserAvatar"
+                        android:id="@+id/imageRectangleNine"
                         android:layout_height="@dimen/_80pxh"
                         android:layout_width="@dimen/_80pxh"
                         android:scaleType="centerCrop"
@@ -74,7 +74,7 @@
 
                         <TextView
                             android:ellipsize="end"
-                            android:id="@+id/txtNameSurname"
+                            android:id="@+id/txtLukaMlinari"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="@dimen/_10pxh"
                             android:layout_marginTop="@dimen/_2pxv"
@@ -85,9 +85,8 @@
                             tools:text="@string/lbl_luka_mlinari" />
                     </LinearLayout>
 
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:ellipsize="end"
-                        android:gravity="center"
+                    <ImageButton
+                        android:background="@drawable/rectangle_border_gray_100_radius_8"
                         android:id="@+id/btnEdit"
                         android:layout_height="@dimen/_40pxh"
                         android:layout_marginBottom="@dimen/_14pxv"
@@ -96,18 +95,20 @@
                         android:layout_width="@dimen/_40pxh"
                         android:paddingHorizontal="@dimen/_9pxh"
                         android:paddingVertical="@dimen/_9pxv"
-                        android:singleLine="true"
-                        android:textAllCaps="false"
-                        style="@style/btnRoundedOutline" />
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/img_edit"
+                        tools:ignore="ContentDescription" />
                 </LinearLayout>
             </androidx.appcompat.widget.Toolbar>
 
-            <androidx.appcompat.widget.AppCompatButton
+            <!--<EditText
+                android:background="@drawable/rectangle_bg_white_a700_radius_tl_24_tr_24"
                 android:drawablePadding="@dimen/_23pxh"
-                android:drawableStart="@drawable/img_eye_white_a700"
+                android:drawableStart="@drawable/img_eye"
                 android:ellipsize="end"
-                android:gravity="center"
-                android:id="@+id/btnAccount"
+                android:hint="@string/lbl_account"
+                android:id="@+id/etAccount"
+                android:inputType="text"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_42pxv"
                 android:layout_width="match_parent"
@@ -116,28 +117,151 @@
                 android:paddingStart="@dimen/_30pxh"
                 android:paddingTop="@dimen/_30pxv"
                 android:singleLine="true"
-                android:textAllCaps="false"
-                style="@style/btnSolidRoundedTopCorner" />
+                android:text="Account"
+                android:textColorHint="@color/bluegray_900"
+                style="@style/etSolidRoundedTopCorner"
+                tools:ignore="Autofill" />-->
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:ellipsize="end"
-                android:gravity="center"
-                android:id="@+id/btnRowsettings"
+            <LinearLayout
+                android:gravity="start"
+                android:id="@+id/linearRowAccounts"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
-                android:singleLine="true"
-                android:textAllCaps="false"
-                style="@style/btnSolid" />
+                android:layout_marginTop="@dimen/_30pxh"
+                android:orientation="horizontal"
+                style="@style/groupStylewhite_1">
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:ellipsize="end"
-                android:gravity="center"
-                android:id="@+id/btnRowarrowright"
+                <FrameLayout
+                    android:id="@+id/frameStackAccounts"
+                    android:layout_height="@dimen/_52pxv"
+                    android:layout_marginBottom="@dimen/_19pxv"
+                    android:layout_marginStart="@dimen/_17pxh"
+                    android:layout_marginTop="@dimen/_18pxv"
+                    android:layout_width="@dimen/_52pxh"
+                    style="@style/groupStyleblack_900cornerRadius">
+
+                    <ImageView
+                        android:id="@+id/imageAccounts"
+                        android:layout_gravity="center"
+                        android:layout_height="@dimen/_24pxh"
+                        android:layout_marginHorizontal="@dimen/_14pxh"
+                        android:layout_marginVertical="@dimen/_14pxv"
+                        android:layout_width="@dimen/_22pxh"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/img_home_gray_400"
+                        tools:ignore="ContentDescription"
+                        tools:src="@drawable/img_home_gray_400" />
+                </FrameLayout>
+
+                <TextView
+                    android:ellipsize="end"
+                    android:id="@+id/txtAccounts"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_33pxv"
+                    android:layout_marginEnd="@dimen/_50pxh"
+                    android:layout_marginStart="@dimen/_9pxh"
+                    android:layout_marginTop="@dimen/_35pxv"
+                    android:layout_weight="0.55"
+                    android:layout_width="0dp"
+                    android:singleLine="true"
+                    android:text="@string/accounts"
+                    style="@style/txtIntermedium16"
+                    tools:text="@string/lbl_accounts" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:gravity="start"
+                android:id="@+id/linearRowsettings"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
-                android:singleLine="true"
-                android:textAllCaps="false"
-                style="@style/btnSolidRoundedBottomCorner" />
+                android:layout_marginTop="@dimen/_10pxh"
+                android:orientation="horizontal"
+                style="@style/groupStylewhite_1">
+
+                <FrameLayout
+                    android:id="@+id/frameStacksettings"
+                    android:layout_height="@dimen/_52pxv"
+                    android:layout_marginBottom="@dimen/_19pxv"
+                    android:layout_marginStart="@dimen/_17pxh"
+                    android:layout_marginTop="@dimen/_18pxv"
+                    android:layout_width="@dimen/_52pxh"
+                    style="@style/groupStyleblack_900cornerRadius">
+
+                    <ImageView
+                        android:id="@+id/imageSettings"
+                        android:layout_gravity="center"
+                        android:layout_height="@dimen/_24pxh"
+                        android:layout_marginHorizontal="@dimen/_14pxh"
+                        android:layout_marginVertical="@dimen/_14pxv"
+                        android:layout_width="@dimen/_22pxh"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/img_settings"
+                        tools:ignore="ContentDescription"
+                        tools:src="@drawable/img_settings" />
+                </FrameLayout>
+
+                <TextView
+                    android:ellipsize="end"
+                    android:id="@+id/txtSettingsOne"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_33pxv"
+                    android:layout_marginEnd="@dimen/_50pxh"
+                    android:layout_marginStart="@dimen/_9pxh"
+                    android:layout_marginTop="@dimen/_35pxv"
+                    android:layout_weight="0.55"
+                    android:layout_width="0dp"
+                    android:singleLine="true"
+                    android:text="Settings"
+                    style="@style/txtIntermedium16"
+                    tools:text="@string/lbl_settings" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:gravity="start"
+                android:id="@+id/linearRowarrowright"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/_10pxh"
+                android:orientation="horizontal"
+                style="@style/groupStylewhite_1">
+
+                <FrameLayout
+                    android:id="@+id/frameStackarrowright"
+                    android:layout_height="@dimen/_52pxv"
+                    android:layout_marginBottom="@dimen/_19pxv"
+                    android:layout_marginStart="@dimen/_17pxh"
+                    android:layout_marginTop="@dimen/_18pxv"
+                    android:layout_width="@dimen/_52pxh"
+                    style="@style/groupStyleblack_900cornerRadius">
+
+                    <ImageView
+                        android:id="@+id/imageArrowright"
+                        android:layout_gravity="end"
+                        android:layout_height="@dimen/_22pxh"
+                        android:layout_marginHorizontal="@dimen/_15pxh"
+                        android:layout_marginVertical="@dimen/_15pxv"
+                        android:layout_width="@dimen/_19pxh"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/img_arrowright"
+                        tools:ignore="ContentDescription"
+                        tools:src="@drawable/img_arrowright" />
+                </FrameLayout>
+
+                <TextView
+                    android:ellipsize="end"
+                    android:id="@+id/txtLogout"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_33pxv"
+                    android:layout_marginEnd="@dimen/_50pxh"
+                    android:layout_marginStart="@dimen/_9pxh"
+                    android:layout_marginTop="@dimen/_35pxv"
+                    android:layout_weight="0.53"
+                    android:layout_width="0dp"
+                    android:singleLine="true"
+                    android:text="Log out"
+                    style="@style/txtIntermedium16"
+                    tools:text="@string/lbl_log_out" />
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 </layout>

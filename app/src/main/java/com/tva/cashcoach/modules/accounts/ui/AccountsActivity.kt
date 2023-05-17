@@ -13,12 +13,12 @@ import com.tva.cashcoach.modules.accounts.data.viewmodel.AccountsVM
 import com.tva.cashcoach.modules.addnewwallet.ui.AddNewWalletActivity
 
 class AccountsActivity : BaseActivity<ActivityAccountsBinding>(R.layout.activity_accounts) {
-    private val viewModel: AccountsVM by viewModels<AccountsVM>()
+    private val viewModel: AccountsVM by viewModels()
 
     private val REQUEST_CODE_ADD_NEW_WALLET_ACTIVITY: Int = 997
 
 
-    override fun onInitialized(): Unit {
+    override fun onInitialized() {
         viewModel.navArguments = intent.extras?.getBundle("bundle")
         val accountsAdapter = AccountsAdapter(viewModel.accountsList.value ?: mutableListOf())
         binding.recyclerAccounts.adapter = accountsAdapter
@@ -35,12 +35,12 @@ class AccountsActivity : BaseActivity<ActivityAccountsBinding>(R.layout.activity
         binding.accountsVM = viewModel
     }
 
-    override fun setUpClicks(): Unit {
+    override fun setUpClicks() {
         binding.btnAddNewWalletOne.setOnClickListener {
             val destIntent = AddNewWalletActivity.getIntent(this, null)
             startActivityForResult(destIntent, REQUEST_CODE_ADD_NEW_WALLET_ACTIVITY)
         }
-        binding.imageBack.setOnClickListener {
+        binding.imageArrowleft.setOnClickListener {
             finish()
         }
     }
