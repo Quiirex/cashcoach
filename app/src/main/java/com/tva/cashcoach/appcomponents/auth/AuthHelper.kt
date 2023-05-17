@@ -7,7 +7,7 @@ import com.google.firebase.auth.FirebaseAuthInvalidUserException
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
-import com.tva.cashcoach.appcomponents.googleauth.model.User
+import com.tva.cashcoach.appcomponents.model.user.User
 
 /**
  * Helper class for Firebase email/password authentication.
@@ -97,7 +97,8 @@ class AuthHelper(
                 } else {
                     // User does not exist in Firestore, save the user
                     val user = User(
-                        id = uid,
+                        id = null,
+                        uid = uid,
                         name = name,
                         surname = surname,
                         email = email,

@@ -14,7 +14,7 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.firestore.FirebaseFirestore
-import com.tva.cashcoach.appcomponents.googleauth.model.User
+import com.tva.cashcoach.appcomponents.model.user.User
 
 /**
  * Helper class for Google authentication.
@@ -92,7 +92,8 @@ class GoogleAuthHelper(
                                     } else {
                                         // User does not exist in Firestore, save the user
                                         val user = User(
-                                            id = firebaseUser?.uid ?: "",
+                                            id = null,
+                                            uid = firebaseUser?.uid ?: "",
                                             name = account.givenName ?: "",
                                             surname = account.familyName ?: "",
                                             email = account.email ?: "",

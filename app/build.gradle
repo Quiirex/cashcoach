@@ -88,5 +88,14 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth-ktx'
     implementation 'com.google.android.gms:play-services-auth:20.5.0'
 
+    // Room
+    def room_version = "2.5.1"
+
+    implementation "androidx.room:room-ktx:$room_version"
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$room_version"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$room_version"
+
 }
 
