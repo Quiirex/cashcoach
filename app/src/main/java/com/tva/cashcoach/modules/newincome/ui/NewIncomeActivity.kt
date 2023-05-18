@@ -1,5 +1,8 @@
 package com.tva.cashcoach.modules.newincome.ui
 
+import android.content.Context
+import android.content.Intent
+import android.os.Bundle
 import androidx.activity.viewModels
 import com.tva.cashcoach.R
 import com.tva.cashcoach.appcomponents.base.BaseActivity
@@ -60,5 +63,10 @@ class NewIncomeActivity : BaseActivity<ActivityNewIncomeBinding>(R.layout.activi
     companion object {
         const val TAG: String = "INCOME_ACTIVITY"
 
+        fun getIntent(context: Context, bundle: Bundle?): Intent {
+            val destIntent = Intent(context, NewIncomeActivity::class.java)
+            destIntent.putExtra("bundle", bundle)
+            return destIntent
+        }
     }
 }
