@@ -45,7 +45,6 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
         binding.linearRowarrowright.setOnClickListener {
             try {
                 auth.signOut()
-                preferenceHelper.removeAllValues()
             } catch (e: Exception) {
                 Log.d("Auth", "Error signing out")
             }

@@ -202,6 +202,7 @@ class GoogleAuthHelper(
      * @param onComplete Callback function that will be called when the sign-out process is complete.
      */
     fun signOut(onComplete: (task: Task<Void>) -> Unit) {
+        configureGoogleSignIn()
         mGoogleSignInClient?.signOut()?.addOnCompleteListener(
             activity
         ) { task -> onComplete(task) }
