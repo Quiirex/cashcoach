@@ -1,9 +1,9 @@
-package com.tva.cashcoach.modules.income.`data`.model
+package com.tva.cashcoach.modules.newincome.`data`.model
 
 import com.tva.cashcoach.R
 import com.tva.cashcoach.appcomponents.di.MyApp
 
-data class IncomeModel(
+data class NewIncomeModel(
     /**
      * TODO Replace with dynamic value
      */

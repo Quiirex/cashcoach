@@ -1,4 +1,4 @@
-package com.tva.cashcoach.modules.accounts.ui
+package com.tva.cashcoach.modules.wallets.ui
 
 import android.content.Context
 import android.content.Intent
@@ -7,32 +7,32 @@ import android.view.View
 import androidx.activity.viewModels
 import com.tva.cashcoach.R
 import com.tva.cashcoach.appcomponents.base.BaseActivity
-import com.tva.cashcoach.databinding.ActivityAccountsBinding
-import com.tva.cashcoach.modules.accounts.data.model.AccountsRowModel
-import com.tva.cashcoach.modules.accounts.data.viewmodel.AccountsVM
+import com.tva.cashcoach.databinding.ActivityWalletsBinding
 import com.tva.cashcoach.modules.addnewwallet.ui.AddNewWalletActivity
+import com.tva.cashcoach.modules.wallets.data.model.WalletsRowModel
+import com.tva.cashcoach.modules.wallets.data.viewmodel.WalletsVM
 
-class AccountsActivity : BaseActivity<ActivityAccountsBinding>(R.layout.activity_accounts) {
-    private val viewModel: AccountsVM by viewModels()
+class WalletsActivity : BaseActivity<ActivityWalletsBinding>(R.layout.activity_wallets) {
+    private val viewModel: WalletsVM by viewModels()
 
     private val REQUEST_CODE_ADD_NEW_WALLET_ACTIVITY: Int = 997
 
 
     override fun onInitialized() {
         viewModel.navArguments = intent.extras?.getBundle("bundle")
-        val accountsAdapter = AccountsAdapter(viewModel.accountsList.value ?: mutableListOf())
-        binding.recyclerAccounts.adapter = accountsAdapter
-        accountsAdapter.setOnItemClickListener(
-            object : AccountsAdapter.OnItemClickListener {
-                override fun onItemClick(view: View, position: Int, item: AccountsRowModel) {
+        val walletsAdapter = WalletsAdapter(viewModel.accountsList.value ?: mutableListOf())
+        binding.recyclerAccounts.adapter = walletsAdapter
+        walletsAdapter.setOnItemClickListener(
+            object : WalletsAdapter.OnItemClickListener {
+                override fun onItemClick(view: View, position: Int, item: WalletsRowModel) {
                     onClickRecyclerAccounts(view, position, item)
                 }
             }
         )
         viewModel.accountsList.observe(this) {
-            accountsAdapter.updateData(it)
+            walletsAdapter.updateData(it)
         }
-        binding.accountsVM = viewModel
+        binding.walletsVM = viewModel
     }
 
     override fun setUpClicks() {
@@ -48,7 +48,7 @@ class AccountsActivity : BaseActivity<ActivityAccountsBinding>(R.layout.activity
     fun onClickRecyclerAccounts(
         view: View,
         position: Int,
-        item: AccountsRowModel
+        item: WalletsRowModel
     ): Unit {
         when (view.id) {
         }
@@ -59,7 +59,7 @@ class AccountsActivity : BaseActivity<ActivityAccountsBinding>(R.layout.activity
 
 
         fun getIntent(context: Context, bundle: Bundle?): Intent {
-            val destIntent = Intent(context, AccountsActivity::class.java)
+            val destIntent = Intent(context, WalletsActivity::class.java)
             destIntent.putExtra("bundle", bundle)
             return destIntent
         }

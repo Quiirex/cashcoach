@@ -1,13 +1,13 @@
-package com.tva.cashcoach.modules.accounts.`data`.model
+package com.tva.cashcoach.modules.wallets.`data`.model
 
 import com.tva.cashcoach.R
 import com.tva.cashcoach.appcomponents.di.MyApp
 
-data class AccountsModel(
+data class WalletsModel(
     /**
      * TODO Replace with dynamic value
      */
-    var txtTitle: String? = MyApp.getInstance().resources.getString(R.string.lbl_account),
+    var txtTitle: String? = MyApp.getInstance().resources.getString(R.string.lbl_wallet),
     /**
      * TODO Replace with dynamic value
      */

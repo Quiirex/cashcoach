@@ -1,4 +1,4 @@
-package com.tva.cashcoach.modules.income.ui
+package com.tva.cashcoach.modules.newincome.ui
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -8,7 +8,7 @@ import android.widget.ArrayAdapter
 import android.widget.TextView
 import androidx.annotation.LayoutRes
 import com.tva.cashcoach.R
-import com.tva.cashcoach.modules.income.data.model.SpinnerDropdownCategoModel
+import com.tva.cashcoach.modules.newincome.data.model.SpinnerDropdownCategoModel
 
 class SpinnerDropdownCategoAdapter(
     private val mContext: Context,

@@ -9,10 +9,10 @@ import com.tva.cashcoach.appcomponents.auth.AuthHelper
 import com.tva.cashcoach.appcomponents.base.BaseFragment
 import com.tva.cashcoach.appcomponents.googleauth.GoogleAuthHelper
 import com.tva.cashcoach.databinding.FragmentProfileBinding
-import com.tva.cashcoach.modules.accounts.ui.AccountsActivity
 import com.tva.cashcoach.modules.login.ui.LoginActivity
 import com.tva.cashcoach.modules.profile.data.viewmodel.ProfileVM
 import com.tva.cashcoach.modules.settings.ui.SettingsActivity
+import com.tva.cashcoach.modules.wallets.ui.WalletsActivity
 
 class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_profile) {
     private val viewModel: ProfileVM by viewModels()
@@ -37,7 +37,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
 
     override fun setUpClicks() {
         binding.linearRowAccounts.setOnClickListener {
-            val destIntent = context?.let { it1 -> AccountsActivity.getIntent(it1, null) }
+            val destIntent = context?.let { it1 -> WalletsActivity.getIntent(it1, null) }
             startActivityForResult(destIntent, REQUEST_CODE_ACCOUNTS_ACTIVITY)
         }
         binding.linearRowsettings.setOnClickListener {

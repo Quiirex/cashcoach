@@ -96,4 +96,5 @@
     <string name="lbl_log_out">Abmelden</string>
     <string name="accounts">Konten</string>
     <string name="lbl_accounts">Konten</string>
+    <string name="lbl_wallets">Brieftaschen</string>
 </resources>

@@ -13,13 +13,13 @@
         android:theme="@style/Theme.App.Starting"
         android:usesCleartextTraffic="true">
         <activity
-            android:name="com.tva.cashcoach.modules.accounts.ui.AccountsActivity"
+            android:name="com.tva.cashcoach.modules.wallets.ui.WalletsActivity"
             android:screenOrientation="locked" />
         <activity
             android:name="com.tva.cashcoach.modules.financialreportlinechart.ui.FinancialReportLineChartActivity"
             android:screenOrientation="locked" />
         <activity
-            android:name="com.tva.cashcoach.modules.income.ui.IncomeActivity"
+            android:name="com.tva.cashcoach.modules.newincome.ui.NewIncomeActivity"
             android:screenOrientation="locked" />
         <activity
             android:name="com.tva.cashcoach.modules.addnewwallet.ui.AddNewWalletActivity"

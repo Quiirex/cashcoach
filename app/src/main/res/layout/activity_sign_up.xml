@@ -285,59 +285,6 @@
 
             <TextView
                 android:ellipsize="end"
-                android:id="@+id/txtOr"
-                android:layout_gravity="center_horizontal"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/_16pxh"
-                android:layout_marginStart="@dimen/_16pxh"
-                android:layout_width="wrap_content"
-                android:lineSpacingExtra="@dimen/_3pxh"
-                android:singleLine="true"
-                android:text="@{signUpVM.signUpModel.txtOr}"
-                style="@style/txtInterbold14"
-                tools:text="@string/lbl_or" />
-
-            <LinearLayout
-                android:gravity="center_vertical"
-                android:id="@+id/linearButtonGoogleSignUp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/_16pxh"
-                android:layout_marginStart="@dimen/_16pxh"
-                android:layout_marginTop="@dimen/_12pxv"
-                android:layout_width="match_parent"
-                android:orientation="horizontal"
-                style="@style/groupStylecornerRadius_2">
-
-                <ImageView
-                    android:id="@+id/imageFlatcoloricon"
-                    android:layout_height="@dimen/_26pxh"
-                    android:layout_marginBottom="@dimen/_14pxv"
-                    android:layout_marginStart="@dimen/_64pxh"
-                    android:layout_marginTop="@dimen/_14pxv"
-                    android:layout_width="@dimen/_26pxh"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/img_flatcoloricon"
-                    tools:ignore="ContentDescription"
-                    tools:src="@drawable/img_flatcoloricon" />
-
-                <TextView
-                    android:ellipsize="end"
-                    android:id="@+id/txtSignUpwithGo"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/_14pxv"
-                    android:layout_marginEnd="@dimen/_40pxh"
-                    android:layout_marginStart="@dimen/_12pxh"
-                    android:layout_marginTop="@dimen/_15pxv"
-                    android:layout_weight="0.87"
-                    android:layout_width="0dp"
-                    android:singleLine="true"
-                    android:text="@{signUpVM.signUpModel.txtSignUpwithGo}"
-                    style="@style/txtIntersemibold18_2"
-                    tools:text="@string/msg_sign_up_with_go" />
-            </LinearLayout>
-
-            <TextView
-                android:ellipsize="end"
                 android:gravity="center_horizontal"
                 android:id="@+id/txtConfirmation"
                 android:layout_height="wrap_content"

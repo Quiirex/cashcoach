@@ -6,7 +6,7 @@
 
         <variable
             name="accountsRowModel"
-            type="com.tva.cashcoach.modules.accounts.data.model.AccountsRowModel" />
+            type="com.tva.cashcoach.modules.wallets.data.model.WalletsRowModel" />
     </data>
 
     <LinearLayout

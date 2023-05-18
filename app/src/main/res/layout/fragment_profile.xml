@@ -85,42 +85,8 @@
                             tools:text="@string/lbl_luka_mlinari" />
                     </LinearLayout>
 
-                    <ImageButton
-                        android:background="@drawable/rectangle_border_gray_100_radius_8"
-                        android:id="@+id/btnEdit"
-                        android:layout_height="@dimen/_40pxh"
-                        android:layout_marginBottom="@dimen/_14pxv"
-                        android:layout_marginStart="@dimen/_17pxh"
-                        android:layout_marginTop="@dimen/_26pxv"
-                        android:layout_width="@dimen/_40pxh"
-                        android:paddingHorizontal="@dimen/_9pxh"
-                        android:paddingVertical="@dimen/_9pxv"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/img_edit"
-                        tools:ignore="ContentDescription" />
                 </LinearLayout>
             </androidx.appcompat.widget.Toolbar>
-
-            <!--<EditText
-                android:background="@drawable/rectangle_bg_white_a700_radius_tl_24_tr_24"
-                android:drawablePadding="@dimen/_23pxh"
-                android:drawableStart="@drawable/img_eye"
-                android:ellipsize="end"
-                android:hint="@string/lbl_account"
-                android:id="@+id/etAccount"
-                android:inputType="text"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_42pxv"
-                android:layout_width="match_parent"
-                android:paddingBottom="@dimen/_30pxv"
-                android:paddingEnd="@dimen/_30pxh"
-                android:paddingStart="@dimen/_30pxh"
-                android:paddingTop="@dimen/_30pxv"
-                android:singleLine="true"
-                android:text="Account"
-                android:textColorHint="@color/bluegray_900"
-                style="@style/etSolidRoundedTopCorner"
-                tools:ignore="Autofill" />-->
 
             <LinearLayout
                 android:gravity="start"
@@ -148,9 +114,9 @@
                         android:layout_marginVertical="@dimen/_14pxv"
                         android:layout_width="@dimen/_22pxh"
                         android:scaleType="fitXY"
-                        android:src="@drawable/img_home_gray_400"
+                        android:src="@drawable/img_eye_white_a700"
                         tools:ignore="ContentDescription"
-                        tools:src="@drawable/img_home_gray_400" />
+                        tools:src="@drawable/img_eye_white_a700" />
                 </FrameLayout>
 
                 <TextView
@@ -166,7 +132,7 @@
                     android:singleLine="true"
                     android:text="@string/accounts"
                     style="@style/txtIntermedium16"
-                    tools:text="@string/lbl_accounts" />
+                    tools:text="@string/lbl_wallets" />
             </LinearLayout>
 
             <LinearLayout
@@ -258,7 +224,7 @@
                     android:layout_weight="0.53"
                     android:layout_width="0dp"
                     android:singleLine="true"
-                    android:text="Log out"
+                    android:text="@string/lbl_log_out"
                     style="@style/txtIntermedium16"
                     tools:text="@string/lbl_log_out" />
             </LinearLayout>

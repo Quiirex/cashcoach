@@ -8,13 +8,11 @@ import androidx.activity.viewModels
 import com.tva.cashcoach.R
 import com.tva.cashcoach.appcomponents.auth.AuthHelper
 import com.tva.cashcoach.appcomponents.base.BaseActivity
-import com.tva.cashcoach.appcomponents.googleauth.GoogleAuthHelper
 import com.tva.cashcoach.databinding.ActivitySignUpBinding
 import com.tva.cashcoach.extensions.containsNumber
 import com.tva.cashcoach.extensions.isValidEmail
 import com.tva.cashcoach.extensions.isValidPassword
 import com.tva.cashcoach.modules.accountsetup.ui.AccountSetupActivity
-import com.tva.cashcoach.modules.homescreencontainer.ui.HomeScreenContainerActivity
 import com.tva.cashcoach.modules.login.ui.LoginActivity
 import com.tva.cashcoach.modules.signup.data.viewmodel.SignUpVM
 
@@ -25,26 +23,11 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
 
     private val REQUEST_CODE_ACCOUNT_SETUP_ACTIVITY: Int = 264
 
-    private val REQUEST_CODE_HOME_SCREEN_CONTAINER_ACTIVITY: Int = 303
-
-    private lateinit var googleAuth: GoogleAuthHelper
-
     private lateinit var auth: AuthHelper
 
     override fun onInitialized() {
         viewModel.navArguments = intent.extras?.getBundle("bundle")
         binding.signUpVM = viewModel
-        googleAuth = GoogleAuthHelper(this,
-            {
-                val destIntent = HomeScreenContainerActivity.getIntent(this, null)
-                startActivityForResult(destIntent, REQUEST_CODE_HOME_SCREEN_CONTAINER_ACTIVITY)
-            }, {
-                Toast.makeText(
-                    this,
-                    getString(R.string.an_error_occurred_please_try_again_later),
-                    Toast.LENGTH_SHORT
-                ).show()
-            })
         auth = AuthHelper(this,
             {
                 val destIntent = AccountSetupActivity.getIntent(this, null)
@@ -68,9 +51,6 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
     }
 
     override fun setUpClicks() {
-        binding.linearButtonGoogleSignUp.setOnClickListener {
-            googleAuth.login()
-        }
         binding.imageBack.setOnClickListener {
             finish()
         }

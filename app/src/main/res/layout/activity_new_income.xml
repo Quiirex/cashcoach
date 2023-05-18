@@ -7,7 +7,7 @@
 
         <variable
             name="incomeVM"
-            type="com.tva.cashcoach.modules.income.data.viewmodel.IncomeVM" />
+            type="com.tva.cashcoach.modules.newincome.data.viewmodel.NewIncomeVM" />
     </data>
 
     <LinearLayout
@@ -52,7 +52,7 @@
                     android:layout_weight="0.73"
                     android:layout_width="0dp"
                     android:singleLine="true"
-                    android:text="@{incomeVM.incomeModel.txtTitle}"
+                    android:text="@{incomeVM.newIncomeModel.txtTitle}"
                     style="@style/txtIntersemibold18_3"
                     tools:text="@string/lbl_income" />
             </LinearLayout>
@@ -67,7 +67,7 @@
             android:layout_marginTop="@dimen/_79pxv"
             android:layout_width="wrap_content"
             android:singleLine="true"
-            android:text="@{incomeVM.incomeModel.txtHowmuch}"
+            android:text="@{incomeVM.newIncomeModel.txtHowmuch}"
             style="@style/txtIntersemibold18_4"
             tools:text="@string/lbl_how_much" />
 
@@ -91,7 +91,7 @@
                 android:layout_marginTop="@dimen/_1pxv"
                 android:layout_width="match_parent"
                 android:singleLine="true"
-                android:text="@={incomeVM.incomeModel.etZeroValue}"
+                android:text="@={incomeVM.newIncomeModel.etZeroValue}"
                 android:textColorHint="@color/white"
                 style="@style/etIntersemibold64"
                 tools:ignore="Autofill" />
@@ -139,7 +139,7 @@
                     android:paddingStart="@dimen/_16pxh"
                     android:paddingTop="@dimen/_19pxv"
                     android:singleLine="true"
-                    android:text="@={incomeVM.incomeModel.etInputDescriptiValue}"
+                    android:text="@={incomeVM.newIncomeModel.etInputDescriptiValue}"
                     android:textColorHint="@color/gray_500"
                     style="@style/etSolidRoundedOutline"
                     tools:ignore="Autofill" />

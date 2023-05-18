@@ -96,4 +96,5 @@
     <string name="lbl_log_out">Odjavite se</string>
     <string name="accounts">Računi</string>
     <string name="lbl_accounts">Računi</string>
+    <string name="lbl_wallets">Denarnice</string>
 </resources>

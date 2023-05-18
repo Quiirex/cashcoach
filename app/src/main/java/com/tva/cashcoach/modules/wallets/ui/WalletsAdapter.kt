@@ -1,4 +1,4 @@
-package com.tva.cashcoach.modules.accounts.ui
+package com.tva.cashcoach.modules.wallets.ui
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,11 +6,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.tva.cashcoach.R
 import com.tva.cashcoach.databinding.RowAccountsBinding
-import com.tva.cashcoach.modules.accounts.data.model.AccountsRowModel
+import com.tva.cashcoach.modules.wallets.data.model.WalletsRowModel
 
-class AccountsAdapter(
-    var list: List<AccountsRowModel>
-) : RecyclerView.Adapter<AccountsAdapter.RowAccountsVH>() {
+class WalletsAdapter(
+    var list: List<WalletsRowModel>
+) : RecyclerView.Adapter<WalletsAdapter.RowAccountsVH>() {
     private var clickListener: OnItemClickListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RowAccountsVH {
@@ -19,17 +19,17 @@ class AccountsAdapter(
     }
 
     override fun onBindViewHolder(holder: RowAccountsVH, position: Int) {
-        val accountsRowModel = AccountsRowModel()
+        val walletsRowModel = WalletsRowModel()
         // TODO uncomment following line after integration with data source
         // val accountsRowModel = list[position]
-        holder.binding.accountsRowModel = accountsRowModel
+        holder.binding.accountsRowModel = walletsRowModel
     }
 
     override fun getItemCount(): Int = 2
     // TODO uncomment following line after integration with data source
     // return list.size
 
-    fun updateData(newData: List<AccountsRowModel>) {
+    fun updateData(newData: List<WalletsRowModel>) {
         list = newData
         notifyDataSetChanged()
     }
@@ -42,7 +42,7 @@ class AccountsAdapter(
         fun onItemClick(
             view: View,
             position: Int,
-            item: AccountsRowModel
+            item: WalletsRowModel
         ) {
         }
     }

@@ -10,6 +10,7 @@ import com.tva.cashcoach.appcomponents.auth.AuthHelper
 import com.tva.cashcoach.appcomponents.base.BaseActivity
 import com.tva.cashcoach.appcomponents.googleauth.GoogleAuthHelper
 import com.tva.cashcoach.databinding.ActivityLoginBinding
+import com.tva.cashcoach.modules.accountsetup.ui.AccountSetupActivity
 import com.tva.cashcoach.modules.forgotpassword.ui.ForgotPasswordActivity
 import com.tva.cashcoach.modules.homescreencontainer.ui.HomeScreenContainerActivity
 import com.tva.cashcoach.modules.login.data.viewmodel.LoginVM
@@ -24,6 +25,8 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
 
     private val REQUEST_CODE_FORGOT_PASSWORD_ACTIVITY: Int = 984
 
+    private val REQUEST_CODE_ACCOUNT_SETUP_ACTIVITY: Int = 264
+
     private lateinit var googleAuth: GoogleAuthHelper
 
     private lateinit var auth: AuthHelper
@@ -33,8 +36,8 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
         binding.loginVM = viewModel
         googleAuth = GoogleAuthHelper(this,
             {
-                val destIntent = HomeScreenContainerActivity.getIntent(this, null)
-                startActivityForResult(destIntent, REQUEST_CODE_HOME_SCREEN_CONTAINER_ACTIVITY)
+                val destIntent = AccountSetupActivity.getIntent(this, null)
+                startActivityForResult(destIntent, REQUEST_CODE_ACCOUNT_SETUP_ACTIVITY)
             }, {
                 Toast.makeText(
                     this,
