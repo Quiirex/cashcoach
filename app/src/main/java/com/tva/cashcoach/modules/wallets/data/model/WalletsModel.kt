@@ -7,7 +7,7 @@ data class WalletsModel(
     /**
      * TODO Replace with dynamic value
      */
-    var txtTitle: String? = MyApp.getInstance().resources.getString(R.string.lbl_wallet),
+    var txtTitle: String? = MyApp.getInstance().resources.getString(R.string.lbl_wallets),
     /**
      * TODO Replace with dynamic value
      */

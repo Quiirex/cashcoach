@@ -6,14 +6,12 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import com.tva.cashcoach.R
 import com.tva.cashcoach.appcomponents.base.BaseFragment
-import com.tva.cashcoach.appcomponents.model.expense.Expense
 import com.tva.cashcoach.databinding.FragmentHomeScreenBinding
-import com.tva.cashcoach.modules.forgotpassword.ui.ForgotPasswordActivity
 import com.tva.cashcoach.modules.homescreen.data.model.ListframefiveRowModel
 import com.tva.cashcoach.modules.homescreen.data.model.SpinnerDropdownMonthModel
 import com.tva.cashcoach.modules.homescreen.data.viewmodel.HomeScreenVM
-import com.tva.cashcoach.modules.income.ui.IncomeActivity
 import com.tva.cashcoach.modules.newexpense.ui.NewExpenseActivity
+import com.tva.cashcoach.modules.newincome.ui.NewIncomeActivity
 
 class HomeScreenFragment : BaseFragment<FragmentHomeScreenBinding>(R.layout.fragment_home_screen) {
     private val viewModel: HomeScreenVM by viewModels()
@@ -48,7 +46,7 @@ class HomeScreenFragment : BaseFragment<FragmentHomeScreenBinding>(R.layout.frag
         )
 
         binding.btnEye.setOnClickListener {
-            val intent = Intent(context, IncomeActivity::class.java)
+            val intent = Intent(context, NewIncomeActivity::class.java)
             startActivity(intent)
         }
 
