@@ -20,7 +20,7 @@ class ForgotPasswordActivity :
     override fun onInitialized() {
         viewModel.navArguments = intent.extras?.getBundle("bundle")
         binding.forgotPasswordVM = viewModel
-        auth = AuthHelper(this, {}, {})
+        auth = AuthHelper(this, {}, {}, appDb, preferenceHelper)
     }
 
     override fun setUpClicks() {

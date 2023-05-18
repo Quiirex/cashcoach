@@ -13,15 +13,18 @@ interface IncomeDao {
     @Query("SELECT * FROM income ORDER BY id ASC")
     fun getAll(): LiveData<List<Income>>
 
+    @Query("SELECT * FROM income WHERE id = :id")
+    fun getById(id: Long): Income?
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insert(income: Income)
+    fun insert(income: Income)
 
     @Delete
-    suspend fun delete(income: Income)
+    fun delete(income: Income)
 
     @Update
-    suspend fun update(income: Income)
+    fun update(income: Income)
 
     @Query("DELETE FROM income")
-    suspend fun wipeTable()
+    fun wipeTable()
 }

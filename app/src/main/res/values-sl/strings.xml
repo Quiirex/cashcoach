@@ -97,4 +97,6 @@
     <string name="accounts">Računi</string>
     <string name="lbl_accounts">Računi</string>
     <string name="lbl_wallets">Denarnice</string>
+    <string name="msg_continue_with_google">Nadaljujte z Google</string>
+    <string name="lbl_name_surname">Ime Priimek</string>
 </resources>

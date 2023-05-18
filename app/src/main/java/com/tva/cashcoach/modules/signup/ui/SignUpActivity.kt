@@ -28,11 +28,13 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
     override fun onInitialized() {
         viewModel.navArguments = intent.extras?.getBundle("bundle")
         binding.signUpVM = viewModel
-        auth = AuthHelper(this,
+        auth = AuthHelper(
+            this,
             {
                 val destIntent = AccountSetupActivity.getIntent(this, null)
                 startActivityForResult(destIntent, REQUEST_CODE_ACCOUNT_SETUP_ACTIVITY)
-            }, { errorCode ->
+            },
+            { errorCode ->
                 when (errorCode) {
                     "ERROR_EMAIL_ALREADY_IN_USE" -> {
                         binding.etInputEmail.error = getString(R.string.error_email_already_in_use)
@@ -47,7 +49,8 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
                         ).show()
                     }
                 }
-            })
+            }, appDb, preferenceHelper
+        )
     }
 
     override fun setUpClicks() {

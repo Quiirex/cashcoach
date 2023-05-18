@@ -16,7 +16,7 @@ data class LoginModel(
      * TODO Replace with dynamic value
      */
     var txtSignUpwithGo: String? =
-        MyApp.getInstance().resources.getString(R.string.msg_log_in_with_goo),
+        MyApp.getInstance().resources.getString(R.string.msg_continue_with_google),
     /**
      * TODO Replace with dynamic value
      */

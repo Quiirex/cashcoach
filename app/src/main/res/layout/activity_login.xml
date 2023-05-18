@@ -173,7 +173,7 @@
                 android:id="@+id/imageFlatcoloricon"
                 android:layout_height="@dimen/_26pxh"
                 android:layout_marginBottom="@dimen/_14pxv"
-                android:layout_marginStart="@dimen/_72pxh"
+                android:layout_marginStart="@dimen/_40pxh"
                 android:layout_marginTop="@dimen/_14pxv"
                 android:layout_width="@dimen/_26pxh"
                 android:scaleType="fitXY"
@@ -185,16 +185,16 @@
                 android:id="@+id/txtSignUpwithGo"
                 style="@style/txtIntersemibold18_2"
                 android:layout_width="0dp"
+                android:gravity="center"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_12pxh"
-                android:layout_marginTop="@dimen/_13pxv"
-                android:layout_marginEnd="@dimen/_40pxh"
+                android:layout_marginTop="@dimen/_14pxv"
+                android:layout_marginEnd="@dimen/_50pxh"
                 android:layout_marginBottom="@dimen/_14pxv"
                 android:layout_weight="0.86"
                 android:ellipsize="end"
                 android:singleLine="true"
                 android:text="@{loginVM.loginModel.txtSignUpwithGo}"
-                tools:text="@string/msg_log_in_with_goo" />
+                tools:text="@string/msg_continue_with_google" />
         </LinearLayout>
 
         <TextView
@@ -208,7 +208,7 @@
             android:layout_width="wrap_content"
             android:singleLine="true"
             android:text="@{loginVM.loginModel.txtForgotPassword}"
-            style="@style/txtIntersemibold18_1"
+            style="@style/txtIntersemibold18_blue"
             tools:text="@string/msg_forgot_password" />
 
         <TextView
@@ -223,8 +223,7 @@
             android:layout_width="match_parent"
             android:singleLine="true"
             android:text="@{loginVM.loginModel.txtConfirmation}"
-            style="@style/txtIntermedium16_1"
-            textUnderline="true"
+            style="@style/txtIntermedium16_blue"
             tools:text="@string/msg_don_t_have_an_a" />
     </LinearLayout>
 </layout>

@@ -31,20 +31,27 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
 
     private lateinit var auth: AuthHelper
 
+
     override fun onInitialized() {
         viewModel.navArguments = intent.extras?.getBundle("bundle")
         binding.loginVM = viewModel
         googleAuth = GoogleAuthHelper(this,
-            {
-                val destIntent = AccountSetupActivity.getIntent(this, null)
-                startActivityForResult(destIntent, REQUEST_CODE_ACCOUNT_SETUP_ACTIVITY)
+            { _, reqSetup ->
+                if (!reqSetup) {
+                    val destIntent = HomeScreenContainerActivity.getIntent(this, null)
+                    startActivityForResult(destIntent, REQUEST_CODE_HOME_SCREEN_CONTAINER_ACTIVITY)
+                } else {
+                    val destIntent = AccountSetupActivity.getIntent(this, null)
+                    startActivityForResult(destIntent, REQUEST_CODE_ACCOUNT_SETUP_ACTIVITY)
+                }
             }, {
                 Toast.makeText(
                     this,
                     getString(R.string.an_error_occurred_please_try_again_later),
                     Toast.LENGTH_SHORT
                 ).show()
-            })
+            }, appDb, preferenceHelper
+        )
         auth = AuthHelper(this,
             {
                 val destIntent = HomeScreenContainerActivity.getIntent(this, null)
@@ -66,7 +73,8 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
                         ).show()
                     }
                 }
-            })
+            }, appDb, preferenceHelper
+        )
     }
 
     override fun setUpClicks() {

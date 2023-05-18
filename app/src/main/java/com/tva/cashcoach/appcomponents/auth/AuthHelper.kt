@@ -8,6 +8,12 @@ import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 import com.tva.cashcoach.appcomponents.model.user.User
+import com.tva.cashcoach.appcomponents.persistence.AppDatabase
+import com.tva.cashcoach.appcomponents.utility.PreferenceHelper
+import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 /**
  * Helper class for Firebase email/password authentication.
@@ -19,7 +25,9 @@ import com.tva.cashcoach.appcomponents.model.user.User
 class AuthHelper(
     private val activity: ComponentActivity,
     private val onSuccess: (user: FirebaseUser) -> Unit,
-    private val onError: (errorCode: String) -> Unit
+    private val onError: (errorCode: String) -> Unit,
+    private val appDb: AppDatabase,
+    private val preferenceHelper: PreferenceHelper
 ) {
 
     /**
@@ -34,6 +42,14 @@ class AuthHelper(
                 if (task.isSuccessful) {
                     val user = FirebaseAuth.getInstance().currentUser
                     if (user != null) {
+                        preferenceHelper.putString(
+                            "curr_user_id",
+                            user.uid
+                        )
+                        preferenceHelper.putBoolean(
+                            "googleSignedIn",
+                            false
+                        )
                         onSuccess(user)
                     } else {
                         onError("ERROR_USER_IS_NULL")
@@ -58,7 +74,24 @@ class AuthHelper(
                 if (task.isSuccessful) {
                     val user = FirebaseAuth.getInstance().currentUser
                     if (user != null) {
-                        createFirestoreUser(user.uid, email, name, surname)
+                        try {
+                            insertUserInLocalDb(
+                                User(
+                                    id = null,
+                                    uid = user.uid,
+                                    name = name,
+                                    surname = surname,
+                                    email = email,
+                                    currency = "EUR", // default value
+                                    language = "en", // default value
+                                    theme = "light", // default value
+                                    avatar = "https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg" // default value
+                                )
+                            )
+                            createFirestoreUser(user.uid, email, name, surname)
+                        } catch (e: Exception) {
+                            onError("ERROR_USER_IS_NULL")
+                        }
                     } else {
                         onError("ERROR_USER_IS_NULL")
                     }
@@ -93,6 +126,14 @@ class AuthHelper(
             .addOnSuccessListener { document ->
                 if (document.exists()) {
                     // User already exists in Firestore, call onSuccess
+                    preferenceHelper.putString(
+                        "curr_user_id",
+                        uid
+                    )
+                    preferenceHelper.putBoolean(
+                        "googleSignedIn",
+                        false
+                    )
                     onSuccess(FirebaseAuth.getInstance().currentUser!!)
                 } else {
                     // User does not exist in Firestore, save the user
@@ -109,6 +150,14 @@ class AuthHelper(
                     )
                     userRef.set(user)
                         .addOnSuccessListener {
+                            preferenceHelper.putString(
+                                "curr_user_id",
+                                user.uid
+                            )
+                            preferenceHelper.putBoolean(
+                                "googleSignedIn",
+                                false
+                            )
                             onSuccess(FirebaseAuth.getInstance().currentUser!!)
                         }
                         .addOnFailureListener { e ->
@@ -120,6 +169,36 @@ class AuthHelper(
                 onError(e.message ?: "Unknown error")
             }
     }
+
+    /**
+     * Inserts a user into the local database.
+     *
+     * @param user The user to insert.
+     */
+    @OptIn(DelicateCoroutinesApi::class)
+    private fun insertUserInLocalDb(user: User) {
+        userExistsInLocalDb(user.uid) { exists ->
+            if (!exists) {
+                GlobalScope.launch(Dispatchers.IO) {
+                    appDb.getUserDao().insert(user)
+                }
+            }
+        }
+    }
+
+    /**
+     * Checks if a user exists in the local database.
+     * @param id The user's ID.
+     * @return True if the user exists, false otherwise.
+     */
+    @OptIn(DelicateCoroutinesApi::class)
+    private fun userExistsInLocalDb(uid: String, callback: (Boolean) -> Unit) {
+        GlobalScope.launch(Dispatchers.IO) {
+            val user = appDb.getUserDao().getByUid(uid)
+            callback(user != null)
+        }
+    }
+
 
     /**
      * Signs out the current user.

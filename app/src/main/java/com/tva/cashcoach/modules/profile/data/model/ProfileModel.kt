@@ -11,6 +11,6 @@ data class ProfileModel(
     /**
      * TODO Replace with dynamic value
      */
-    var txtNameSurname: String? = MyApp.getInstance().resources.getString(R.string.lbl_luka_mlinari)
+    var txtNameSurname: String? = MyApp.getInstance().resources.getString(R.string.lbl_name_surname),
 
-)
+    )

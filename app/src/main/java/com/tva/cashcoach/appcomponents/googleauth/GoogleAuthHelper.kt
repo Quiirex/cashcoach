@@ -15,6 +15,12 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.firestore.FirebaseFirestore
 import com.tva.cashcoach.appcomponents.model.user.User
+import com.tva.cashcoach.appcomponents.persistence.AppDatabase
+import com.tva.cashcoach.appcomponents.utility.PreferenceHelper
+import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 /**
  * Helper class for Google authentication.
@@ -25,8 +31,10 @@ import com.tva.cashcoach.appcomponents.model.user.User
  */
 class GoogleAuthHelper(
     private val activity: ComponentActivity,
-    private val onSuccess: (account: GoogleSignInAccount) -> Unit,
-    private val onError: (statusCode: Int) -> Unit
+    private val onSuccess: (account: GoogleSignInAccount, reqSetup: Boolean) -> Unit,
+    private val onError: (statusCode: Int) -> Unit,
+    private val appDb: AppDatabase,
+    private val preferenceHelper: PreferenceHelper
 ) {
 
     private var mGoogleSignInClient: GoogleSignInClient? = null
@@ -48,7 +56,15 @@ class GoogleAuthHelper(
         configureGoogleSignIn()
         val account = GoogleSignIn.getLastSignedInAccount(activity)
         if (account != null) {
-            onSuccess(account)
+            preferenceHelper.putString(
+                "curr_user_id",
+                account.id ?: ""
+            )
+            preferenceHelper.putBoolean(
+                "googleSignedIn",
+                true
+            )
+            onSuccess(account, false)
         } else {
             signIn()
         }
@@ -87,8 +103,16 @@ class GoogleAuthHelper(
                             userRef.get()
                                 .addOnSuccessListener { document ->
                                     if (document.exists()) {
-                                        // User already exists in Firestore, call onSuccess
-                                        onSuccess(account)
+                                        // User already exists in Firestore, we assume that the user exists in the local database as well
+                                        preferenceHelper.putString(
+                                            "curr_user_id",
+                                            account.id ?: ""
+                                        )
+                                        preferenceHelper.putBoolean(
+                                            "googleSignedIn",
+                                            true
+                                        )
+                                        onSuccess(account, false)
                                     } else {
                                         // User does not exist in Firestore, save the user
                                         val user = User(
@@ -105,7 +129,17 @@ class GoogleAuthHelper(
                                         )
                                         userRef.set(user)
                                             .addOnSuccessListener {
-                                                onSuccess(account)
+                                                // Insert the user into the local database
+                                                insertUserInLocalDb(user)
+                                                preferenceHelper.putString(
+                                                    "curr_user_id",
+                                                    account.id ?: ""
+                                                )
+                                                preferenceHelper.putBoolean(
+                                                    "googleSignedIn",
+                                                    true
+                                                )
+                                                onSuccess(account, true)
                                             }
                                             .addOnFailureListener { e ->
                                                 onError(e.message?.toInt() ?: 0)
@@ -131,6 +165,35 @@ class GoogleAuthHelper(
     private fun signIn() {
         val signInIntent: Intent = mGoogleSignInClient!!.signInIntent
         startForGoogleResult.launch(signInIntent)
+    }
+
+    /**
+     * Inserts a user into the local database.
+     *
+     * @param user The user to insert.
+     */
+    @OptIn(DelicateCoroutinesApi::class)
+    private fun insertUserInLocalDb(user: User) {
+        userExistsInLocalDb(user.uid) { exists ->
+            if (!exists) {
+                GlobalScope.launch(Dispatchers.IO) {
+                    appDb.getUserDao().insert(user)
+                }
+            }
+        }
+    }
+
+    /**
+     * Checks if a user exists in the local database.
+     * @param id The user's ID.
+     * @return True if the user exists, false otherwise.
+     */
+    @OptIn(DelicateCoroutinesApi::class)
+    private fun userExistsInLocalDb(uid: String, callback: (Boolean) -> Unit) {
+        GlobalScope.launch(Dispatchers.IO) {
+            val user = appDb.getUserDao().getByUid(uid)
+            callback(user != null)
+        }
     }
 
     /**

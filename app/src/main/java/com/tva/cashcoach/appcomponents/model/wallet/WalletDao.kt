@@ -13,15 +13,18 @@ interface WalletDao {
     @Query("SELECT * FROM wallet ORDER BY id ASC")
     fun getAll(): LiveData<List<Wallet>>
 
+    @Query("SELECT * FROM wallet WHERE id = :id")
+    fun getById(id: Long): Wallet?
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insert(wallet: Wallet)
+    fun insert(wallet: Wallet)
 
     @Delete
-    suspend fun delete(wallet: Wallet)
+    fun delete(wallet: Wallet)
 
     @Update
-    suspend fun update(wallet: Wallet)
+    fun update(wallet: Wallet)
 
     @Query("DELETE FROM wallet")
-    suspend fun wipeTable()
+    fun wipeTable()
 }

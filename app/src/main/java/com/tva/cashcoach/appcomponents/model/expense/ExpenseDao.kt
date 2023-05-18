@@ -13,15 +13,18 @@ interface ExpenseDao {
     @Query("SELECT * FROM expense ORDER BY id ASC")
     fun getAll(): LiveData<List<Expense>>
 
+    @Query("SELECT * FROM expense WHERE id = :id")
+    fun getById(id: Long): Expense?
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insert(expense: Expense)
+    fun insert(expense: Expense)
 
     @Delete
-    suspend fun delete(expense: Expense)
+    fun delete(expense: Expense)
 
     @Update
-    suspend fun update(expense: Expense)
+    fun update(expense: Expense)
 
     @Query("DELETE FROM expense")
-    suspend fun wipeTable()
+    fun wipeTable()
 }

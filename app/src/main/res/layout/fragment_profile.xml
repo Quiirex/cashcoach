@@ -48,7 +48,7 @@
                         circular="@{true}"
                         imageRes="@{@drawable/img_avatar}"
                         tools:ignore="ContentDescription"
-                        tools:src="@drawable/img_avatar" />
+                        tools:src="" />
 
                     <LinearLayout
                         android:gravity="start"
@@ -74,15 +74,14 @@
 
                         <TextView
                             android:ellipsize="end"
-                            android:id="@+id/txtLukaMlinari"
+                            android:id="@+id/txtNameSurname"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="@dimen/_10pxh"
                             android:layout_marginTop="@dimen/_2pxv"
                             android:layout_width="match_parent"
                             android:singleLine="true"
-                            android:text="@{profileVM.profileModel.txtNameSurname}"
                             style="@style/txtIntersemibold24"
-                            tools:text="@string/lbl_luka_mlinari" />
+                            tools:text="" />
                     </LinearLayout>
 
                 </LinearLayout>

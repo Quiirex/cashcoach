@@ -7,7 +7,6 @@ import androidx.fragment.app.viewModels
 import com.tva.cashcoach.R
 import com.tva.cashcoach.appcomponents.auth.AuthHelper
 import com.tva.cashcoach.appcomponents.base.BaseFragment
-import com.tva.cashcoach.appcomponents.googleauth.GoogleAuthHelper
 import com.tva.cashcoach.databinding.FragmentProfileBinding
 import com.tva.cashcoach.modules.login.ui.LoginActivity
 import com.tva.cashcoach.modules.profile.data.viewmodel.ProfileVM
@@ -23,16 +22,15 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
 
     private val REQUEST_CODE_LOGIN_ACTIVITY: Int = 265
 
-    private lateinit var googleAuth: GoogleAuthHelper
-
     private lateinit var auth: AuthHelper
 
     override fun onInitialized() {
         viewModel.navArguments = arguments
         binding.profileVM = viewModel
 
-        googleAuth = GoogleAuthHelper(ComponentActivity(), {}, {})
-        auth = AuthHelper(ComponentActivity(), {}, {})
+        binding.txtNameSurname.text = preferenceHelper.getString("curr_user_id", "")
+
+        auth = AuthHelper(ComponentActivity(), {}, {}, appDb, preferenceHelper)
     }
 
     override fun setUpClicks() {
@@ -46,21 +44,13 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
         }
         binding.linearRowarrowright.setOnClickListener {
             try {
-                googleAuth.signOut {
-                    Log.d("GoogleAuth", "Signed out")
-                    val destIntent = context?.let { it1 -> LoginActivity.getIntent(it1, null) }
-                    startActivityForResult(destIntent, REQUEST_CODE_LOGIN_ACTIVITY)
-                }
-            } catch (e: Exception) {
-                Log.d("GoogleAuth", "Error signing out")
-            }
-            try {
                 auth.signOut()
-                val destIntent = context?.let { it1 -> LoginActivity.getIntent(it1, null) }
-                startActivityForResult(destIntent, REQUEST_CODE_LOGIN_ACTIVITY)
+                preferenceHelper.removeAllValues()
             } catch (e: Exception) {
                 Log.d("Auth", "Error signing out")
             }
+            val destIntent = context?.let { it1 -> LoginActivity.getIntent(it1, null) }
+            startActivityForResult(destIntent, REQUEST_CODE_LOGIN_ACTIVITY)
         }
     }
 

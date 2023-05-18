@@ -73,10 +73,37 @@ class PreferenceHelper {
     }
 
     /**
+     * Put a boolean value in the shared preferences.
+     *
+     * @param key the key to store the value under
+     * @param value the value to store
+     */
+    fun getBoolean(key: String, defaultValue: Boolean): Boolean {
+        return sharedPreference.getBoolean(key, defaultValue)
+    }
+
+    /**
+     * Put a boolean value in the shared preferences.
+     *
+     * @param key the key to store the value under
+     * @param value the value to store
+     */
+    fun putBoolean(key: String, value: Boolean) {
+        sharedPreference.edit().putBoolean(key, value).apply()
+    }
+
+    /**
      * Remove a value from the shared preferences.
      * @param key the key to remove the value for
      */
     fun removeValue(key: String) {
         sharedPreference.edit().remove(key).apply()
+    }
+
+    /**
+     * Remove all values from the shared preferences.
+     */
+    fun removeAllValues() {
+        sharedPreference.edit().clear().apply()
     }
 }

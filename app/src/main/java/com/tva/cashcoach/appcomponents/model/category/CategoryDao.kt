@@ -13,15 +13,18 @@ interface CategoryDao {
     @Query("SELECT * FROM category ORDER BY id ASC")
     fun getAll(): LiveData<List<Category>>
 
+    @Query("SELECT * FROM category WHERE id = :id")
+    fun getById(id: Long): Category?
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insert(category: Category)
+    fun insert(category: Category)
 
     @Delete
-    suspend fun delete(category: Category)
+    fun delete(category: Category)
 
     @Update
-    suspend fun update(category: Category)
+    fun update(category: Category)
 
     @Query("DELETE FROM category")
-    suspend fun wipeTable()
+    fun wipeTable()
 }

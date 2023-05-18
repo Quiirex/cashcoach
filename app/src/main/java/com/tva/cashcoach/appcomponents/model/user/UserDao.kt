@@ -13,15 +13,21 @@ interface UserDao {
     @Query("SELECT * FROM user ORDER BY id ASC")
     fun getAll(): LiveData<List<User>>
 
+    @Query("SELECT * FROM user WHERE id = :id")
+    fun getById(id: Long): User?
+
+    @Query("SELECT * FROM user WHERE uid = :uid")
+    fun getByUid(uid: String): User?
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insert(user: User)
+    fun insert(user: User)
 
     @Delete
-    suspend fun delete(user: User)
+    fun delete(user: User)
 
     @Update
-    suspend fun update(user: User)
+    fun update(user: User)
 
     @Query("DELETE FROM user")
-    suspend fun wipeTable()
+    fun wipeTable()
 }

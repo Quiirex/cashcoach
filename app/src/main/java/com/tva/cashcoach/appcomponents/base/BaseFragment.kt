@@ -8,6 +8,10 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import com.tva.cashcoach.appcomponents.di.MyApp
+import com.tva.cashcoach.appcomponents.persistence.AppDatabase
+import com.tva.cashcoach.appcomponents.utility.PreferenceHelper
+import org.koin.android.ext.android.get
 
 /**
  * Base class for fragments that using databind feature to bind the view
@@ -19,6 +23,10 @@ abstract class BaseFragment<T : ViewDataBinding>(@LayoutRes val layoutId: Int) :
     BaseControllerFunctionsImpl {
     lateinit var binding: T
 
+    lateinit var appDb: AppDatabase
+
+    lateinit var preferenceHelper: PreferenceHelper
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -26,6 +34,8 @@ abstract class BaseFragment<T : ViewDataBinding>(@LayoutRes val layoutId: Int) :
     ): View? {
         binding = DataBindingUtil.inflate(inflater, layoutId, container, false)
         binding.lifecycleOwner = requireActivity()
+        appDb = AppDatabase.getDatabase(requireContext())
+        preferenceHelper = MyApp.getInstance().get()
         return binding.root
     }
 
