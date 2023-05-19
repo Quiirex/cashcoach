@@ -11,7 +11,9 @@ data class SettingsThemeModel(
     /**
      * TODO Replace with dynamic value
      */
-    var txtTitleOne: String? = MyApp.getInstance().resources.getString(R.string.lbl_light),
+    var txtThemeDark: String? = MyApp.getInstance().resources.getString(R.string.lbl_dark),
+    var txtThemeLight: String? = MyApp.getInstance().resources.getString(R.string.lbl_light),
+    var txtThemeDevice: String? = MyApp.getInstance().resources.getString(R.string.msg_use_device_them),
     /**
      * TODO Replace with dynamic value
      */

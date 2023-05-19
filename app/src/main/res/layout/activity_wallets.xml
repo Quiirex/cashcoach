@@ -145,7 +145,7 @@
             android:layout_marginBottom="@dimen/_20pxv"
             android:layout_marginEnd="@dimen/_16pxh"
             android:layout_marginStart="@dimen/_16pxh"
-            android:layout_marginTop="@dimen/_211pxv"
+            android:layout_marginTop="@dimen/_170pxv"
             android:layout_width="match_parent"
             android:paddingBottom="@dimen/_17pxv"
             android:paddingEnd="@dimen/_30pxh"

@@ -12,7 +12,6 @@ import com.tva.cashcoach.modules.financialreportlinechart.data.model.Listtrash1R
 import com.tva.cashcoach.modules.financialreportlinechart.data.model.SpinnerDropdownMonthModel
 import com.tva.cashcoach.modules.financialreportlinechart.data.model.SpinnerDropdownTransaModel
 import com.tva.cashcoach.modules.financialreportlinechart.data.viewmodel.FinancialReportLineChartVM
-import com.tva.cashcoach.modules.financialreportpiechart.ui.FinancialReportPieChartActivity
 
 class FinancialReportLineChartActivity :
     BaseActivity<ActivityFinancialReportLineChartBinding>(R.layout.activity_financial_report_line_chart) {
@@ -66,11 +65,7 @@ class FinancialReportLineChartActivity :
         binding.financialReportLineChartVM = viewModel
     }
 
-    override fun setUpClicks(): Unit {
-        binding.btnPieChart.setOnClickListener {
-            val destIntent = FinancialReportPieChartActivity.getIntent(this, null)
-            startActivityForResult(destIntent, REQUEST_CODE_FINANCIAL_REPORT_PIE_CHART_ACTIVITY)
-        }
+    override fun setUpClicks() {
         binding.imageBack.setOnClickListener {
             finish()
         }

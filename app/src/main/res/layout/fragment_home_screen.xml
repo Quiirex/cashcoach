@@ -212,7 +212,7 @@
                 android:id="@+id/linearTabs"
                 style="@style/groupStylecornerRadius"
                 android:layout_width="match_parent"
-                android:layout_height="39dp"
+                android:layout_height="45dp"
                 android:layout_marginStart="@dimen/_14pxh"
                 android:layout_marginTop="@dimen/_32pxv"
                 android:layout_marginEnd="@dimen/_14pxh"
@@ -346,7 +346,7 @@
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 itemSpace="@{@dimen/_8pxh}"
                 tools:itemCount="3"
-                tools:listitem="@layout/row_listframefive" />
+                tools:listitem="@layout/row_transaction" />
         </LinearLayout>
     </FrameLayout>
 </layout>

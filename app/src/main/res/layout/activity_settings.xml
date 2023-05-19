@@ -77,11 +77,12 @@
             android:layout_marginBottom="@dimen/_16pxv"
             android:layout_marginStart="@dimen/_16pxh"
             android:layout_marginTop="@dimen/_19pxv"
-            android:layout_weight="0.62"
+            android:layout_weight="0.4"
             android:layout_width="375dp"
             android:singleLine="true"
             android:textAllCaps="false"
-            style="@style/btnSolid_1" />
+            android:text="@string/lbl_currency"
+            style="@style/groupStylewhite_1" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:ellipsize="end"
@@ -91,11 +92,12 @@
             android:layout_marginBottom="@dimen/_16pxv"
             android:layout_marginStart="@dimen/_16pxh"
             android:layout_marginTop="@dimen/_19pxv"
-            android:layout_weight="0.54"
+            android:layout_weight="0.4"
             android:layout_width="375dp"
             android:singleLine="true"
             android:textAllCaps="false"
-            style="@style/btnSolid_1" />
+            android:text="@string/lbl_language"
+            style="@style/groupStylewhite_1" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:ellipsize="end"
@@ -105,11 +107,12 @@
             android:layout_marginBottom="@dimen/_18pxv"
             android:layout_marginStart="@dimen/_16pxh"
             android:layout_marginTop="@dimen/_17pxv"
-            android:layout_weight="0.52"
+            android:layout_weight="0.4"
             android:layout_width="375dp"
             android:singleLine="true"
             android:textAllCaps="false"
-            style="@style/btnSolid_1" />
+            android:text="@string/lbl_theme"
+            style="@style/groupStylewhite_1" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:ellipsize="end"
@@ -119,24 +122,26 @@
             android:layout_marginBottom="@dimen/_18pxv"
             android:layout_marginStart="@dimen/_16pxh"
             android:layout_marginTop="@dimen/_17pxv"
-            android:layout_weight="0.88"
+            android:layout_weight="0.4"
             android:layout_width="375dp"
             android:singleLine="true"
             android:textAllCaps="false"
-            style="@style/btnSolid_1" />
+            android:text="@string/lbl_about"
+            style="@style/groupStylewhite_1" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:ellipsize="end"
-            android:gravity="center"
             android:id="@+id/btnHelp"
+            style="@style/groupStylewhite_1"
+            android:layout_width="375dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/_16pxv"
             android:layout_marginStart="@dimen/_16pxh"
             android:layout_marginTop="@dimen/_19pxv"
-            android:layout_weight="0.84"
-            android:layout_width="375dp"
+            android:layout_marginBottom="@dimen/_16pxv"
+            android:layout_weight="0.4"
+            android:ellipsize="end"
+            android:gravity="center"
             android:singleLine="true"
-            android:textAllCaps="false"
-            style="@style/btnSolid_1" />
+            android:text="@string/lbl_help"
+            android:textAllCaps="false" />
     </LinearLayout>
 </layout>

@@ -15,6 +15,7 @@ data class SettingsCurrencyModel(
     /**
      * TODO Replace with dynamic value
      */
-    var txtPriceOne: String? = MyApp.getInstance().resources.getString(R.string.lbl_usd)
+    var txtEur: String? = MyApp.getInstance().resources.getString(R.string.lbl_eur),
+    var txtUsd: String? = MyApp.getInstance().resources.getString(R.string.lbl_usd)
 
 )

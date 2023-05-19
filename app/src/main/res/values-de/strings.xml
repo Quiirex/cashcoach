@@ -99,4 +99,6 @@
     <string name="lbl_wallets">Brieftaschen</string>
     <string name="msg_continue_with_google">Weiter mit Google</string>
     <string name="lbl_name_surname">Name Nachname</string>
+    <string name="lbl_help">Hilfe</string>
+    <string name="lbl_about">Über die App</string>
 </resources>
