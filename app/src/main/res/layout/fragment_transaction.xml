@@ -43,25 +43,15 @@
                     android:layout_width="match_parent"
                     android:orientation="horizontal">
 
-                    <Spinner
-                        android:id="@+id/spinnerDropdownMonth"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.71"
-                        android:layout_width="0dp"
-                        tools:listitem="@layout/spinner_item" />
-
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:ellipsize="end"
+                    <TextView
                         android:gravity="center"
-                        android:id="@+id/btnMenu"
-                        android:layout_height="@dimen/_40pxh"
-                        android:layout_marginStart="@dimen/_207pxh"
-                        android:layout_width="@dimen/_40pxh"
-                        android:paddingHorizontal="@dimen/_8pxh"
-                        android:paddingVertical="@dimen/_8pxv"
+                        android:id="@+id/txtTitle"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
                         android:singleLine="true"
-                        android:textAllCaps="false"
-                        style="@style/btnRoundedOutline" />
+                        android:text="Transactions"
+                        style="@style/txtIntersemibold18_2"/>
                 </LinearLayout>
             </androidx.appcompat.widget.Toolbar>
 
@@ -73,31 +63,14 @@
 
                 <TextView
                     android:ellipsize="end"
-                    android:id="@+id/txtYesterday"
-                    android:layout_gravity="bottom|start"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/_10pxv"
-                    android:layout_marginEnd="@dimen/_16pxh"
-                    android:layout_marginStart="@dimen/_16pxh"
-                    android:layout_marginTop="@dimen/_10pxv"
-                    android:layout_width="wrap_content"
-                    android:singleLine="true"
-                    android:text="@{transactionVM.transactionModel.txtYesterday}"
-                    style="@style/txtIntersemibold18_1"
-                    tools:text="@string/lbl_today" />
-
-                <TextView
-                    android:ellipsize="end"
-                    android:gravity="top|start"
-                    android:id="@+id/txtBars"
-                    android:layout_gravity="start"
+                    android:id="@+id/txtToday"
                     android:layout_height="wrap_content"
                     android:layout_width="match_parent"
                     android:paddingBottom="@dimen/_10pxv"
                     android:paddingStart="@dimen/_16pxh"
                     android:paddingTop="@dimen/_15pxv"
                     android:singleLine="true"
-                    android:text="@{transactionVM.transactionModel.txtBars}"
+                    android:text="@{transactionVM.transactionModel.txtToday}"
                     style="@style/txtSolid"
                     tools:text="@string/lbl_today" />
             </FrameLayout>
@@ -113,18 +86,18 @@
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 itemSpace="@{@dimen/_8pxh}"
                 tools:itemCount="3"
-                tools:listitem="@layout/row_listtrash" />
+                tools:listitem="@layout/row_transaction" />
 
             <TextView
                 android:ellipsize="end"
-                android:id="@+id/txtBarsOne"
+                android:id="@+id/txtYesterday"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 android:paddingBottom="@dimen/_10pxv"
                 android:paddingStart="@dimen/_16pxh"
                 android:paddingTop="@dimen/_15pxv"
                 android:singleLine="true"
-                android:text="@{transactionVM.transactionModel.txtBarsOne}"
+                android:text="@{transactionVM.transactionModel.txtYesterday}"
                 style="@style/txtSolid"
                 tools:text="@string/lbl_yesterday" />
 
@@ -139,7 +112,7 @@
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 itemSpace="@{@dimen/_8pxh}"
                 tools:itemCount="2"
-                tools:listitem="@layout/row_listquestion" />
+                tools:listitem="@layout/row_transaction" />
         </LinearLayout>
     </LinearLayout>
 </layout>

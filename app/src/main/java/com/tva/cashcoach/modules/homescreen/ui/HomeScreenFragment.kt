@@ -7,9 +7,11 @@ import androidx.fragment.app.viewModels
 import com.tva.cashcoach.R
 import com.tva.cashcoach.appcomponents.base.BaseFragment
 import com.tva.cashcoach.databinding.FragmentHomeScreenBinding
+import com.tva.cashcoach.modules.expensedetail.ui.ExpenseDetailActivity
 import com.tva.cashcoach.modules.homescreen.data.model.ListframefiveRowModel
 import com.tva.cashcoach.modules.homescreen.data.model.SpinnerDropdownMonthModel
 import com.tva.cashcoach.modules.homescreen.data.viewmodel.HomeScreenVM
+import com.tva.cashcoach.modules.incomedetail.ui.IncomeDetailActivity
 import com.tva.cashcoach.modules.newexpense.ui.NewExpenseActivity
 import com.tva.cashcoach.modules.newincome.ui.NewIncomeActivity
 
@@ -52,6 +54,16 @@ class HomeScreenFragment : BaseFragment<FragmentHomeScreenBinding>(R.layout.frag
 
         binding.btnTelevision.setOnClickListener {
             val intent = Intent(context, NewExpenseActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.btnSeeAll.setOnClickListener {
+            val intent = Intent(context, IncomeDetailActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.txtSpendFrequency.setOnClickListener {
+            val intent = Intent(context, ExpenseDetailActivity::class.java)
             startActivity(intent)
         }
 

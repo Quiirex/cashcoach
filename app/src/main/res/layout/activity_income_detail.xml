@@ -150,34 +150,25 @@
 
         <FrameLayout
             android:id="@+id/frameIncomeDetail"
-            android:layout_height="@dimen/_500pxv"
+            android:layout_height="@dimen/_600pxv"
             android:layout_width="match_parent"
             style="@style/groupStylewhite_A700">
 
             <LinearLayout
                 android:id="@+id/linearColumnlinethree"
-                android:layout_gravity="start"
+                android:layout_gravity="center"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_1pxh"
                 android:layout_width="match_parent"
                 android:orientation="vertical"
                 style="@style/groupStylewhite_A700">
-
-                <View
-                    android:background="@color/gray_300"
-                    android:id="@+id/lineLineThree"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_height="@dimen/_2pxv"
-                    android:layout_marginEnd="@dimen/_16pxh"
-                    android:layout_marginStart="@dimen/_16pxh"
-                    android:layout_marginTop="@dimen/_80pxv"
-                    android:layout_width="@dimen/_343pxh" />
 
                 <TextView
                     android:ellipsize="end"
                     android:id="@+id/txtDescription"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/_16pxh"
-                    android:layout_marginStart="@dimen/_16pxh"
+                    android:layout_marginEnd="@dimen/_15pxh"
+                    android:layout_marginStart="@dimen/_15pxh"
                     android:layout_marginTop="@dimen/_12pxv"
                     android:layout_width="wrap_content"
                     android:singleLine="true"
@@ -189,50 +180,23 @@
                     android:gravity="center_horizontal"
                     android:id="@+id/txtDescriptionOne"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/_16pxh"
-                    android:layout_marginStart="@dimen/_16pxh"
+                    android:layout_marginEnd="@dimen/_15pxh"
+                    android:layout_marginStart="@dimen/_15pxh"
                     android:layout_marginTop="@dimen/_12pxv"
                     android:layout_width="match_parent"
                     android:text="@{incomeDetailVM.incomeDetailModel.txtDescriptionOne}"
                     style="@style/txtIntermedium16_1"
                     tools:text="@string/msg_amet_minim_moll" />
 
-                <TextView
-                    android:ellipsize="end"
-                    android:id="@+id/txtAttachment"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/_16pxh"
-                    android:layout_marginStart="@dimen/_16pxh"
-                    android:layout_marginTop="@dimen/_11pxv"
-                    android:layout_width="wrap_content"
-                    android:singleLine="true"
-                    android:text="@{incomeDetailVM.incomeDetailModel.txtAttachment}"
-                    style="@style/txtIntersemibold16_2"
-                    tools:text="@string/lbl_attachment" />
-
-                <ImageView
-                    android:gravity="center_horizontal"
-                    android:id="@+id/imageRectangle"
-                    android:layout_height="@dimen/_116pxh"
-                    android:layout_marginEnd="@dimen/_16pxh"
-                    android:layout_marginStart="@dimen/_16pxh"
-                    android:layout_marginTop="@dimen/_15pxv"
-                    android:layout_width="match_parent"
-                    android:scaleType="fitXY"
-                    cornerRadius="@{@dimen/_8pxh}"
-                    imageRes="@{@drawable/img_rectangle207}"
-                    tools:ignore="ContentDescription"
-                    tools:src="@drawable/img_rectangle207" />
-
                 <androidx.appcompat.widget.AppCompatButton
                     android:ellipsize="end"
                     android:gravity="center"
                     android:id="@+id/btnEdit"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/_20pxv"
-                    android:layout_marginEnd="@dimen/_16pxh"
-                    android:layout_marginStart="@dimen/_16pxh"
-                    android:layout_marginTop="@dimen/_60pxv"
+                    android:layout_marginBottom="@dimen/_94pxv"
+                    android:layout_marginEnd="@dimen/_15pxh"
+                    android:layout_marginStart="@dimen/_15pxh"
+                    android:layout_marginTop="@dimen/_76pxv"
                     android:layout_width="match_parent"
                     android:paddingBottom="@dimen/_17pxv"
                     android:paddingEnd="@dimen/_30pxh"
@@ -250,21 +214,19 @@
                 android:layout_gravity="top|center"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/_144pxv"
-                android:layout_marginEnd="@dimen/_16pxh"
-                android:layout_marginStart="@dimen/_16pxh"
+                android:layout_marginEnd="@dimen/_10pxh"
+                android:layout_marginStart="@dimen/_10pxh"
                 android:layout_width="match_parent"
                 android:orientation="horizontal"
                 style="@style/groupStylewhite_1">
 
                 <LinearLayout
-                    android:gravity="center_horizontal"
-                    android:id="@+id/linearColumntype"
+                    android:id="@+id/linearColumnType"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/_12pxv"
-                    android:layout_marginStart="@dimen/_26pxh"
+                    android:layout_marginStart="@dimen/_25pxh"
                     android:layout_marginTop="@dimen/_13pxv"
-                    android:layout_weight="0.38"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:orientation="vertical">
 
                     <TextView
@@ -272,8 +234,8 @@
                         android:id="@+id/txtType"
                         android:layout_gravity="start"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/_11pxh"
-                        android:layout_marginStart="@dimen/_11pxh"
+                        android:layout_marginEnd="@dimen/_16pxh"
+                        android:layout_marginStart="@dimen/_16pxh"
                         android:layout_width="wrap_content"
                         android:lineSpacingExtra="@dimen/_3pxh"
                         android:singleLine="true"
@@ -284,34 +246,35 @@
                     <TextView
                         android:ellipsize="end"
                         android:gravity="start"
-                        android:id="@+id/txtIncome"
+                        android:id="@+id/txtExpense"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/_10pxh"
-                        android:layout_marginTop="@dimen/_7pxv"
-                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/_8pxv"
+                        android:layout_width="wrap_content"
                         android:singleLine="true"
                         android:text="@{incomeDetailVM.incomeDetailModel.txtIncome}"
                         style="@style/txtIntersemibold16_3"
-                        tools:text="@string/lbl_income" />
+                        tools:text="@string/lbl_expense" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:gravity="center_horizontal"
-                    android:id="@+id/linearColumncategory"
+
+                    android:id="@+id/linearColumnCategory"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/_12pxv"
+                    android:layout_marginStart="@dimen/_15pxh"
                     android:layout_marginTop="@dimen/_13pxv"
-                    android:layout_weight="0.44"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:orientation="vertical">
 
                     <TextView
                         android:ellipsize="end"
-                        android:gravity="start"
                         android:id="@+id/txtCategory"
+                        android:layout_gravity="start"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/_60pxh"
-                        android:layout_width="match_parent"
+                        android:layout_marginEnd="@dimen/_16pxh"
+                        android:layout_marginStart="@dimen/_16pxh"
+                        android:layout_width="wrap_content"
                         android:lineSpacingExtra="@dimen/_3pxh"
                         android:singleLine="true"
                         android:text="@{incomeDetailVM.incomeDetailModel.txtCategory}"
@@ -319,39 +282,37 @@
                         tools:text="@string/lbl_category" />
 
                     <TextView
-                        android:ellipsize="end"
-                        android:id="@+id/txtSalary"
-                        android:layout_gravity="start"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/_67pxh"
-                        android:layout_marginStart="@dimen/_7pxh"
-                        android:layout_marginTop="@dimen/_8pxv"
+                        android:id="@+id/txtShopping"
+                        style="@style/txtIntersemibold16_3"
                         android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_8pxv"
+                        android:layout_marginEnd="@dimen/_10pxh"
+                        android:ellipsize="end"
+                        android:gravity="center"
                         android:singleLine="true"
                         android:text="@{incomeDetailVM.incomeDetailModel.txtSalary}"
-                        style="@style/txtIntersemibold16_3"
                         tools:text="@string/lbl_salary" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:gravity="start"
-                    android:id="@+id/linearColumnwallet"
+                    android:id="@+id/linearColumnWallet"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/_12pxv"
-                    android:layout_marginEnd="@dimen/_37pxh"
-                    android:layout_marginTop="@dimen/_12pxv"
-                    android:layout_weight="0.18"
-                    android:layout_width="0dp"
+                    android:layout_marginStart="@dimen/_15pxh"
+                    android:layout_marginTop="@dimen/_13pxv"
+                    android:layout_marginEnd="@dimen/_25pxv"
+                    android:layout_width="wrap_content"
                     android:orientation="vertical">
 
                     <TextView
                         android:ellipsize="end"
-                        android:gravity="center_horizontal"
                         android:id="@+id/txtWallet"
+                        android:layout_gravity="start"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/_3pxh"
-                        android:layout_marginStart="@dimen/_3pxh"
-                        android:layout_width="match_parent"
+                        android:layout_marginEnd="@dimen/_16pxh"
+                        android:layout_marginStart="@dimen/_16pxh"
+                        android:layout_width="wrap_content"
                         android:lineSpacingExtra="@dimen/_3pxh"
                         android:singleLine="true"
                         android:text="@{incomeDetailVM.incomeDetailModel.txtWallet}"
@@ -360,9 +321,12 @@
 
                     <TextView
                         android:ellipsize="end"
+                        android:gravity="start"
                         android:id="@+id/txtMainWallet"
                         android:layout_height="wrap_content"
-                        android:layout_width="match_parent"
+                        android:layout_marginEnd="@dimen/_10pxh"
+                        android:layout_marginTop="@dimen/_8pxv"
+                        android:layout_width="wrap_content"
                         android:singleLine="true"
                         android:text="@{incomeDetailVM.incomeDetailModel.txtMainWallet}"
                         style="@style/txtIntersemibold16_3"

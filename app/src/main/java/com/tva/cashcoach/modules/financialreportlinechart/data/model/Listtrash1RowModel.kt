@@ -7,15 +7,15 @@ data class Listtrash1RowModel(
     /**
      * TODO Replace with dynamic value
      */
-    var txtShopping: String? = MyApp.getInstance().resources.getString(R.string.lbl_shopping),
+    var txtCategory: String? = MyApp.getInstance().resources.getString(R.string.lbl_shopping),
     /**
      * TODO Replace with dynamic value
      */
-    var txtBuyanAvocado: String? = MyApp.getInstance().resources.getString(R.string.lbl_groceries),
+    var txtDescription: String? = MyApp.getInstance().resources.getString(R.string.lbl_groceries),
     /**
      * TODO Replace with dynamic value
      */
-    var txtPriceOne: String? = MyApp.getInstance().resources.getString(R.string.lbl_120),
+    var txtAmount: String? = MyApp.getInstance().resources.getString(R.string.lbl_120),
     /**
      * TODO Replace with dynamic value
      */

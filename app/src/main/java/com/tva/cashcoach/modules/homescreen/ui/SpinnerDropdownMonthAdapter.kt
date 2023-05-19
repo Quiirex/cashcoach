@@ -39,4 +39,5 @@ class SpinnerDropdownMonthAdapter(
         view.findViewById<TextView>(R.id.txtTitle).text = item?.itemName
         return view
     }
+
 }

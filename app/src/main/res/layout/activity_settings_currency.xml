@@ -69,55 +69,39 @@
             </androidx.appcompat.widget.Toolbar>
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/linearListItemSel"
-            android:layout_height="wrap_content"
+        <RadioGroup
             android:layout_width="match_parent"
-            android:orientation="horizontal"
-            style="@style/groupStylewhite_A700">
+            android:layout_height="match_parent"
+            android:paddingLeft="@dimen/_15pxv">
 
-            <TextView
-                android:ellipsize="end"
-                android:id="@+id/txtPrice"
+            <RadioButton
+                android:id="@+id/txtUsd"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_17pxv"
-                android:layout_marginStart="@dimen/_16pxh"
-                android:layout_marginTop="@dimen/_17pxv"
-                android:layout_weight="0.54"
-                android:layout_width="0dp"
+                android:layout_marginBottom="@dimen/_20pxv"
+                android:layout_width="match_parent"
                 android:lineSpacingExtra="@dimen/_3pxh"
+                android:paddingBottom="@dimen/_17pxv"
+                android:paddingStart="@dimen/_16pxh"
+                android:paddingTop="@dimen/_17pxv"
                 android:singleLine="true"
-                android:text="@{settingsCurrencyVM.settingsCurrencyModel.txtPrice}"
-                style="@style/txtIntermedium14_4"
+                android:text="@{settingsCurrencyVM.settingsCurrencyModel.txtUsd}"
+                style="@style/txtSolid_1"
+                tools:text="@string/lbl_usd" />
+
+            <RadioButton
+                android:id="@+id/txtEur"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_20pxv"
+                android:layout_width="match_parent"
+                android:lineSpacingExtra="@dimen/_3pxh"
+                android:paddingBottom="@dimen/_17pxv"
+                android:paddingStart="@dimen/_16pxh"
+                android:paddingTop="@dimen/_17pxv"
+                android:singleLine="true"
+                android:text="@{settingsCurrencyVM.settingsCurrencyModel.txtEur}"
+                style="@style/txtSolid_1"
                 tools:text="@string/lbl_eur" />
 
-            <ImageView
-                android:id="@+id/imageCheckmark"
-                android:layout_height="@dimen/_24pxh"
-                android:layout_marginBottom="@dimen/_14pxv"
-                android:layout_marginEnd="@dimen/_20pxh"
-                android:layout_marginStart="@dimen/_287pxh"
-                android:layout_marginTop="@dimen/_14pxv"
-                android:layout_width="@dimen/_24pxh"
-                android:scaleType="fitXY"
-                android:src="@drawable/img_checkmark_black_900"
-                tools:ignore="ContentDescription"
-                tools:src="@drawable/img_checkmark_black_900" />
-        </LinearLayout>
-
-        <TextView
-            android:ellipsize="end"
-            android:id="@+id/txtPriceOne"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/_20pxv"
-            android:layout_width="match_parent"
-            android:lineSpacingExtra="@dimen/_3pxh"
-            android:paddingBottom="@dimen/_17pxv"
-            android:paddingStart="@dimen/_16pxh"
-            android:paddingTop="@dimen/_17pxv"
-            android:singleLine="true"
-            android:text="@{settingsCurrencyVM.settingsCurrencyModel.txtPriceOne}"
-            style="@style/txtSolid_1"
-            tools:text="@string/lbl_usd" />
+        </RadioGroup>
     </LinearLayout>
 </layout>

@@ -15,7 +15,9 @@ data class SettingsLanguageModel(
     /**
      * TODO Replace with dynamic value
      */
-    var txtLanguageOne: String? = MyApp.getInstance().resources.getString(R.string.lbl_slovenian_slo),
+    var txtLanguageSlo: String? = MyApp.getInstance().resources.getString(R.string.lbl_slovenian_slo),
+    var txtLanguageEn: String? = MyApp.getInstance().resources.getString(R.string.lbl_english_en),
+    var txtLanguageDe: String? = MyApp.getInstance().resources.getString(R.string.lbl_german_de),
     /**
      * TODO Replace with dynamic value
      */

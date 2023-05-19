@@ -69,68 +69,49 @@
             </androidx.appcompat.widget.Toolbar>
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/linearListItemSel"
-            style="@style/groupStylewhite_A700"
+        <RadioGroup
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:paddingLeft="@dimen/_15pxv">
 
-            <TextView
-                android:id="@+id/txtTitleOne"
-                style="@style/txtIntermedium14_4"
-                android:layout_width="97dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_16pxh"
-                android:layout_marginTop="@dimen/_18pxv"
-                android:layout_marginBottom="@dimen/_16pxv"
-                android:ellipsize="end"
+            <RadioButton
+                android:id="@+id/txtThemeLight"
+                style="@style/txtSolid_1"
+                android:layout_width="match_parent"
                 android:lineSpacingExtra="@dimen/_3pxh"
+                android:paddingBottom="@dimen/_17pxv"
+                android:paddingStart="@dimen/_16pxh"
+                android:paddingTop="@dimen/_17pxv"
+                android:ellipsize="end"
                 android:singleLine="true"
-                android:text="@{settingsThemeVM.settingsThemeModel.txtTitleOne}"
+                android:text="@{settingsThemeVM.settingsThemeModel.txtThemeLight}"
                 tools:text="@string/lbl_light" />
 
-            <ImageView
-                android:id="@+id/imageCheckmark"
-                android:layout_width="@dimen/_24pxh"
-                android:layout_height="@dimen/_24pxh"
-                android:layout_marginStart="@dimen/_281pxh"
-                android:layout_marginTop="@dimen/_14pxv"
-                android:layout_marginEnd="@dimen/_20pxh"
-                android:layout_marginBottom="@dimen/_14pxv"
-                android:scaleType="fitXY"
-                android:src="@drawable/img_checkmark_black_900"
-                tools:ignore="ContentDescription"
-                tools:src="@drawable/img_checkmark_black_900" />
-        </LinearLayout>
+            <RadioButton
+                android:id="@+id/txtThemeDark"
+                style="@style/txtSolid_1"
+                android:layout_width="match_parent"
+                android:lineSpacingExtra="@dimen/_3pxh"
+                android:paddingBottom="@dimen/_17pxv"
+                android:paddingStart="@dimen/_16pxh"
+                android:paddingTop="@dimen/_17pxv"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="@{settingsThemeVM.settingsThemeModel.txtThemeDark}"
+                tools:text="@string/lbl_dark" />
 
-        <TextView
-            android:ellipsize="end"
-            android:id="@+id/txtListItemSel"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:lineSpacingExtra="@dimen/_3pxh"
-            android:paddingBottom="@dimen/_17pxv"
-            android:paddingStart="@dimen/_16pxh"
-            android:paddingTop="@dimen/_17pxv"
-            android:singleLine="true"
-            android:text="@{settingsThemeVM.settingsThemeModel.txtListItemSel}"
-            style="@style/txtSolid_1"
-            tools:text="@string/lbl_dark" />
-
-        <TextView
-            android:ellipsize="end"
-            android:id="@+id/txtListItemSelOne"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/_20pxv"
-            android:layout_width="match_parent"
-            android:lineSpacingExtra="@dimen/_3pxh"
-            android:paddingBottom="@dimen/_17pxv"
-            android:paddingStart="@dimen/_16pxh"
-            android:paddingTop="@dimen/_17pxv"
-            android:singleLine="true"
-            android:text="@{settingsThemeVM.settingsThemeModel.txtListItemSelOne}"
-            style="@style/txtSolid_1"
-            tools:text="@string/msg_use_device_them" />
+            <RadioButton
+                android:id="@+id/txtThemeDevice"
+                style="@style/txtSolid_1"
+                android:layout_width="match_parent"
+                android:lineSpacingExtra="@dimen/_3pxh"
+                android:paddingBottom="@dimen/_17pxv"
+                android:paddingStart="@dimen/_16pxh"
+                android:paddingTop="@dimen/_17pxv"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="@{settingsThemeVM.settingsThemeModel.txtThemeDevice}"
+                tools:text="@string/msg_use_device_them" />
+        </RadioGroup>
     </LinearLayout>
 </layout>
