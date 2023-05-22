@@ -14,7 +14,7 @@ interface CategoryDao {
     fun getAll(): LiveData<List<Category>>
 
     @Query("SELECT * FROM category WHERE id = :id")
-    fun getById(id: Long): Category?
+    fun getById(id: Int): Category?
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insert(category: Category)

@@ -14,7 +14,7 @@ interface IncomeDao {
     fun getAll(): LiveData<List<Income>>
 
     @Query("SELECT * FROM income WHERE id = :id")
-    fun getById(id: Long): Income?
+    fun getById(id: Int): Income?
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insert(income: Income)
