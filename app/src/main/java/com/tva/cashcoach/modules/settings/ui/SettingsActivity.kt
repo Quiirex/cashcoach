@@ -13,7 +13,7 @@ import com.tva.cashcoach.modules.settingslanguage.ui.SettingsLanguageActivity
 import com.tva.cashcoach.modules.settingstheme.ui.SettingsThemeActivity
 
 class SettingsActivity : BaseActivity<ActivitySettingsBinding>(R.layout.activity_settings) {
-    private val viewModel: SettingsVM by viewModels<SettingsVM>()
+    private val viewModel: SettingsVM by viewModels()
 
     private val REQUEST_CODE_SETTINGS_THEME_ACTIVITY: Int = 787
 
@@ -21,24 +21,24 @@ class SettingsActivity : BaseActivity<ActivitySettingsBinding>(R.layout.activity
 
     private val REQUEST_CODE_SETTINGS_CURRENCY_ACTIVITY: Int = 461
 
-    override fun onInitialized(): Unit {
+    override fun onInitialized() {
         viewModel.navArguments = intent.extras?.getBundle("bundle")
         binding.settingsVM = viewModel
     }
 
-    override fun setUpClicks(): Unit {
-        binding.btnTheme.setOnClickListener {
+    override fun setUpClicks() {
+        binding.linearRowTheme.setOnClickListener {
             val destIntent = SettingsThemeActivity.getIntent(this, null)
             startActivityForResult(destIntent, REQUEST_CODE_SETTINGS_THEME_ACTIVITY)
         }
-        binding.btnLanguage.setOnClickListener {
+        binding.linearRowLanguage.setOnClickListener {
             val destIntent = SettingsLanguageActivity.getIntent(this, null)
             startActivityForResult(destIntent, REQUEST_CODE_SETTINGS_LANGUAGE_ACTIVITY)
         }
         binding.imageBack.setOnClickListener {
             finish()
         }
-        binding.btnCurrency.setOnClickListener {
+        binding.linearRowCurrency.setOnClickListener {
             val destIntent = SettingsCurrencyActivity.getIntent(this, null)
             startActivityForResult(destIntent, REQUEST_CODE_SETTINGS_CURRENCY_ACTIVITY)
         }

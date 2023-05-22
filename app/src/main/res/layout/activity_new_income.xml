@@ -72,23 +72,23 @@
             tools:text="@string/lbl_how_much" />
 
 
-            <EditText
-                android:background="@android:color/transparent"
-                android:ellipsize="end"
-                android:hint="@string/lbl_0"
-                android:id="@+id/etZero"
-                android:inputType="number"
-                android:layout_gravity="start"
-                android:layout_height="wrap_content"
-                android:paddingLeft="@dimen/_25pxv"
-                android:layout_marginEnd="@dimen/_10pxh"
-                android:layout_marginTop="@dimen/_1pxv"
-                android:layout_width="match_parent"
-                android:singleLine="true"
-                android:text="@={incomeVM.newIncomeModel.etZeroValue}"
-                android:textColorHint="@color/white"
-                style="@style/etIntersemibold64"
-                tools:ignore="Autofill" />
+        <EditText
+            android:background="@android:color/transparent"
+            android:ellipsize="end"
+            android:hint="@string/lbl_0"
+            android:id="@+id/etZero"
+            android:inputType="number"
+            android:layout_gravity="start"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/_25pxv"
+            android:layout_marginEnd="@dimen/_10pxh"
+            android:layout_marginTop="@dimen/_1pxv"
+            android:layout_width="match_parent"
+            android:singleLine="true"
+            android:text="@={incomeVM.newIncomeModel.etZeroValue}"
+            android:textColorHint="@color/white"
+            style="@style/etIntersemibold64"
+            tools:ignore="Autofill" />
 
         <FrameLayout
             android:id="@+id/frameStackinputdescripti"
@@ -100,7 +100,7 @@
                 android:id="@+id/linearColumninputdescripti"
                 style="@style/groupStylewhite_A700cornerRadius"
                 android:layout_width="match_parent"
-                android:layout_height="339dp"
+                android:layout_height="match_parent"
                 android:layout_gravity="top|start"
                 android:orientation="vertical">
 

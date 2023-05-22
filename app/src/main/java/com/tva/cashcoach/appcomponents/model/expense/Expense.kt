@@ -12,8 +12,6 @@ data class Expense(
     @ColumnInfo(name = "value") val value: Double = 0.0,
     @ColumnInfo(name = "description") val description: String = "",
     @ColumnInfo(name = "date") val date: Date = Date(),
-    @ColumnInfo(
-        name = "attachment",
-        typeAffinity = ColumnInfo.BLOB
-    ) val attachment: ByteArray? = null
+    @ColumnInfo(name = "category_id") val category_id: Long = 0,
+    @ColumnInfo(name = "wallet_id") val wallet_id: Long = 0,
 )

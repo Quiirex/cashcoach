@@ -14,5 +14,5 @@ data class User(
     @ColumnInfo(name = "currency") val currency: String = "",
     @ColumnInfo(name = "language") val language: String = "",
     @ColumnInfo(name = "theme") val theme: String = "",
-    @ColumnInfo(name = "avatar") val avatar: String = "" // TODO: Check for blob possibility
+    @ColumnInfo(name = "avatar") val avatar: String = "",
 )
