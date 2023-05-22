@@ -10,5 +10,5 @@ data class Wallet(
     @ColumnInfo(name = "name") val name: String = "",
     @ColumnInfo(name = "type") val type: String = "",
     @ColumnInfo(name = "balance") val balance: Double = 0.0,
-    @ColumnInfo(name = "user_id") val user_id: Int = 0,
+    @ColumnInfo(name = "user_id") val user_id: String = "",
 )

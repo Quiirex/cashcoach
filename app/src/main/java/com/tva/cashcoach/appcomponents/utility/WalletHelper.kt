@@ -26,7 +26,7 @@ class WalletHelper(private val walletRepository: WalletRepository) {
             val userId = preferenceHelper.getString("curr_user_id", "")
             Log.w("WalletHelper", "current user id: $userId")
             if (userId == "") return false
-            val wallet = Wallet(null, name, type, budget, userId.toInt())
+            val wallet = Wallet(null, name, type, budget, userId)
             GlobalScope.launch(Dispatchers.IO) {
                 walletRepository.insert(wallet)
             }

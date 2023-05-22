@@ -2,6 +2,7 @@ package com.tva.cashcoach.appcomponents.googleauth
 
 import android.app.Activity
 import android.content.Intent
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -56,9 +57,10 @@ class GoogleAuthHelper(
         configureGoogleSignIn()
         val account = GoogleSignIn.getLastSignedInAccount(activity)
         if (account != null) {
+            val firebaseUser = FirebaseAuth.getInstance().currentUser
             preferenceHelper.putString(
                 "curr_user_id",
-                account.id ?: ""
+                firebaseUser?.uid ?: ""
             )
             preferenceHelper.putBoolean(
                 "googleSignedIn",
@@ -106,12 +108,13 @@ class GoogleAuthHelper(
                                         // User already exists in Firestore, we assume that the user exists in the local database as well
                                         preferenceHelper.putString(
                                             "curr_user_id",
-                                            account.id ?: ""
+                                            firebaseUser?.uid ?: ""
                                         )
                                         preferenceHelper.putBoolean(
                                             "googleSignedIn",
                                             true
                                         )
+                                        Log.w("curr_user_id", firebaseUser?.uid ?: "")
                                         onSuccess(account, false)
                                     } else {
                                         // User does not exist in Firestore, save the user
@@ -133,8 +136,9 @@ class GoogleAuthHelper(
                                                 insertUserInLocalDb(user)
                                                 preferenceHelper.putString(
                                                     "curr_user_id",
-                                                    account.id ?: ""
+                                                    firebaseUser?.uid ?: ""
                                                 )
+                                                Log.w("curr_user_id", firebaseUser?.uid ?: "")
                                                 preferenceHelper.putBoolean(
                                                     "googleSignedIn",
                                                     true

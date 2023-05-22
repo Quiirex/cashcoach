@@ -1,5 +1,6 @@
 package com.tva.cashcoach.appcomponents.auth
 
+import android.util.Log
 import androidx.activity.ComponentActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
@@ -130,6 +131,7 @@ class AuthHelper(
                         "curr_user_id",
                         uid
                     )
+                    Log.w("curr_user_id", uid)
                     preferenceHelper.putBoolean(
                         "googleSignedIn",
                         false
@@ -154,6 +156,7 @@ class AuthHelper(
                                 "curr_user_id",
                                 user.uid
                             )
+                            Log.w("curr_user_id", user.uid)
                             preferenceHelper.putBoolean(
                                 "googleSignedIn",
                                 false
