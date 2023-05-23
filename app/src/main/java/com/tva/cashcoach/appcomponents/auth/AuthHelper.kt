@@ -44,7 +44,7 @@ class AuthHelper(
                     val user = FirebaseAuth.getInstance().currentUser
                     if (user != null) {
                         preferenceHelper.putString(
-                            "curr_user_id",
+                            "curr_user_uid",
                             user.uid
                         )
                         preferenceHelper.putBoolean(
@@ -128,10 +128,10 @@ class AuthHelper(
                 if (document.exists()) {
                     // User already exists in Firestore, call onSuccess
                     preferenceHelper.putString(
-                        "curr_user_id",
+                        "curr_user_uid",
                         uid
                     )
-                    Log.w("curr_user_id", uid)
+                    Log.w("curr_user_uid", uid)
                     preferenceHelper.putBoolean(
                         "googleSignedIn",
                         false
@@ -153,10 +153,10 @@ class AuthHelper(
                     userRef.set(user)
                         .addOnSuccessListener {
                             preferenceHelper.putString(
-                                "curr_user_id",
+                                "curr_user_uid",
                                 user.uid
                             )
-                            Log.w("curr_user_id", user.uid)
+                            Log.w("curr_user_uid", user.uid)
                             preferenceHelper.putBoolean(
                                 "googleSignedIn",
                                 false

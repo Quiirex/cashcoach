@@ -55,15 +55,15 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
         CoroutineScope(Dispatchers.Main).launch {
             withContext(Dispatchers.IO) {
                 currentUserFirstName = userRepository.get(
-                    preferenceHelper.getString("curr_user_id", "")
+                    preferenceHelper.getString("curr_user_uid", "")
                 )?.name.toString()
 
                 currentUserLastName = userRepository.get(
-                    preferenceHelper.getString("curr_user_id", "")
+                    preferenceHelper.getString("curr_user_uid", "")
                 )?.surname.toString()
 
                 currentUserAvatarURL = userRepository.get(
-                    preferenceHelper.getString("curr_user_id", "")
+                    preferenceHelper.getString("curr_user_uid", "")
                 )?.avatar.toString()
 
                 currentUserAvatarBitmap = imageHelper.getBitmapFromURL(currentUserAvatarURL)

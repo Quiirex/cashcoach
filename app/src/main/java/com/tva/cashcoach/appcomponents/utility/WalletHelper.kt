@@ -23,7 +23,7 @@ class WalletHelper(private val walletRepository: WalletRepository) {
     @OptIn(DelicateCoroutinesApi::class)
     fun addWallet(name: String, type: String, budget: Double): Boolean {
         try {
-            val userId = preferenceHelper.getString("curr_user_id", "")
+            val userId = preferenceHelper.getString("curr_user_uid", "")
             Log.w("WalletHelper", "current user id: $userId")
             if (userId == "") return false
             val wallet = Wallet(null, name, type, budget, userId)

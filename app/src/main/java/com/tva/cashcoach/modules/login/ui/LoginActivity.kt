@@ -75,7 +75,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
                 }
             }, appDb, preferenceHelper
         )
-        if (preferenceHelper.getString("curr_user_id", "") != "") {
+        if (preferenceHelper.getString("curr_user_uid", "") != "") {
             if (preferenceHelper.getBoolean("googleSignedIn", false)) {
                 googleAuth.signOut {
                     preferenceHelper.removeAllValues()
