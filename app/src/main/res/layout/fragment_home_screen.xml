@@ -28,31 +28,12 @@
             <androidx.appcompat.widget.Toolbar
                 android:gravity="center_horizontal"
                 android:id="@+id/toolbarToolbar"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/_20pxh"
                 android:layout_marginEnd="@dimen/_14pxh"
                 android:layout_marginStart="@dimen/_14pxh"
                 android:layout_width="match_parent"
                 app:contentInsetStart="0dp">
 
-                <LinearLayout
-                    android:id="@+id/linearRowavatar"
-                    android:layout_height="wrap_content"
-                    android:layout_width="match_parent"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:id="@+id/imageAvatar"
-                        android:layout_height="@dimen/_32pxh"
-                        android:layout_marginBottom="@dimen/_4pxv"
-                        android:layout_marginTop="@dimen/_4pxv"
-                        android:layout_width="@dimen/_32pxh"
-                        android:scaleType="centerCrop"
-                        circular="@{true}"
-                        imageRes="@{@drawable/img_avatar}"
-                        tools:ignore="ContentDescription"
-                        tools:src="@drawable/img_avatar" />
-
-                </LinearLayout>
             </androidx.appcompat.widget.Toolbar>
 
             <TextView
@@ -95,7 +76,7 @@
                 <LinearLayout
                     android:id="@+id/linearRoweye"
                     android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
+                    android:layout_width="@dimen/_166pxh"
                     android:orientation="horizontal"
                     style="@style/groupStyleteal_500cornerRadius">
 
@@ -145,7 +126,7 @@
                             android:singleLine="true"
                             android:text="@{homeScreenVM.homeScreenModel.txtPriceOne}"
                             style="@style/txtIntersemibold22"
-                            tools:text="@string/lbl_1_680" />
+                            tools:text="0€" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -203,7 +184,7 @@
                             android:singleLine="true"
                             android:text="@{homeScreenVM.homeScreenModel.txtPriceTwo}"
                             style="@style/txtIntersemibold22"
-                            tools:text="@string/lbl_800" />
+                            tools:text="0€" />
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>

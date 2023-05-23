@@ -12,7 +12,7 @@ data class HomeScreenModel(
     /**
      * TODO Replace with dynamic value
      */
-    var txtPrice: String? = MyApp.getInstance().resources.getString(R.string.lbl_1_200),
+    var txtPrice: String? = "",
     /**
      * TODO Replace with dynamic value
      */
@@ -20,7 +20,7 @@ data class HomeScreenModel(
     /**
      * TODO Replace with dynamic value
      */
-    var txtPriceOne: String? = MyApp.getInstance().resources.getString(R.string.lbl_1_680),
+    var txtPriceOne: String? = "",
     /**
      * TODO Replace with dynamic value
      */
@@ -28,7 +28,7 @@ data class HomeScreenModel(
     /**
      * TODO Replace with dynamic value
      */
-    var txtPriceTwo: String? = MyApp.getInstance().resources.getString(R.string.lbl_800),
+    var txtPriceTwo: String? = "",
     /**
      * TODO Replace with dynamic value
      */

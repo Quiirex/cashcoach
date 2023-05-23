@@ -12,6 +12,10 @@ class UserRepository(private val userDao: UserDao) {
         userDao.insert(user)
     }
 
+    fun get(uid: String): User? {
+        return userDao.getByUid(uid)
+    }
+
     suspend fun delete(user: User) {
         userDao.delete(user)
     }
