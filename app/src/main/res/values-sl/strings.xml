@@ -105,4 +105,6 @@
     <string name="new_income_added">Dohodek dodan</string>
     <string name="arrow_tag"><![CDATA[>]]></string>
     <string name="transactions">Transakcije</string>
+    <string name="please_enter_wallet_name">Vnesite ime denarnice</string>
+    <string name="please_enter_balance">Vnesite stanje</string>
 </resources>
