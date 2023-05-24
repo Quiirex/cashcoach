@@ -1,10 +1,10 @@
 package com.tva.cashcoach.modules.profile.ui
 
-import android.graphics.Bitmap
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.tva.cashcoach.R
 import com.tva.cashcoach.appcomponents.auth.AuthHelper
 import com.tva.cashcoach.appcomponents.base.BaseFragment
@@ -16,7 +16,6 @@ import com.tva.cashcoach.modules.login.ui.LoginActivity
 import com.tva.cashcoach.modules.profile.data.viewmodel.ProfileVM
 import com.tva.cashcoach.modules.settings.ui.SettingsActivity
 import com.tva.cashcoach.modules.wallets.ui.WalletsActivity
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -30,7 +29,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
 
     private val REQUEST_CODE_LOGIN_ACTIVITY: Int = 265
 
-    private lateinit var auth: AuthHelper
+    private lateinit var authHelper: AuthHelper
 
     private lateinit var imageHelper: ImageHelper
 
@@ -41,39 +40,31 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
     override fun onInitialized() {
         viewModel.navArguments = arguments
         binding.profileVM = viewModel
-        auth = AuthHelper(ComponentActivity(), {}, {}, appDb, preferenceHelper)
+
+        authHelper = AuthHelper(ComponentActivity(), {}, {}, appDb, preferenceHelper)
         imageHelper = ImageHelper()
 
         userDao = appDb.getUserDao()
         userRepository = UserRepository(userDao)
 
-        var currentUserFirstName = ""
-        var currentUserLastName = ""
-        var currentUserAvatarURL = ""
-        var currentUserAvatarBitmap: Bitmap?
+        val currentUserId = preferenceHelper.getString("curr_user_uid", "")
 
-        CoroutineScope(Dispatchers.Main).launch {
-            withContext(Dispatchers.IO) {
-                currentUserFirstName = userRepository.get(
-                    preferenceHelper.getString("curr_user_uid", "")
-                )?.name.toString()
+        lifecycleScope.launch {
+            val currentUser = withContext(Dispatchers.IO) {
+                userRepository.get(currentUserId)
+            }
 
-                currentUserLastName = userRepository.get(
-                    preferenceHelper.getString("curr_user_uid", "")
-                )?.surname.toString()
-
-                currentUserAvatarURL = userRepository.get(
-                    preferenceHelper.getString("curr_user_uid", "")
-                )?.avatar.toString()
-
-                currentUserAvatarBitmap = imageHelper.getBitmapFromURL(currentUserAvatarURL)
+            val currentUserFirstName = currentUser?.name ?: ""
+            val currentUserLastName = currentUser?.surname ?: ""
+            val currentUserAvatarURL = currentUser?.avatar ?: ""
+            val currentUserAvatarBitmap = withContext(Dispatchers.IO) {
+                imageHelper.getBitmapFromURL(currentUserAvatarURL)
             }
 
             binding.txtNameSurname.text = "$currentUserFirstName $currentUserLastName"
             binding.imageAvatar.setImageBitmap(currentUserAvatarBitmap)
         }
     }
-
 
     override fun setUpClicks() {
         binding.linearRowAccounts.setOnClickListener {
@@ -86,7 +77,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
         }
         binding.linearRowarrowright.setOnClickListener {
             try {
-                auth.signOut()
+                authHelper.signOut()
             } catch (e: Exception) {
                 Log.d("Auth", "Error signing out")
             }
