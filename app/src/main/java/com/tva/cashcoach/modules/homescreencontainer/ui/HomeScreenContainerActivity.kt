@@ -10,7 +10,7 @@ import com.tva.cashcoach.appcomponents.base.BaseActivity
 import com.tva.cashcoach.appcomponents.googleauth.GoogleAuthHelper
 import com.tva.cashcoach.databinding.ActivityHomeScreenContainerBinding
 import com.tva.cashcoach.extensions.loadFragment
-import com.tva.cashcoach.modules.financialreportlinechart.ui.FinancialReportLineChartActivity
+import com.tva.cashcoach.modules.financialreport.ui.FinancialReportActivity
 import com.tva.cashcoach.modules.homescreen.ui.HomeScreenFragment
 import com.tva.cashcoach.modules.homescreencontainer.data.viewmodel.HomeScreenContainerVM
 import com.tva.cashcoach.modules.profile.ui.ProfileFragment
@@ -63,7 +63,7 @@ class HomeScreenContainerActivity :
             )
         }
         binding.linearBudget.setOnClickListener {
-            val destIntent = FinancialReportLineChartActivity.getIntent(this, null)
+            val destIntent = FinancialReportActivity.getIntent(this, null)
             startActivityForResult(destIntent, REQUEST_CODE_FINANCIAL_REPORT_LINE_CHART_ACTIVITY)
         }
         binding.linearProfile.setOnClickListener {

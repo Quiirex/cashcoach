@@ -1,4 +1,4 @@
-package com.tva.cashcoach.modules.financialreportlinechart.ui
+package com.tva.cashcoach.modules.financialreport.ui
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -8,14 +8,14 @@ import android.widget.ArrayAdapter
 import android.widget.TextView
 import androidx.annotation.LayoutRes
 import com.tva.cashcoach.R
-import com.tva.cashcoach.modules.financialreportlinechart.data.model.SpinnerDropdownTransaModel
+import com.tva.cashcoach.modules.financialreport.data.model.SpinnerDropdownMonthModel
 
-class SpinnerDropdownTransaAdapter(
+class SpinnerDropdownMonthAdapter(
     private val mContext: Context,
     @LayoutRes
     private val layoutResource: Int,
-    private val allItems: List<SpinnerDropdownTransaModel>
-) : ArrayAdapter<SpinnerDropdownTransaModel>(mContext, layoutResource, allItems) {
+    private val allItems: List<SpinnerDropdownMonthModel>
+) : ArrayAdapter<SpinnerDropdownMonthModel>(mContext, layoutResource, allItems) {
     override fun getView(
         position: Int,
         convertView: View?,

@@ -51,6 +51,7 @@
     <string name="lbl_transportation">Transport</string>
     <string name="lbl_transaction">Transaktion</string>
     <string name="lbl_current_budget">Aktueller Haushalt</string>
+    <string name="lbl_total_budget">Gesamtes budget</string>
     <string name="msg_detail_transact">Detail-Transaktion</string>
     <string name="lbl_you_re_all_set">Sie sind bereit!</string>
     <string name="lbl_see_all">Alle sehen</string>

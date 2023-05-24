@@ -6,7 +6,7 @@
 
         <variable
             name="listtrash1RowModel"
-            type="com.tva.cashcoach.modules.financialreportlinechart.data.model.Listtrash1RowModel" />
+            type="com.tva.cashcoach.modules.financialreport.data.model.Listtrash1RowModel" />
     </data>
 
     <LinearLayout

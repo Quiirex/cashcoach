@@ -1,9 +1,9 @@
-package com.tva.cashcoach.modules.financialreportlinechart.`data`.model
+package com.tva.cashcoach.modules.financialreport.`data`.model
 
 import com.tva.cashcoach.R
 import com.tva.cashcoach.appcomponents.di.MyApp
 
-data class FinancialReportLineChartModel(
+data class FinancialReportModel(
     /**
      * TODO Replace with dynamic value
      */

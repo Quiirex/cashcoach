@@ -51,6 +51,7 @@
     <string name="lbl_transportation">Prevoz</string>
     <string name="lbl_transaction">Transakcija</string>
     <string name="lbl_current_budget">Trenutni proračun</string>
+    <string name="lbl_total_budget">Skupni proračun</string>
     <string name="msg_detail_transact">Podrobnosti transakcije</string>
     <string name="lbl_you_re_all_set">Pripravljeni ste!</string>
     <string name="lbl_see_all">Prikaži vse</string>

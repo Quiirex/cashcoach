@@ -121,8 +121,9 @@
 
                     <FrameLayout
                         android:id="@+id/frameAdd"
-                        android:layout_height="@dimen/_55pxv"
-                        android:layout_width="@dimen/_60pxh"
+                        android:layout_height="@dimen/_56pxv"
+                        android:layout_marginBottom="@dimen/_1pxv"
+                        android:layout_width="@dimen/_56pxh"
                         style="@style/groupStyleblack_900cornerRadius">
 
                         <ImageView

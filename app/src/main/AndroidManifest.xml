@@ -16,7 +16,7 @@
             android:name="com.tva.cashcoach.modules.wallets.ui.WalletsActivity"
             android:screenOrientation="locked" />
         <activity
-            android:name="com.tva.cashcoach.modules.financialreportlinechart.ui.FinancialReportLineChartActivity"
+            android:name="com.tva.cashcoach.modules.financialreport.ui.FinancialReportActivity"
             android:screenOrientation="locked" />
         <activity
             android:name="com.tva.cashcoach.modules.newincome.ui.NewIncomeActivity"

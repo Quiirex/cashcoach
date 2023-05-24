@@ -1,4 +1,4 @@
-package com.tva.cashcoach.modules.financialreportlinechart.ui
+package com.tva.cashcoach.modules.financialreport.ui
 
 import android.content.Context
 import android.content.Intent
@@ -7,20 +7,19 @@ import android.view.View
 import androidx.activity.viewModels
 import com.tva.cashcoach.R
 import com.tva.cashcoach.appcomponents.base.BaseActivity
-import com.tva.cashcoach.databinding.ActivityFinancialReportLineChartBinding
-import com.tva.cashcoach.modules.financialreportlinechart.data.model.Listtrash1RowModel
-import com.tva.cashcoach.modules.financialreportlinechart.data.model.SpinnerDropdownMonthModel
-import com.tva.cashcoach.modules.financialreportlinechart.data.model.SpinnerDropdownTransaModel
-import com.tva.cashcoach.modules.financialreportlinechart.data.viewmodel.FinancialReportLineChartVM
+import com.tva.cashcoach.databinding.ActivityFinancialReportBinding
+import com.tva.cashcoach.modules.financialreport.data.model.Listtrash1RowModel
+import com.tva.cashcoach.modules.financialreport.data.model.SpinnerDropdownMonthModel
+import com.tva.cashcoach.modules.financialreport.data.model.SpinnerDropdownTransaModel
+import com.tva.cashcoach.modules.financialreport.data.viewmodel.FinancialReportVM
 
-class FinancialReportLineChartActivity :
-    BaseActivity<ActivityFinancialReportLineChartBinding>(R.layout.activity_financial_report_line_chart) {
-    private val viewModel: FinancialReportLineChartVM by viewModels<FinancialReportLineChartVM>()
+class FinancialReportActivity :
+    BaseActivity<ActivityFinancialReportBinding>(R.layout.activity_financial_report) {
+    private val viewModel: FinancialReportVM by viewModels()
 
     private val REQUEST_CODE_FINANCIAL_REPORT_PIE_CHART_ACTIVITY: Int = 545
 
-
-    override fun onInitialized(): Unit {
+    override fun onInitialized() {
         viewModel.navArguments = intent.extras?.getBundle("bundle")
         viewModel.spinnerDropdownMonthList.value = mutableListOf(
             SpinnerDropdownMonthModel("Item1"),
@@ -85,7 +84,7 @@ class FinancialReportLineChartActivity :
 
 
         fun getIntent(context: Context, bundle: Bundle?): Intent {
-            val destIntent = Intent(context, FinancialReportLineChartActivity::class.java)
+            val destIntent = Intent(context, FinancialReportActivity::class.java)
             destIntent.putExtra("bundle", bundle)
             return destIntent
         }

@@ -64,6 +64,7 @@
     <string name="lbl_transportation">Transportation</string>
     <string name="lbl_transaction">Transaction</string>
     <string name="lbl_current_budget">Current Budget</string>
+    <string name="lbl_total_budget">Total Budget</string>
     <string name="lbl_04_30" translatable="false">04:30</string>
     <string name="msg_detail_transact">Detail Transaction</string>
     <string name="lbl_you_re_all_set">You\u2019re all set!</string>

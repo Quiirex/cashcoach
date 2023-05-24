@@ -1,4 +1,4 @@
-package com.tva.cashcoach.modules.financialreportlinechart.ui
+package com.tva.cashcoach.modules.financialreport.ui
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.tva.cashcoach.R
 import com.tva.cashcoach.databinding.RowListtrash1Binding
-import com.tva.cashcoach.modules.financialreportlinechart.data.model.Listtrash1RowModel
+import com.tva.cashcoach.modules.financialreport.data.model.Listtrash1RowModel
 
 class ListtrashAdapter(
     var list: List<Listtrash1RowModel>
@@ -30,7 +30,7 @@ class ListtrashAdapter(
     // TODO uncomment following line after integration with data source
     // return list.size
 
-    public fun updateData(newData: List<Listtrash1RowModel>) {
+    fun updateData(newData: List<Listtrash1RowModel>) {
         list = newData
         notifyDataSetChanged()
     }

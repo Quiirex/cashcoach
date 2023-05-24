@@ -98,7 +98,7 @@
                     android:singleLine="true"
                     android:text="@{walletsVM.walletsModel.txtCurrentBudget}"
                     style="@style/txtIntermedium14"
-                    tools:text="@string/lbl_current_budget" />
+                    tools:text="@string/lbl_total_budget" />
 
                 <TextView
                     android:ellipsize="end"
@@ -110,7 +110,7 @@
                     android:singleLine="true"
                     android:text="@{walletsVM.walletsModel.txtPrice}"
                     style="@style/txtIntersemibold40"
-                    tools:text="0" />
+                    tools:text="0€" />
             </LinearLayout>
 
             <ImageView
@@ -126,7 +126,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerAccounts"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/_300pxh"
             android:layout_width="match_parent"
             android:layout_marginStart="@dimen/_10pxh"
             android:layout_marginEnd="@dimen/_10pxh"
@@ -134,7 +134,7 @@
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             itemSpace="@{@dimen/_10pxh}"
-            tools:itemCount="2"
+            tools:itemCount="10"
             tools:listitem="@layout/row_accounts" />
 
         <androidx.appcompat.widget.AppCompatButton
@@ -145,7 +145,7 @@
             android:layout_marginBottom="@dimen/_20pxv"
             android:layout_marginEnd="@dimen/_16pxh"
             android:layout_marginStart="@dimen/_16pxh"
-            android:layout_marginTop="@dimen/_170pxv"
+            android:layout_marginTop="@dimen/_20pxv"
             android:layout_width="match_parent"
             android:paddingBottom="@dimen/_17pxv"
             android:paddingEnd="@dimen/_30pxh"

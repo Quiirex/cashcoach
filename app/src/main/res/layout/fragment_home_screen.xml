@@ -91,7 +91,7 @@
                         android:paddingHorizontal="@dimen/_10pxh"
                         android:paddingVertical="@dimen/_10pxv"
                         android:scaleType="fitCenter"
-                        android:src="@drawable/img_ticket_black_900"
+                        android:src="@drawable/income_arrow"
                         tools:ignore="ContentDescription" />
 
                     <LinearLayout
@@ -147,7 +147,7 @@
                         android:paddingHorizontal="@dimen/_9pxh"
                         android:paddingVertical="@dimen/_9pxv"
                         android:scaleType="fitCenter"
-                        android:src="@drawable/img_television"
+                        android:src="@drawable/expense_arrow"
                         tools:ignore="ContentDescription" />
 
                     <LinearLayout
@@ -200,7 +200,7 @@
                     android:id="@+id/btnToday"
                     style="@style/btnSolid"
                     android:layout_width="103dp"
-                    android:layout_height="@dimen/_34pxv"
+                    android:layout_height="match_parent"
                     android:alpha="1.0"
                     android:ellipsize="end"
                     android:gravity="center"
@@ -218,7 +218,7 @@
                     android:id="@+id/btnWeek"
                     style="@style/btnSolid"
                     android:layout_width="wrap_content"
-                    android:layout_height="@dimen/_34pxv"
+                    android:layout_height="45dp"
                     android:alpha="1.0"
                     android:ellipsize="end"
                     android:gravity="center"
@@ -236,7 +236,7 @@
                     android:id="@+id/btnMonth"
                     style="@style/btnSolid"
                     android:layout_width="wrap_content"
-                    android:layout_height="@dimen/_34pxv"
+                    android:layout_height="45dp"
                     android:alpha="1.0"
                     android:ellipsize="end"
                     android:gravity="center"
@@ -254,7 +254,7 @@
                     android:id="@+id/btnYear"
                     style="@style/btnSolid"
                     android:layout_width="96dp"
-                    android:layout_height="@dimen/_34pxv"
+                    android:layout_height="45dp"
                     android:alpha="1.0"
                     android:ellipsize="end"
                     android:gravity="center"
@@ -313,16 +313,16 @@
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
-                android:gravity="center_horizontal"
                 android:id="@+id/recyclerListframefive"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/_14pxh"
-                android:layout_marginStart="@dimen/_14pxh"
+                itemSpace="@{@dimen/_8pxh}"
                 android:layout_width="match_parent"
+                android:layout_height="441dp"
+                android:layout_marginStart="@dimen/_14pxh"
+                android:layout_marginEnd="@dimen/_14pxh"
+                android:gravity="center_horizontal"
                 android:orientation="vertical"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                itemSpace="@{@dimen/_8pxh}"
-                tools:itemCount="3"
+                tools:itemCount="10"
                 tools:listitem="@layout/row_transaction" />
         </LinearLayout>
     </FrameLayout>
