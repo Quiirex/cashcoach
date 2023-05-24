@@ -67,7 +67,7 @@
     <string name="lbl_04_30" translatable="false">04:30</string>
     <string name="msg_detail_transact">Detail Transaction</string>
     <string name="lbl_you_re_all_set">You\u2019re all set!</string>
-    <string name="lbl_see_all">See All</string>
+    <string name="lbl_see_all">Show all</string>
     <string name="lbl_cashcoach" translatable="false">CashCoach.</string>
     <string name="lbl_12" translatable="false">- 12\u20ac</string>
     <string name="msg_don_t_worry_e">Don\'t worry. Enter your email and we\'ll send you a link to reset your password.</string>
@@ -81,7 +81,7 @@
     <string name="msg_sign_up_with_go">Sign Up with Google</string>
     <string name="lbl" translatable="false">\u20ac</string>
     <string name="msg_write_a_descrip">Write a description</string>
-    <string name="msg_saturday_4_june">Saturday, 4. June 2021</string>
+    <string name="msg_saturday_4_june">Saturday, 4. June 2021 16:30</string>
     <string name="lbl_07_30" translatable="false">07:30</string>
     <string name="lbl_email">E-mail</string>
     <string name="lbl_eur" translatable="false">EUR</string>
