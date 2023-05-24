@@ -8,7 +8,7 @@ class UserRepository(private val userDao: UserDao) {
 
     val allUsers: LiveData<List<User>> = userDao.getAll()
 
-    suspend fun insert(user: User) {
+    fun insert(user: User) {
         userDao.insert(user)
     }
 
@@ -16,15 +16,19 @@ class UserRepository(private val userDao: UserDao) {
         return userDao.getByUid(uid)
     }
 
-    suspend fun delete(user: User) {
+    fun delete(user: User) {
         userDao.delete(user)
     }
 
-    suspend fun update(user: User) {
-        userDao.update(user)
+    fun updateCurrencyByUid(uid: String, currency: String) {
+        userDao.updateCurrencyByUid(uid, currency)
     }
 
-    suspend fun wipeTable() {
+    fun updateLanguageByUid(uid: String, language: String) {
+        userDao.updateLanguageByUid(uid, language)
+    }
+
+    fun wipeTable() {
         userDao.wipeTable()
     }
 }

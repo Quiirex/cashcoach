@@ -8,19 +8,19 @@ class ExpenseRepository(private val expenseDao: ExpenseDao) {
 
     val allExpenses: LiveData<List<Expense>> = expenseDao.getAll()
 
-    suspend fun insert(expense: Expense) {
+    fun insert(expense: Expense) {
         expenseDao.insert(expense)
     }
 
-    suspend fun delete(expense: Expense) {
+    fun delete(expense: Expense) {
         expenseDao.delete(expense)
     }
 
-    suspend fun update(expense: Expense) {
+    fun update(expense: Expense) {
         expenseDao.update(expense)
     }
 
-    suspend fun wipeTable() {
+    fun wipeTable() {
         expenseDao.wipeTable()
     }
 }

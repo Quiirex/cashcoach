@@ -8,19 +8,19 @@ class IncomeRepository(private val incomeDao: IncomeDao) {
 
     val allIncomes: LiveData<List<Income>> = incomeDao.getAll()
 
-    suspend fun insert(income: Income) {
+    fun insert(income: Income) {
         incomeDao.insert(income)
     }
 
-    suspend fun delete(income: Income) {
+    fun delete(income: Income) {
         incomeDao.delete(income)
     }
 
-    suspend fun update(income: Income) {
+    fun update(income: Income) {
         incomeDao.update(income)
     }
 
-    suspend fun wipeTable() {
+    fun wipeTable() {
         incomeDao.wipeTable()
     }
 }

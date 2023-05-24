@@ -8,19 +8,19 @@ class WalletRepository(private val walletDao: WalletDao) {
 
     val allWallets: LiveData<List<Wallet>> = walletDao.getAll()
 
-    suspend fun insert(wallet: Wallet) {
+    fun insert(wallet: Wallet) {
         walletDao.insert(wallet)
     }
 
-    suspend fun delete(wallet: Wallet) {
+    fun delete(wallet: Wallet) {
         walletDao.delete(wallet)
     }
 
-    suspend fun update(wallet: Wallet) {
+    fun update(wallet: Wallet) {
         walletDao.update(wallet)
     }
 
-    suspend fun wipeTable() {
+    fun wipeTable() {
         walletDao.wipeTable()
     }
 }
