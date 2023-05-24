@@ -99,6 +99,8 @@
     <string name="lbl_wallets">Denarnice</string>
     <string name="msg_continue_with_google">Nadaljujte z Google</string>
     <string name="lbl_name_surname">Ime Priimek</string>
-    <string name="lbl_help">Pomoč</string>
+    <string name="lbl_help">Pomoč ❔</string>
     <string name="lbl_about">O aplikaciji</string>
+    <string name="arrow_tag"><![CDATA[>]]></string>
+    <string name="transactions">Transakcije</string>
 </resources>

@@ -38,7 +38,7 @@
                     android:id="@+id/imageBack"
                     android:layout_height="@dimen/_16pxh"
                     android:layout_marginBottom="@dimen/_3pxv"
-                    android:layout_marginTop="@dimen/_2pxv"
+                    android:layout_marginTop="@dimen/_5pxv"
                     android:layout_width="@dimen/_24pxh"
                     android:scaleType="fitXY"
                     android:src="@drawable/img_arrowleft"

@@ -47,7 +47,7 @@
                         android:id="@+id/imageBack"
                         android:layout_height="@dimen/_16pxh"
                         android:layout_marginBottom="@dimen/_5pxv"
-                        android:layout_marginTop="@dimen/_1pxv"
+                        android:layout_marginTop="@dimen/_5pxv"
                         android:layout_width="@dimen/_24pxh"
                         android:scaleType="fitXY"
                         android:src="@drawable/img_arrowleft"
@@ -58,7 +58,8 @@
                         android:ellipsize="end"
                         android:id="@+id/txtTitle"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_102pxh"
+                        android:gravity="center"
+                        android:layout_marginEnd="@dimen/_15pxh"
                         android:layout_weight="0.77"
                         android:layout_width="0dp"
                         android:singleLine="true"
@@ -72,34 +73,38 @@
         <RadioGroup
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingLeft="@dimen/_15pxv">
+            android:paddingStart="@dimen/_15pxv"
+            android:paddingEnd="@dimen/_15pxv">
 
             <RadioButton
-                android:id="@+id/txtUsd"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_20pxv"
+                android:id="@+id/radioUsd"
+                style="@style/txtSolid_1"
+                app:buttonTint="@color/black"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:lineSpacingExtra="@dimen/_3pxh"
-                android:paddingBottom="@dimen/_17pxv"
                 android:paddingStart="@dimen/_16pxh"
+                android:paddingEnd="@dimen/_10pxh"
                 android:paddingTop="@dimen/_17pxv"
+                android:paddingBottom="@dimen/_17pxv"
                 android:singleLine="true"
                 android:text="@{settingsCurrencyVM.settingsCurrencyModel.txtUsd}"
-                style="@style/txtSolid_1"
                 tools:text="@string/lbl_usd" />
 
             <RadioButton
-                android:id="@+id/txtEur"
+                android:id="@+id/radioEur"
+                style="@style/txtSolid_1"
+                app:buttonTint="@color/black"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/_20pxv"
-                android:layout_width="match_parent"
                 android:lineSpacingExtra="@dimen/_3pxh"
-                android:paddingBottom="@dimen/_17pxv"
                 android:paddingStart="@dimen/_16pxh"
+                android:paddingEnd="@dimen/_10pxh"
                 android:paddingTop="@dimen/_17pxv"
+                android:paddingBottom="@dimen/_17pxv"
                 android:singleLine="true"
                 android:text="@{settingsCurrencyVM.settingsCurrencyModel.txtEur}"
-                style="@style/txtSolid_1"
                 tools:text="@string/lbl_eur" />
 
         </RadioGroup>

@@ -47,7 +47,7 @@
                         android:id="@+id/imageBack"
                         android:layout_height="@dimen/_16pxh"
                         android:layout_marginBottom="@dimen/_5pxv"
-                        android:layout_marginTop="@dimen/_1pxv"
+                        android:layout_marginTop="@dimen/_5pxv"
                         android:layout_width="@dimen/_24pxh"
                         android:scaleType="fitXY"
                         android:src="@drawable/img_arrowleft_black_900"
@@ -58,7 +58,8 @@
                         android:ellipsize="end"
                         android:id="@+id/txtTitle"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_106pxh"
+                        android:gravity="center"
+                        android:layout_marginEnd="@dimen/_15pxh"
                         android:layout_weight="0.75"
                         android:layout_width="0dp"
                         android:singleLine="true"
@@ -70,83 +71,60 @@
         </LinearLayout>
 
         <LinearLayout
-            android:gravity="start"
             android:id="@+id/linearRowCurrency"
-            android:layout_height="@dimen/_60pxh"
             android:layout_width="match_parent"
+            android:layout_height="@dimen/_60pxh"
             android:layout_marginTop="@dimen/_10pxh"
-            android:orientation="horizontal"
-            style="@style/groupStylewhite_1">
+            android:gravity="start"
+            android:orientation="horizontal">
 
             <TextView
-                android:ellipsize="end"
                 android:id="@+id/txtCurrency"
+                style="@style/txtIntermedium16"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/_50pxh"
                 android:layout_marginStart="@dimen/_30pxh"
                 android:layout_marginTop="@dimen/_18pxv"
                 android:layout_weight="0.55"
-                android:layout_width="0dp"
+                android:ellipsize="end"
                 android:singleLine="true"
                 android:text="@string/lbl_currency"
-                style="@style/txtIntermedium16"
                 tools:text="@string/lbl_currency" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:gravity="start"
-            android:id="@+id/linearRowLanguage"
-            android:layout_height="@dimen/_60pxh"
-            android:layout_width="match_parent"
-            android:orientation="horizontal"
-            style="@style/groupStylewhite_1">
 
             <TextView
-                android:ellipsize="end"
-                android:id="@+id/txtLanguage"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/_50pxh"
-                android:layout_marginStart="@dimen/_30pxh"
-                android:layout_marginTop="@dimen/_18pxv"
-                android:layout_weight="0.55"
-                android:layout_width="0dp"
-                android:singleLine="true"
-                android:text="@string/lbl_language"
+                android:id="@+id/txtCurrentCurrency"
                 style="@style/txtIntermedium16"
-                tools:text="@string/lbl_language" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:gravity="start"
-            android:id="@+id/linearRowTheme"
-            android:layout_height="@dimen/_60pxh"
-            android:layout_width="match_parent"
-            android:orientation="horizontal"
-            style="@style/groupStylewhite_1">
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_18pxv"
+                android:layout_weight="0.2"
+                android:gravity="end"
+                android:text=""
+                android:textColor="@color/gray_300"
+                android:ellipsize="end"
+                tools:text="" />
 
             <TextView
-                android:ellipsize="end"
-                android:id="@+id/txtTheme"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/_50pxh"
-                android:layout_marginStart="@dimen/_30pxh"
-                android:layout_marginTop="@dimen/_18pxv"
-                android:layout_weight="0.55"
-                android:layout_width="0dp"
-                android:singleLine="true"
-                android:text="@string/lbl_theme"
                 style="@style/txtIntermedium16"
-                tools:text="@string/lbl_theme" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_30pxh"
+                android:layout_marginTop="@dimen/_18pxv"
+                android:layout_marginStart="@dimen/_10pxh"
+                android:gravity="end"
+                android:text="@string/arrow_tag"
+                android:ellipsize="end"
+                tools:text="@string/arrow_tag" />
         </LinearLayout>
+
 
         <LinearLayout
             android:gravity="start"
             android:id="@+id/linearRowAbout"
-            android:layout_marginTop="@dimen/_320pxh"
+            android:layout_marginTop="@dimen/_440pxh"
             android:layout_height="@dimen/_60pxh"
             android:layout_width="match_parent"
-            android:orientation="horizontal"
-            style="@style/groupStylewhite_1">
+            android:orientation="horizontal">
 
             <TextView
                 android:ellipsize="end"
@@ -158,9 +136,9 @@
                 android:layout_weight="0.55"
                 android:layout_width="0dp"
                 android:singleLine="true"
-                android:text="@string/lbl_theme"
+                android:text="@string/lbl_about"
                 style="@style/txtIntermedium16"
-                tools:text="@string/lbl_theme" />
+                tools:text="@string/lbl_about" />
         </LinearLayout>
 
         <LinearLayout
@@ -168,8 +146,7 @@
             android:id="@+id/linearRowHelp"
             android:layout_height="@dimen/_60pxh"
             android:layout_width="match_parent"
-            android:orientation="horizontal"
-            style="@style/groupStylewhite_1">
+            android:orientation="horizontal">
 
             <TextView
                 android:ellipsize="end"

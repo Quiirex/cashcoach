@@ -182,7 +182,7 @@
                     android:layout_weight="0.55"
                     android:layout_width="0dp"
                     android:singleLine="true"
-                    android:text="Settings"
+                    android:text="@string/lbl_settings"
                     style="@style/txtIntermedium16"
                     tools:text="@string/lbl_settings" />
             </LinearLayout>
