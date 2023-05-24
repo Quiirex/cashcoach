@@ -101,4 +101,5 @@
     <string name="lbl_name_surname">Ime Priimek</string>
     <string name="lbl_help">Pomoč</string>
     <string name="lbl_about">O aplikaciji</string>
+    <string name="new_income_added">Dohodek dodan</string>
 </resources>
