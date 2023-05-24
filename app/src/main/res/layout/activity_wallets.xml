@@ -73,8 +73,7 @@
 
         <FrameLayout
             android:id="@+id/frameStackcurrentbudget"
-            android:layout_height="@dimen/_180pxv"
-            android:layout_marginTop="@dimen/_10pxv"
+            android:layout_height="@dimen/_100pxv"
             android:layout_width="match_parent">
 
             <LinearLayout
@@ -83,9 +82,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/_33pxv"
                 android:layout_marginEnd="@dimen/_120pxh"
-                android:layout_marginStart="@dimen/_120pxh"
-                android:layout_marginTop="@dimen/_33pxv"
-                android:layout_width="match_parent"
+                android:layout_marginStart="@dimen/_116pxh"
+                android:layout_width="@dimen/_300pxh"
                 android:orientation="vertical">
 
                 <TextView
@@ -103,39 +101,27 @@
                 <TextView
                     android:ellipsize="end"
                     android:gravity="center"
-                    android:id="@+id/txtPrice"
+                    android:id="@+id/txtTotalBudget"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_5pxv"
                     android:layout_width="match_parent"
                     android:singleLine="true"
-                    android:text="@{walletsVM.walletsModel.txtPrice}"
+                    android:text=""
                     style="@style/txtIntersemibold40"
                     tools:text="0€" />
             </LinearLayout>
-
-            <ImageView
-                android:id="@+id/imageBG"
-                imageRes="@{@drawable/img_bg}"
-                android:layout_width="match_parent"
-                android:layout_height="209dp"
-                android:layout_gravity="start"
-                android:scaleType="fitXY"
-                tools:ignore="ContentDescription"
-                tools:src="@drawable/img_bg" />
         </FrameLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerAccounts"
-            android:layout_height="@dimen/_300pxh"
+            android:id="@+id/recycler_wallets"
+            android:layout_height="@dimen/_440pxh"
             android:layout_width="match_parent"
             android:layout_marginStart="@dimen/_10pxh"
             android:layout_marginEnd="@dimen/_10pxh"
-            android:layout_marginTop="@dimen/_10pxh"
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             itemSpace="@{@dimen/_10pxh}"
             tools:itemCount="10"
-            tools:listitem="@layout/row_accounts" />
+            tools:listitem="@layout/row_wallet" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:ellipsize="end"

@@ -9,6 +9,7 @@ import com.tva.cashcoach.R
 import com.tva.cashcoach.appcomponents.auth.AuthHelper
 import com.tva.cashcoach.appcomponents.base.BaseActivity
 import com.tva.cashcoach.appcomponents.googleauth.GoogleAuthHelper
+import com.tva.cashcoach.appcomponents.persistence.repository.user.UserRepository
 import com.tva.cashcoach.databinding.ActivityLoginBinding
 import com.tva.cashcoach.modules.accountsetup.ui.AccountSetupActivity
 import com.tva.cashcoach.modules.forgotpassword.ui.ForgotPasswordActivity
@@ -35,6 +36,8 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
     override fun onInitialized() {
         viewModel.navArguments = intent.extras?.getBundle("bundle")
         binding.loginVM = viewModel
+        val userDao = appDb.getUserDao()
+        val userRepository = UserRepository(userDao)
         googleAuth = GoogleAuthHelper(this,
             { _, reqSetup ->
                 if (!reqSetup) {
@@ -50,7 +53,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
                     getString(R.string.an_error_occurred_please_try_again_later),
                     Toast.LENGTH_SHORT
                 ).show()
-            }, appDb, preferenceHelper
+            }, appDb, preferenceHelper, userRepository
         )
         auth = AuthHelper(this,
             {
@@ -73,7 +76,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
                         ).show()
                     }
                 }
-            }, appDb, preferenceHelper
+            }, appDb, preferenceHelper, userRepository
         )
         if (preferenceHelper.getString("curr_user_uid", "") != "") {
             if (preferenceHelper.getBoolean("googleSignedIn", false)) {

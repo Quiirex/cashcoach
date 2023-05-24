@@ -48,8 +48,10 @@
                 <TextView
                     android:ellipsize="end"
                     android:id="@+id/txtTitle"
+                    android:gravity="center"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_73pxh"
+                    android:layout_marginStart="@dimen/_10pxh"
+                    android:layout_marginEnd="@dimen/_20pxh"
                     android:layout_weight="0.85"
                     android:layout_width="0dp"
                     android:singleLine="true"

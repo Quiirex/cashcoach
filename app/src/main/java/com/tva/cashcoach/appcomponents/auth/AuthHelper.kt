@@ -1,6 +1,5 @@
 package com.tva.cashcoach.appcomponents.auth
 
-import android.util.Log
 import androidx.activity.ComponentActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
@@ -10,6 +9,7 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 import com.tva.cashcoach.appcomponents.model.user.User
 import com.tva.cashcoach.appcomponents.persistence.AppDatabase
+import com.tva.cashcoach.appcomponents.persistence.repository.user.UserRepository
 import com.tva.cashcoach.appcomponents.utility.PreferenceHelper
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
@@ -28,7 +28,8 @@ class AuthHelper(
     private val onSuccess: (user: FirebaseUser) -> Unit,
     private val onError: (errorCode: String) -> Unit,
     private val appDb: AppDatabase,
-    private val preferenceHelper: PreferenceHelper
+    private val preferenceHelper: PreferenceHelper,
+    private val userRepository: UserRepository
 ) {
 
     /**
@@ -37,6 +38,7 @@ class AuthHelper(
      * @param email The user's email.
      * @param password The user's password.
      */
+    @OptIn(DelicateCoroutinesApi::class)
     fun login(email: String, password: String) {
         FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(activity) { task ->
@@ -47,6 +49,15 @@ class AuthHelper(
                             "curr_user_uid",
                             user.uid
                         )
+                        GlobalScope.launch(Dispatchers.IO) {
+                            val defaultWalletId = userRepository.get(
+                                user.uid
+                            )?.default_wallet_id.toString()
+                            preferenceHelper.putString(
+                                "curr_wallet_id",
+                                defaultWalletId
+                            )
+                        }.start()
                         preferenceHelper.putBoolean(
                             "googleSignedIn",
                             false
@@ -86,7 +97,8 @@ class AuthHelper(
                                     currency = "EUR", // default value
                                     language = "en", // default value
                                     theme = "light", // default value
-                                    avatar = "https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg" // default value
+                                    avatar = "https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg", // default value
+                                    default_wallet_id = 0 // default value
                                 )
                             )
                             createFirestoreUser(user.uid, email, name, surname)
@@ -120,6 +132,7 @@ class AuthHelper(
      * @param name The user's name.
      * @param surname The user's surname.
      */
+    @OptIn(DelicateCoroutinesApi::class)
     private fun createFirestoreUser(uid: String, email: String, name: String, surname: String) {
         val userRef = FirebaseFirestore.getInstance().collection("users")
             .document(uid)
@@ -131,7 +144,15 @@ class AuthHelper(
                         "curr_user_uid",
                         uid
                     )
-                    Log.w("curr_user_uid", uid)
+                    GlobalScope.launch(Dispatchers.IO) {
+                        val defaultWalletId = userRepository.get(
+                            uid
+                        )?.default_wallet_id.toString()
+                        preferenceHelper.putString(
+                            "curr_wallet_id",
+                            defaultWalletId
+                        )
+                    }.start()
                     preferenceHelper.putBoolean(
                         "googleSignedIn",
                         false
@@ -148,7 +169,8 @@ class AuthHelper(
                         currency = "EUR", // default value
                         language = "en", // default value
                         theme = "light", // default value
-                        avatar = "https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg" // default value
+                        avatar = "https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg", // default value
+                        default_wallet_id = 0 // default value
                     )
                     userRef.set(user)
                         .addOnSuccessListener {
@@ -156,7 +178,15 @@ class AuthHelper(
                                 "curr_user_uid",
                                 user.uid
                             )
-                            Log.w("curr_user_uid", user.uid)
+                            GlobalScope.launch(Dispatchers.IO) {
+                                val defaultWalletId = userRepository.get(
+                                    user.uid
+                                )?.default_wallet_id.toString()
+                                preferenceHelper.putString(
+                                    "curr_wallet_id",
+                                    defaultWalletId
+                                )
+                            }.start()
                             preferenceHelper.putBoolean(
                                 "googleSignedIn",
                                 false

@@ -12,6 +12,6 @@ class WalletsVM : ViewModel(), KoinComponent {
 
     var navArguments: Bundle? = null
 
-    val accountsList: MutableLiveData<MutableList<WalletsRowModel>> =
+    val walletsList: MutableLiveData<MutableList<WalletsRowModel>> =
         MutableLiveData(mutableListOf())
 }

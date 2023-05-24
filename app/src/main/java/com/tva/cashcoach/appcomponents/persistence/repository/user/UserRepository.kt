@@ -16,6 +16,14 @@ class UserRepository(private val userDao: UserDao) {
         return userDao.getByUid(uid)
     }
 
+    fun setDefaultWalletId(userId: String, walletId: Int) {
+        userDao.setDefaultWalletId(userId, walletId)
+    }
+
+    fun getDefaultWalletId(uid: String): Int {
+        return userDao.getDefaultWalletId(uid)
+    }
+
     fun delete(user: User) {
         userDao.delete(user)
     }

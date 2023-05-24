@@ -12,7 +12,7 @@ data class WalletsModel(
      * TODO Replace with dynamic value
      */
     var txtCurrentBudget: String? =
-        MyApp.getInstance().resources.getString(R.string.lbl_current_budget),
+        MyApp.getInstance().resources.getString(R.string.lbl_total_budget),
     /**
      * TODO Replace with dynamic value
      */

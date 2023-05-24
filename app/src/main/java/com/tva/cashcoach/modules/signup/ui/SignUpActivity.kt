@@ -8,6 +8,8 @@ import androidx.activity.viewModels
 import com.tva.cashcoach.R
 import com.tva.cashcoach.appcomponents.auth.AuthHelper
 import com.tva.cashcoach.appcomponents.base.BaseActivity
+import com.tva.cashcoach.appcomponents.model.user.UserDao
+import com.tva.cashcoach.appcomponents.persistence.repository.user.UserRepository
 import com.tva.cashcoach.databinding.ActivitySignUpBinding
 import com.tva.cashcoach.extensions.containsNumber
 import com.tva.cashcoach.extensions.isValidEmail
@@ -25,9 +27,15 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
 
     private lateinit var auth: AuthHelper
 
+    private lateinit var userDao: UserDao
+
+    private lateinit var userRepository: UserRepository
+
     override fun onInitialized() {
         viewModel.navArguments = intent.extras?.getBundle("bundle")
         binding.signUpVM = viewModel
+        userDao = appDb.getUserDao()
+        userRepository = UserRepository(userDao)
         auth = AuthHelper(
             this,
             {
@@ -49,7 +57,7 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
                         ).show()
                     }
                 }
-            }, appDb, preferenceHelper
+            }, appDb, preferenceHelper, userRepository
         )
     }
 

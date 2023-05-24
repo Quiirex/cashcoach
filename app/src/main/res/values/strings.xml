@@ -134,4 +134,6 @@
     <string name="new_income_added">Income added</string>
     <string name="arrow_tag"><![CDATA[>]]></string>
     <string name="transactions">Transactions</string>
+    <string name="please_enter_wallet_name">Please enter wallet name</string>
+    <string name="please_enter_balance">Please enter balance</string>
 </resources>

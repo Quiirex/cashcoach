@@ -8,6 +8,7 @@ import androidx.activity.viewModels
 import com.tva.cashcoach.R
 import com.tva.cashcoach.appcomponents.auth.AuthHelper
 import com.tva.cashcoach.appcomponents.base.BaseActivity
+import com.tva.cashcoach.appcomponents.persistence.repository.user.UserRepository
 import com.tva.cashcoach.databinding.ActivityForgotPasswordBinding
 import com.tva.cashcoach.modules.forgotpassword.data.viewmodel.ForgotPasswordVM
 
@@ -20,7 +21,11 @@ class ForgotPasswordActivity :
     override fun onInitialized() {
         viewModel.navArguments = intent.extras?.getBundle("bundle")
         binding.forgotPasswordVM = viewModel
-        auth = AuthHelper(this, {}, {}, appDb, preferenceHelper)
+
+        val userDao = appDb.getUserDao()
+        val userRepository = UserRepository(userDao)
+
+        auth = AuthHelper(this, {}, {}, appDb, preferenceHelper, userRepository)
     }
 
     override fun setUpClicks() {

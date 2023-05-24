@@ -18,6 +18,13 @@ interface UserDao {
     @Query("SELECT * FROM user WHERE uid = :uid")
     fun getByUid(uid: String): User?
 
+    fun getDefaultWalletId(uid: String): Int {
+        return getByUid(uid)?.default_wallet_id ?: 0
+    }
+
+    @Query("UPDATE user SET default_wallet_id = :walletId WHERE uid = :uid")
+    fun setDefaultWalletId(uid: String, walletId: Int)
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insert(user: User)
 

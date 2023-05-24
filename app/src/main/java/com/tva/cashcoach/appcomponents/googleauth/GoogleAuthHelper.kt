@@ -2,7 +2,6 @@ package com.tva.cashcoach.appcomponents.googleauth
 
 import android.app.Activity
 import android.content.Intent
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -17,6 +16,7 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.firestore.FirebaseFirestore
 import com.tva.cashcoach.appcomponents.model.user.User
 import com.tva.cashcoach.appcomponents.persistence.AppDatabase
+import com.tva.cashcoach.appcomponents.persistence.repository.user.UserRepository
 import com.tva.cashcoach.appcomponents.utility.PreferenceHelper
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
@@ -35,7 +35,8 @@ class GoogleAuthHelper(
     private val onSuccess: (account: GoogleSignInAccount, reqSetup: Boolean) -> Unit,
     private val onError: (statusCode: Int) -> Unit,
     private val appDb: AppDatabase,
-    private val preferenceHelper: PreferenceHelper
+    private val preferenceHelper: PreferenceHelper,
+    private val userRepository: UserRepository
 ) {
 
     private var mGoogleSignInClient: GoogleSignInClient? = null
@@ -53,6 +54,7 @@ class GoogleAuthHelper(
     /**
      * Starts the Google sign-in flow.
      */
+    @OptIn(DelicateCoroutinesApi::class)
     fun login() {
         configureGoogleSignIn()
         val account = GoogleSignIn.getLastSignedInAccount(activity)
@@ -62,6 +64,15 @@ class GoogleAuthHelper(
                 "curr_user_uid",
                 firebaseUser?.uid ?: ""
             )
+            GlobalScope.launch(Dispatchers.IO) {
+                val defaultWalletId = userRepository.get(
+                    firebaseUser?.uid ?: ""
+                )?.default_wallet_id.toString()
+                preferenceHelper.putString(
+                    "curr_wallet_id",
+                    defaultWalletId
+                )
+            }.start()
             preferenceHelper.putBoolean(
                 "googleSignedIn",
                 true
@@ -89,6 +100,7 @@ class GoogleAuthHelper(
      *
      * @param data The [Intent] containing the result data.
      */
+    @OptIn(DelicateCoroutinesApi::class)
     fun handleResult(data: Intent?) {
         val task = GoogleSignIn.getSignedInAccountFromIntent(data)
         try {
@@ -110,11 +122,19 @@ class GoogleAuthHelper(
                                             "curr_user_uid",
                                             firebaseUser?.uid ?: ""
                                         )
+                                        GlobalScope.launch(Dispatchers.IO) {
+                                            val defaultWalletId = userRepository.get(
+                                                firebaseUser?.uid ?: ""
+                                            )?.default_wallet_id.toString()
+                                            preferenceHelper.putString(
+                                                "curr_wallet_id",
+                                                defaultWalletId
+                                            )
+                                        }.start()
                                         preferenceHelper.putBoolean(
                                             "googleSignedIn",
                                             true
                                         )
-                                        Log.w("curr_user_uid", firebaseUser?.uid ?: "")
                                         onSuccess(account, false)
                                     } else {
                                         // User does not exist in Firestore, save the user
@@ -128,7 +148,8 @@ class GoogleAuthHelper(
                                             language = "en", // default value
                                             theme = "light", // default value
                                             avatar = account.photoUrl?.toString()
-                                                ?: "https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg"
+                                                ?: "https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg",
+                                            default_wallet_id = 0 // default value
                                         )
                                         userRef.set(user)
                                             .addOnSuccessListener {
@@ -138,7 +159,15 @@ class GoogleAuthHelper(
                                                     "curr_user_uid",
                                                     firebaseUser?.uid ?: ""
                                                 )
-                                                Log.w("curr_user_uid", firebaseUser?.uid ?: "")
+                                                GlobalScope.launch(Dispatchers.IO) {
+                                                    val defaultWalletId = userRepository.get(
+                                                        firebaseUser?.uid ?: ""
+                                                    )?.default_wallet_id.toString()
+                                                    preferenceHelper.putString(
+                                                        "curr_wallet_id",
+                                                        defaultWalletId
+                                                    )
+                                                }.start()
                                                 preferenceHelper.putBoolean(
                                                     "googleSignedIn",
                                                     true
@@ -210,17 +239,5 @@ class GoogleAuthHelper(
         mGoogleSignInClient?.signOut()?.addOnCompleteListener(
             activity
         ) { task -> onComplete(task) }
-    }
-
-    /**
-     * Revokes the user's access to the app from Google.
-     *
-     * @param onComplete Callback function that will be called when the revoke access process is complete.
-     */
-    fun revokeAccess(onComplete: (task: Task<Void>) -> Unit) {
-        mGoogleSignInClient!!.revokeAccess()
-            .addOnCompleteListener(
-                activity
-            ) { task -> onComplete(task) }
     }
 }

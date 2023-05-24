@@ -41,11 +41,12 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
         viewModel.navArguments = arguments
         binding.profileVM = viewModel
 
-        authHelper = AuthHelper(ComponentActivity(), {}, {}, appDb, preferenceHelper)
-        imageHelper = ImageHelper()
-
         userDao = appDb.getUserDao()
         userRepository = UserRepository(userDao)
+
+        authHelper =
+            AuthHelper(ComponentActivity(), {}, {}, appDb, preferenceHelper, userRepository)
+        imageHelper = ImageHelper()
 
         val currentUserId = preferenceHelper.getString("curr_user_uid", "")
 

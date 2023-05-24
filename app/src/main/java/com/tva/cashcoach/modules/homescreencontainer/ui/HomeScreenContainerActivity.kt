@@ -8,6 +8,7 @@ import com.tva.cashcoach.R
 import com.tva.cashcoach.appcomponents.auth.AuthHelper
 import com.tva.cashcoach.appcomponents.base.BaseActivity
 import com.tva.cashcoach.appcomponents.googleauth.GoogleAuthHelper
+import com.tva.cashcoach.appcomponents.persistence.repository.user.UserRepository
 import com.tva.cashcoach.databinding.ActivityHomeScreenContainerBinding
 import com.tva.cashcoach.extensions.loadFragment
 import com.tva.cashcoach.modules.financialreport.ui.FinancialReportActivity
@@ -29,8 +30,11 @@ class HomeScreenContainerActivity :
     override fun onInitialized() {
         viewModel.navArguments = intent.extras?.getBundle("bundle")
         binding.homeScreenContainerVM = viewModel
-        googleAuth = GoogleAuthHelper(this, { _, _ -> }, {}, appDb, preferenceHelper)
-        auth = AuthHelper(this, {}, {}, appDb, preferenceHelper)
+        val userDao = appDb.getUserDao()
+        val userRepository = UserRepository(userDao)
+        googleAuth =
+            GoogleAuthHelper(this, { _, _ -> }, {}, appDb, preferenceHelper, userRepository)
+        auth = AuthHelper(this, {}, {}, appDb, preferenceHelper, userRepository)
         val destFragment = HomeScreenFragment.getInstance(null)
         this.loadFragment(
             R.id.fragmentContainer,

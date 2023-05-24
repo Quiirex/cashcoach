@@ -18,19 +18,20 @@
 
         <LinearLayout
             android:id="@+id/linearRoweye"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/_16pxv"
-            android:layout_marginStart="@dimen/_17pxh"
-            android:layout_marginTop="@dimen/_16pxv"
-            android:layout_weight="0.72"
             android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_17pxh"
+            android:layout_marginTop="@dimen/_12pxv"
+            android:layout_marginBottom="@dimen/_16pxv"
+            android:layout_weight="0.72"
             android:orientation="horizontal">
 
             <ImageButton
-                android:background="@drawable/rectangle_bg_black_900_radius_16"
                 android:id="@+id/btnEye"
-                android:layout_height="@dimen/_48pxh"
                 android:layout_width="@dimen/_48pxh"
+                android:layout_height="@dimen/_48pxh"
+                android:layout_marginTop="@dimen/_2pxh"
+                android:background="@drawable/rectangle_bg_black_900_radius_16"
                 android:paddingHorizontal="@dimen/_12pxh"
                 android:paddingVertical="@dimen/_12pxv"
                 android:scaleType="fitCenter"
@@ -38,34 +39,34 @@
                 tools:ignore="ContentDescription" />
 
             <TextView
-                android:ellipsize="end"
-                android:id="@+id/txtMainWallet"
+                android:id="@+id/txtWalletName"
+                style="@style/txtIntersemibold18_1"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_12pxv"
                 android:layout_marginStart="@dimen/_8pxh"
                 android:layout_marginTop="@dimen/_13pxv"
-                android:layout_weight="0.68"
-                android:layout_width="0dp"
+                android:layout_marginBottom="@dimen/_12pxv"
+                android:layout_weight="0.3"
+                android:ellipsize="end"
                 android:singleLine="true"
-                android:text="Main wallet"
-                style="@style/txtIntersemibold18_1"
+                android:text=""
                 tools:text="@string/lbl_main_wallet" />
-        </LinearLayout>
 
-        <TextView
-            android:ellipsize="end"
-            android:id="@+id/txtPriceOne"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/_28pxv"
-            android:layout_marginEnd="@dimen/_25pxh"
-            android:paddingStart="@dimen/_10pxh"
-            android:paddingEnd="@dimen/_10pxh"
-            android:layout_marginTop="@dimen/_29pxv"
-            android:layout_weight="0.28"
-            android:layout_width="0dp"
-            android:singleLine="true"
-            android:text="1000€"
-            style="@style/txtIntersemibold18"
-            tools:text="@string/lbl_1_200" />
+            <TextView
+                android:id="@+id/txtWalletBalance"
+                style="@style/txtIntersemibold18"
+                android:gravity="end"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_14pxh"
+                android:layout_marginEnd="@dimen/_10pxh"
+                android:layout_weight="0.28"
+                android:ellipsize="end"
+                android:paddingStart="@dimen/_10pxh"
+                android:paddingEnd="@dimen/_10pxh"
+                android:singleLine="true"
+                android:text=""
+                tools:text="@string/lbl_1_200" />
+        </LinearLayout>
     </LinearLayout>
 </layout>

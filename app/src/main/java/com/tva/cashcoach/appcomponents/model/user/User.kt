@@ -15,4 +15,5 @@ data class User(
     @ColumnInfo(name = "language") val language: String = "",
     @ColumnInfo(name = "theme") val theme: String = "",
     @ColumnInfo(name = "avatar") val avatar: String = "",
+    @ColumnInfo(name = "default_wallet_id") var default_wallet_id: Int = 0,
 )
