@@ -57,6 +57,7 @@ class NewIncomeActivity : BaseActivity<ActivityNewIncomeBinding>(R.layout.activi
         binding.btnContinue.setOnClickListener {
             Toast.makeText(applicationContext, getString(R.string.new_income_added), Toast.LENGTH_SHORT).show()
 
+
             val destIntent = HomeScreenContainerActivity.getIntent(this, null)
             startActivityForResult(destIntent, REQUEST_CODE_HOME_SCREEN_CONTAINER_ACTIVITY)
         }
