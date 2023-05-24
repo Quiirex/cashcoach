@@ -4,43 +4,76 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.tva.cashcoach.R
 import com.tva.cashcoach.appcomponents.base.BaseActivity
+import com.tva.cashcoach.appcomponents.di.MyApp
+import com.tva.cashcoach.appcomponents.model.user.UserDao
+import com.tva.cashcoach.appcomponents.persistence.repository.user.UserRepository
 import com.tva.cashcoach.databinding.ActivitySettingsBinding
 import com.tva.cashcoach.modules.settings.data.viewmodel.SettingsVM
 import com.tva.cashcoach.modules.settingscurrency.ui.SettingsCurrencyActivity
-import com.tva.cashcoach.modules.settingslanguage.ui.SettingsLanguageActivity
-import com.tva.cashcoach.modules.settingstheme.ui.SettingsThemeActivity
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class SettingsActivity : BaseActivity<ActivitySettingsBinding>(R.layout.activity_settings) {
     private val viewModel: SettingsVM by viewModels()
-
-    private val REQUEST_CODE_SETTINGS_THEME_ACTIVITY: Int = 787
 
     private val REQUEST_CODE_SETTINGS_LANGUAGE_ACTIVITY: Int = 171
 
     private val REQUEST_CODE_SETTINGS_CURRENCY_ACTIVITY: Int = 461
 
+    private lateinit var userDao: UserDao
+
+    private lateinit var userRepository: UserRepository
+
     override fun onInitialized() {
         viewModel.navArguments = intent.extras?.getBundle("bundle")
         binding.settingsVM = viewModel
+
+        userDao = appDb.getUserDao()
+        userRepository = UserRepository(userDao)
+
+        updateUI()
     }
 
     override fun setUpClicks() {
-        binding.linearRowTheme.setOnClickListener {
-            val destIntent = SettingsThemeActivity.getIntent(this, null)
-            startActivityForResult(destIntent, REQUEST_CODE_SETTINGS_THEME_ACTIVITY)
-        }
-        binding.linearRowLanguage.setOnClickListener {
-            val destIntent = SettingsLanguageActivity.getIntent(this, null)
-            startActivityForResult(destIntent, REQUEST_CODE_SETTINGS_LANGUAGE_ACTIVITY)
-        }
         binding.imageBack.setOnClickListener {
             finish()
         }
         binding.linearRowCurrency.setOnClickListener {
             val destIntent = SettingsCurrencyActivity.getIntent(this, null)
             startActivityForResult(destIntent, REQUEST_CODE_SETTINGS_CURRENCY_ACTIVITY)
+        }
+    }
+
+    private fun updateUI() {
+        val currentUserId = preferenceHelper.getString("curr_user_uid", "")
+
+        lifecycleScope.launch {
+            val currentUser = withContext(Dispatchers.IO) {
+                userRepository.get(currentUserId)
+            }
+
+            when (currentUser?.currency ?: "") {
+                "EUR" -> binding.txtCurrentCurrency.text =
+                    MyApp.getInstance().resources.getString(R.string.lbl_eur)
+
+                "USD" -> binding.txtCurrentCurrency.text =
+                    MyApp.getInstance().resources.getString(R.string.lbl_usd)
+            }
+        }
+    }
+
+    @Deprecated("Deprecated in Java")
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == REQUEST_CODE_SETTINGS_CURRENCY_ACTIVITY) {
+            if (resultCode == RESULT_OK) {
+                updateUI()
+            }
         }
     }
 
