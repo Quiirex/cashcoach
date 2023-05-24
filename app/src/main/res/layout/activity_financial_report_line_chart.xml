@@ -239,7 +239,7 @@
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 itemSpace="@{@dimen/_8pxh}"
                 tools:itemCount="3"
-                tools:listitem="@layout/row_listtrash1" />
+                tools:listitem="@layout/row_transaction" />
         </LinearLayout>
     </LinearLayout>
 </layout>

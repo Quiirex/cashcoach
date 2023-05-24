@@ -130,6 +130,7 @@
     <string name="lbl_name_surname">Name Surname</string>
     <string name="lbl_help">Help ❔</string>
     <string name="lbl_about">About the app</string>
+    <string name="new_income_added">Income added</string>
     <string name="arrow_tag"><![CDATA[>]]></string>
     <string name="transactions">Transactions</string>
 </resources>
