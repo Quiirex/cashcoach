@@ -100,7 +100,7 @@
                 android:id="@+id/linearColumninputdescripti"
                 style="@style/groupStylewhite_A700cornerRadius"
                 android:layout_width="match_parent"
-                android:layout_height="339dp"
+                android:layout_height="match_parent"
                 android:layout_gravity="top|start"
                 android:orientation="vertical">
 

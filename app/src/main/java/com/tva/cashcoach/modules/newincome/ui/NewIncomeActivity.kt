@@ -3,14 +3,17 @@ package com.tva.cashcoach.modules.newincome.ui
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
 import com.tva.cashcoach.R
 import com.tva.cashcoach.appcomponents.base.BaseActivity
+import com.tva.cashcoach.appcomponents.model.income.Income
 import com.tva.cashcoach.databinding.ActivityNewIncomeBinding
 import com.tva.cashcoach.modules.homescreencontainer.ui.HomeScreenContainerActivity
 import com.tva.cashcoach.modules.newincome.data.model.SpinnerDropdownCategoModel
 import com.tva.cashcoach.modules.newincome.data.model.SpinnerDropdownWalletModel
 import com.tva.cashcoach.modules.newincome.data.viewmodel.NewIncomeVM
+import java.util.Date
 
 class NewIncomeActivity : BaseActivity<ActivityNewIncomeBinding>(R.layout.activity_new_income) {
     private val viewModel: NewIncomeVM by viewModels()
@@ -52,6 +55,8 @@ class NewIncomeActivity : BaseActivity<ActivityNewIncomeBinding>(R.layout.activi
 
     override fun setUpClicks() {
         binding.btnContinue.setOnClickListener {
+            Toast.makeText(applicationContext, getString(R.string.new_income_added), Toast.LENGTH_SHORT).show()
+
             val destIntent = HomeScreenContainerActivity.getIntent(this, null)
             startActivityForResult(destIntent, REQUEST_CODE_HOME_SCREEN_CONTAINER_ACTIVITY)
         }

@@ -101,4 +101,5 @@
     <string name="lbl_name_surname">Name Nachname</string>
     <string name="lbl_help">Hilfe</string>
     <string name="lbl_about">Über die App</string>
+    <string name="new_income_added">Einkommen hinzugefügt</string>
 </resources>
