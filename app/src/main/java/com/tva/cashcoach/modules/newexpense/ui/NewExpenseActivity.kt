@@ -1,20 +1,36 @@
 package com.tva.cashcoach.modules.newexpense.ui
 
+import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.tva.cashcoach.R
 import com.tva.cashcoach.appcomponents.base.BaseActivity
+import com.tva.cashcoach.appcomponents.model.expense.Expense
+import com.tva.cashcoach.appcomponents.model.expense.ExpenseDao
+import com.tva.cashcoach.appcomponents.model.income.Income
+import com.tva.cashcoach.appcomponents.model.income.IncomeDao
+import com.tva.cashcoach.appcomponents.persistence.repository.expense.ExpenseRepository
+import com.tva.cashcoach.appcomponents.persistence.repository.income.IncomeRepository
 import com.tva.cashcoach.databinding.ActivityNewExpenseBinding
 import com.tva.cashcoach.modules.homescreencontainer.ui.HomeScreenContainerActivity
 import com.tva.cashcoach.modules.newexpense.data.model.SpinnerDropdownCategoModel
 import com.tva.cashcoach.modules.newexpense.data.model.SpinnerDropdownWalletModel
 import com.tva.cashcoach.modules.newexpense.data.viewmodel.NewExpenseVM
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import java.util.Date
 
 class NewExpenseActivity : BaseActivity<ActivityNewExpenseBinding>(R.layout.activity_new_expense) {
     private val viewModel: NewExpenseVM by viewModels<NewExpenseVM>()
 
+    private lateinit var expenseDao: ExpenseDao
+
+    private lateinit var expenseRepository: ExpenseRepository
+
     private val REQUEST_CODE_HOME_SCREEN_CONTAINER_ACTIVITY: Int = 355
 
-    override fun onInitialized(): Unit {
+    override fun onInitialized() {
         viewModel.navArguments = intent.extras?.getBundle("bundle")
         viewModel.spinnerDropdownCategoList.value = mutableListOf(
             SpinnerDropdownCategoModel("Item1"),
@@ -45,10 +61,31 @@ class NewExpenseActivity : BaseActivity<ActivityNewExpenseBinding>(R.layout.acti
 //            )
 //        binding.spinnerDropdownWallet.adapter = spinnerDropdownWalletAdapter
         binding.newExpenseVM = viewModel
+
+        expenseDao = appDb.getExpenseDao()
+        expenseRepository = ExpenseRepository(expenseDao)
     }
 
     override fun setUpClicks(): Unit {
         binding.btnContinue.setOnClickListener {
+            val newExpense = Expense(
+                id=0,
+                name = binding.etName.text.toString(),
+                value = binding.etValue.text.toString().toDouble(),
+                description = binding.etDescription.text.toString(),
+                date = Date(),
+                category_id = 1,
+                wallet_id = preferenceHelper.getString("curr_wallet_id", "").toInt()
+            )
+
+            lifecycleScope.launch {
+                withContext(Dispatchers.IO) {
+                    expenseRepository.insert(newExpense)
+                }
+            }
+
+            Toast.makeText(applicationContext, getString(R.string.new_expense_added), Toast.LENGTH_SHORT).show()
+
             val destIntent = HomeScreenContainerActivity.getIntent(this, null)
             startActivityForResult(destIntent, REQUEST_CODE_HOME_SCREEN_CONTAINER_ACTIVITY)
         }

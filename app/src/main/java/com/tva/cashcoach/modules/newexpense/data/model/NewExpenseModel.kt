@@ -24,9 +24,10 @@ data class NewExpenseModel(
     /**
      * TODO Replace with dynamic value
      */
-    var etZeroValue: String? = null,
+    var etValue: String? = null,
     /**
      * TODO Replace with dynamic value
      */
-    var etInputDescriptiValue: String? = null
+    var etDescription: String? = null,
+    var etName: String? = null
 )
