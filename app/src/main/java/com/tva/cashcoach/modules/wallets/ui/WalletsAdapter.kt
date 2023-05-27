@@ -1,5 +1,7 @@
 package com.tva.cashcoach.modules.wallets.ui
 
+import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,20 +21,48 @@ class WalletsAdapter(
 ) : RecyclerView.Adapter<WalletsAdapter.RowAccountsVH>() {
     private var clickListener: OnItemClickListener? = null
     private var wallets: List<Wallet> = emptyList()
+    private var selectedPosition: Int = -1
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RowAccountsVH {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.row_wallet, parent, false)
         return RowAccountsVH(view)
     }
 
-    override fun onBindViewHolder(holder: RowAccountsVH, position: Int) {
+    override fun onBindViewHolder(
+        holder: RowAccountsVH,
+        @SuppressLint("RecyclerView") position: Int
+    ) {
         val wallet = wallets[position]
         val walletsRowModel = WalletsRowModel(wallet.name, wallet.balance)
         holder.binding.accountsRowModel = walletsRowModel
         holder.binding.txtWalletName.text = wallet.name
         holder.binding.txtWalletBalance.text =
             wallet.balance.toString() + "€" // TODO: Change to currency
+
+        // Get the default_wallet_id from the preferenceHelper
+        val defaultWalletId = preferenceHelper.getString("curr_wallet_id", "").toInt()
+
+        // Check if the current wallet id matches the default_wallet_id and set the radio button accordingly
+        holder.binding.radioDefaultWallet.isChecked = wallet.id == defaultWalletId
+
+        // Update the selectedPosition
+        if (wallet.id == defaultWalletId) {
+            selectedPosition = position
+        }
+
+        // Set a click listener for the radio button
+        holder.binding.radioDefaultWallet.setOnClickListener {
+            if (selectedPosition != position) {
+                // Update the default_wallet_id in the preferenceHelper
+                preferenceHelper.putString("curr_wallet_id", wallet.id.toString())
+                Log.d("Change default wallet", "Wallet id: " + wallet.id.toString())
+                // Update the selectedPosition and refresh the adapter
+                selectedPosition = position
+                notifyDataSetChanged()
+            }
+        }
     }
+
 
     override fun getItemCount(): Int = wallets.size
 
@@ -63,4 +93,3 @@ class WalletsAdapter(
         notifyDataSetChanged()
     }
 }
-

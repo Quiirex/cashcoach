@@ -137,4 +137,5 @@
     <string name="please_enter_wallet_name">Please enter wallet name</string>
     <string name="please_enter_balance">Please enter balance</string>
     <string name="new_expense_added">Expense added</string>
+    <string name="make_this_your_default_wallet">Make this your default wallet?</string>
 </resources>
