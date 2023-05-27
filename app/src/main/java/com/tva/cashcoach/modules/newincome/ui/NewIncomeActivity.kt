@@ -12,8 +12,11 @@ import com.tva.cashcoach.R
 import com.tva.cashcoach.appcomponents.base.BaseActivity
 import com.tva.cashcoach.appcomponents.model.income.Income
 import com.tva.cashcoach.appcomponents.model.income.IncomeDao
+import com.tva.cashcoach.appcomponents.model.transaction.Transaction
+import com.tva.cashcoach.appcomponents.model.transaction.TransactionDao
 import com.tva.cashcoach.appcomponents.model.user.UserDao
 import com.tva.cashcoach.appcomponents.persistence.repository.income.IncomeRepository
+import com.tva.cashcoach.appcomponents.persistence.repository.transaction.TransactionRepository
 import com.tva.cashcoach.appcomponents.persistence.repository.user.UserRepository
 import com.tva.cashcoach.databinding.ActivityNewIncomeBinding
 import com.tva.cashcoach.modules.homescreencontainer.ui.HomeScreenContainerActivity
@@ -28,9 +31,9 @@ import java.util.Date
 class NewIncomeActivity : BaseActivity<ActivityNewIncomeBinding>(R.layout.activity_new_income) {
     private val viewModel: NewIncomeVM by viewModels()
 
-    private lateinit var incomeDao: IncomeDao
+    private lateinit var transactionDao: TransactionDao
 
-    private lateinit var incomeRepository: IncomeRepository
+    private lateinit var transactionRepository: TransactionRepository
 
     private val REQUEST_CODE_HOME_SCREEN_CONTAINER_ACTIVITY: Int = 815
 
@@ -66,27 +69,29 @@ class NewIncomeActivity : BaseActivity<ActivityNewIncomeBinding>(R.layout.activi
 //        binding.spinnerDropdownWallet.adapter = spinnerDropdownWalletAdapter
         binding.incomeVM = viewModel
 
-        incomeDao = appDb.getIncomeDao()
-        incomeRepository = IncomeRepository(incomeDao)
+        transactionDao = appDb.getTransactionDao()
+        transactionRepository = TransactionRepository(transactionDao)
     }
 
     override fun setUpClicks() {
         binding.btnContinue.setOnClickListener {
 
-            val newIncome = Income(
+            val newTransaction = Transaction(
                 id = null,
                 name = binding.etName.text.toString(),
                 value = binding.etValue.text.toString().toDouble(),
                 description = binding.etDescription.text.toString(),
                 date = Date(),
                 category_id = 1,
-                wallet_id = preferenceHelper.getString("curr_wallet_id", "").toInt()
+                wallet_id = preferenceHelper.getString("curr_wallet_id", "").toInt(),
+                type = "income",
+                currency = "EUR"
             )
 
 
             lifecycleScope.launch {
                 withContext(Dispatchers.IO) {
-                    incomeRepository.insert(newIncome)
+                    transactionRepository.insert(newTransaction)
                 }
             }
 

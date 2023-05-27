@@ -9,8 +9,11 @@ import com.tva.cashcoach.appcomponents.model.expense.Expense
 import com.tva.cashcoach.appcomponents.model.expense.ExpenseDao
 import com.tva.cashcoach.appcomponents.model.income.Income
 import com.tva.cashcoach.appcomponents.model.income.IncomeDao
+import com.tva.cashcoach.appcomponents.model.transaction.Transaction
+import com.tva.cashcoach.appcomponents.model.transaction.TransactionDao
 import com.tva.cashcoach.appcomponents.persistence.repository.expense.ExpenseRepository
 import com.tva.cashcoach.appcomponents.persistence.repository.income.IncomeRepository
+import com.tva.cashcoach.appcomponents.persistence.repository.transaction.TransactionRepository
 import com.tva.cashcoach.databinding.ActivityNewExpenseBinding
 import com.tva.cashcoach.modules.homescreencontainer.ui.HomeScreenContainerActivity
 import com.tva.cashcoach.modules.newexpense.data.model.SpinnerDropdownCategoModel
@@ -24,6 +27,8 @@ import java.util.Date
 class NewExpenseActivity : BaseActivity<ActivityNewExpenseBinding>(R.layout.activity_new_expense) {
     private val viewModel: NewExpenseVM by viewModels<NewExpenseVM>()
 
+    private lateinit var transactionDao: TransactionDao
+    private lateinit var transactionRepository: TransactionRepository
     private lateinit var expenseDao: ExpenseDao
 
     private lateinit var expenseRepository: ExpenseRepository
@@ -62,25 +67,27 @@ class NewExpenseActivity : BaseActivity<ActivityNewExpenseBinding>(R.layout.acti
 //        binding.spinnerDropdownWallet.adapter = spinnerDropdownWalletAdapter
         binding.newExpenseVM = viewModel
 
-        expenseDao = appDb.getExpenseDao()
-        expenseRepository = ExpenseRepository(expenseDao)
+        transactionDao = appDb.getTransactionDao()
+        transactionRepository = TransactionRepository(transactionDao)
     }
 
     override fun setUpClicks(): Unit {
         binding.btnContinue.setOnClickListener {
-            val newExpense = Expense(
-                id=0,
+            val newTransaction = Transaction(
+                id=null,
                 name = binding.etName.text.toString(),
                 value = binding.etValue.text.toString().toDouble(),
                 description = binding.etDescription.text.toString(),
                 date = Date(),
                 category_id = 1,
-                wallet_id = preferenceHelper.getString("curr_wallet_id", "").toInt()
+                wallet_id = preferenceHelper.getString("curr_wallet_id", "").toInt(),
+                type = "expense",
+                currency = "EUR"
             )
 
             lifecycleScope.launch {
                 withContext(Dispatchers.IO) {
-                    expenseRepository.insert(newExpense)
+                    transactionRepository.insert(newTransaction)
                 }
             }
 
