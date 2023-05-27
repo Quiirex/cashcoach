@@ -43,6 +43,7 @@ class WalletsActivity : BaseActivity<ActivityWalletsBinding>(R.layout.activity_w
         walletRepository = WalletRepository(walletDao)
         userDao = appDb.getUserDao()
         userRepository = UserRepository(userDao)
+        val currentUserId = preferenceHelper.getString("curr_user_uid", "")
 
         walletHelper = WalletHelper(walletRepository, userRepository)
 

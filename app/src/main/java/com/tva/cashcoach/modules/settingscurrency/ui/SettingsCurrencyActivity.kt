@@ -54,6 +54,7 @@ class SettingsCurrencyActivity :
             lifecycleScope.launch {
                 withContext(Dispatchers.IO) {
                     userRepository.updateCurrencyByUid(currentUserId, "EUR")
+                    preferenceHelper.putString("curr_user_currency", "EUR")
                     setResult(Activity.RESULT_OK)
                     finish()
                 }
@@ -64,6 +65,7 @@ class SettingsCurrencyActivity :
             lifecycleScope.launch {
                 withContext(Dispatchers.IO) {
                     userRepository.updateCurrencyByUid(currentUserId, "USD")
+                    preferenceHelper.putString("curr_user_currency", "USD")
                     setResult(Activity.RESULT_OK)
                     finish()
                 }

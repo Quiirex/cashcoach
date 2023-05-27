@@ -1,6 +1,8 @@
 package com.tva.cashcoach.appcomponents.utility
 
 import android.util.Log
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.tva.cashcoach.appcomponents.di.MyApp
 import com.tva.cashcoach.appcomponents.model.wallet.Wallet
 import com.tva.cashcoach.appcomponents.persistence.repository.user.UserRepository
@@ -35,6 +37,13 @@ class WalletHelper(
                 return
             }
             val wallet = Wallet(null, name, type, budget, userId)
+            syncWalletToFirestore(wallet, callback = { success ->
+                if (success) {
+                    Log.d("WalletHelper", "synced wallet to firestore")
+                } else {
+                    Log.w("WalletHelper", "failed to sync wallet to firestore")
+                }
+            })
             GlobalScope.launch(Dispatchers.IO) {
                 val insertedWalletId = walletRepository.insert(wallet).toInt()
                 withContext(Dispatchers.Main) {
@@ -66,6 +75,50 @@ class WalletHelper(
             e.printStackTrace()
             return false
         }
+    }
+
+    /**
+     * Sync wallets of the current user with firestore
+     * @return true if successful, false otherwise.
+     */
+    fun syncWalletToFirestore(wallet: Wallet, callback: (Boolean) -> Unit) {
+        val firebaseUser = FirebaseAuth.getInstance().currentUser
+        val userRef = FirebaseFirestore.getInstance().collection("users")
+            .document(firebaseUser?.uid ?: "")
+        userRef.get()
+            .addOnSuccessListener { document ->
+                if (document.exists()) {
+                    // create an empty field "wallets" array for the user if it doesn't exist already and add the wallet, or else just add the wallet to the existing array
+                    val wallets = document.data?.get("wallets") as? ArrayList<HashMap<String, Any>>
+                    if (wallets == null) {
+                        val newWallets = arrayListOf<HashMap<String, Any>>()
+                        val newWallet = hashMapOf<String, Any>(
+                            "name" to wallet.name,
+                            "type" to wallet.type,
+                            "balance" to wallet.balance,
+                        )
+                        newWallets.add(newWallet)
+                        userRef.update("wallets", newWallets)
+                        callback(true)
+                    } else {
+                        val newWallet = hashMapOf<String, Any>(
+                            "name" to wallet.name,
+                            "type" to wallet.type,
+                            "balance" to wallet.balance,
+                        )
+                        wallets.add(newWallet)
+                        userRef.update("wallets", wallets)
+                        callback(true)
+                    }
+                } else {
+                    Log.d("WalletHelper", "No such document")
+                    callback(false)
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.w("WalletHelper", "Error getting documents: ", exception)
+                callback(false)
+            }
     }
 
     /**
