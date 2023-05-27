@@ -11,17 +11,18 @@ data class NewIncomeModel(
     /**
      * TODO Replace with dynamic value
      */
-    var txtHowmuch: String? = MyApp.getInstance().resources.getString(R.string.lbl_how_much),
+    var txtValue: String? = MyApp.getInstance().resources.getString(R.string.lbl_how_much),
     /**
      * TODO Replace with dynamic value
      */
-    var txtOne: String? = MyApp.getInstance().resources.getString(R.string.lbl),
+    var txtCurrency: String? = MyApp.getInstance().resources.getString(R.string.lbl),
     /**
      * TODO Replace with dynamic value
      */
-    var etZeroValue: String? = null,
+    var etValue: String? = null,
     /**
      * TODO Replace with dynamic value
      */
-    var etInputDescriptiValue: String? = null
+    var etDescription: String? = null,
+    var etName: String? = null
 )

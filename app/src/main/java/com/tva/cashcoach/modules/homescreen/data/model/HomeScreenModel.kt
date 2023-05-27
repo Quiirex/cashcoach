@@ -12,7 +12,7 @@ data class HomeScreenModel(
     /**
      * TODO Replace with dynamic value
      */
-    var txtPrice: String? = "",
+    var txtPrice: String? = "600",
     /**
      * TODO Replace with dynamic value
      */
@@ -20,7 +20,7 @@ data class HomeScreenModel(
     /**
      * TODO Replace with dynamic value
      */
-    var txtPriceOne: String? = "",
+    var txtPriceOne: String? = "800",
     /**
      * TODO Replace with dynamic value
      */
@@ -28,7 +28,7 @@ data class HomeScreenModel(
     /**
      * TODO Replace with dynamic value
      */
-    var txtPriceTwo: String? = "",
+    var txtPriceTwo: String? = "200",
     /**
      * TODO Replace with dynamic value
      */
