@@ -107,4 +107,5 @@
     <string name="transactions">Transaktionen</string>
     <string name="please_enter_wallet_name">Bitte geben Sie den Wallet-Namen ein</string>
     <string name="please_enter_balance">Bitte geben Sie den Kontostand ein</string>
+    <string name="make_this_your_default_wallet">Diese Brieftasche zu Ihrer Standard-Brieftasche machen?</string>
 </resources>
