@@ -11,8 +11,13 @@ import androidx.room.Update
 @Dao
 interface TransactionDao {
     @Query("SELECT * FROM `transaction` ORDER BY id ASC")
-    fun getAll(): LiveData<List<Transaction>>
+    fun getAll(): List<Transaction>
 
+    @Query("SELECT * FROM `transaction` WHERE type = 'income'")
+    fun getAllIncomes(): LiveData<List<Transaction>>
+
+    @Query("SELECT * FROM `transaction` WHERE type = 'expense'")
+    fun getAllExpenses(): LiveData<List<Transaction>>
     @Query("SELECT * FROM `transaction` WHERE id = :id")
     fun getById(id: Int): Transaction?
 

@@ -17,6 +17,7 @@ import com.tva.cashcoach.modules.newincome.ui.NewIncomeActivity
 
 class HomeScreenFragment : BaseFragment<FragmentHomeScreenBinding>(R.layout.fragment_home_screen) {
     private val viewModel: HomeScreenVM by viewModels()
+    private lateinit var listframefiveAdapter: ListframefiveAdapter
 
     private val OPEN_INCOME_ACTIVITY: Int = 666
 
@@ -29,23 +30,13 @@ class HomeScreenFragment : BaseFragment<FragmentHomeScreenBinding>(R.layout.frag
             SpinnerDropdownMonthModel("Item4"),
             SpinnerDropdownMonthModel("Item5")
         )
-//        val spinnerDropdownMonthAdapter =
-//            SpinnerDropdownMonthAdapter(
-//                requireActivity(),
-//                R.layout.spinner_item,
-//                viewModel.spinnerDropdownMonthList.value ?: mutableListOf()
-//            )
-//        binding.spinnerDropdownMonth.adapter = spinnerDropdownMonthAdapter
-        val listframefiveAdapter =
-            ListframefiveAdapter(viewModel.listframefiveList.value ?: mutableListOf())
+        listframefiveAdapter = ListframefiveAdapter(viewModel.listframefiveList.value ?: mutableListOf())
         binding.recyclerListframefive.adapter = listframefiveAdapter
-        listframefiveAdapter.setOnItemClickListener(
-            object : ListframefiveAdapter.OnItemClickListener {
-                override fun onItemClick(view: View, position: Int, item: ListframefiveRowModel) {
-                    onClickRecyclerListframefive(view, position, item)
-                }
+        listframefiveAdapter.setOnItemClickListener(object : ListframefiveAdapter.OnItemClickListener {
+            override fun onItemClick(view: View, position: Int, item: ListframefiveRowModel) {
+                onClickRecyclerListframefive(view, position, item)
             }
-        )
+        })
 
         binding.btnEye.setOnClickListener {
             val intent = Intent(context, NewIncomeActivity::class.java)
@@ -67,9 +58,10 @@ class HomeScreenFragment : BaseFragment<FragmentHomeScreenBinding>(R.layout.frag
             startActivity(intent)
         }
 
-        viewModel.listframefiveList.observe(requireActivity()) {
-            listframefiveAdapter.updateData(it)
+        viewModel.listframefiveList.observe(viewLifecycleOwner) { listframefive ->
+            listframefiveAdapter.updateData(listframefive)
         }
+
         binding.homeScreenVM = viewModel
     }
 
@@ -87,7 +79,6 @@ class HomeScreenFragment : BaseFragment<FragmentHomeScreenBinding>(R.layout.frag
 
     companion object {
         const val TAG: String = "HOME_SCREEN_FRAGMENT"
-
 
         fun getInstance(bundle: Bundle?): HomeScreenFragment {
             val fragment = HomeScreenFragment()

@@ -5,7 +5,7 @@
     <data>
 
         <variable
-            name="listtrash1RowModel"
+            name="TransactionRowModel"
             type="com.tva.cashcoach.modules.transaction.data.model.TransactionModel" />
     </data>
 
@@ -48,7 +48,7 @@
                 android:layout_marginEnd="@dimen/_10pxh"
                 android:layout_width="wrap_content"
                 android:singleLine="true"
-                android:text="@{listtrash1RowModel.txtCategory}"
+                android:text="@{TransactionRowModel.category}"
                 style="@style/txtIntermedium16"
                 tools:text="@string/lbl_shopping" />
 
@@ -60,7 +60,7 @@
                 android:layout_marginTop="@dimen/_11pxv"
                 android:layout_width="wrap_content"
                 android:singleLine="true"
-                android:text="@{listtrash1RowModel.txtDescription}"
+                android:text="@{TransactionRowModel.description}"
                 style="@style/txtIntermedium13"
                 tools:text="@string/lbl_groceries" />
         </LinearLayout>
@@ -84,7 +84,7 @@
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 android:singleLine="true"
-                android:text="@{listtrash1RowModel.txtAmount}"
+                android:text="@{TransactionRowModel.amount}"
                 style="@style/txtIntersemibold16"
                 tools:text="@string/lbl_120" />
 
@@ -97,7 +97,7 @@
                 android:layout_marginTop="@dimen/_12pxv"
                 android:layout_width="match_parent"
                 android:singleLine="true"
-                android:text="@{listtrash1RowModel.txtTime}"
+                android:text="@{TransactionRowModel.time}"
                 style="@style/txtIntermedium13"
                 tools:text="@string/lbl_10_00" />
         </LinearLayout>

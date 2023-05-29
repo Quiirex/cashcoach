@@ -55,63 +55,16 @@
                 </LinearLayout>
             </androidx.appcompat.widget.Toolbar>
 
-            <FrameLayout
-                android:id="@+id/frameBars"
-                android:layout_height="@dimen/_48pxv"
-                android:layout_width="match_parent"
-                style="@style/groupStylewhite_A700">
-
-                <TextView
-                    android:ellipsize="end"
-                    android:id="@+id/txtToday"
-                    android:layout_height="wrap_content"
-                    android:layout_width="match_parent"
-                    android:paddingBottom="@dimen/_10pxv"
-                    android:paddingStart="@dimen/_16pxh"
-                    android:paddingTop="@dimen/_15pxv"
-                    android:singleLine="true"
-                    android:text="@{transactionVM.transactionModel.txtToday}"
-                    style="@style/txtSolid"
-                    tools:text="@string/lbl_today" />
-            </FrameLayout>
-
             <androidx.recyclerview.widget.RecyclerView
                 android:gravity="center_horizontal"
                 android:id="@+id/recyclerListtrash"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginEnd="@dimen/_19pxh"
                 android:layout_marginStart="@dimen/_19pxh"
                 android:layout_width="match_parent"
                 android:orientation="vertical"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 itemSpace="@{@dimen/_8pxh}"
-                tools:itemCount="3"
-                tools:listitem="@layout/row_transaction" />
-
-            <TextView
-                android:ellipsize="end"
-                android:id="@+id/txtYesterday"
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent"
-                android:paddingBottom="@dimen/_10pxv"
-                android:paddingStart="@dimen/_16pxh"
-                android:paddingTop="@dimen/_15pxv"
-                android:singleLine="true"
-                android:text="@{transactionVM.transactionModel.txtYesterday}"
-                style="@style/txtSolid"
-                tools:text="@string/lbl_yesterday" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:gravity="center_horizontal"
-                android:id="@+id/recyclerListquestion"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/_19pxh"
-                android:layout_marginStart="@dimen/_19pxh"
-                android:layout_width="match_parent"
-                android:orientation="vertical"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                itemSpace="@{@dimen/_8pxh}"
-                tools:itemCount="2"
                 tools:listitem="@layout/row_transaction" />
         </LinearLayout>
     </LinearLayout>

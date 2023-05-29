@@ -19,7 +19,4 @@ class TransactionVM : ViewModel(), KoinComponent {
 
     val listtrashList: MutableLiveData<MutableList<ListtrashRowModel>> =
         MutableLiveData(mutableListOf())
-
-    val listquestionList: MutableLiveData<MutableList<ListquestionRowModel>> =
-        MutableLiveData(mutableListOf())
 }

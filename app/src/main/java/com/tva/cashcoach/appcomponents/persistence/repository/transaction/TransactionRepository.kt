@@ -8,7 +8,9 @@ import com.tva.cashcoach.appcomponents.model.transaction.TransactionDao
 
 class TransactionRepository(private val transactionDao: TransactionDao) {
 
-    val allIncomes: LiveData<List<Transaction>> = transactionDao.getAll()
+    val allIncomes: LiveData<List<Transaction>> = transactionDao.getAllIncomes()
+    val allExpenses: LiveData<List<Transaction>> = transactionDao.getAllExpenses()
+    val allTransactions: List<Transaction> = transactionDao.getAll()
 
     fun insert(transaction: Transaction) {
         transactionDao.insert(transaction)
