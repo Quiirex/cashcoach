@@ -12,6 +12,9 @@ import com.tva.cashcoach.databinding.RowTransactionBinding
 import com.tva.cashcoach.modules.transaction.data.model.TransactionRowModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class TransactionAdapter(
     private val transactionRepository: TransactionRepository,
@@ -36,11 +39,49 @@ class TransactionAdapter(
             transaction.date.toString()
         )
         holder.binding.transactionRowModel = transactionRowModel
-        holder.binding.txtCategory.text = transaction.category_id.toString()
+        holder.binding.txtCategory.text = "ID KATEGORIJE"//transaction.category_id.toString()
         holder.binding.txtDescription.text = transaction.description
-        holder.binding.txtAmount.text = transaction.value.toString()
         holder.binding.txtTime.text = transaction.date.toString()
+
+        val date = formatDate(transaction.date.toString())
+        holder.binding.txtTime.text = date
+
+        val amountColorRes = when (transaction.type) {
+            "income" -> R.color.teal_400
+            "expense" -> R.color.red_A200
+            else -> R.color.black
+        }
+        val amountColor = holder.itemView.context.resources.getColor(amountColorRes)
+        holder.binding.txtAmount.setTextColor(amountColor)
+
+        if (preferenceHelper.getString("curr_user_currency", "") == "EUR") {
+            val amountWithCurrency = String.format("%.2f €", transaction.value)
+            holder.binding.txtAmount.text = amountWithCurrency
+        }
+        else {
+            val amountWithCurrency = String.format("%.2f $", transaction.value)
+            holder.binding.txtAmount.text = amountWithCurrency
+        }
     }
+
+    private fun formatDate(dateString: String): String {
+        val inputFormat = SimpleDateFormat("E MMM dd HH:mm:ss Z yyyy", Locale.getDefault())
+        val outputFormat = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
+        val outputFormatToday = SimpleDateFormat("HH:mm", Locale.getDefault())// HH:mm", Locale.getDefault())
+        val date = inputFormat.parse(dateString)
+
+        val todayString = Date().toString()
+        val inputToday = SimpleDateFormat("E MMM dd HH:mm:ss Z yyyy", Locale.getDefault())
+        val outputToday = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
+        val today = inputToday.parse(todayString)
+
+        if(outputToday.format(today) == outputFormat.format(date)) {
+            return outputFormatToday.format(date)
+        } else {
+            return outputFormat.format(date)
+        }
+    }
+
 
     override fun getItemCount(): Int {
         return transactions.size

@@ -13,6 +13,13 @@ class TransactionRepository(private val transactionDao: TransactionDao) {
         return transactionDao.getAll()
     }
 
+    fun getIncomesSum(): Double {
+        return  transactionDao.getIncomesSum()
+    }
+
+    fun getExpensesSum(): Double {
+        return  transactionDao.getExpensesSum()
+    }
     fun insert(transaction: Transaction) {
         transactionDao.insert(transaction)
     }

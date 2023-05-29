@@ -118,7 +118,7 @@
 
                         <TextView
                             android:ellipsize="end"
-                            android:id="@+id/txtPriceOne"
+                            android:id="@+id/valIncome"
                             android:layout_height="wrap_content"
                             android:layout_width="match_parent"
                             android:singleLine="true"
@@ -174,7 +174,7 @@
 
                         <TextView
                             android:ellipsize="end"
-                            android:id="@+id/txtPriceTwo"
+                            android:id="@+id/valExpenses"
                             android:layout_height="wrap_content"
                             android:layout_width="match_parent"
                             android:singleLine="true"
@@ -313,7 +313,7 @@
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerListframefive"
+                android:id="@+id/recyclerTransactions"
                 itemSpace="@{@dimen/_8pxh}"
                 android:layout_width="match_parent"
                 android:layout_height="441dp"
