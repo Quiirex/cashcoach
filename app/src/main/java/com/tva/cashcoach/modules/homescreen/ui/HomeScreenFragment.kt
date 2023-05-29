@@ -47,12 +47,12 @@ class HomeScreenFragment : BaseFragment<FragmentHomeScreenBinding>(R.layout.frag
             }
         )
 
-        binding.btnEye.setOnClickListener {
+        binding.linearRowIncome.setOnClickListener {
             val intent = Intent(context, NewIncomeActivity::class.java)
             startActivity(intent)
         }
 
-        binding.btnTelevision.setOnClickListener {
+        binding.linearRowExpense.setOnClickListener {
             val intent = Intent(context, NewExpenseActivity::class.java)
             startActivity(intent)
         }

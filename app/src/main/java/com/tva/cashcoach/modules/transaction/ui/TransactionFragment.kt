@@ -43,19 +43,6 @@ class TransactionFragment :
         viewModel.listtrashList.observe(requireActivity()) {
             listtrashAdapter.updateData(it)
         }
-        val listquestionAdapter =
-            ListquestionAdapter(viewModel.listquestionList.value ?: mutableListOf())
-        binding.recyclerListquestion.adapter = listquestionAdapter
-        listquestionAdapter.setOnItemClickListener(
-            object : ListquestionAdapter.OnItemClickListener {
-                override fun onItemClick(view: View, position: Int, item: ListquestionRowModel) {
-                    onClickRecyclerListquestion(view, position, item)
-                }
-            }
-        )
-        viewModel.listquestionList.observe(requireActivity()) {
-            listquestionAdapter.updateData(it)
-        }
         binding.transactionVM = viewModel
     }
 
