@@ -74,7 +74,7 @@
                 android:orientation="horizontal">
 
                 <LinearLayout
-                    android:id="@+id/linearRoweye"
+                    android:id="@+id/linearRowIncome"
                     android:layout_height="wrap_content"
                     android:layout_width="@dimen/_166pxh"
                     android:orientation="horizontal"
@@ -129,7 +129,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/linearRowtelevision"
+                    android:id="@+id/linearRowExpense"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_16pxh"
                     android:layout_width="@dimen/_166pxh"

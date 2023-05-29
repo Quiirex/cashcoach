@@ -109,4 +109,5 @@
     <string name="please_enter_balance">Bitte geben Sie den Kontostand ein</string>
     <string name="new_expense_added">Ausgabe hinzugefügt</string>
     <string name="make_this_your_default_wallet">Diese Brieftasche zu Ihrer Standard-Brieftasche machen?</string>
+    <string name="lbl_transactions">Transaktionen</string>
 </resources>
