@@ -109,4 +109,5 @@
     <string name="please_enter_balance">Vnesite stanje</string>
     <string name="new_expense_added">Strošek dodan</string>
     <string name="make_this_your_default_wallet">Naj bo tvoja privzeta denarnica?</string>
+    <string name="lbl_transactions">Transakcije</string>
 </resources>

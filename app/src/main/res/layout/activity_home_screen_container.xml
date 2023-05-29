@@ -116,7 +116,7 @@
                             android:singleLine="true"
                             android:text="@{homeScreenContainerVM.homeScreenContainerModel.txtTransaction}"
                             style="@style/txtIntermedium10_1"
-                            tools:text="@string/lbl_transaction" />
+                            tools:text="@string/lbl_transactions" />
                     </LinearLayout>
 
                     <FrameLayout

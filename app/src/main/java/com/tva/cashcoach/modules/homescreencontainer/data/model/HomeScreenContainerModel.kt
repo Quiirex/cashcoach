@@ -11,7 +11,7 @@ data class HomeScreenContainerModel(
     /**
      * TODO Replace with dynamic value
      */
-    var txtTransaction: String? = MyApp.getInstance().resources.getString(R.string.lbl_transaction),
+    var txtTransaction: String? = MyApp.getInstance().resources.getString(R.string.lbl_transactions),
     /**
      * TODO Replace with dynamic value
      */

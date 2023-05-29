@@ -204,11 +204,11 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/_16pxh"
             android:layout_marginStart="@dimen/_16pxh"
-            android:layout_marginTop="@dimen/_36pxv"
+            android:layout_marginTop="@dimen/_30pxv"
             android:layout_width="wrap_content"
             android:singleLine="true"
             android:text="@{loginVM.loginModel.txtForgotPassword}"
-            style="@style/txtIntersemibold18_blue"
+            style="@style/txtIntermedium16"
             tools:text="@string/msg_forgot_password" />
 
         <TextView
@@ -219,11 +219,11 @@
             android:layout_marginBottom="@dimen/_20pxv"
             android:layout_marginEnd="@dimen/_16pxh"
             android:layout_marginStart="@dimen/_16pxh"
-            android:layout_marginTop="@dimen/_36pxv"
+            android:layout_marginTop="@dimen/_30pxv"
             android:layout_width="match_parent"
             android:singleLine="true"
             android:text="@{loginVM.loginModel.txtConfirmation}"
-            style="@style/txtIntermedium16_blue"
+            style="@style/txtIntersemibold18"
             tools:text="@string/msg_don_t_have_an_a" />
     </LinearLayout>
 </layout>
