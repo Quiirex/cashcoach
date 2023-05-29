@@ -23,6 +23,8 @@ class TransactionAdapter(
     RecyclerView.Adapter<TransactionAdapter.TransactionViewHolder>() {
     private var clickListener: OnItemClickListener? = null
     private var transactions: List<Transaction> = emptyList()
+    private var incomesSum: Double = 0.0
+    private var expensesSum: Double = 0.0
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TransactionViewHolder {
         val view =
@@ -111,5 +113,17 @@ class TransactionAdapter(
             transactionRepository.getAll()
         }
         notifyDataSetChanged()
+    }
+
+    suspend fun fetchIncomesSum(): Double {
+        return withContext(Dispatchers.IO) {
+            transactionRepository.getIncomesSum()
+        }
+    }
+
+    suspend fun fetchExpensesSum(): Double {
+        return withContext(Dispatchers.IO) {
+            transactionRepository.getExpensesSum()
+        }
     }
 }

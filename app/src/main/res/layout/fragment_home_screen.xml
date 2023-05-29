@@ -52,7 +52,7 @@
 
             <TextView
                 android:ellipsize="end"
-                android:id="@+id/txtPrice"
+                android:id="@+id/valBudget"
                 android:layout_gravity="center_horizontal"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/_14pxh"

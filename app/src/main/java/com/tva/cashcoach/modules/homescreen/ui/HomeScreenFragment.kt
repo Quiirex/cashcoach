@@ -22,6 +22,7 @@ import com.tva.cashcoach.modules.transaction.ui.TransactionAdapter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.koin.android.ext.android.bind
 
 class HomeScreenFragment : BaseFragment<FragmentHomeScreenBinding>(R.layout.fragment_home_screen) {
     private val viewModel: HomeScreenVM by viewModels()
@@ -31,6 +32,8 @@ class HomeScreenFragment : BaseFragment<FragmentHomeScreenBinding>(R.layout.frag
     private lateinit var transactionRepository: TransactionRepository
 
     private lateinit var transactionDao: TransactionDao
+
+    var incomeSum = 0.0
 
     private val OPEN_INCOME_ACTIVITY: Int = 666
 
@@ -84,6 +87,15 @@ class HomeScreenFragment : BaseFragment<FragmentHomeScreenBinding>(R.layout.frag
 
         lifecycleScope.launch {
             transactionAdapter.fetchTransactions()
+            if (preferenceHelper.getString("curr_user_currency", "") == "EUR") {
+                binding.valIncome.text = String.format("%.2f €", transactionAdapter.fetchIncomesSum())
+                binding.valExpenses.text = String.format("%.2f €", transactionAdapter.fetchExpensesSum())
+                binding.valBudget.text = String.format("%.2f €", transactionAdapter.fetchIncomesSum()-transactionAdapter.fetchExpensesSum())
+            } else {
+                binding.valIncome.text = String.format("%.2f $", transactionAdapter.fetchIncomesSum())
+                binding.valExpenses.text = String.format("%.2f $", transactionAdapter.fetchExpensesSum())
+                binding.valBudget.text = String.format("%.2f $", transactionAdapter.fetchIncomesSum()-transactionAdapter.fetchExpensesSum())
+            }
         }
     }
 
