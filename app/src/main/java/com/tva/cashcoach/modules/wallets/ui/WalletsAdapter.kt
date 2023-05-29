@@ -63,7 +63,6 @@ class WalletsAdapter(
         }
     }
 
-
     override fun getItemCount(): Int = wallets.size
 
     fun setOnItemClickListener(clickListener: OnItemClickListener) {

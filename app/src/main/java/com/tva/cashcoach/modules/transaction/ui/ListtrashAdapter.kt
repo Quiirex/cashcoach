@@ -26,11 +26,11 @@ class ListtrashAdapter(
         holder.binding.listtrashRowModel = listtrashRowModel
     }
 
-    override fun getItemCount(): Int = 3
+    override fun getItemCount(): Int = 0
     // TODO uncomment following line after integration with data source
     // return list.size
 
-    public fun updateData(newData: List<ListtrashRowModel>) {
+    fun updateData(newData: List<ListtrashRowModel>) {
         list = newData
         notifyDataSetChanged()
     }

@@ -3,14 +3,14 @@ package com.tva.cashcoach.modules.transaction.`data`.viewmodel
 import android.os.Bundle
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.tva.cashcoach.modules.transaction.data.model.ListquestionRowModel
 import com.tva.cashcoach.modules.transaction.data.model.ListtrashRowModel
 import com.tva.cashcoach.modules.transaction.data.model.SpinnerDropdownMonthModel
-import com.tva.cashcoach.modules.transaction.data.model.TransactionModel
+import com.tva.cashcoach.modules.transaction.data.model.TransactionRowModel
 import org.koin.core.KoinComponent
 
 class TransactionVM : ViewModel(), KoinComponent {
-    val transactionModel: MutableLiveData<TransactionModel> = MutableLiveData(TransactionModel())
+    val transactionRowModel: MutableLiveData<TransactionRowModel> =
+        MutableLiveData(TransactionRowModel())
 
     var navArguments: Bundle? = null
 

@@ -5,8 +5,8 @@
     <data>
 
         <variable
-            name="TransactionRowModel"
-            type="com.tva.cashcoach.modules.transaction.data.model.TransactionModel" />
+            name="transactionRowModel"
+            type="com.tva.cashcoach.modules.transaction.data.model.TransactionRowModel" />
     </data>
 
     <LinearLayout
@@ -34,10 +34,10 @@
             android:gravity="start"
             android:id="@+id/linearColumnshopping"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/_20pxv"
+            android:layout_marginBottom="@dimen/_21pxv"
             android:layout_marginStart="@dimen/_9pxh"
             android:layout_marginTop="@dimen/_20pxv"
-            android:layout_weight="0.61"
+            android:layout_weight="0.3"
             android:layout_width="0dp"
             android:orientation="vertical">
 
@@ -48,7 +48,7 @@
                 android:layout_marginEnd="@dimen/_10pxh"
                 android:layout_width="wrap_content"
                 android:singleLine="true"
-                android:text="@{TransactionRowModel.category}"
+                android:text=""
                 style="@style/txtIntermedium16"
                 tools:text="@string/lbl_shopping" />
 
@@ -60,7 +60,7 @@
                 android:layout_marginTop="@dimen/_11pxv"
                 android:layout_width="wrap_content"
                 android:singleLine="true"
-                android:text="@{TransactionRowModel.description}"
+                android:text=""
                 style="@style/txtIntermedium13"
                 tools:text="@string/lbl_groceries" />
         </LinearLayout>
@@ -72,32 +72,32 @@
             android:layout_marginBottom="@dimen/_21pxv"
             android:layout_marginEnd="@dimen/_16pxh"
             android:layout_marginStart="@dimen/_9pxh"
-            android:layout_marginTop="@dimen/_19pxv"
+            android:layout_marginTop="@dimen/_20pxv"
             android:layout_weight="0.18"
             android:layout_width="0dp"
             android:orientation="vertical">
 
             <TextView
                 android:ellipsize="end"
-                android:gravity="start"
+                android:gravity="end"
                 android:id="@+id/txtAmount"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 android:singleLine="true"
-                android:text="@{TransactionRowModel.amount}"
+                android:text=""
                 style="@style/txtIntersemibold16"
                 tools:text="@string/lbl_120" />
 
             <TextView
                 android:ellipsize="end"
                 android:id="@+id/txtTime"
+                android:gravity="end"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/_1pxh"
-                android:layout_marginStart="@dimen/_15pxh"
-                android:layout_marginTop="@dimen/_12pxv"
+                android:layout_marginTop="@dimen/_11pxv"
                 android:layout_width="match_parent"
                 android:singleLine="true"
-                android:text="@{TransactionRowModel.time}"
+                android:text=""
                 style="@style/txtIntermedium13"
                 tools:text="@string/lbl_10_00" />
         </LinearLayout>

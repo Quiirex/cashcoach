@@ -7,20 +7,16 @@ import androidx.lifecycle.lifecycleScope
 import com.tva.cashcoach.R
 import com.tva.cashcoach.appcomponents.base.BaseFragment
 import com.tva.cashcoach.appcomponents.model.transaction.TransactionDao
-import com.tva.cashcoach.appcomponents.model.user.UserDao
 import com.tva.cashcoach.appcomponents.persistence.repository.transaction.TransactionRepository
-import com.tva.cashcoach.appcomponents.persistence.repository.wallet.WalletRepository
 import com.tva.cashcoach.databinding.FragmentTransactionBinding
-import com.tva.cashcoach.modules.transaction.data.model.ListquestionRowModel
-import com.tva.cashcoach.modules.transaction.data.model.ListtrashRowModel
 import com.tva.cashcoach.modules.transaction.data.model.SpinnerDropdownMonthModel
+import com.tva.cashcoach.modules.transaction.data.model.TransactionRowModel
 import com.tva.cashcoach.modules.transaction.data.viewmodel.TransactionVM
-import com.tva.cashcoach.modules.wallets.ui.WalletsAdapter
 import kotlinx.coroutines.launch
 
 class TransactionFragment :
     BaseFragment<FragmentTransactionBinding>(R.layout.fragment_transaction) {
-    private val viewModel: TransactionVM by viewModels<TransactionVM>()
+    private val viewModel: TransactionVM by viewModels()
 
     private lateinit var transactionAdapter: TransactionAdapter
 
@@ -28,8 +24,7 @@ class TransactionFragment :
 
     private lateinit var transactionDao: TransactionDao
 
-    override fun onInitialized(): Unit {
-
+    override fun onInitialized() {
         viewModel.navArguments = arguments
         viewModel.spinnerDropdownMonthList.value = mutableListOf(
             SpinnerDropdownMonthModel("Item1"),
@@ -38,6 +33,7 @@ class TransactionFragment :
             SpinnerDropdownMonthModel("Item4"),
             SpinnerDropdownMonthModel("Item5")
         )
+
         transactionDao = appDb.getTransactionDao()
         transactionRepository = TransactionRepository(transactionDao)
 
@@ -54,48 +50,39 @@ class TransactionFragment :
             preferenceHelper
         )
 
-        val listtrashAdapter = ListtrashAdapter(viewModel.listtrashList.value ?: mutableListOf())
-        binding.recyclerListtrash.adapter = listtrashAdapter
-        listtrashAdapter.setOnItemClickListener(
-            object : ListtrashAdapter.OnItemClickListener {
-                override fun onItemClick(view: View, position: Int, item: ListtrashRowModel) {
-                    onClickRecyclerListtrash(view, position, item)
+        binding.recyclerTransactions.adapter = transactionAdapter
+
+        transactionAdapter.setOnItemClickListener(
+            object : TransactionAdapter.OnItemClickListener {
+                override fun onItemClick(view: View, position: Int, item: TransactionRowModel) {
+                    onClickRecyclerTransactions(view, position, item)
                 }
             }
         )
-        viewModel.listtrashList.observe(requireActivity()) {
-            listtrashAdapter.updateData(it)
-        }
+//        viewModel.recyclerTransactions.observe(requireActivity()) {
+//            listtrashAdapter.updateData(it)
+//        }
         binding.transactionVM = viewModel
+
         lifecycleScope.launch {
             transactionAdapter.fetchTransactions()
         }
     }
 
-    override fun setUpClicks(): Unit {
+    override fun setUpClicks() {
     }
 
-    fun onClickRecyclerListtrash(
+    fun onClickRecyclerTransactions(
         view: View,
         position: Int,
-        item: ListtrashRowModel
-    ): Unit {
-        when (view.id) {
-        }
-    }
-
-    fun onClickRecyclerListquestion(
-        view: View,
-        position: Int,
-        item: ListquestionRowModel
-    ): Unit {
+        item: TransactionRowModel
+    ) {
         when (view.id) {
         }
     }
 
     companion object {
         const val TAG: String = "TRANSACTION_FRAGMENT"
-
 
         fun getInstance(bundle: Bundle?): TransactionFragment {
             val fragment = TransactionFragment()

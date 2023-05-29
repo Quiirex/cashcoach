@@ -1,16 +1,17 @@
 package com.tva.cashcoach.appcomponents.persistence.repository.transaction
 
-import androidx.lifecycle.LiveData
-import com.tva.cashcoach.appcomponents.model.income.Income
-import com.tva.cashcoach.appcomponents.model.income.IncomeDao
 import com.tva.cashcoach.appcomponents.model.transaction.Transaction
 import com.tva.cashcoach.appcomponents.model.transaction.TransactionDao
 
 class TransactionRepository(private val transactionDao: TransactionDao) {
 
-    val allIncomes: LiveData<List<Transaction>> = transactionDao.getAllIncomes()
-    val allExpenses: LiveData<List<Transaction>> = transactionDao.getAllExpenses()
-    val allTransactions: List<Transaction> = transactionDao.getAll()
+//    val allIncomes: LiveData<List<Transaction>> = transactionDao.getAllIncomes()
+//    val allExpenses: LiveData<List<Transaction>> = transactionDao.getAllExpenses()
+//    val allTransactions: List<Transaction> = transactionDao.getAll()
+
+    fun getAll(): List<Transaction> {
+        return transactionDao.getAll()
+    }
 
     fun insert(transaction: Transaction) {
         transactionDao.insert(transaction)

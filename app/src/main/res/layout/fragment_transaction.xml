@@ -57,7 +57,7 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:gravity="center_horizontal"
-                android:id="@+id/recyclerListtrash"
+                android:id="@+id/recyclerTransactions"
                 android:layout_height="match_parent"
                 android:layout_marginEnd="@dimen/_19pxh"
                 android:layout_marginStart="@dimen/_19pxh"
