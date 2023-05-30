@@ -50,12 +50,14 @@ class AuthHelper(
                             user.uid
                         )
                         GlobalScope.launch(Dispatchers.IO) {
-                            val defaultWalletId = userRepository.get(
-                                user.uid
-                            )?.default_wallet_id.toString()
+                            val currUser = userRepository.get(user.uid)
                             preferenceHelper.putString(
                                 "curr_wallet_id",
-                                defaultWalletId
+                                currUser?.default_wallet_id.toString()
+                            )
+                            preferenceHelper.putString(
+                                "curr_user_currency",
+                                currUser?.currency.toString()
                             )
                         }.start()
                         preferenceHelper.putBoolean(
@@ -145,12 +147,14 @@ class AuthHelper(
                         uid
                     )
                     GlobalScope.launch(Dispatchers.IO) {
-                        val defaultWalletId = userRepository.get(
-                            uid
-                        )?.default_wallet_id.toString()
+                        val currUser = userRepository.get(uid)
                         preferenceHelper.putString(
                             "curr_wallet_id",
-                            defaultWalletId
+                            currUser?.default_wallet_id.toString()
+                        )
+                        preferenceHelper.putString(
+                            "curr_user_currency",
+                            currUser?.currency.toString()
                         )
                     }.start()
                     preferenceHelper.putBoolean(
@@ -179,12 +183,14 @@ class AuthHelper(
                                 user.uid
                             )
                             GlobalScope.launch(Dispatchers.IO) {
-                                val defaultWalletId = userRepository.get(
-                                    user.uid
-                                )?.default_wallet_id.toString()
+                                val currUser = userRepository.get(user.uid)
                                 preferenceHelper.putString(
                                     "curr_wallet_id",
-                                    defaultWalletId
+                                    currUser?.default_wallet_id.toString()
+                                )
+                                preferenceHelper.putString(
+                                    "curr_user_currency",
+                                    currUser?.currency.toString()
                                 )
                             }.start()
                             preferenceHelper.putBoolean(

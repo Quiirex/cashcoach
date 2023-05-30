@@ -65,12 +65,14 @@ class GoogleAuthHelper(
                 firebaseUser?.uid ?: ""
             )
             GlobalScope.launch(Dispatchers.IO) {
-                val defaultWalletId = userRepository.get(
-                    firebaseUser?.uid ?: ""
-                )?.default_wallet_id.toString()
+                val currUser = userRepository.get(firebaseUser?.uid ?: "")
                 preferenceHelper.putString(
                     "curr_wallet_id",
-                    defaultWalletId
+                    currUser?.default_wallet_id.toString()
+                )
+                preferenceHelper.putString(
+                    "curr_user_currency",
+                    currUser?.currency.toString()
                 )
             }.start()
             preferenceHelper.putBoolean(
@@ -123,12 +125,15 @@ class GoogleAuthHelper(
                                             firebaseUser?.uid ?: ""
                                         )
                                         GlobalScope.launch(Dispatchers.IO) {
-                                            val defaultWalletId = userRepository.get(
-                                                firebaseUser?.uid ?: ""
-                                            )?.default_wallet_id.toString()
+                                            val currUser =
+                                                userRepository.get(firebaseUser?.uid ?: "")
                                             preferenceHelper.putString(
                                                 "curr_wallet_id",
-                                                defaultWalletId
+                                                currUser?.default_wallet_id.toString()
+                                            )
+                                            preferenceHelper.putString(
+                                                "curr_user_currency",
+                                                currUser?.currency.toString()
                                             )
                                         }.start()
                                         preferenceHelper.putBoolean(
@@ -160,12 +165,15 @@ class GoogleAuthHelper(
                                                     firebaseUser?.uid ?: ""
                                                 )
                                                 GlobalScope.launch(Dispatchers.IO) {
-                                                    val defaultWalletId = userRepository.get(
-                                                        firebaseUser?.uid ?: ""
-                                                    )?.default_wallet_id.toString()
+                                                    val currUser =
+                                                        userRepository.get(firebaseUser?.uid ?: "")
                                                     preferenceHelper.putString(
                                                         "curr_wallet_id",
-                                                        defaultWalletId
+                                                        currUser?.default_wallet_id.toString()
+                                                    )
+                                                    preferenceHelper.putString(
+                                                        "curr_user_currency",
+                                                        currUser?.currency.toString()
                                                     )
                                                 }.start()
                                                 preferenceHelper.putBoolean(
