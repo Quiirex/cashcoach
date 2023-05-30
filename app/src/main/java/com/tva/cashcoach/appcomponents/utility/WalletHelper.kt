@@ -4,7 +4,9 @@ import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.tva.cashcoach.appcomponents.di.MyApp
+import com.tva.cashcoach.appcomponents.model.transaction.Transaction
 import com.tva.cashcoach.appcomponents.model.wallet.Wallet
+import com.tva.cashcoach.appcomponents.persistence.repository.transaction.TransactionRepository
 import com.tva.cashcoach.appcomponents.persistence.repository.user.UserRepository
 import com.tva.cashcoach.appcomponents.persistence.repository.wallet.WalletRepository
 import kotlinx.coroutines.DelicateCoroutinesApi
@@ -13,10 +15,12 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.koin.android.ext.android.get
+import java.util.Date
 
 class WalletHelper(
     private val walletRepository: WalletRepository,
-    private val userRepository: UserRepository
+    private val userRepository: UserRepository,
+    private val transactionRepository: TransactionRepository
 ) {
     var preferenceHelper: PreferenceHelper = MyApp.getInstance().get()
 
@@ -46,6 +50,25 @@ class WalletHelper(
             })
             GlobalScope.launch(Dispatchers.IO) {
                 val insertedWalletId = walletRepository.insert(wallet).toInt()
+
+                // Create a new transaction for the added wallet
+                val newTransaction = Transaction(
+                    id = null,
+                    name = "initial",
+                    value = budget,
+                    description = "initial",
+                    date = Date(),
+                    category_id = 0,
+                    wallet_id = insertedWalletId,
+                    type = "income",
+                    currency = "EUR"
+                )
+
+                // Insert the new transaction into the transaction repository
+                withContext(Dispatchers.IO) {
+                    transactionRepository.insert(newTransaction)
+                }
+
                 withContext(Dispatchers.Main) {
                     callback(insertedWalletId)
                 }

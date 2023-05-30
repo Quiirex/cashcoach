@@ -9,16 +9,16 @@ class TransactionRepository(private val transactionDao: TransactionDao) {
 //    val allExpenses: LiveData<List<Transaction>> = transactionDao.getAllExpenses()
 //    val allTransactions: List<Transaction> = transactionDao.getAll()
 
-    fun getAll(): List<Transaction> {
-        return transactionDao.getAll()
+    fun getAll(wallet_id: String): List<Transaction> {
+        return transactionDao.getAll(wallet_id)
     }
 
-    fun getIncomesSum(): Double {
-        return  transactionDao.getIncomesSum()
+    fun getIncomesSum(wallet_id: String): Double {
+        return  transactionDao.getIncomesSum(wallet_id)
     }
 
-    fun getExpensesSum(): Double {
-        return  transactionDao.getExpensesSum()
+    fun getExpensesSum(wallet_id: String): Double {
+        return  transactionDao.getExpensesSum(wallet_id)
     }
     fun insert(transaction: Transaction) {
         transactionDao.insert(transaction)

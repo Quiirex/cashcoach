@@ -8,8 +8,10 @@ import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.tva.cashcoach.R
 import com.tva.cashcoach.appcomponents.base.BaseActivity
+import com.tva.cashcoach.appcomponents.model.transaction.TransactionDao
 import com.tva.cashcoach.appcomponents.model.user.UserDao
 import com.tva.cashcoach.appcomponents.model.wallet.WalletDao
+import com.tva.cashcoach.appcomponents.persistence.repository.transaction.TransactionRepository
 import com.tva.cashcoach.appcomponents.persistence.repository.user.UserRepository
 import com.tva.cashcoach.appcomponents.persistence.repository.wallet.WalletRepository
 import com.tva.cashcoach.appcomponents.utility.WalletHelper
@@ -34,6 +36,10 @@ class WalletsActivity : BaseActivity<ActivityWalletsBinding>(R.layout.activity_w
 
     private lateinit var userRepository: UserRepository
 
+    private lateinit var transactionDao: TransactionDao
+
+    private lateinit var transactionRepository: TransactionRepository
+
     private lateinit var walletsAdapter: WalletsAdapter
 
     override fun onInitialized() {
@@ -43,8 +49,10 @@ class WalletsActivity : BaseActivity<ActivityWalletsBinding>(R.layout.activity_w
         walletRepository = WalletRepository(walletDao)
         userDao = appDb.getUserDao()
         userRepository = UserRepository(userDao)
+        transactionDao = appDb.getTransactionDao()
+        transactionRepository = TransactionRepository(transactionDao)
 
-        walletHelper = WalletHelper(walletRepository, userRepository)
+        walletHelper = WalletHelper(walletRepository, userRepository, transactionRepository)
 
         walletsAdapter = WalletsAdapter(
             walletRepository,

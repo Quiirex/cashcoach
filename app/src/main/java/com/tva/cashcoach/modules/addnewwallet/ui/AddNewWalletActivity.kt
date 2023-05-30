@@ -8,6 +8,7 @@ import android.util.Log
 import androidx.activity.viewModels
 import com.tva.cashcoach.R
 import com.tva.cashcoach.appcomponents.base.BaseActivity
+import com.tva.cashcoach.appcomponents.persistence.repository.transaction.TransactionRepository
 import com.tva.cashcoach.appcomponents.persistence.repository.user.UserRepository
 import com.tva.cashcoach.appcomponents.persistence.repository.wallet.WalletRepository
 import com.tva.cashcoach.appcomponents.utility.WalletHelper
@@ -46,8 +47,10 @@ class AddNewWalletActivity :
         val walletRepository = WalletRepository(walletDao)
         val userDao = appDb.getUserDao()
         val userRepository = UserRepository(userDao)
+        val transactionDao = appDb.getTransactionDao()
+        val transactionRepository = TransactionRepository(transactionDao)
 
-        walletHelper = WalletHelper(walletRepository, userRepository)
+        walletHelper = WalletHelper(walletRepository, userRepository, transactionRepository)
     }
 
     override fun setUpClicks() {

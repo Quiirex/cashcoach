@@ -67,14 +67,14 @@ class TransactionAdapter(
     }
 
     private fun formatDate(dateString: String): String {
-        val inputFormat = SimpleDateFormat("E MMM dd HH:mm:ss Z yyyy", Locale.getDefault())
-        val outputFormat = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
-        val outputFormatToday = SimpleDateFormat("HH:mm", Locale.getDefault())// HH:mm", Locale.getDefault())
+        val inputFormat = SimpleDateFormat("E MMM dd HH:mm:ss Z yyyy", Locale.US)
+        val outputFormat = SimpleDateFormat("dd.MM.yyyy", Locale.US)
+        val outputFormatToday = SimpleDateFormat("HH:mm", Locale.US)
         val date = inputFormat.parse(dateString)
 
         val todayString = Date().toString()
-        val inputToday = SimpleDateFormat("E MMM dd HH:mm:ss Z yyyy", Locale.getDefault())
-        val outputToday = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
+        val inputToday = SimpleDateFormat("E MMM dd HH:mm:ss Z yyyy", Locale.US)
+        val outputToday = SimpleDateFormat("dd.MM.yyyy", Locale.US)
         val today = inputToday.parse(todayString)
 
         if(outputToday.format(today) == outputFormat.format(date)) {
@@ -108,22 +108,22 @@ class TransactionAdapter(
         val binding: RowTransactionBinding = RowTransactionBinding.bind(itemView)
     }
 
-    suspend fun fetchTransactions() {
+    suspend fun fetchTransactions(wallet_id: String) {
         transactions = withContext(Dispatchers.IO) {
-            transactionRepository.getAll()
+            transactionRepository.getAll(wallet_id)
         }
         notifyDataSetChanged()
     }
 
-    suspend fun fetchIncomesSum(): Double {
+    suspend fun fetchIncomesSum(wallet_id: String): Double {
         return withContext(Dispatchers.IO) {
-            transactionRepository.getIncomesSum()
+            transactionRepository.getIncomesSum(wallet_id)
         }
     }
 
-    suspend fun fetchExpensesSum(): Double {
+    suspend fun fetchExpensesSum(wallet_id: String): Double {
         return withContext(Dispatchers.IO) {
-            transactionRepository.getExpensesSum()
+            transactionRepository.getExpensesSum(wallet_id)
         }
     }
 }

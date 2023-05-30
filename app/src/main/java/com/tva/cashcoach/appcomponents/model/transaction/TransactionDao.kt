@@ -10,14 +10,14 @@ import androidx.room.Update
 
 @Dao
 interface TransactionDao {
-    @Query("SELECT * FROM `transaction` ORDER BY id DESC")
-    fun getAll(): List<Transaction>
+    @Query("SELECT * FROM `transaction` WHERE wallet_id = :wallet_id ORDER BY id DESC")
+    fun getAll(wallet_id: String): List<Transaction>
 
-    @Query("SELECT SUM(value) FROM `transaction` WHERE type = 'income'")
-    fun getIncomesSum(): Double
+    @Query("SELECT SUM(value) FROM `transaction` WHERE type = 'income' AND wallet_id = :wallet_id")
+    fun getIncomesSum(wallet_id: String): Double
 
-    @Query("SELECT SUM(value) FROM `transaction` WHERE type = 'expense'")
-    fun getExpensesSum(): Double
+    @Query("SELECT SUM(value) FROM `transaction` WHERE type = 'expense' AND wallet_id = :wallet_id")
+    fun getExpensesSum(wallet_id: String): Double
 
     @Query("SELECT * FROM `transaction` WHERE id = :id")
     fun getById(id: Int): Transaction?

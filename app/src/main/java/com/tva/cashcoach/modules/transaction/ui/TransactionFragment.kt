@@ -65,7 +65,7 @@ class TransactionFragment :
         binding.transactionVM = viewModel
 
         lifecycleScope.launch {
-            transactionAdapter.fetchTransactions()
+            transactionAdapter.fetchTransactions(preferenceHelper.getString("curr_wallet_id", ""))
         }
     }
 

@@ -33,7 +33,7 @@ class HomeScreenFragment : BaseFragment<FragmentHomeScreenBinding>(R.layout.frag
 
     private lateinit var transactionDao: TransactionDao
 
-    var incomeSum = 0.0
+    private var curr_wallet_id = ""
 
     private val OPEN_INCOME_ACTIVITY: Int = 666
 
@@ -85,16 +85,18 @@ class HomeScreenFragment : BaseFragment<FragmentHomeScreenBinding>(R.layout.frag
 
         binding.homeScreenVM = viewModel
 
+        curr_wallet_id = preferenceHelper.getString("curr_wallet_id", "")
+
         lifecycleScope.launch {
-            transactionAdapter.fetchTransactions()
+            transactionAdapter.fetchTransactions(curr_wallet_id)
             if (preferenceHelper.getString("curr_user_currency", "") == "EUR") {
-                binding.valIncome.text = String.format("%.2f €", transactionAdapter.fetchIncomesSum())
-                binding.valExpenses.text = String.format("%.2f €", transactionAdapter.fetchExpensesSum())
-                binding.valBudget.text = String.format("%.2f €", transactionAdapter.fetchIncomesSum()-transactionAdapter.fetchExpensesSum())
+                binding.valIncome.text = String.format("%.2f €", transactionAdapter.fetchIncomesSum(curr_wallet_id))
+                binding.valExpenses.text = String.format("%.2f €", transactionAdapter.fetchExpensesSum(curr_wallet_id))
+                binding.valBudget.text = String.format("%.2f €", transactionAdapter.fetchIncomesSum(curr_wallet_id)-transactionAdapter.fetchExpensesSum(curr_wallet_id))
             } else {
-                binding.valIncome.text = String.format("%.2f $", transactionAdapter.fetchIncomesSum())
-                binding.valExpenses.text = String.format("%.2f $", transactionAdapter.fetchExpensesSum())
-                binding.valBudget.text = String.format("%.2f $", transactionAdapter.fetchIncomesSum()-transactionAdapter.fetchExpensesSum())
+                binding.valIncome.text = String.format("%.2f $", transactionAdapter.fetchIncomesSum(curr_wallet_id))
+                binding.valExpenses.text = String.format("%.2f $", transactionAdapter.fetchExpensesSum(curr_wallet_id))
+                binding.valBudget.text = String.format("%.2f $", transactionAdapter.fetchIncomesSum(curr_wallet_id)-transactionAdapter.fetchExpensesSum(curr_wallet_id))
             }
         }
     }
