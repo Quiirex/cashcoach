@@ -105,28 +105,6 @@
                 android:orientation="vertical">
 
                 <EditText
-                    android:id="@+id/etName"
-                    style="@style/etSolidRoundedOutline"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_16pxh"
-                    android:layout_marginTop="@dimen/_16pxv"
-                    android:layout_marginEnd="@dimen/_16pxh"
-                    android:background="@drawable/rectangle_bg_white_a700_border_gray_100_radius_16"
-                    android:ellipsize="end"
-                    android:hint="@string/lbl_name"
-                    android:inputType="text"
-                    android:lineSpacingExtra="@dimen/_4pxh"
-                    android:paddingStart="@dimen/_16pxh"
-                    android:paddingTop="@dimen/_19pxv"
-                    android:paddingEnd="@dimen/_30pxh"
-                    android:paddingBottom="@dimen/_16pxv"
-                    android:singleLine="true"
-                    android:text="@={incomeVM.newIncomeModel.etName}"
-                    android:textColorHint="@color/gray_500"
-                    tools:ignore="Autofill" />
-
-                <EditText
                     android:id="@+id/etDescription"
                     style="@style/etSolidRoundedOutline"
                     android:layout_width="match_parent"
@@ -157,8 +135,8 @@
                     android:layout_marginEnd="@dimen/_16pxh"
                     android:background="@drawable/layer_list_bg_white_a700_border_gray_100_radius_16"
                     android:gravity="center_horizontal"
-                    android:paddingTop="@dimen/_19pxv"
-                    android:paddingBottom="@dimen/_10pxv"
+                    android:paddingTop="@dimen/_12pxv"
+                    android:paddingBottom="@dimen/_12pxv"
                     tools:listitem="@layout/spinner_item" />
 
                 <androidx.appcompat.widget.AppCompatButton
@@ -167,7 +145,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/_16pxh"
-                    android:layout_marginVertical="@dimen/_16pxv"
+                    android:layout_marginVertical="@dimen/_20pxv"
                     android:ellipsize="end"
                     android:gravity="center"
                     android:paddingStart="@dimen/_30pxh"

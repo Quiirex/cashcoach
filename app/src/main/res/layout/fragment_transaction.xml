@@ -30,6 +30,9 @@
                 android:id="@+id/toolbarToolbar"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
+                android:layout_marginEnd="@dimen/_20pxh"
+                android:layout_marginStart="@dimen/_20pxh"
+                android:layout_marginTop="@dimen/_22pxv"
                 app:contentInsetStart="0dp"
                 style="@style/groupStylewhite_A700">
 

@@ -145,7 +145,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/_16pxh"
-                    android:layout_marginVertical="@dimen/_16pxv"
+                    android:layout_marginVertical="@dimen/_20pxv"
                     android:ellipsize="end"
                     android:gravity="center"
                     android:paddingStart="@dimen/_30pxh"

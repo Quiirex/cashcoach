@@ -80,27 +80,13 @@
                     android:orientation="horizontal"
                     style="@style/groupStyleteal_500cornerRadius">
 
-                    <ImageButton
-                        android:background="@drawable/rectangle_bg_gray_50_radius_16"
-                        android:id="@+id/btnEye"
-                        android:layout_height="@dimen/_48pxh"
-                        android:layout_marginBottom="@dimen/_15pxv"
-                        android:layout_marginStart="@dimen/_16pxh"
-                        android:layout_marginTop="@dimen/_17pxv"
-                        android:layout_width="@dimen/_48pxh"
-                        android:paddingHorizontal="@dimen/_10pxh"
-                        android:paddingVertical="@dimen/_10pxv"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/income_arrow"
-                        tools:ignore="ContentDescription" />
-
                     <LinearLayout
                         android:gravity="start"
                         android:id="@+id/linearColumnincome"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/_13pxv"
                         android:layout_marginEnd="@dimen/_16pxh"
-                        android:layout_marginStart="@dimen/_5pxh"
+                        android:layout_marginStart="@dimen/_16pxh"
                         android:layout_marginTop="@dimen/_15pxv"
                         android:layout_weight="1"
                         android:layout_width="0dp"
@@ -109,6 +95,7 @@
                         <TextView
                             android:id="@+id/txtIncome"
                             style="@style/txtIntermedium14_1"
+                            android:gravity="center"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:ellipsize="end"
@@ -119,6 +106,7 @@
                         <TextView
                             android:ellipsize="end"
                             android:id="@+id/valIncome"
+                            android:gravity="center"
                             android:layout_height="wrap_content"
                             android:layout_width="match_parent"
                             android:singleLine="true"
@@ -136,27 +124,13 @@
                     android:orientation="horizontal"
                     style="@style/groupStylered_A200cornerRadius">
 
-                    <ImageButton
-                        android:background="@drawable/rectangle_bg_gray_50_radius_16"
-                        android:id="@+id/btnTelevision"
-                        android:layout_height="@dimen/_48pxh"
-                        android:layout_marginBottom="@dimen/_15pxv"
-                        android:layout_marginStart="@dimen/_16pxh"
-                        android:layout_marginTop="@dimen/_17pxv"
-                        android:layout_width="@dimen/_48pxh"
-                        android:paddingHorizontal="@dimen/_9pxh"
-                        android:paddingVertical="@dimen/_9pxv"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/expense_arrow"
-                        tools:ignore="ContentDescription" />
-
                     <LinearLayout
                         android:gravity="start"
                         android:id="@+id/linearColumnexpenses"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/_13pxv"
                         android:layout_marginEnd="@dimen/_16pxh"
-                        android:layout_marginStart="@dimen/_5pxh"
+                        android:layout_marginStart="@dimen/_16pxh"
                         android:layout_marginTop="@dimen/_15pxv"
                         android:layout_weight="1"
                         android:layout_width="0dp"
@@ -165,6 +139,7 @@
                         <TextView
                             android:ellipsize="end"
                             android:id="@+id/txtExpenses"
+                            android:gravity="center"
                             android:layout_height="wrap_content"
                             android:layout_width="match_parent"
                             android:singleLine="true"
@@ -175,6 +150,7 @@
                         <TextView
                             android:ellipsize="end"
                             android:id="@+id/valExpenses"
+                            android:gravity="center"
                             android:layout_height="wrap_content"
                             android:layout_width="match_parent"
                             android:singleLine="true"
@@ -183,90 +159,6 @@
                             tools:text="0€" />
                     </LinearLayout>
                 </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/linearTabs"
-                style="@style/groupStylecornerRadius"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_marginStart="@dimen/_14pxh"
-                android:layout_marginTop="@dimen/_32pxv"
-                android:layout_marginEnd="@dimen/_14pxh"
-                android:gravity="start"
-                android:orientation="horizontal">
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btnToday"
-                    style="@style/btnSolid"
-                    android:layout_width="103dp"
-                    android:layout_height="match_parent"
-                    android:alpha="1.0"
-                    android:ellipsize="end"
-                    android:gravity="center"
-                    android:lineSpacingExtra="@dimen/_3pxh"
-                    android:paddingStart="@dimen/_24pxh"
-                    android:paddingTop="@dimen/_10pxv"
-                    android:paddingEnd="@dimen/_24pxh"
-                    android:paddingBottom="@dimen/_8pxv"
-                    android:singleLine="true"
-                    android:text="@string/lbl_today"
-                    android:textAllCaps="false"
-                    tools:text="@string/lbl_today" />
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btnWeek"
-                    style="@style/btnSolid"
-                    android:layout_width="wrap_content"
-                    android:layout_height="45dp"
-                    android:alpha="1.0"
-                    android:ellipsize="end"
-                    android:gravity="center"
-                    android:lineSpacingExtra="@dimen/_3pxh"
-                    android:paddingStart="@dimen/_24pxh"
-                    android:paddingTop="@dimen/_10pxv"
-                    android:paddingEnd="@dimen/_24pxh"
-                    android:paddingBottom="@dimen/_8pxv"
-                    android:singleLine="true"
-                    android:text="@string/lbl_week"
-                    android:textAllCaps="false"
-                    tools:text="@string/lbl_week" />
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btnMonth"
-                    style="@style/btnSolid"
-                    android:layout_width="wrap_content"
-                    android:layout_height="45dp"
-                    android:alpha="1.0"
-                    android:ellipsize="end"
-                    android:gravity="center"
-                    android:lineSpacingExtra="@dimen/_3pxh"
-                    android:paddingStart="@dimen/_24pxh"
-                    android:paddingTop="@dimen/_10pxv"
-                    android:paddingEnd="@dimen/_24pxh"
-                    android:paddingBottom="@dimen/_8pxv"
-                    android:singleLine="true"
-                    android:text="@string/lbl_month"
-                    android:textAllCaps="false"
-                    tools:text="@string/lbl_month" />
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btnYear"
-                    style="@style/btnSolid"
-                    android:layout_width="96dp"
-                    android:layout_height="45dp"
-                    android:alpha="1.0"
-                    android:ellipsize="end"
-                    android:gravity="center"
-                    android:lineSpacingExtra="@dimen/_3pxh"
-                    android:paddingStart="@dimen/_24pxh"
-                    android:paddingTop="@dimen/_10pxv"
-                    android:paddingEnd="@dimen/_24pxh"
-                    android:paddingBottom="@dimen/_8pxv"
-                    android:singleLine="true"
-                    android:text="@string/lbl_year"
-                    android:textAllCaps="false"
-                    tools:text="@string/lbl_year" />
             </LinearLayout>
 
             <LinearLayout
@@ -316,7 +208,7 @@
                 android:id="@+id/recyclerTransactions"
                 itemSpace="@{@dimen/_8pxh}"
                 android:layout_width="match_parent"
-                android:layout_height="441dp"
+                android:layout_height="@dimen/_500pxv"
                 android:layout_marginStart="@dimen/_14pxh"
                 android:layout_marginEnd="@dimen/_14pxh"
                 android:gravity="center_horizontal"
