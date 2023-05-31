@@ -8,10 +8,6 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.tva.cashcoach.appcomponents.model.category.Category
 import com.tva.cashcoach.appcomponents.model.category.CategoryDao
-import com.tva.cashcoach.appcomponents.model.expense.Expense
-import com.tva.cashcoach.appcomponents.model.expense.ExpenseDao
-import com.tva.cashcoach.appcomponents.model.income.Income
-import com.tva.cashcoach.appcomponents.model.income.IncomeDao
 import com.tva.cashcoach.appcomponents.model.transaction.Transaction
 import com.tva.cashcoach.appcomponents.model.transaction.TransactionDao
 import com.tva.cashcoach.appcomponents.model.user.User
@@ -21,8 +17,8 @@ import com.tva.cashcoach.appcomponents.model.wallet.WalletDao
 import com.tva.cashcoach.appcomponents.utility.Converters
 
 @Database(
-    entities = [User::class, Wallet::class, Expense::class, Income::class, Category::class, Transaction::class],
-    version = 9,
+    entities = [User::class, Wallet::class, Category::class, Transaction::class],
+    version = 11,
     exportSchema = false
 )
 @TypeConverters(Converters::class)
@@ -32,11 +28,7 @@ abstract class AppDatabase : RoomDatabase() {
 
     abstract fun getWalletDao(): WalletDao
 
-    abstract fun getExpenseDao(): ExpenseDao
-
-    abstract fun getTransactionDao() : TransactionDao
-
-    abstract fun getIncomeDao(): IncomeDao
+    abstract fun getTransactionDao(): TransactionDao
 
     abstract fun getCategoryDao(): CategoryDao
 

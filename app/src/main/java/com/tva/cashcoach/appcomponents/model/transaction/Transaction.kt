@@ -8,7 +8,6 @@ import java.util.Date
 @Entity(tableName = "transaction")
 data class Transaction(
     @PrimaryKey(autoGenerate = true) val id: Int?,
-    @ColumnInfo(name = "name") val name: String = "",
     @ColumnInfo(name = "value") val value: Double = 0.0,
     @ColumnInfo(name = "description") val description: String = "",
     @ColumnInfo(name = "date") val date: Date = Date(),

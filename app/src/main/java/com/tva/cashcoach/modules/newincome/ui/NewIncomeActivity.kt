@@ -3,21 +3,14 @@ package com.tva.cashcoach.modules.newincome.ui
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
-import com.bumptech.glide.load.engine.executor.GlideExecutor.UncaughtThrowableStrategy.LOG
 import com.tva.cashcoach.R
 import com.tva.cashcoach.appcomponents.base.BaseActivity
-import com.tva.cashcoach.appcomponents.model.income.Income
-import com.tva.cashcoach.appcomponents.model.income.IncomeDao
 import com.tva.cashcoach.appcomponents.model.transaction.Transaction
 import com.tva.cashcoach.appcomponents.model.transaction.TransactionDao
-import com.tva.cashcoach.appcomponents.model.user.UserDao
-import com.tva.cashcoach.appcomponents.persistence.repository.income.IncomeRepository
 import com.tva.cashcoach.appcomponents.persistence.repository.transaction.TransactionRepository
-import com.tva.cashcoach.appcomponents.persistence.repository.user.UserRepository
 import com.tva.cashcoach.databinding.ActivityNewIncomeBinding
 import com.tva.cashcoach.modules.homescreencontainer.ui.HomeScreenContainerActivity
 import com.tva.cashcoach.modules.newincome.data.model.SpinnerDropdownCategoModel
@@ -78,7 +71,6 @@ class NewIncomeActivity : BaseActivity<ActivityNewIncomeBinding>(R.layout.activi
 
             val newTransaction = Transaction(
                 id = null,
-                name = binding.etName.text.toString(),
                 value = binding.etValue.text.toString().toDouble(),
                 description = binding.etDescription.text.toString(),
                 date = Date(),
@@ -95,7 +87,11 @@ class NewIncomeActivity : BaseActivity<ActivityNewIncomeBinding>(R.layout.activi
                 }
             }
 
-            Toast.makeText(applicationContext, getString(R.string.new_income_added), Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                applicationContext,
+                getString(R.string.new_income_added),
+                Toast.LENGTH_SHORT
+            ).show()
 
             val destIntent = HomeScreenContainerActivity.getIntent(this, null)
             startActivityForResult(destIntent, REQUEST_CODE_HOME_SCREEN_CONTAINER_ACTIVITY)

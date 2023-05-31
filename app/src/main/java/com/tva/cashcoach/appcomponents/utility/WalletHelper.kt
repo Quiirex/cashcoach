@@ -54,9 +54,8 @@ class WalletHelper(
                 // Create a new transaction for the added wallet
                 val newTransaction = Transaction(
                     id = null,
-                    name = "initial",
                     value = budget,
-                    description = "initial",
+                    description = "Wallet budget",
                     date = Date(),
                     category_id = 0,
                     wallet_id = insertedWalletId,
