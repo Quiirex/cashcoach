@@ -1,5 +1,6 @@
 package com.tva.cashcoach.modules.transaction.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
@@ -9,6 +10,8 @@ import com.tva.cashcoach.appcomponents.base.BaseFragment
 import com.tva.cashcoach.appcomponents.model.transaction.TransactionDao
 import com.tva.cashcoach.appcomponents.persistence.repository.transaction.TransactionRepository
 import com.tva.cashcoach.databinding.FragmentTransactionBinding
+import com.tva.cashcoach.modules.expensedetail.ui.ExpenseDetailActivity
+import com.tva.cashcoach.modules.incomedetail.ui.IncomeDetailActivity
 import com.tva.cashcoach.modules.transaction.data.model.SpinnerDropdownMonthModel
 import com.tva.cashcoach.modules.transaction.data.model.TransactionRowModel
 import com.tva.cashcoach.modules.transaction.data.viewmodel.TransactionVM
@@ -17,6 +20,10 @@ import kotlinx.coroutines.launch
 class TransactionFragment :
     BaseFragment<FragmentTransactionBinding>(R.layout.fragment_transaction) {
     private val viewModel: TransactionVM by viewModels()
+
+    private val REQUEST_CODE_DETAIL_INCOME: Int = 12
+
+    private val REQUEST_CODE_DETAIL_EXPENSE: Int = 13
 
     private lateinit var transactionAdapter: TransactionAdapter
 
@@ -54,8 +61,12 @@ class TransactionFragment :
 
         transactionAdapter.setOnItemClickListener(
             object : TransactionAdapter.OnItemClickListener {
-                override fun onItemClick(view: View, position: Int, item: TransactionRowModel) {
-                    onClickRecyclerTransactions(view, position, item)
+                override fun onItemClick(
+                    view: View,
+                    position: Int,
+                    transaction: TransactionRowModel
+                ) {
+                    onClickRecyclerTransactions(view, position, transaction)
                 }
             }
         )
@@ -75,9 +86,43 @@ class TransactionFragment :
     fun onClickRecyclerTransactions(
         view: View,
         position: Int,
-        item: TransactionRowModel
+        transaction: TransactionRowModel
     ) {
-        when (view.id) {
+        when (transaction.type) {
+            "expense" -> {
+                val intent = Intent(context, ExpenseDetailActivity::class.java)
+                val bundle = Bundle()
+                bundle.putString("value", transaction.value.toString())
+                bundle.putString("date", transaction.date)
+                bundle.putString("category_id", transaction.category_id)
+                bundle.putString("wallet_id", transaction.wallet_id.toString())
+                bundle.putString("description", transaction.description)
+                bundle.putString("currency", transaction.currency)
+                bundle.putInt("id", transaction.id)
+                intent.putExtra("bundle", bundle)
+                startActivity(intent)
+            }
+
+            "income" -> {
+                val intent = Intent(context, IncomeDetailActivity::class.java)
+                val bundle = Bundle()
+                bundle.putString("value", transaction.value.toString())
+                bundle.putString("date", transaction.date)
+                bundle.putString("category_id", transaction.category_id)
+                bundle.putString("wallet_id", transaction.wallet_id.toString())
+                bundle.putString("description", transaction.description)
+                bundle.putString("currency", transaction.currency)
+                bundle.putInt("id", transaction.id)
+                intent.putExtra("bundle", bundle)
+                startActivity(intent)
+            }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        lifecycleScope.launch {
+            transactionAdapter.fetchTransactions(preferenceHelper.getString("curr_wallet_id", ""))
         }
     }
 

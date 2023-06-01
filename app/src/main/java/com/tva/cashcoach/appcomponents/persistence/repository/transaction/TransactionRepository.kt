@@ -25,6 +25,10 @@ class TransactionRepository(private val transactionDao: TransactionDao) {
         transactionDao.delete(transaction)
     }
 
+    fun deleteById(id: Int) {
+        transactionDao.deleteById(id)
+    }
+
     fun update(transaction: Transaction) {
         transactionDao.update(transaction)
     }

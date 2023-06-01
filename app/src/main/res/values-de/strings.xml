@@ -110,4 +110,6 @@
     <string name="new_expense_added">Ausgabe hinzugefügt</string>
     <string name="make_this_your_default_wallet">Diese Brieftasche zu Ihrer Standard-Brieftasche machen?</string>
     <string name="lbl_transactions">Transaktionen</string>
+    <string name="lbl_category_with_colon">Kategorie:</string>
+    <string name="lbl_wallet_with_colon">Brieftasche:</string>
 </resources>

@@ -1,6 +1,5 @@
 package com.tva.cashcoach.appcomponents.model.transaction
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
@@ -24,6 +23,9 @@ interface TransactionDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insert(transaction: Transaction)
+
+    @Query("DELETE FROM `transaction` WHERE id = :id")
+    fun deleteById(id: Int)
 
     @Delete
     fun delete(transaction: Transaction)

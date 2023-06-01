@@ -31,8 +31,6 @@ class HomeScreenFragment : BaseFragment<FragmentHomeScreenBinding>(R.layout.frag
 
     private var curr_wallet_id = ""
 
-    private val OPEN_INCOME_ACTIVITY: Int = 666
-
     override fun onInitialized() {
         viewModel.navArguments = arguments
         viewModel.spinnerDropdownMonthList.value = mutableListOf(
@@ -50,11 +48,17 @@ class HomeScreenFragment : BaseFragment<FragmentHomeScreenBinding>(R.layout.frag
             transactionRepository,
             preferenceHelper
         )
+
         binding.recyclerTransactions.adapter = transactionAdapter
+
         transactionAdapter.setOnItemClickListener(
             object : TransactionAdapter.OnItemClickListener {
-                override fun onItemClick(view: View, position: Int, item: TransactionRowModel) {
-                    onClickRecyclerTransactions(view, position, item)
+                override fun onItemClick(
+                    view: View,
+                    position: Int,
+                    transaction: TransactionRowModel
+                ) {
+                    onClickRecyclerTransactions(view, position, transaction)
                 }
             }
         )
@@ -70,8 +74,7 @@ class HomeScreenFragment : BaseFragment<FragmentHomeScreenBinding>(R.layout.frag
         }
 
         binding.btnSeeAll.setOnClickListener {
-            val intent = Intent(context, IncomeDetailActivity::class.java)
-            startActivity(intent)
+
         }
 
         binding.txtSpendFrequency.setOnClickListener {
@@ -87,22 +90,22 @@ class HomeScreenFragment : BaseFragment<FragmentHomeScreenBinding>(R.layout.frag
             transactionAdapter.fetchTransactions(curr_wallet_id)
             if (preferenceHelper.getString("curr_user_currency", "") == "EUR") {
                 binding.valIncome.text =
-                    String.format("%.2f €", transactionAdapter.fetchIncomesSum(curr_wallet_id))
+                    String.format("%.2f€", transactionAdapter.fetchIncomesSum(curr_wallet_id))
                 binding.valExpenses.text =
-                    String.format("%.2f €", transactionAdapter.fetchExpensesSum(curr_wallet_id))
+                    String.format("%.2f€", transactionAdapter.fetchExpensesSum(curr_wallet_id))
                 binding.valBudget.text = String.format(
-                    "%.2f €",
+                    "%.2f€",
                     transactionAdapter.fetchIncomesSum(curr_wallet_id) - transactionAdapter.fetchExpensesSum(
                         curr_wallet_id
                     )
                 )
             } else {
                 binding.valIncome.text =
-                    String.format("%.2f $", transactionAdapter.fetchIncomesSum(curr_wallet_id))
+                    String.format("%.2f$", transactionAdapter.fetchIncomesSum(curr_wallet_id))
                 binding.valExpenses.text =
-                    String.format("%.2f $", transactionAdapter.fetchExpensesSum(curr_wallet_id))
+                    String.format("%.2f$", transactionAdapter.fetchExpensesSum(curr_wallet_id))
                 binding.valBudget.text = String.format(
-                    "%.2f $",
+                    "%.2f$",
                     transactionAdapter.fetchIncomesSum(curr_wallet_id) - transactionAdapter.fetchExpensesSum(
                         curr_wallet_id
                     )
@@ -117,9 +120,43 @@ class HomeScreenFragment : BaseFragment<FragmentHomeScreenBinding>(R.layout.frag
     fun onClickRecyclerTransactions(
         view: View,
         position: Int,
-        item: TransactionRowModel
+        transaction: TransactionRowModel
     ) {
-        when (view.id) {
+        when (transaction.type) {
+            "expense" -> {
+                val intent = Intent(context, ExpenseDetailActivity::class.java)
+                val bundle = Bundle()
+                bundle.putString("value", transaction.value.toString())
+                bundle.putString("date", transaction.date)
+                bundle.putString("category_id", transaction.category_id)
+                bundle.putString("wallet_id", transaction.wallet_id.toString())
+                bundle.putString("description", transaction.description)
+                bundle.putString("currency", transaction.currency)
+                bundle.putInt("id", transaction.id)
+                intent.putExtra("bundle", bundle)
+                startActivity(intent)
+            }
+
+            "income" -> {
+                val intent = Intent(context, IncomeDetailActivity::class.java)
+                val bundle = Bundle()
+                bundle.putString("value", transaction.value.toString())
+                bundle.putString("date", transaction.date)
+                bundle.putString("category_id", transaction.category_id)
+                bundle.putString("wallet_id", transaction.wallet_id.toString())
+                bundle.putString("description", transaction.description)
+                bundle.putString("currency", transaction.currency)
+                bundle.putInt("id", transaction.id)
+                intent.putExtra("bundle", bundle)
+                startActivity(intent)
+            }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        lifecycleScope.launch {
+            transactionAdapter.fetchTransactions(preferenceHelper.getString("curr_wallet_id", ""))
         }
     }
 

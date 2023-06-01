@@ -110,4 +110,6 @@
     <string name="new_expense_added">Strošek dodan</string>
     <string name="make_this_your_default_wallet">Naj bo tvoja privzeta denarnica?</string>
     <string name="lbl_transactions">Transakcije</string>
+    <string name="lbl_category_with_colon">Kategorija:</string>
+    <string name="lbl_wallet_with_colon">Denarnica:</string>
 </resources>

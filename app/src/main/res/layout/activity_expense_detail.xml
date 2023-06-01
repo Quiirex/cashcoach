@@ -57,6 +57,7 @@
                         android:ellipsize="end"
                         android:id="@+id/txtTitle"
                         android:layout_height="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_marginBottom="@dimen/_1pxv"
                         android:layout_marginTop="@dimen/_3pxv"
                         android:gravity="center"
@@ -67,7 +68,7 @@
                         tools:text="@string/msg_detail_transact" />
 
                     <ImageView
-                        android:id="@+id/imageTrash"
+                        android:id="@+id/btnDelete"
                         android:layout_height="@dimen/_26pxh"
                         android:layout_width="@dimen/_24pxh"
                         android:layout_marginTop="@dimen/_3pxh"
@@ -80,38 +81,23 @@
 
             <TextView
                 android:ellipsize="end"
-                android:id="@+id/txtPrice"
+                android:id="@+id/txtValue"
                 android:layout_gravity="center_horizontal"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/_20pxh"
                 android:layout_marginStart="@dimen/_20pxh"
-                android:layout_marginTop="@dimen/_30pxv"
                 android:layout_width="wrap_content"
                 android:lineSpacingExtra="@dimen/_11pxh"
                 android:singleLine="true"
-                android:text="@{expenseDetailVM.expenseDetailModel.txtPrice}"
+                android:text=""
                 style="@style/txtInterbold48"
                 tools:text="0€" />
-
-            <TextView
-                android:ellipsize="end"
-                android:id="@+id/txtGroceries"
-                android:layout_gravity="center_horizontal"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/_20pxh"
-                android:layout_marginStart="@dimen/_20pxh"
-                android:layout_marginTop="@dimen/_9pxv"
-                android:layout_width="wrap_content"
-                android:singleLine="true"
-                android:text="@{expenseDetailVM.expenseDetailModel.txtGroceries}"
-                style="@style/txtIntermedium16_3"
-                tools:text="Restavracija Mango" />
 
             <LinearLayout
                 android:gravity="center_vertical"
                 android:id="@+id/linearRowweekday"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_49pxv"
+                android:layout_marginBottom="@dimen/_15pxv"
                 android:layout_marginEnd="@dimen/_20pxh"
                 android:layout_marginStart="@dimen/_20pxh"
                 android:layout_marginTop="@dimen/_8pxv"
@@ -120,164 +106,117 @@
 
                 <TextView
                     android:ellipsize="end"
-                    android:id="@+id/txtWeekday"
+                    android:id="@+id/txtDate"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_1pxv"
                     android:layout_weight="0.79"
                     android:layout_width="0dp"
                     android:lineSpacingExtra="@dimen/_3pxh"
                     android:singleLine="true"
-                    android:text="@{expenseDetailVM.expenseDetailModel.txtWeekday}"
+                    android:text=""
                     style="@style/txtIntermedium13_1"
                     tools:text="@string/msg_saturday_4_june" />
+            </LinearLayout>
 
+            <LinearLayout
+                android:gravity="center_vertical"
+                android:id="@+id/linearRowcategory"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_15pxv"
+                android:layout_marginEnd="@dimen/_20pxh"
+                android:layout_marginStart="@dimen/_20pxh"
+                android:layout_width="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:ellipsize="end"
+                    android:id="@+id/txtLabelCategory"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:singleLine="true"
+                    android:text="@{expenseDetailVM.expenseDetailModel.txtCategory}"
+                    style="@style/txtInterbold16"
+                    tools:text="@string/lbl_category_with_colon" />
+
+                <TextView
+                    android:id="@+id/txtCategory"
+                    style="@style/txtIntersemibold16_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_5pxh"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text=""
+                    tools:text="@string/lbl_salary" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:gravity="center_vertical"
+                android:id="@+id/linearRowwallet"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_15pxv"
+                android:layout_marginEnd="@dimen/_20pxh"
+                android:layout_marginStart="@dimen/_20pxh"
+                android:layout_width="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:ellipsize="end"
+                    android:id="@+id/txtLabelWallet"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:lineSpacingExtra="@dimen/_3pxh"
+                    android:singleLine="true"
+                    android:gravity="center"
+                    android:text="@{expenseDetailVM.expenseDetailModel.txtWallet}"
+                    style="@style/txtInterbold16"
+                    tools:text="@string/lbl_wallet_with_colon" />
+
+                <TextView
+                    android:ellipsize="end"
+                    android:gravity="start"
+                    android:id="@+id/txtWallet"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:singleLine="true"
+                    android:layout_marginStart="@dimen/_5pxh"
+                    android:text=""
+                    style="@style/txtIntersemibold16_3"
+                    tools:text="@string/lbl_main_wallet" />
             </LinearLayout>
         </LinearLayout>
 
-        <FrameLayout
-            android:id="@+id/frameIncomeDetail"
+        <LinearLayout
+            android:id="@+id/linearColumnlinethree"
+            android:layout_gravity="center"
             android:layout_height="match_parent"
             android:layout_width="match_parent"
+            android:orientation="vertical"
             style="@style/groupStylewhite_A700">
 
-            <LinearLayout
-                android:id="@+id/linearRowtype"
-                android:layout_gravity="top|center"
+            <TextView
+                android:ellipsize="end"
+                android:id="@+id/txtLabelDescription"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_144pxv"
-                android:layout_marginEnd="@dimen/_10pxh"
-                android:layout_marginStart="@dimen/_10pxh"
+                android:layout_marginEnd="@dimen/_15pxh"
+                android:layout_marginStart="@dimen/_15pxh"
+                android:layout_marginTop="@dimen/_12pxv"
+                android:layout_width="wrap_content"
+                android:singleLine="true"
+                android:text="@{expenseDetailVM.expenseDetailModel.txtDescription}"
+                style="@style/txtIntersemibold16_2"
+                tools:text="@string/lbl_description" />
+
+            <TextView
+                android:id="@+id/txtDescription"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_15pxh"
+                android:layout_marginStart="@dimen/_15pxh"
+                android:layout_marginTop="@dimen/_12pxv"
                 android:layout_width="match_parent"
-                android:orientation="horizontal"
-                style="@style/groupStylewhite_1">
-
-                <LinearLayout
-                    android:id="@+id/linearColumnCategory"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/_12pxv"
-                    android:layout_marginStart="@dimen/_50pxh"
-                    android:layout_marginTop="@dimen/_13pxv"
-                    android:layout_width="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:ellipsize="end"
-                        android:id="@+id/txtCategory"
-                        android:layout_gravity="start"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/_16pxh"
-                        android:layout_marginStart="@dimen/_16pxh"
-                        android:layout_width="wrap_content"
-                        android:lineSpacingExtra="@dimen/_3pxh"
-                        android:singleLine="true"
-                        android:text="@{expenseDetailVM.expenseDetailModel.txtCategory}"
-                        style="@style/txtIntermedium14"
-                        tools:text="@string/lbl_category" />
-
-                    <TextView
-                        android:id="@+id/txtShopping"
-                        style="@style/txtIntersemibold16_3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_8pxv"
-                        android:ellipsize="end"
-                        android:gravity="center"
-                        android:singleLine="true"
-                        android:text="@{expenseDetailVM.expenseDetailModel.txtGroceries}"
-                        tools:text="@string/lbl_salary" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/linearColumnWallet"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/_12pxv"
-                    android:layout_marginStart="@dimen/_20pxh"
-                    android:layout_marginTop="@dimen/_13pxv"
-                    android:layout_width="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:ellipsize="end"
-                        android:id="@+id/txtWallet"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/_16pxh"
-                        android:layout_marginStart="@dimen/_16pxh"
-                        android:layout_width="match_parent"
-                        android:lineSpacingExtra="@dimen/_3pxh"
-                        android:singleLine="true"
-                        android:gravity="center"
-                        android:text="@{expenseDetailVM.expenseDetailModel.txtWallet}"
-                        style="@style/txtIntermedium14"
-                        tools:text="@string/lbl_wallet" />
-
-                    <TextView
-                        android:ellipsize="end"
-                        android:gravity="start"
-                        android:id="@+id/txtMainWallet"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_8pxv"
-                        android:layout_width="wrap_content"
-                        android:singleLine="true"
-                        android:text="@{expenseDetailVM.expenseDetailModel.txtMainWallet}"
-                        style="@style/txtIntersemibold16_3"
-                        tools:text="@string/lbl_main_wallet" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/linearColumnlinethree"
-                android:layout_gravity="center"
-                android:layout_marginTop="@dimen/_53pxh"
-                android:layout_height="match_parent"
-                android:layout_width="match_parent"
-                android:orientation="vertical"
-                style="@style/groupStylewhite_A700">
-
-                <TextView
-                    android:ellipsize="end"
-                    android:id="@+id/txtDescription"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/_15pxh"
-                    android:layout_marginStart="@dimen/_15pxh"
-                    android:layout_marginTop="@dimen/_12pxv"
-                    android:layout_width="wrap_content"
-                    android:singleLine="true"
-                    android:text="@{expenseDetailVM.expenseDetailModel.txtDescription}"
-                    style="@style/txtIntersemibold16_2"
-                    tools:text="@string/lbl_description" />
-
-                <TextView
-                    android:gravity="center_horizontal"
-                    android:id="@+id/txtDescriptionOne"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/_15pxh"
-                    android:layout_marginStart="@dimen/_15pxh"
-                    android:layout_marginTop="@dimen/_12pxv"
-                    android:layout_width="match_parent"
-                    android:text="@{expenseDetailVM.expenseDetailModel.txtDescriptionOne}"
-                    style="@style/txtIntermedium16_1"
-                    tools:text="@string/msg_amet_minim_moll" />
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:ellipsize="end"
-                    android:gravity="center"
-                    android:id="@+id/btnEdit"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/_94pxv"
-                    android:layout_marginEnd="@dimen/_15pxh"
-                    android:layout_marginStart="@dimen/_15pxh"
-                    android:layout_marginTop="@dimen/_150pxv"
-                    android:layout_width="match_parent"
-                    android:paddingBottom="@dimen/_17pxv"
-                    android:paddingEnd="@dimen/_30pxh"
-                    android:paddingStart="@dimen/_30pxh"
-                    android:paddingTop="@dimen/_17pxv"
-                    android:singleLine="true"
-                    android:text="@string/lbl_edit"
-                    android:textAllCaps="false"
-                    style="@style/btnSolidRounded_3"
-                    tools:text="@string/lbl_edit" />
-            </LinearLayout>
-        </FrameLayout>
+                android:text=""
+                style="@style/txtIntermedium16_1"
+                tools:text="@string/msg_amet_minim_moll" />
+        </LinearLayout>
     </LinearLayout>
 </layout>

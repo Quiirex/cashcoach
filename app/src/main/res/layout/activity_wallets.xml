@@ -59,7 +59,7 @@
                         android:id="@+id/txtTitle"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_10pxh"
-                        android:layout_marginEnd="@dimen/_40pxh"
+                        android:layout_marginEnd="@dimen/_35pxh"
                         android:gravity="center"
                         android:layout_weight="0.76"
                         android:layout_width="0dp"

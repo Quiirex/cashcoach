@@ -23,8 +23,6 @@ class TransactionAdapter(
     RecyclerView.Adapter<TransactionAdapter.TransactionViewHolder>() {
     private var clickListener: OnItemClickListener? = null
     private var transactions: List<Transaction> = emptyList()
-    private var incomesSum: Double = 0.0
-    private var expensesSum: Double = 0.0
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TransactionViewHolder {
         val view =
@@ -38,7 +36,13 @@ class TransactionAdapter(
             transaction.category_id.toString(),
             transaction.description,
             transaction.value.toString(),
-            transaction.date.toString()
+            transaction.date.toString(),
+            transaction.type,
+            transaction.value,
+            transaction.date.toString(),
+            transaction.wallet_id,
+            transaction.currency,
+            transaction.id ?: 0
         )
         holder.binding.transactionRowModel = transactionRowModel
         holder.binding.txtCategory.text = "ID KATEGORIJE"//transaction.category_id.toString()
@@ -57,12 +61,14 @@ class TransactionAdapter(
         holder.binding.txtAmount.setTextColor(amountColor)
 
         if (preferenceHelper.getString("curr_user_currency", "") == "EUR") {
-            val amountWithCurrency = String.format("%.2f €", transaction.value)
+            val amountWithCurrency = String.format("%.2f€", transaction.value)
+            holder.binding.txtAmount.text = amountWithCurrency
+        } else {
+            val amountWithCurrency = String.format("%.2f$", transaction.value)
             holder.binding.txtAmount.text = amountWithCurrency
         }
-        else {
-            val amountWithCurrency = String.format("%.2f $", transaction.value)
-            holder.binding.txtAmount.text = amountWithCurrency
+        holder.itemView.setOnClickListener {
+            clickListener?.onItemClick(it, position, transactionRowModel)
         }
     }
 
@@ -70,20 +76,19 @@ class TransactionAdapter(
         val inputFormat = SimpleDateFormat("E MMM dd HH:mm:ss Z yyyy", Locale.US)
         val outputFormat = SimpleDateFormat("dd.MM.yyyy", Locale.US)
         val outputFormatToday = SimpleDateFormat("HH:mm", Locale.US)
-        val date = inputFormat.parse(dateString)
+        val date = inputFormat.parse(dateString) ?: Date()
 
         val todayString = Date().toString()
         val inputToday = SimpleDateFormat("E MMM dd HH:mm:ss Z yyyy", Locale.US)
         val outputToday = SimpleDateFormat("dd.MM.yyyy", Locale.US)
-        val today = inputToday.parse(todayString)
+        val today = inputToday.parse(todayString) ?: Date()
 
-        if(outputToday.format(today) == outputFormat.format(date)) {
-            return outputFormatToday.format(date)
+        return if (outputToday.format(today) == outputFormat.format(date)) {
+            outputFormatToday.format(date)
         } else {
-            return outputFormat.format(date)
+            outputFormat.format(date)
         }
     }
-
 
     override fun getItemCount(): Int {
         return transactions.size
@@ -97,7 +102,7 @@ class TransactionAdapter(
         fun onItemClick(
             view: View,
             position: Int,
-            item: TransactionRowModel
+            transaction: TransactionRowModel
         ) {
         }
     }
@@ -119,11 +124,13 @@ class TransactionAdapter(
         return withContext(Dispatchers.IO) {
             transactionRepository.getIncomesSum(wallet_id)
         }
+        notifyDataSetChanged()
     }
 
     suspend fun fetchExpensesSum(wallet_id: String): Double {
         return withContext(Dispatchers.IO) {
             transactionRepository.getExpensesSum(wallet_id)
         }
+        notifyDataSetChanged()
     }
 }
