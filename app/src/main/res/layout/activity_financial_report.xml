@@ -86,12 +86,13 @@
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 android:orientation="vertical"
-                style="@style/groupStylewhite_A700">
+                style="@style/groupStylewhite_A700"
+                tools:ignore="MissingClass">
 
 
                 <TextView
                     android:ellipsize="end"
-                    android:id="@+id/txtPrice"
+                    android:id="@+id/valBudget"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/_16pxh"
                     android:layout_marginStart="@dimen/_16pxh"
@@ -103,15 +104,10 @@
                     style="@style/txtInterbold32"
                     tools:text="0€" />
 
-                <ImageView
-                    android:id="@+id/imageVectorTwo"
+                <com.github.aachartmodel.aainfographics.aachartcreator.AAChartView
+                    android:id="@+id/chartView"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_250pxh"
-                    android:layout_marginTop="@dimen/_20pxv"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/img_vector2"
-                    tools:ignore="ContentDescription"
-                    tools:src="@drawable/img_vector2" />
+                    android:layout_height="@dimen/_300pxv" />
             </LinearLayout>
 
             <FrameLayout
@@ -232,7 +228,7 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:gravity="center_horizontal"
-                android:id="@+id/recyclerListtrash"
+                android:id="@+id/recyclerTransactions"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/_16pxh"
                 android:layout_marginStart="@dimen/_16pxh"
@@ -240,7 +236,6 @@
                 android:orientation="vertical"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 itemSpace="@{@dimen/_8pxh}"
-                tools:itemCount="3"
                 tools:listitem="@layout/row_transaction" />
         </LinearLayout>
     </LinearLayout>
