@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:id="@+id/linearAccounts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_550pxh"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <LinearLayout
+            android:id="@+id/buttonIncome"
+            android:layout_width="@dimen/_65pxh"
+            android:layout_height="@dimen/_65pxh"
+            android:textColor="@color/white"
+            android:layout_marginEnd="@dimen/_8pxh"
+            android:orientation="horizontal"
+            style="@style/groupStylegreen_900cornerRadius">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginStart="@dimen/_10pxh"
+                android:layout_marginEnd="@dimen/_10pxh">
+
+                <ImageView
+                    android:layout_width="@dimen/_50pxh"
+                    android:layout_height="@dimen/_45pxh"
+                    android:src="@drawable/baseline_trending_up_24" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/buttonExpense"
+            android:layout_width="@dimen/_65pxh"
+            android:layout_height="@dimen/_65pxh"
+            android:textColor="@color/white"
+            android:layout_marginStart="@dimen/_8pxh"
+            android:orientation="horizontal"
+            style="@style/groupStylered_900cornerRadius">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginStart="@dimen/_10pxh"
+                android:layout_marginEnd="@dimen/_10pxh">
+
+                <ImageView
+                    android:layout_width="@dimen/_50pxh"
+                    android:layout_height="@dimen/_45pxh"
+                    android:src="@drawable/baseline_trending_down_24" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</layout>

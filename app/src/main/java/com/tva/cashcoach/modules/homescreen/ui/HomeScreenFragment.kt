@@ -11,7 +11,6 @@ import com.tva.cashcoach.appcomponents.model.transaction.TransactionDao
 import com.tva.cashcoach.appcomponents.persistence.repository.transaction.TransactionRepository
 import com.tva.cashcoach.databinding.FragmentHomeScreenBinding
 import com.tva.cashcoach.modules.expensedetail.ui.ExpenseDetailActivity
-import com.tva.cashcoach.modules.homescreen.data.model.ListframefiveRowModel
 import com.tva.cashcoach.modules.homescreen.data.model.SpinnerDropdownMonthModel
 import com.tva.cashcoach.modules.homescreen.data.viewmodel.HomeScreenVM
 import com.tva.cashcoach.modules.incomedetail.ui.IncomeDetailActivity
@@ -19,10 +18,7 @@ import com.tva.cashcoach.modules.newexpense.ui.NewExpenseActivity
 import com.tva.cashcoach.modules.newincome.ui.NewIncomeActivity
 import com.tva.cashcoach.modules.transaction.data.model.TransactionRowModel
 import com.tva.cashcoach.modules.transaction.ui.TransactionAdapter
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import org.koin.android.ext.android.bind
 
 class HomeScreenFragment : BaseFragment<FragmentHomeScreenBinding>(R.layout.fragment_home_screen) {
     private val viewModel: HomeScreenVM by viewModels()
@@ -90,13 +86,27 @@ class HomeScreenFragment : BaseFragment<FragmentHomeScreenBinding>(R.layout.frag
         lifecycleScope.launch {
             transactionAdapter.fetchTransactions(curr_wallet_id)
             if (preferenceHelper.getString("curr_user_currency", "") == "EUR") {
-                binding.valIncome.text = String.format("%.2f €", transactionAdapter.fetchIncomesSum(curr_wallet_id))
-                binding.valExpenses.text = String.format("%.2f €", transactionAdapter.fetchExpensesSum(curr_wallet_id))
-                binding.valBudget.text = String.format("%.2f €", transactionAdapter.fetchIncomesSum(curr_wallet_id)-transactionAdapter.fetchExpensesSum(curr_wallet_id))
+                binding.valIncome.text =
+                    String.format("%.2f €", transactionAdapter.fetchIncomesSum(curr_wallet_id))
+                binding.valExpenses.text =
+                    String.format("%.2f €", transactionAdapter.fetchExpensesSum(curr_wallet_id))
+                binding.valBudget.text = String.format(
+                    "%.2f €",
+                    transactionAdapter.fetchIncomesSum(curr_wallet_id) - transactionAdapter.fetchExpensesSum(
+                        curr_wallet_id
+                    )
+                )
             } else {
-                binding.valIncome.text = String.format("%.2f $", transactionAdapter.fetchIncomesSum(curr_wallet_id))
-                binding.valExpenses.text = String.format("%.2f $", transactionAdapter.fetchExpensesSum(curr_wallet_id))
-                binding.valBudget.text = String.format("%.2f $", transactionAdapter.fetchIncomesSum(curr_wallet_id)-transactionAdapter.fetchExpensesSum(curr_wallet_id))
+                binding.valIncome.text =
+                    String.format("%.2f $", transactionAdapter.fetchIncomesSum(curr_wallet_id))
+                binding.valExpenses.text =
+                    String.format("%.2f $", transactionAdapter.fetchExpensesSum(curr_wallet_id))
+                binding.valBudget.text = String.format(
+                    "%.2f $",
+                    transactionAdapter.fetchIncomesSum(curr_wallet_id) - transactionAdapter.fetchExpensesSum(
+                        curr_wallet_id
+                    )
+                )
             }
         }
     }
