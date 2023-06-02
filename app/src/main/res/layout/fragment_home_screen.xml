@@ -92,7 +92,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/_14pxh"
                 android:layout_marginStart="@dimen/_14pxh"
-                android:layout_marginTop="@dimen/_25pxv"
+                android:layout_marginTop="@dimen/_15pxv"
                 android:layout_width="match_parent"
                 android:orientation="horizontal">
 
@@ -127,8 +127,8 @@
                                 android:gravity="center"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:text="@{homeScreenVM.homeScreenModel.txtIncome}"
-                                tools:text="@string/lbl_income" />
+                                android:text="@{homeScreenVM.homeScreenModel.txtIncomes}"
+                                tools:text="@string/lbl_incomes" />
 
                             <ImageView
                                 android:layout_height="@dimen/_20pxh"
@@ -207,7 +207,7 @@
             <LinearLayout
                 android:id="@+id/linearRowspendfrequency"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_8pxv"
+                android:layout_marginTop="@dimen/_5pxv"
                 android:layout_width="match_parent"
                 android:orientation="horizontal"
                 style="@style/groupStylewhite_A700">

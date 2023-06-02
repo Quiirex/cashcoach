@@ -115,4 +115,5 @@
     <string name="do_you_want_to_logout">Si prepričan, da se želiš odjaviti?</string>
     <string name="yes">Ja</string>
     <string name="no">Ne</string>
+    <string name="lbl_incomes">Dohodki</string>
 </resources>

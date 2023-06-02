@@ -17,6 +17,8 @@ data class HomeScreenModel(
      * TODO Replace with dynamic value
      */
     var txtIncome: String? = MyApp.getInstance().resources.getString(R.string.lbl_income),
+
+    var txtIncomes: String? = MyApp.getInstance().resources.getString(R.string.lbl_incomes),
     /**
      * TODO Replace with dynamic value
      */
