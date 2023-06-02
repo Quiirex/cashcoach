@@ -12,6 +12,7 @@ import com.tva.cashcoach.appcomponents.model.transaction.TransactionDao
 import com.tva.cashcoach.appcomponents.persistence.repository.transaction.TransactionRepository
 import com.tva.cashcoach.databinding.FragmentTransactionBinding
 import com.tva.cashcoach.modules.expensedetail.ui.ExpenseDetailActivity
+import com.tva.cashcoach.modules.homescreencontainer.ui.HomeScreenContainerActivity
 import com.tva.cashcoach.modules.incomedetail.ui.IncomeDetailActivity
 import com.tva.cashcoach.modules.transaction.data.model.TransactionRowModel
 import com.tva.cashcoach.modules.transaction.data.viewmodel.TransactionVM
@@ -91,9 +92,14 @@ class TransactionFragment :
         }
     }
 
+    private fun updateButtonColors() {
+        (activity as? HomeScreenContainerActivity)?.updateButtonColors(TAG)
+    }
+
     override fun onResume() {
         super.onResume()
         currentFragmentTag = TAG
+        updateButtonColors()
         lifecycleScope.launch {
             transactionAdapter.fetchTransactions(preferenceHelper.getString("curr_wallet_id", ""))
         }

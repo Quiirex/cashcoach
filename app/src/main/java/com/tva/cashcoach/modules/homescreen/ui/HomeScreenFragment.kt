@@ -15,6 +15,7 @@ import com.tva.cashcoach.appcomponents.utility.ImageHelper
 import com.tva.cashcoach.databinding.FragmentHomeScreenBinding
 import com.tva.cashcoach.modules.expensedetail.ui.ExpenseDetailActivity
 import com.tva.cashcoach.modules.homescreen.data.viewmodel.HomeScreenVM
+import com.tva.cashcoach.modules.homescreencontainer.ui.HomeScreenContainerActivity
 import com.tva.cashcoach.modules.incomedetail.ui.IncomeDetailActivity
 import com.tva.cashcoach.modules.newexpense.ui.NewExpenseActivity
 import com.tva.cashcoach.modules.newincome.ui.NewIncomeActivity
@@ -160,9 +161,14 @@ class HomeScreenFragment : BaseFragment<FragmentHomeScreenBinding>(R.layout.frag
         }
     }
 
+    private fun updateButtonColors() {
+        (activity as? HomeScreenContainerActivity)?.updateButtonColors(TAG)
+    }
+
     override fun onResume() {
         super.onResume()
         currentFragmentTag = TAG
+        updateButtonColors()
         lifecycleScope.launch {
             transactionAdapter.fetchTransactions(preferenceHelper.getString("curr_wallet_id", ""))
         }

@@ -135,7 +135,7 @@ class HomeScreenContainerActivity :
         }
     }
 
-    private fun updateButtonColors(activeFragmentTag: String) {
+    fun updateButtonColors(activeFragmentTag: String) {
         // Update ImageView assets
         binding.imageHome.setImageResource(if (activeFragmentTag == HomeScreenFragment.TAG) R.drawable.baseline_home_24_black else R.drawable.baseline_home_24)
         binding.imageTransaction.setImageResource(if (activeFragmentTag == TransactionFragment.TAG) R.drawable.baseline_swap_horiz_24_black else R.drawable.baseline_swap_horiz_24)

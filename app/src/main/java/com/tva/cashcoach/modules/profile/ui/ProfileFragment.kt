@@ -14,6 +14,7 @@ import com.tva.cashcoach.appcomponents.model.user.UserDao
 import com.tva.cashcoach.appcomponents.persistence.repository.user.UserRepository
 import com.tva.cashcoach.appcomponents.utility.ImageHelper
 import com.tva.cashcoach.databinding.FragmentProfileBinding
+import com.tva.cashcoach.modules.homescreencontainer.ui.HomeScreenContainerActivity
 import com.tva.cashcoach.modules.login.ui.LoginActivity
 import com.tva.cashcoach.modules.profile.data.viewmodel.ProfileVM
 import com.tva.cashcoach.modules.settings.ui.SettingsActivity
@@ -101,9 +102,14 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
         }
     }
 
+    private fun updateButtonColors() {
+        (activity as? HomeScreenContainerActivity)?.updateButtonColors(TAG)
+    }
+
     override fun onResume() {
         super.onResume()
         currentFragmentTag = TAG
+        updateButtonColors()
     }
 
     override fun onPause() {
