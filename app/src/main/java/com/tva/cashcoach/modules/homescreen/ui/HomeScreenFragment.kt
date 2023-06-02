@@ -122,34 +122,24 @@ class HomeScreenFragment : BaseFragment<FragmentHomeScreenBinding>(R.layout.frag
         position: Int,
         transaction: TransactionRowModel
     ) {
-        when (transaction.type) {
-            "expense" -> {
-                val intent = Intent(context, ExpenseDetailActivity::class.java)
-                val bundle = Bundle()
-                bundle.putString("value", transaction.value.toString())
-                bundle.putString("date", transaction.date)
-                bundle.putString("category_id", transaction.category_id)
-                bundle.putString("wallet_id", transaction.wallet_id.toString())
-                bundle.putString("description", transaction.description)
-                bundle.putString("currency", transaction.currency)
-                bundle.putInt("id", transaction.id)
-                intent.putExtra("bundle", bundle)
-                startActivity(intent)
-            }
+        val intent = when (transaction.type) {
+            "expense" -> Intent(context, ExpenseDetailActivity::class.java)
+            "income" -> Intent(context, IncomeDetailActivity::class.java)
+            else -> null
+        }
 
-            "income" -> {
-                val intent = Intent(context, IncomeDetailActivity::class.java)
-                val bundle = Bundle()
-                bundle.putString("value", transaction.value.toString())
-                bundle.putString("date", transaction.date)
-                bundle.putString("category_id", transaction.category_id)
-                bundle.putString("wallet_id", transaction.wallet_id.toString())
-                bundle.putString("description", transaction.description)
-                bundle.putString("currency", transaction.currency)
-                bundle.putInt("id", transaction.id)
-                intent.putExtra("bundle", bundle)
-                startActivity(intent)
+        intent?.let {
+            val bundle = Bundle().apply {
+                putString("value", transaction.value.toString())
+                putString("date", transaction.date)
+                putString("category_id", transaction.category_id)
+                putString("wallet_id", transaction.wallet_id.toString())
+                putString("description", transaction.description)
+                putString("currency", transaction.currency)
+                putInt("id", transaction.id)
             }
+            it.putExtra("bundle", bundle)
+            startActivity(it)
         }
     }
 
