@@ -122,7 +122,7 @@ class TransactionAdapter(
 
     suspend fun fetchAllTransactions(wallet_id: String): List<Transaction> {
         return withContext(Dispatchers.IO) {
-            transactionRepository.getAll(wallet_id)
+            transactionRepository.getAllTransactions(wallet_id)
         }
         notifyDataSetChanged()
     }

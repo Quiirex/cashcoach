@@ -141,4 +141,6 @@
     <string name="lbl_transactions">Transactions</string>
     <string name="lbl_category_with_colon">Category:</string>
     <string name="lbl_wallet_with_colon">Wallet:</string>
+    <string name="lbl_start_date">Start date</string>
+    <string name="lbl_end_date">End date</string>
 </resources>

@@ -4,6 +4,8 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
+import android.widget.EditText
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartModel
@@ -23,6 +25,10 @@ import com.tva.cashcoach.modules.financialreport.data.viewmodel.FinancialReportV
 import com.tva.cashcoach.modules.transaction.data.model.TransactionRowModel
 import com.tva.cashcoach.modules.transaction.ui.TransactionAdapter
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Date
+import java.util.Locale
 
 class FinancialReportActivity :
     BaseActivity<ActivityFinancialReportBinding>(R.layout.activity_financial_report) {
@@ -97,44 +103,89 @@ class FinancialReportActivity :
         lifecycleScope.launch {
             transactions = transactionAdapter.fetchAllTransactions(preferenceHelper.getString("curr_wallet_id", ""))
             transactionAdapter.fetchTransactions(preferenceHelper.getString("curr_wallet_id", ""))
+            graph(setDefaultDates().first, setDefaultDates().second)
+        }
 
-            if (preferenceHelper.getString("curr_user_currency", "") == "EUR") {
-                binding.valBudget.text = String.format(
-                    "%.2f€",
-                    transactionAdapter.fetchIncomesSum(preferenceHelper.getString("curr_wallet_id", "")) - transactionAdapter.fetchExpensesSum(
-                        preferenceHelper.getString("curr_wallet_id", "")
-                    )
-                )
-            } else {
-                binding.valBudget.text = String.format(
-                    "%.2f$",
-                    transactionAdapter.fetchIncomesSum(preferenceHelper.getString("curr_wallet_id", "")) - transactionAdapter.fetchExpensesSum(
-                        preferenceHelper.getString("curr_wallet_id", "")
-                    )
-                )
+    }
+
+    fun setDefaultDates(): Pair<Date, Date> {
+        val startDateEditText: EditText = findViewById(R.id.startDate)
+        val endDateEditText: EditText = findViewById(R.id.endDate)
+
+        // Get today's date
+        val currentDate = Calendar.getInstance().time
+        val dateFormat = SimpleDateFormat("dd.MM.yyyy", Locale.US)
+
+        // Set the end date to today's date
+        val endDateString = dateFormat.format(currentDate)
+        endDateEditText.setText(endDateString)
+
+        // Calculate the start date as one week before today
+        val startDate = Calendar.getInstance()
+        startDate.add(Calendar.DAY_OF_MONTH, -7)
+        val startDateString = dateFormat.format(startDate.time)
+        startDateEditText.setText(startDateString)
+
+        return Pair(startDate.time, currentDate)
+    }
+
+    fun graph(startDate: Date, endDate: Date) {
+        val budgetList = mutableListOf<Double>()
+        var budget = 0.0
+
+        for (transaction in transactions) {
+            if (transaction.date in startDate..endDate) {
+                if (transaction.type == "income") {
+                    budget += transaction.value
+                } else if (transaction.type == "expense") {
+                    budget -= transaction.value
+                }
+                budgetList.add(budget)
             }
         }
 
         val chart = findViewById<AAChartView>(R.id.chartView)
-        val aaChartModel : AAChartModel = AAChartModel()
-            .chartType(AAChartType.Area)
+        val aaChartModel: AAChartModel = AAChartModel()
+            .chartType(AAChartType.Areaspline)
             .dataLabelsEnabled(true)
             .colorsTheme(arrayOf("#3D85C6"))
             .series(
                 arrayOf(
                     AASeriesElement()
-                    .name("Budget")
-                        //namesto fiksnih podatkov uporabi podatke iz transactions (idi cez list, in shrani .value v array)
-                    .data(arrayOf(1000.0, 800.0, 850.0, 700.0, 500.0, 100.0, 300.0))
+                        .name("Budget")
+                        .data(budgetList.toTypedArray())
                 )
             )
         chart.aa_drawChartWithChartModel(aaChartModel)
-
     }
 
     override fun setUpClicks() {
         binding.imageBack.setOnClickListener {
             finish()
+        }
+
+        binding.updateGraph.setOnClickListener {
+            val startDateEditText: EditText = findViewById(R.id.startDate)
+            val endDateEditText: EditText = findViewById(R.id.endDate)
+
+            val dateFormat = SimpleDateFormat("dd.MM.yyyy", Locale.US)
+
+            val updateGraphButton: Button = findViewById(R.id.updateGraph)
+            updateGraphButton.setOnClickListener {
+                val startDateString = startDateEditText.text.toString()
+                val endDateString = endDateEditText.text.toString()
+
+                val startDate = dateFormat.parse(startDateString)
+                var endDate = dateFormat.parse(endDateString)
+
+                // Move end date one day forward
+                val calendar = Calendar.getInstance()
+                calendar.time = endDate
+                calendar.add(Calendar.DAY_OF_MONTH, 1)
+                endDate = calendar.time
+
+                graph(startDate, endDate)
+            }
         }
     }
 

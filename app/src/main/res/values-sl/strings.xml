@@ -112,4 +112,6 @@
     <string name="lbl_transactions">Transakcije</string>
     <string name="lbl_category_with_colon">Kategorija:</string>
     <string name="lbl_wallet_with_colon">Denarnica:</string>
+    <string name="lbl_start_date">Začetni datum</string>
+    <string name="lbl_end_date">Končni datum</string>
 </resources>

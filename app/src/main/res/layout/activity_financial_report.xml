@@ -11,98 +11,84 @@
     </data>
 
     <LinearLayout
-        android:gravity="start"
         android:id="@+id/linearColumnarrowleft"
-        android:layout_height="match_parent"
+        style="@style/groupStylewhite_A700"
         android:layout_width="match_parent"
-        android:orientation="vertical"
-        style="@style/groupStylewhite_A700">
+        android:layout_height="match_parent"
+        android:gravity="start"
+        android:orientation="vertical">
 
         <LinearLayout
-            android:gravity="center_horizontal"
             android:id="@+id/linearTopNavigation"
-            android:layout_height="wrap_content"
+            style="@style/groupStylewhite_A700"
             android:layout_width="match_parent"
-            android:orientation="vertical"
-            style="@style/groupStylewhite_A700">
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
 
             <androidx.appcompat.widget.Toolbar
-                android:gravity="start"
                 android:id="@+id/toolbarToolbar"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_19pxv"
-                android:layout_marginEnd="@dimen/_20pxh"
                 android:layout_marginStart="@dimen/_20pxh"
                 android:layout_marginTop="@dimen/_22pxv"
-                android:layout_width="match_parent"
+                android:layout_marginEnd="@dimen/_20pxh"
+                android:layout_marginBottom="@dimen/_19pxv"
+                android:gravity="start"
                 app:contentInsetStart="0dp">
 
                 <LinearLayout
-                    android:gravity="start"
                     android:id="@+id/linearRowarrowleft"
-                    android:layout_height="wrap_content"
                     android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
                     android:orientation="horizontal">
 
                     <ImageView
                         android:id="@+id/imageBack"
-                        android:layout_height="@dimen/_16pxh"
-                        android:layout_marginBottom="@dimen/_4pxv"
-                        android:layout_marginTop="@dimen/_5pxv"
                         android:layout_width="@dimen/_24pxh"
+                        android:layout_height="@dimen/_16pxh"
+                        android:layout_marginTop="@dimen/_5pxv"
+                        android:layout_marginBottom="@dimen/_4pxv"
                         android:scaleType="fitXY"
                         android:src="@drawable/img_arrowleft"
                         tools:ignore="ContentDescription"
                         tools:src="@drawable/img_arrowleft" />
 
                     <TextView
-                        android:ellipsize="end"
                         android:id="@+id/txtTitle"
+                        style="@style/txtIntersemibold18_2"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
                         android:layout_marginStart="@dimen/_10pxh"
                         android:layout_marginEnd="@dimen/_35pxh"
                         android:layout_weight="0.85"
-                        android:layout_width="0dp"
+                        android:ellipsize="end"
+                        android:gravity="center"
                         android:singleLine="true"
                         android:text="@{financialReportLineChartVM.financialReportModel.txtTitle}"
-                        style="@style/txtIntersemibold18_2"
                         tools:text="@string/msg_financial_repor" />
                 </LinearLayout>
             </androidx.appcompat.widget.Toolbar>
         </LinearLayout>
 
         <LinearLayout
-            android:gravity="start"
             android:id="@+id/linearFinancialRepor"
-            android:layout_height="wrap_content"
+            style="@style/groupStylewhite_A700"
             android:layout_width="match_parent"
-            android:orientation="vertical"
-            style="@style/groupStylewhite_A700">
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:orientation="vertical">
 
             <LinearLayout
-                android:gravity="start"
                 android:id="@+id/linearFinancialRepor1"
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent"
-                android:orientation="vertical"
                 style="@style/groupStylewhite_A700"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:orientation="vertical"
                 tools:ignore="MissingClass">
 
-
-                <TextView
-                    android:ellipsize="end"
-                    android:id="@+id/valBudget"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/_16pxh"
-                    android:layout_marginStart="@dimen/_16pxh"
-                    android:layout_marginTop="@dimen/_10pxv"
-                    android:layout_width="wrap_content"
-                    android:lineSpacingExtra="@dimen/_7pxh"
-                    android:singleLine="true"
-                    android:text="@{financialReportLineChartVM.financialReportModel.txtPrice}"
-                    style="@style/txtInterbold32"
-                    tools:text="0€" />
 
                 <com.github.aachartmodel.aainfographics.aachartcreator.AAChartView
                     android:id="@+id/chartView"
@@ -110,132 +96,122 @@
                     android:layout_height="@dimen/_300pxv" />
             </LinearLayout>
 
-            <FrameLayout
-                android:id="@+id/frameTabs"
-                android:layout_gravity="center_horizontal"
-                android:layout_height="@dimen/_56pxv"
-                android:layout_marginEnd="@dimen/_16pxh"
-                android:layout_marginStart="@dimen/_16pxh"
-                android:layout_marginTop="@dimen/_30pxv"
-                android:layout_width="@dimen/_342pxh"
-                style="@style/groupStylegray_100cornerRadius">
-
-                <View
-                    android:background="@drawable/rectangle_bg_black_900_radius_24"
-                    android:id="@+id/viewActiveTab"
-                    android:layout_gravity="start"
-                    android:layout_height="@dimen/_48pxv"
-                    android:layout_marginBottom="@dimen/_4pxv"
-                    android:layout_marginEnd="@dimen/_10pxh"
-                    android:layout_marginStart="@dimen/_4pxh"
-                    android:layout_marginTop="@dimen/_4pxv"
-                    android:layout_width="@dimen/_167pxh" />
+            <LinearLayout
+                android:id="@+id/dateFilters"
+                style="@style/groupStylewhite_A700"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:orientation="vertical"
+                tools:ignore="MissingClass">
 
                 <LinearLayout
-                    android:id="@+id/linearRowexpanse"
-                    android:layout_gravity="center"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/_4pxh"
-                    android:layout_marginVertical="@dimen/_4pxv"
                     android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <LinearLayout
-                        android:gravity="center_horizontal"
-                        android:id="@+id/linearTabExpense"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/_12pxv"
-                        android:layout_marginStart="@dimen/_10pxh"
-                        android:layout_marginTop="@dimen/_13pxv"
-                        android:layout_weight="1"
+                    <EditText
+                        android:id="@+id/startDate"
                         android:layout_width="0dp"
-                        android:orientation="vertical"
-                        style="@style/groupStylecornerRadius_3">
-
-                        <TextView
-                            android:ellipsize="end"
-                            android:gravity="center"
-                            android:id="@+id/txtExpanse"
-                            android:layout_height="match_parent"
-                            android:layout_width="match_parent"
-                            android:singleLine="true"
-                            android:text="@{financialReportLineChartVM.financialReportModel.txtExpanse}"
-                            style="@style/txtIntermedium16_3"
-                            tools:text="@string/lbl_expense" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:gravity="center"
-                        android:id="@+id/linearTabIncome"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/_14pxv"
-                        android:layout_marginEnd="@dimen/_20pxh"
-                        android:layout_marginStart="@dimen/_10pxh"
-                        android:layout_marginTop="@dimen/_13pxv"
                         android:layout_weight="1"
-                        android:layout_width="0dp"
-                        android:orientation="vertical"
-                        style="@style/groupStylecornerRadius_3">
+                        android:layout_marginEnd="@dimen/_8pxh"
+                        android:layout_marginStart="@dimen/_16pxh"
+                        android:layout_marginTop="@dimen/_24pxv"
+                        android:hint="@string/lbl_start_date"
+                        android:inputType="date"
+                        android:lineSpacingExtra="@dimen/_4pxh"
+                        android:paddingBottom="@dimen/_17pxv"
+                        android:paddingEnd="@dimen/_8pxh"
+                        android:paddingStart="@dimen/_16pxh"
+                        android:paddingTop="@dimen/_18pxv"
+                        android:singleLine="true"
+                        android:textColorHint="@color/gray_500"
+                        android:textColor="@color/black"
+                        android:background="@drawable/rectangle_bg_white_a700_border_gray_100_radius_17"
+                        style="@style/etSolidRoundedOutline_1" />
 
-                        <TextView
-                            android:ellipsize="end"
-                            android:gravity="center"
-                            android:id="@+id/txtIncome"
-                            android:layout_height="match_parent"
-                            android:layout_width="match_parent"
-                            android:singleLine="true"
-                            android:text="@{financialReportLineChartVM.financialReportModel.txtIncome}"
-                            style="@style/txtIntermedium16_4"
-                            tools:text="@string/lbl_income" />
-                    </LinearLayout>
+                    <EditText
+                        android:id="@+id/endDate"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="@dimen/_16pxh"
+                        android:layout_marginStart="@dimen/_8pxh"
+                        android:layout_marginTop="@dimen/_24pxv"
+                        android:hint="@string/lbl_end_date"
+                        android:inputType="date"
+                        android:lineSpacingExtra="@dimen/_4pxh"
+                        android:paddingBottom="@dimen/_17pxv"
+                        android:paddingEnd="@dimen/_16pxh"
+                        android:paddingStart="@dimen/_8pxh"
+                        android:paddingTop="@dimen/_18pxv"
+                        android:singleLine="true"
+                        android:textColorHint="@color/gray_500"
+                        android:textColor="@color/black"
+                        android:background="@drawable/rectangle_bg_white_a700_border_gray_100_radius_17"
+                        style="@style/etSolidRoundedOutline_1" />
+                    <Button
+                        android:id="@+id/updateGraph"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.35"
+                        android:layout_marginEnd="@dimen/_16pxh"
+                        android:layout_marginStart="@dimen/_8pxh"
+                        android:layout_marginTop="@dimen/_24pxv"
+                        android:drawableStart="@drawable/img_ticket"
+                        android:gravity="center_vertical"/>
+
+
                 </LinearLayout>
-            </FrameLayout>
+            </LinearLayout>
+
 
             <LinearLayout
                 android:id="@+id/linearRowsort"
+                style="@style/groupStylewhite_A700"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_8pxv"
-                android:layout_width="match_parent"
-                android:orientation="horizontal"
-                style="@style/groupStylewhite_A700">
+                android:orientation="horizontal">
 
                 <Spinner
                     android:id="@+id/spinnerDropdownTransa"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/_12pxv"
                     android:layout_marginStart="@dimen/_16pxh"
                     android:layout_marginTop="@dimen/_12pxv"
+                    android:layout_marginBottom="@dimen/_12pxv"
                     android:layout_weight="0.77"
-                    android:layout_width="0dp"
                     tools:listitem="@layout/spinner_item" />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:ellipsize="end"
-                    android:gravity="center"
                     android:id="@+id/btnSort"
+                    style="@style/btnRoundedOutline"
+                    android:layout_width="@dimen/_40pxh"
                     android:layout_height="@dimen/_40pxh"
-                    android:layout_marginBottom="@dimen/_12pxv"
-                    android:layout_marginEnd="@dimen/_16pxh"
                     android:layout_marginStart="@dimen/_172pxh"
                     android:layout_marginTop="@dimen/_12pxv"
-                    android:layout_width="@dimen/_40pxh"
+                    android:layout_marginEnd="@dimen/_16pxh"
+                    android:layout_marginBottom="@dimen/_12pxv"
+                    android:ellipsize="end"
+                    android:gravity="center"
                     android:paddingHorizontal="@dimen/_8pxh"
                     android:paddingVertical="@dimen/_8pxv"
                     android:singleLine="true"
-                    android:textAllCaps="false"
-                    style="@style/btnRoundedOutline" />
+                    android:textAllCaps="false" />
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
-                android:gravity="center_horizontal"
                 android:id="@+id/recyclerTransactions"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/_16pxh"
-                android:layout_marginStart="@dimen/_16pxh"
+                itemSpace="@{@dimen/_8pxh}"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_16pxh"
+                android:layout_marginEnd="@dimen/_16pxh"
+                android:gravity="center_horizontal"
                 android:orientation="vertical"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                itemSpace="@{@dimen/_8pxh}"
                 tools:listitem="@layout/row_transaction" />
         </LinearLayout>
     </LinearLayout>
