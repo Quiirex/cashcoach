@@ -3,6 +3,7 @@ package com.tva.cashcoach.modules.transaction.ui
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.tva.cashcoach.R
@@ -12,7 +13,6 @@ import com.tva.cashcoach.appcomponents.persistence.repository.transaction.Transa
 import com.tva.cashcoach.databinding.FragmentTransactionBinding
 import com.tva.cashcoach.modules.expensedetail.ui.ExpenseDetailActivity
 import com.tva.cashcoach.modules.incomedetail.ui.IncomeDetailActivity
-import com.tva.cashcoach.modules.transaction.data.model.SpinnerDropdownMonthModel
 import com.tva.cashcoach.modules.transaction.data.model.TransactionRowModel
 import com.tva.cashcoach.modules.transaction.data.viewmodel.TransactionVM
 import kotlinx.coroutines.launch
@@ -20,10 +20,6 @@ import kotlinx.coroutines.launch
 class TransactionFragment :
     BaseFragment<FragmentTransactionBinding>(R.layout.fragment_transaction) {
     private val viewModel: TransactionVM by viewModels()
-
-    private val REQUEST_CODE_DETAIL_INCOME: Int = 12
-
-    private val REQUEST_CODE_DETAIL_EXPENSE: Int = 13
 
     private lateinit var transactionAdapter: TransactionAdapter
 
@@ -33,24 +29,9 @@ class TransactionFragment :
 
     override fun onInitialized() {
         viewModel.navArguments = arguments
-        viewModel.spinnerDropdownMonthList.value = mutableListOf(
-            SpinnerDropdownMonthModel("Item1"),
-            SpinnerDropdownMonthModel("Item2"),
-            SpinnerDropdownMonthModel("Item3"),
-            SpinnerDropdownMonthModel("Item4"),
-            SpinnerDropdownMonthModel("Item5")
-        )
 
         transactionDao = appDb.getTransactionDao()
         transactionRepository = TransactionRepository(transactionDao)
-
-//        val spinnerDropdownMonthAdapter =
-//            SpinnerDropdownMonthAdapter(
-//                requireActivity(),
-//                R.layout.spinner_item,
-//                viewModel.spinnerDropdownMonthList.value ?: mutableListOf()
-//            )
-//        binding.spinnerDropdownMonth.adapter = spinnerDropdownMonthAdapter
 
         transactionAdapter = TransactionAdapter(
             transactionRepository,
@@ -70,9 +51,7 @@ class TransactionFragment :
                 }
             }
         )
-//        viewModel.recyclerTransactions.observe(requireActivity()) {
-//            listtrashAdapter.updateData(it)
-//        }
+
         binding.transactionVM = viewModel
 
         lifecycleScope.launch {
@@ -81,6 +60,9 @@ class TransactionFragment :
     }
 
     override fun setUpClicks() {
+        binding.btnSort.setOnClickListener {
+            Toast.makeText(context, "Tu pride popup za sorting", Toast.LENGTH_SHORT).show()
+        }
     }
 
     fun onClickRecyclerTransactions(

@@ -61,29 +61,16 @@
                         android:id="@+id/linearColumnname"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/_14pxv"
-                        android:layout_marginStart="@dimen/_17pxh"
-                        android:layout_marginTop="@dimen/_16pxv"
+                        android:layout_marginStart="@dimen/_10pxh"
+                        android:layout_marginTop="@dimen/_24pxv"
                         android:layout_weight="0.6"
                         android:layout_width="0dp"
                         android:orientation="vertical">
 
                         <TextView
                             android:ellipsize="end"
-                            android:id="@+id/txtName"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="@dimen/_10pxh"
-                            android:layout_width="wrap_content"
-                            android:singleLine="true"
-                            android:text="@{profileVM.profileModel.txtName}"
-                            style="@style/txtIntermedium14"
-                            tools:text="@string/lbl_name" />
-
-                        <TextView
-                            android:ellipsize="end"
                             android:id="@+id/txtNameSurname"
                             android:layout_height="wrap_content"
-                            android:layout_marginEnd="@dimen/_10pxh"
-                            android:layout_marginTop="@dimen/_2pxv"
                             android:layout_width="match_parent"
                             android:singleLine="true"
                             style="@style/txtIntersemibold24"

@@ -123,6 +123,10 @@ class HomeScreenContainerActivity :
         }
     }
 
+    @Deprecated("Deprecated in Java")
+    override fun onBackPressed() {
+    }
+
     companion object {
         const val TAG: String = "HOME_SCREEN_CONTAINER_ACTIVITY"
 
