@@ -1,6 +1,7 @@
 package com.tva.cashcoach.modules.profile.ui
 
 import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -98,6 +99,13 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
                 // Do nothing
             }
             val dialog = builder.create()
+            dialog.window?.setBackgroundDrawableResource(R.drawable.dialog_rounded_corners)
+            dialog.setOnShowListener {
+                dialog.getButton(DialogInterface.BUTTON_POSITIVE)
+                    .setTextColor(resources.getColor(android.R.color.black))
+                dialog.getButton(DialogInterface.BUTTON_NEGATIVE)
+                    .setTextColor(resources.getColor(android.R.color.black))
+            }
             dialog.show()
         }
     }
