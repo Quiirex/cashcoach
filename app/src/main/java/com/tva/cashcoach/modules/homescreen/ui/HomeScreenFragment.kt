@@ -43,7 +43,9 @@ class HomeScreenFragment : BaseFragment<FragmentHomeScreenBinding>(R.layout.frag
 
     private var curr_wallet_id = ""
 
-    override fun onInitialized() {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         viewModel.navArguments = arguments
 
         transactionDao = appDb.getTransactionDao()

@@ -2,6 +2,7 @@ package com.tva.cashcoach.modules.profile.ui
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.activity.ComponentActivity
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -37,7 +38,9 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
 
     private lateinit var userRepository: UserRepository
 
-    override fun onInitialized() {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         viewModel.navArguments = arguments
         binding.profileVM = viewModel
 
