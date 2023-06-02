@@ -51,12 +51,15 @@ class HomeScreenContainerActivity :
             add = false,
             enter = null,
             exit = null,
+            onFragmentLoaded = ::updateButtonColors
         )
-
     }
 
     override fun setUpClicks() {
         binding.linearHome.setOnClickListener {
+            if (HomeScreenFragment.currentFragmentTag == HomeScreenFragment.TAG) {
+                return@setOnClickListener
+            }
             val destFragment = HomeScreenFragment.getInstance(null)
             this.loadFragment(
                 R.id.fragmentContainer,
@@ -67,6 +70,7 @@ class HomeScreenContainerActivity :
                 add = false,
                 enter = null,
                 exit = null,
+                onFragmentLoaded = ::updateButtonColors
             )
         }
         binding.linearBudget.setOnClickListener {
@@ -74,6 +78,9 @@ class HomeScreenContainerActivity :
             startActivityForResult(destIntent, REQUEST_CODE_FINANCIAL_REPORT_LINE_CHART_ACTIVITY)
         }
         binding.linearProfile.setOnClickListener {
+            if (ProfileFragment.currentFragmentTag == ProfileFragment.TAG) {
+                return@setOnClickListener
+            }
             val destFragment = ProfileFragment.getInstance(null)
             this.loadFragment(
                 R.id.fragmentContainer,
@@ -84,9 +91,13 @@ class HomeScreenContainerActivity :
                 add = false,
                 enter = null,
                 exit = null,
+                onFragmentLoaded = ::updateButtonColors
             )
         }
         binding.linearTransaction.setOnClickListener {
+            if (TransactionFragment.currentFragmentTag == TransactionFragment.TAG) {
+                return@setOnClickListener
+            }
             val destFragment = TransactionFragment.getInstance(null)
             this.loadFragment(
                 R.id.fragmentContainer,
@@ -97,6 +108,7 @@ class HomeScreenContainerActivity :
                 add = false,
                 enter = null,
                 exit = null,
+                onFragmentLoaded = ::updateButtonColors
             )
         }
         binding.frameAdd.setOnClickListener {
@@ -121,6 +133,20 @@ class HomeScreenContainerActivity :
 
             dialog.show()
         }
+    }
+
+    private fun updateButtonColors(activeFragmentTag: String) {
+        // Update ImageView assets
+        binding.imageHome.setImageResource(if (activeFragmentTag == HomeScreenFragment.TAG) R.drawable.baseline_home_24_black else R.drawable.baseline_home_24)
+        binding.imageTransaction.setImageResource(if (activeFragmentTag == TransactionFragment.TAG) R.drawable.baseline_swap_horiz_24_black else R.drawable.baseline_swap_horiz_24)
+        binding.imageProfile.setImageResource(if (activeFragmentTag == ProfileFragment.TAG) R.drawable.baseline_account_circle_24_black else R.drawable.baseline_account_circle_24)
+        binding.imageReport.setImageResource(if (activeFragmentTag == FinancialReportActivity.TAG) R.drawable.baseline_bar_chart_24_black else R.drawable.baseline_bar_chart_24)
+
+        // Update TextView colors
+        binding.txtHome.setTextColor(if (activeFragmentTag == HomeScreenFragment.TAG) Color.BLACK else Color.GRAY)
+        binding.txtTransaction.setTextColor(if (activeFragmentTag == TransactionFragment.TAG) Color.BLACK else Color.GRAY)
+        binding.txtProfile.setTextColor(if (activeFragmentTag == ProfileFragment.TAG) Color.BLACK else Color.GRAY)
+        binding.txtReport.setTextColor(if (activeFragmentTag == FinancialReportActivity.TAG) Color.BLACK else Color.GRAY)
     }
 
     @Deprecated("Deprecated in Java")

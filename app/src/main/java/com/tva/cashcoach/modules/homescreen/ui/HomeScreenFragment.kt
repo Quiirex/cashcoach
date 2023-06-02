@@ -162,13 +162,21 @@ class HomeScreenFragment : BaseFragment<FragmentHomeScreenBinding>(R.layout.frag
 
     override fun onResume() {
         super.onResume()
+        currentFragmentTag = TAG
         lifecycleScope.launch {
             transactionAdapter.fetchTransactions(preferenceHelper.getString("curr_wallet_id", ""))
         }
     }
 
+    override fun onPause() {
+        super.onPause()
+        currentFragmentTag = null
+    }
+
     companion object {
         const val TAG: String = "HOME_SCREEN_FRAGMENT"
+
+        var currentFragmentTag: String? = null
 
         fun getInstance(bundle: Bundle?): HomeScreenFragment {
             val fragment = HomeScreenFragment()

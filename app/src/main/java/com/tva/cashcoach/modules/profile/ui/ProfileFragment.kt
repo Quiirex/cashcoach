@@ -101,8 +101,20 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        currentFragmentTag = TAG
+    }
+
+    override fun onPause() {
+        super.onPause()
+        currentFragmentTag = null
+    }
+
     companion object {
         const val TAG: String = "PROFILE_FRAGMENT"
+
+        var currentFragmentTag: String? = null
 
         fun getInstance(bundle: Bundle?): ProfileFragment {
             val fragment = ProfileFragment()

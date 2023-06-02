@@ -93,13 +93,21 @@ class TransactionFragment :
 
     override fun onResume() {
         super.onResume()
+        currentFragmentTag = TAG
         lifecycleScope.launch {
             transactionAdapter.fetchTransactions(preferenceHelper.getString("curr_wallet_id", ""))
         }
     }
 
+    override fun onPause() {
+        super.onPause()
+        currentFragmentTag = null
+    }
+
     companion object {
         const val TAG: String = "TRANSACTION_FRAGMENT"
+
+        var currentFragmentTag: String? = null
 
         fun getInstance(bundle: Bundle?): TransactionFragment {
             val fragment = TransactionFragment()
