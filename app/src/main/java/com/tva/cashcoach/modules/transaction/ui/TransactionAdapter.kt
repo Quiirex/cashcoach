@@ -45,9 +45,8 @@ class TransactionAdapter(
             transaction.id ?: 0
         )
         holder.binding.transactionRowModel = transactionRowModel
-        holder.binding.txtCategory.text = "ID KATEGORIJE"//transaction.category_id.toString()
+        holder.binding.txtCategory.text = "KATEGORIJA"//transaction.category_id.toString()
         holder.binding.txtDescription.text = transaction.description
-        holder.binding.txtTime.text = transaction.date.toString()
 
         val date = formatDate(transaction.date.toString())
         holder.binding.txtTime.text = date
@@ -60,13 +59,14 @@ class TransactionAdapter(
         val amountColor = holder.itemView.context.resources.getColor(amountColorRes)
         holder.binding.txtAmount.setTextColor(amountColor)
 
-        if (preferenceHelper.getString("curr_user_currency", "") == "EUR") {
-            val amountWithCurrency = String.format("%.2f€", transaction.value)
-            holder.binding.txtAmount.text = amountWithCurrency
-        } else {
-            val amountWithCurrency = String.format("%.2f$", transaction.value)
-            holder.binding.txtAmount.text = amountWithCurrency
+        val currency = preferenceHelper.getString("curr_user_currency", "")
+        val amountWithCurrency = when (transaction.type) {
+            "income" -> "+ %.2f${if (currency == "EUR") "€" else "$"}".format(transaction.value)
+            "expense" -> "- %.2f${if (currency == "EUR") "€" else "$"}".format(transaction.value)
+            else -> ""
         }
+        holder.binding.txtAmount.text = amountWithCurrency
+
         holder.itemView.setOnClickListener {
             clickListener?.onItemClick(it, position, transactionRowModel)
         }
