@@ -112,4 +112,7 @@
     <string name="lbl_transactions">Transakcije</string>
     <string name="lbl_category_with_colon">Kategorija:</string>
     <string name="lbl_wallet_with_colon">Denarnica:</string>
+    <string name="do_you_want_to_logout">Si prepričan, da se želiš odjaviti?</string>
+    <string name="yes">Ja</string>
+    <string name="no">Ne</string>
 </resources>

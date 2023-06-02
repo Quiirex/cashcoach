@@ -112,4 +112,7 @@
     <string name="lbl_transactions">Transaktionen</string>
     <string name="lbl_category_with_colon">Kategorie:</string>
     <string name="lbl_wallet_with_colon">Brieftasche:</string>
+    <string name="do_you_want_to_logout">Sind Sie sicher, dass Sie sich abmelden möchten?</string>
+    <string name="yes">Ja</string>
+    <string name="no">Nein</string>
 </resources>

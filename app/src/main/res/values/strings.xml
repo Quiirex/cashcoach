@@ -141,4 +141,7 @@
     <string name="lbl_transactions">Transactions</string>
     <string name="lbl_category_with_colon">Category:</string>
     <string name="lbl_wallet_with_colon">Wallet:</string>
+    <string name="do_you_want_to_logout">Are you sure that you want to log out?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 </resources>

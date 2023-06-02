@@ -1,5 +1,6 @@
 package com.tva.cashcoach.modules.profile.ui
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -80,13 +81,23 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
             startActivityForResult(destIntent, REQUEST_CODE_SETTINGS_ACTIVITY)
         }
         binding.linearRowarrowright.setOnClickListener {
-            try {
-                authHelper.signOut()
-            } catch (e: Exception) {
-                Log.d("Auth", "Error signing out")
+            val builder = AlertDialog.Builder(requireContext())
+            builder.setTitle(getString(R.string.lbl_log_out))
+            builder.setMessage(getString(R.string.do_you_want_to_logout))
+            builder.setPositiveButton(R.string.yes) { _, _ ->
+                try {
+                    authHelper.signOut()
+                } catch (e: Exception) {
+                    Log.d("Auth", "Error signing out")
+                }
+                val destIntent = context?.let { it1 -> LoginActivity.getIntent(it1, null) }
+                startActivityForResult(destIntent, REQUEST_CODE_LOGIN_ACTIVITY)
             }
-            val destIntent = context?.let { it1 -> LoginActivity.getIntent(it1, null) }
-            startActivityForResult(destIntent, REQUEST_CODE_LOGIN_ACTIVITY)
+            builder.setNegativeButton(R.string.no) { _, _ ->
+                // Do nothing
+            }
+            val dialog = builder.create()
+            dialog.show()
         }
     }
 
