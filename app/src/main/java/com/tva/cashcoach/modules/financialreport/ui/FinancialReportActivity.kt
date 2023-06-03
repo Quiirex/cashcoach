@@ -6,14 +6,9 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.text.Editable
-import android.text.InputType
 import android.text.TextWatcher
-import android.view.View
-import android.widget.Button
 import android.widget.DatePicker
 import android.widget.EditText
-import android.widget.ImageView
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.lifecycleScope
@@ -27,18 +22,12 @@ import com.tva.cashcoach.appcomponents.model.transaction.Transaction
 import com.tva.cashcoach.appcomponents.model.transaction.TransactionDao
 import com.tva.cashcoach.appcomponents.persistence.repository.transaction.TransactionRepository
 import com.tva.cashcoach.databinding.ActivityFinancialReportBinding
-import com.tva.cashcoach.modules.financialreport.data.model.Listtrash1RowModel
-import com.tva.cashcoach.modules.financialreport.data.model.SpinnerDropdownMonthModel
-import com.tva.cashcoach.modules.financialreport.data.model.SpinnerDropdownTransaModel
 import com.tva.cashcoach.modules.financialreport.data.viewmodel.FinancialReportVM
-import com.tva.cashcoach.modules.transaction.data.model.TransactionRowModel
 import com.tva.cashcoach.modules.transaction.ui.TransactionAdapter
 import kotlinx.coroutines.launch
-import org.koin.android.ext.android.bind
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
-import java.util.Dictionary
 import java.util.Locale
 
 class FinancialReportActivity :
@@ -58,13 +47,6 @@ class FinancialReportActivity :
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onInitialized() {
         viewModel.navArguments = intent.extras?.getBundle("bundle")
-        viewModel.spinnerDropdownMonthList.value = mutableListOf(
-            SpinnerDropdownMonthModel("Item1"),
-            SpinnerDropdownMonthModel("Item2"),
-            SpinnerDropdownMonthModel("Item3"),
-            SpinnerDropdownMonthModel("Item4"),
-            SpinnerDropdownMonthModel("Item5")
-        )
 
         transactionDao = appDb.getTransactionDao()
         transactionRepository = TransactionRepository(transactionDao)
@@ -72,15 +54,7 @@ class FinancialReportActivity :
         transactionAdapter = TransactionAdapter(
             transactionRepository, preferenceHelper
         )
-
-        viewModel.spinnerDropdownTransaList.value = mutableListOf(
-            SpinnerDropdownTransaModel("Item1"),
-            SpinnerDropdownTransaModel("Item2"),
-            SpinnerDropdownTransaModel("Item3"),
-            SpinnerDropdownTransaModel("Item4"),
-            SpinnerDropdownTransaModel("Item5")
-        )
-
+        
         lifecycleScope.launch {
             transactions = transactionAdapter.fetchAllTransactions(
                 preferenceHelper.getString(
@@ -204,7 +178,7 @@ class FinancialReportActivity :
 
         val relevantTransactions = transactions.filter { it.date <= startDate }
         budget =
-            relevantTransactions.sumByDouble { if (it.type == "income") it.value else -it.value }
+            relevantTransactions.sumOf { if (it.type == "income") it.value else -it.value }
         budgetList.add(budget)
 
         for (transaction in transactions) {
