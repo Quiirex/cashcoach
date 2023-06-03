@@ -49,7 +49,7 @@ data class IncomeDetailModel(
     /**
      * TODO Replace with dynamic value
      */
-    var txtCategory: String? = MyApp.getInstance().resources.getString(R.string.lbl_category),
+    var txtCategory: String? = MyApp.getInstance().resources.getString(R.string.lbl_category_with_colon),
     /**
      * TODO Replace with dynamic value
      */
@@ -57,7 +57,7 @@ data class IncomeDetailModel(
     /**
      * TODO Replace with dynamic value
      */
-    var txtWallet: String? = MyApp.getInstance().resources.getString(R.string.lbl_wallet),
+    var txtWallet: String? = MyApp.getInstance().resources.getString(R.string.lbl_wallet_with_colon),
     /**
      * TODO Replace with dynamic value
      */

@@ -25,7 +25,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.util.Date
 
-
 class NewIncomeActivity : BaseActivity<ActivityNewIncomeBinding>(R.layout.activity_new_income) {
     private val viewModel: NewIncomeVM by viewModels()
 
@@ -82,21 +81,14 @@ class NewIncomeActivity : BaseActivity<ActivityNewIncomeBinding>(R.layout.activi
                 category = selectedCategory,
                 wallet_id = preferenceHelper.getString("curr_wallet_id", "").toInt(),
                 type = "income",
-                currency = "EUR"
+                currency = preferenceHelper.getString("curr_user_currency", "")
             )
-
 
             lifecycleScope.launch {
                 withContext(Dispatchers.IO) {
                     transactionRepository.insert(newTransaction)
                 }
             }
-
-            Toast.makeText(
-                applicationContext,
-                getString(R.string.new_income_added),
-                Toast.LENGTH_SHORT
-            ).show()
 
             val destIntent = HomeScreenContainerActivity.getIntent(this, null)
             startActivityForResult(destIntent, REQUEST_CODE_HOME_SCREEN_CONTAINER_ACTIVITY)

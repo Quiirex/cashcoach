@@ -70,6 +70,7 @@ class NewExpenseActivity : BaseActivity<ActivityNewExpenseBinding>(R.layout.acti
 
             val spinner = findViewById<Spinner>(R.id.spinnerCategory)
             val (selectedCategory) = spinner.selectedItem as SpinnerCategoryModel
+
             val newTransaction = Transaction(
                 id = null,
                 value = binding.etValue.text.toString().toDouble(),
@@ -78,7 +79,7 @@ class NewExpenseActivity : BaseActivity<ActivityNewExpenseBinding>(R.layout.acti
                 category = selectedCategory,
                 wallet_id = preferenceHelper.getString("curr_wallet_id", "").toInt(),
                 type = "expense",
-                currency = "EUR"
+                currency = preferenceHelper.getString("curr_user_currency", "")
             )
 
             lifecycleScope.launch {
@@ -86,12 +87,6 @@ class NewExpenseActivity : BaseActivity<ActivityNewExpenseBinding>(R.layout.acti
                     transactionRepository.insert(newTransaction)
                 }
             }
-
-            Toast.makeText(
-                applicationContext,
-                getString(R.string.new_expense_added),
-                Toast.LENGTH_SHORT
-            ).show()
 
             val destIntent = HomeScreenContainerActivity.getIntent(this, null)
             startActivityForResult(destIntent, REQUEST_CODE_HOME_SCREEN_CONTAINER_ACTIVITY)

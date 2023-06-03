@@ -81,7 +81,7 @@ class TransactionFragment :
             val bundle = Bundle().apply {
                 putString("value", transaction.value.toString())
                 putString("date", transaction.date)
-                putString("category_id", transaction.category_id)
+                putString("category", transaction.category)
                 putString("wallet_id", transaction.wallet_id.toString())
                 putString("description", transaction.description)
                 putString("currency", transaction.currency)

@@ -45,7 +45,7 @@ class TransactionAdapter(
             transaction.id ?: 0
         )
         holder.binding.transactionRowModel = transactionRowModel
-        holder.binding.txtCategory.text = "KATEGORIJA"//transaction.category_id.toString()
+        holder.binding.txtCategory.text = transaction.category
         holder.binding.txtDescription.text = transaction.description
 
         val date = formatDate(transaction.date.toString())
@@ -119,7 +119,6 @@ class TransactionAdapter(
         }
         notifyDataSetChanged()
     }
-
 
 
     suspend fun fetchAllTransactions(wallet_id: String): List<Transaction> {
