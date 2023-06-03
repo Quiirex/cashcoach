@@ -136,4 +136,6 @@
     <string name="education">Izobraževanje</string>
     <string name="lbl_choose_category">Izberi kategorijo…</string>
     <string name="lbl_categories">Kategorije</string>
+    <string name="delete_transaction">Izbriši transakcijo?</string>
+    <string name="are_you_sure_you_want_to_delete_this_transaction">Si prepričan/a, da želiš izbrisati to transakcijo?</string>
 </resources>

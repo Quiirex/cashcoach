@@ -136,4 +136,6 @@
     <string name="gifts_donations"><![CDATA[Geschenke & Spenden]]></string>
     <string name="education">Bildung</string>
     <string name="lbl_choose_category">Wählen Sie eine Kategorie…</string>
+    <string name="delete_transaction">Transaktion löschen?</string>
+    <string name="are_you_sure_you_want_to_delete_this_transaction">Sind Sie sicher, dass Sie diese Transaktion löschen möchten?</string>
 </resources>

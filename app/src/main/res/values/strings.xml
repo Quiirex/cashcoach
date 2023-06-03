@@ -165,4 +165,6 @@
     <string name="education">Education</string>
     <string name="lbl_choose_category">Choose a category…</string>
     <string name="lbl_categories">Categories</string>
+    <string name="delete_transaction">Delete transaction?</string>
+    <string name="are_you_sure_you_want_to_delete_this_transaction">Are you sure you want to delete this transaction?</string>
 </resources>

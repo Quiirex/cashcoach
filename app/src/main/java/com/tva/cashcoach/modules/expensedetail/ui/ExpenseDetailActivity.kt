@@ -1,6 +1,8 @@
 package com.tva.cashcoach.modules.expensedetail.ui
 
+import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -60,6 +62,9 @@ class ExpenseDetailActivity :
             binding.txtWallet.text = walletName
         }.toString()
         binding.txtDescription.text = viewModel.navArguments?.getString("description")
+
+        this@ExpenseDetailActivity.transactionDao = appDb.getTransactionDao()
+        this@ExpenseDetailActivity.transactionRepository = TransactionRepository(transactionDao)
     }
 
     override fun setUpClicks() {
@@ -68,16 +73,37 @@ class ExpenseDetailActivity :
         }
 
         binding.btnDelete.setOnClickListener {
-            lifecycleScope.launch {
-                withContext(Dispatchers.IO) {
-                    try {
-                        transactionRepository.deleteById(viewModel.navArguments?.getInt("id")!!)
-                        finish()
-                    } catch (e: Exception) {
-                        e.printStackTrace()
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle(getString(R.string.delete_transaction))
+            builder.setMessage(getString(R.string.are_you_sure_you_want_to_delete_this_transaction))
+            builder.setPositiveButton(R.string.yes) { _, _ ->
+                try {
+                    lifecycleScope.launch {
+                        withContext(Dispatchers.IO) {
+                            try {
+                                transactionRepository.deleteById(viewModel.navArguments?.getInt("id")!!)
+                                finish()
+                            } catch (e: Exception) {
+                                e.printStackTrace()
+                            }
+                        }
                     }
+                } catch (e: Exception) {
+                    e.printStackTrace()
                 }
             }
+            builder.setNegativeButton(R.string.no) { _, _ ->
+                // Do nothing
+            }
+            val dialog = builder.create()
+            dialog.window?.setBackgroundDrawableResource(R.drawable.dialog_rounded_corners)
+            dialog.setOnShowListener {
+                dialog.getButton(DialogInterface.BUTTON_POSITIVE)
+                    .setTextColor(resources.getColor(android.R.color.black))
+                dialog.getButton(DialogInterface.BUTTON_NEGATIVE)
+                    .setTextColor(resources.getColor(android.R.color.black))
+            }
+            dialog.show()
         }
     }
 
