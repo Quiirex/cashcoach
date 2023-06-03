@@ -112,6 +112,12 @@
     <string name="lbl_transactions">Transaktionen</string>
     <string name="lbl_category_with_colon">Kategorie:</string>
     <string name="lbl_wallet_with_colon">Brieftasche:</string>
+    <string name="lbl_start_date">Startdatum</string>
+    <string name="lbl_end_date">Enddatum</string>
+    <string name="lbl_filter_date">Datumsfilter</string>
+    <string name="lbl_graph_budget">Budgetdiagramm</string>
+    <string name="lbl_graph_income">Einkommenskategorien</string>
+    <string name="lbl_graph_expense">Ausgabenkategorien</string>
     <string name="do_you_want_to_logout">Sind Sie sicher, dass Sie sich abmelden möchten?</string>
     <string name="yes">Ja</string>
     <string name="no">Nein</string>

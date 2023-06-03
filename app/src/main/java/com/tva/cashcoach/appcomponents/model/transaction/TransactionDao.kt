@@ -12,6 +12,9 @@ interface TransactionDao {
     @Query("SELECT * FROM `transaction` WHERE wallet_id = :wallet_id ORDER BY id DESC")
     fun getAll(wallet_id: String): List<Transaction>
 
+    @Query("SELECT * FROM `transaction` WHERE wallet_id = :wallet_id ORDER BY id ASC")
+    fun getAllTransactions(wallet_id: String): List<Transaction>
+
     @Query("SELECT SUM(value) FROM `transaction` WHERE type = 'income' AND wallet_id = :wallet_id")
     fun getIncomesSum(wallet_id: String): Double
 

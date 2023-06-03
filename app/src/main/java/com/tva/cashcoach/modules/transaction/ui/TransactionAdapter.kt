@@ -120,6 +120,15 @@ class TransactionAdapter(
         notifyDataSetChanged()
     }
 
+
+
+    suspend fun fetchAllTransactions(wallet_id: String): List<Transaction> {
+        return withContext(Dispatchers.IO) {
+            transactionRepository.getAllTransactions(wallet_id)
+        }
+        notifyDataSetChanged()
+    }
+
     suspend fun fetchIncomesSum(wallet_id: String): Double {
         return withContext(Dispatchers.IO) {
             transactionRepository.getIncomesSum(wallet_id)
