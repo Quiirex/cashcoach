@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="financialReportLineChartVM"
             type="com.tva.cashcoach.modules.financialreport.data.viewmodel.FinancialReportVM" />

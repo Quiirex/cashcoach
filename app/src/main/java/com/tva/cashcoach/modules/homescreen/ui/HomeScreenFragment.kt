@@ -91,11 +91,6 @@ class HomeScreenFragment : BaseFragment<FragmentHomeScreenBinding>(R.layout.frag
                 ?.replace(R.id.fragmentContainer, TransactionFragment())?.commit()
         }
 
-        binding.txtSpendFrequency.setOnClickListener {
-            val intent = Intent(context, ExpenseDetailActivity::class.java)
-            startActivity(intent)
-        }
-
         binding.homeScreenVM = viewModel
 
         curr_wallet_id = preferenceHelper.getString("curr_wallet_id", "")
