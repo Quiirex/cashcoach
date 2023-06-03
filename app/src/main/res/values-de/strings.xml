@@ -116,4 +116,17 @@
     <string name="yes">Ja</string>
     <string name="no">Nein</string>
     <string name="lbl_incomes">Einkünfte</string>
+    <string name="select_a_wallet_type">Wählen Sie einen Briefträgertyp…</string>
+    <string name="bank_account">Bankkonto</string>
+    <string name="savings_account">Sparbuch</string>
+    <string name="other">Andere</string>
+    <string name="food_drinks"><![CDATA[Essen & Trinken]]></string>
+    <string name="clothes_shoes"><![CDATA[Kleidung & Schuhe]]></string>
+    <string name="transportation">Transport</string>
+    <string name="health_beauty"><![CDATA[Gesundheit & Schönheit]]></string>
+    <string name="home_utilities"><![CDATA[Haus & Dienstprogramme]]></string>
+    <string name="entertainment">Unterhaltung</string>
+    <string name="gifts_donations"><![CDATA[Geschenke & Spenden]]></string>
+    <string name="education">Bildung</string>
+    <string name="lbl_choose_category">Wählen Sie eine Kategorie…</string>
 </resources>

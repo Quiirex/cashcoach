@@ -14,7 +14,7 @@
         android:drawable="@drawable/img_vector"
         android:gravity="right|center_vertical"
         android:height="@dimen/_8pxh"
-        android:left="@dimen/_30pxh"
+        android:left="@dimen/_23pxh"
         android:right="@dimen/_22pxh"
         android:top="@dimen/_23pxh"
         android:width="@dimen/_18pxh" />

@@ -13,7 +13,7 @@ import com.tva.cashcoach.appcomponents.persistence.repository.user.UserRepositor
 import com.tva.cashcoach.appcomponents.persistence.repository.wallet.WalletRepository
 import com.tva.cashcoach.appcomponents.utility.WalletHelper
 import com.tva.cashcoach.databinding.ActivityAddNewWalletBinding
-import com.tva.cashcoach.modules.addnewwallet.data.model.SpinnerDropdownWalletModel
+import com.tva.cashcoach.modules.addnewwallet.data.model.SpinnerWalletModel
 import com.tva.cashcoach.modules.addnewwallet.data.viewmodel.AddNewWalletVM
 import com.tva.cashcoach.modules.signupsuccess.ui.SignupSuccessActivity
 
@@ -27,20 +27,20 @@ class AddNewWalletActivity :
 
     override fun onInitialized() {
         viewModel.navArguments = intent.extras?.getBundle("bundle")
-        viewModel.spinnerDropdownWalletList.value = mutableListOf(
-            SpinnerDropdownWalletModel("Item1"),
-            SpinnerDropdownWalletModel("Item2"),
-            SpinnerDropdownWalletModel("Item3"),
-            SpinnerDropdownWalletModel("Item4"),
-            SpinnerDropdownWalletModel("Item5")
+
+        viewModel.spinnerWallet.value = mutableListOf(
+            SpinnerWalletModel(getString(R.string.bank_account)),
+            SpinnerWalletModel(getString(R.string.savings_account)),
+            SpinnerWalletModel(getString(R.string.other)),
         )
-//        val spinnerDropdownWalletAdapter =
-//            SpinnerDropdownWalletAdapter(
-//                this,
-//                R.layout.spinner_item,
-//                viewModel.spinnerDropdownWalletList.value ?: mutableListOf()
-//            )
-//        binding.spinnerDropdownWallet.adapter = spinnerDropdownWalletAdapter
+        val spinnerWalletAdapter =
+            SpinnerWalletAdapter(
+                this,
+                R.layout.spinner_item,
+                viewModel.spinnerWallet.value ?: mutableListOf(),
+            )
+        binding.spinnerWallet.adapter = spinnerWalletAdapter
+
         binding.addNewWalletVM = viewModel
 
         val walletDao = appDb.getWalletDao()
