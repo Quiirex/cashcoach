@@ -89,6 +89,7 @@ class FinancialReportActivity :
             )
             budgetGraph(setDefaultDates().first, setDefaultDates().second)
             incomeGraph(setDefaultDates().first, setDefaultDates().second)
+            expenseGraph(setDefaultDates().first, setDefaultDates().second)
         }
 
         setUpDatePickers()
@@ -148,7 +149,7 @@ class FinancialReportActivity :
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
 
             override fun afterTextChanged(s: Editable?) {
-                updateBudgetGraph()
+                updateGraphs()
             }
         })
 
@@ -157,12 +158,12 @@ class FinancialReportActivity :
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
 
             override fun afterTextChanged(s: Editable?) {
-                updateBudgetGraph()
+                updateGraphs()
             }
         })
     }
 
-    fun updateBudgetGraph() {
+    fun updateGraphs() {
         val startDateEditText: EditText = findViewById(R.id.startDate)
         val endDateEditText: EditText = findViewById(R.id.endDate)
         val dateFormat = SimpleDateFormat("dd.MM.yyyy", Locale.US)
@@ -175,6 +176,8 @@ class FinancialReportActivity :
         calendar.add(Calendar.DAY_OF_MONTH, 1)
         endDate = calendar.time
         budgetGraph(startDate, endDate)
+        incomeGraph(startDate, endDate)
+        expenseGraph(startDate, endDate)
     }
 
     fun setDefaultDates(): Pair<Date, Date> {
@@ -217,7 +220,11 @@ class FinancialReportActivity :
         budgetList.removeAt(0)
         val chart = findViewById<AAChartView>(R.id.BudgetChartView)
         val aaChartModel: AAChartModel =
-            AAChartModel().chartType(AAChartType.Areaspline).dataLabelsEnabled(true)
+            AAChartModel().chartType(AAChartType.Areaspline)
+                .title(getString(R.string.lbl_graph_budget))
+                .dataLabelsEnabled(true)
+                .yAxisVisible(false)
+                .xAxisVisible(false)
                 .colorsTheme(arrayOf("#3D85C6")).series(
                     arrayOf(
                         AASeriesElement().name("Budget").data(budgetList.toTypedArray())
@@ -226,12 +233,11 @@ class FinancialReportActivity :
         chart.aa_drawChartWithChartModel(aaChartModel)
     }
 
-    @RequiresApi(Build.VERSION_CODES.N)
     fun incomeGraph(startDate: Date, endDate: Date) {
         val incomes: MutableMap<String, Double> = HashMap()
 
         for (transaction in transactions) {
-            if (transaction.date in startDate..endDate && transaction.type == "income") {
+            if (transaction.date in startDate..endDate && transaction.type == "income" && transaction.category != "Initial") {
                 val category = transaction.category
                 incomes[category] = incomes.getOrDefault(category, 0.0) + transaction.value
             }
@@ -239,17 +245,44 @@ class FinancialReportActivity :
 
         val chart = findViewById<AAChartView>(R.id.IncomeChartView)
         val aaChartModel = AAChartModel()
+            .title(getString(R.string.lbl_graph_income))
             .chartType(AAChartType.Pie)
-            .title("Pie Chart")
-            .categories(incomes.keys.map { it.toString() }.toTypedArray())
+            .categories(incomes.keys.toTypedArray())
             .series(
                 arrayOf(
                     AASeriesElement()
-                        .name(R.string.lbl_categories.toString())
-                        .data(incomes.values.map { it as Any }.toTypedArray())
+                        .data(
+                            incomes.entries.map { arrayOf(it.key, it.value) }.toTypedArray()
+                        )
                 )
             )
 
+        chart.aa_drawChartWithChartModel(aaChartModel)
+    }
+
+    fun expenseGraph(startDate: Date, endDate: Date) {
+        val expenses: MutableMap<String, Double> = HashMap()
+
+        for (transaction in transactions) {
+            if (transaction.date in startDate..endDate && transaction.type == "expense") {
+                val category = transaction.category
+                expenses[category] = expenses.getOrDefault(category, 0.0) + transaction.value
+            }
+        }
+
+        val chart = findViewById<AAChartView>(R.id.ExpenseChartView)
+        val aaChartModel = AAChartModel()
+            .title(getString(R.string.lbl_graph_expense))
+            .chartType(AAChartType.Pie)
+            .categories(expenses.keys.toTypedArray())
+            .series(
+                arrayOf(
+                    AASeriesElement()
+                        .data(
+                            expenses.entries.map { arrayOf(it.key, it.value) }.toTypedArray()
+                        )
+                )
+            )
 
         chart.aa_drawChartWithChartModel(aaChartModel)
     }
@@ -260,14 +293,6 @@ class FinancialReportActivity :
             finish()
         }
     }
-
-    fun onClickRecyclerTransactions(
-        view: View, position: Int, item: TransactionRowModel
-    ): Unit {
-        when (view.id) {
-        }
-    }
-
 
     companion object {
         const val TAG: String = "FINANCIAL_REPORT_LINE_CHART_ACTIVITY"

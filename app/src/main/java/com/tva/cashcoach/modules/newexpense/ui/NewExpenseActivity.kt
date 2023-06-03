@@ -1,5 +1,6 @@
 package com.tva.cashcoach.modules.newexpense.ui
 
+import android.widget.Spinner
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -19,6 +20,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.koin.android.ext.android.bind
 import java.util.Date
 
 class NewExpenseActivity : BaseActivity<ActivityNewExpenseBinding>(R.layout.activity_new_expense) {
@@ -65,12 +67,15 @@ class NewExpenseActivity : BaseActivity<ActivityNewExpenseBinding>(R.layout.acti
 
     override fun setUpClicks() {
         binding.btnContinue.setOnClickListener {
+
+            val spinner = findViewById<Spinner>(R.id.spinnerCategory)
+            val (selectedCategory) = spinner.selectedItem as SpinnerCategoryModel
             val newTransaction = Transaction(
                 id = null,
                 value = binding.etValue.text.toString().toDouble(),
                 description = binding.etDescription.text.toString(),
                 date = Date(),
-                category = "iz spinnerja",
+                category = selectedCategory,
                 wallet_id = preferenceHelper.getString("curr_wallet_id", "").toInt(),
                 type = "expense",
                 currency = "EUR"

@@ -3,6 +3,7 @@ package com.tva.cashcoach.modules.newincome.ui
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Spinner
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -23,6 +24,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.util.Date
+
 
 class NewIncomeActivity : BaseActivity<ActivityNewIncomeBinding>(R.layout.activity_new_income) {
     private val viewModel: NewIncomeVM by viewModels()
@@ -69,12 +71,15 @@ class NewIncomeActivity : BaseActivity<ActivityNewIncomeBinding>(R.layout.activi
     override fun setUpClicks() {
         binding.btnContinue.setOnClickListener {
 
+            val spinner = findViewById<Spinner>(R.id.spinnerCategory)
+            val (selectedCategory) = spinner.selectedItem as SpinnerCategoryModel
+
             val newTransaction = Transaction(
                 id = null,
                 value = binding.etValue.text.toString().toDouble(),
                 description = binding.etDescription.text.toString(),
                 date = Date(),
-                category = "iz spinnerja",
+                category = selectedCategory,
                 wallet_id = preferenceHelper.getString("curr_wallet_id", "").toInt(),
                 type = "income",
                 currency = "EUR"
