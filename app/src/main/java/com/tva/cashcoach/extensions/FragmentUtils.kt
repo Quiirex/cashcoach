@@ -6,6 +6,9 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
+import com.tva.cashcoach.modules.homescreen.ui.HomeScreenFragment
+import com.tva.cashcoach.modules.profile.ui.ProfileFragment
+import com.tva.cashcoach.modules.transaction.ui.TransactionFragment
 
 /**
  * FragmentUtils file contains,
@@ -29,7 +32,8 @@ fun FragmentActivity.loadFragment(
     addToBackStack: Boolean = false,
     add: Boolean = false,
     enter: Int? = null,
-    exit: Int? = null
+    exit: Int? = null,
+    onFragmentLoaded: ((String) -> Unit)? = null
 ) {
     try {
         if (fragment == null) {
@@ -51,6 +55,15 @@ fun FragmentActivity.loadFragment(
             } else {
                 ft.replace(containerId, fragment, tag).commit()
             }
+            when (tag) {
+                HomeScreenFragment.TAG -> HomeScreenFragment.currentFragmentTag =
+                    HomeScreenFragment.TAG
+
+                ProfileFragment.TAG -> ProfileFragment.currentFragmentTag = ProfileFragment.TAG
+                TransactionFragment.TAG -> TransactionFragment.currentFragmentTag =
+                    TransactionFragment.TAG
+            }
+            onFragmentLoaded?.invoke(tag ?: "")
         }
     } catch (e: IllegalStateException) {
         e.printStackTrace()
@@ -59,10 +72,6 @@ fun FragmentActivity.loadFragment(
     }
 }
 
-/**
- * FragmentActivity extension method to Remove added fragment from specific container id
- * @param containerId of frame layout
- */
 fun FragmentActivity.removeFragmentFromContainer(containerId: Int) {
     supportFragmentManager.findFragmentById(containerId)?.let {
         val ft = supportFragmentManager.beginTransaction()
@@ -71,9 +80,6 @@ fun FragmentActivity.removeFragmentFromContainer(containerId: Int) {
     }
 }
 
-/**
- * FragmentActivity extension method to Removes all fragments from backstack
- */
 fun FragmentActivity.removeAllFragmentsFromBackStack() {
     val fragmentManager: FragmentManager = supportFragmentManager
     val count: Int = fragmentManager.backStackEntryCount
@@ -85,11 +91,6 @@ fun FragmentActivity.removeAllFragmentsFromBackStack() {
     }
 }
 
-/**
- * FragmentActivity extension method to checks if specific fragment is in back stack
- * @param tag of fragment to find
- * @return boolean true/false value
- */
 fun FragmentActivity.isFragmentInStack(tag: String?): Boolean {
     var inStack = false
     val fragmentManager = supportFragmentManager
@@ -100,11 +101,6 @@ fun FragmentActivity.isFragmentInStack(tag: String?): Boolean {
     return inStack
 }
 
-/**
- * FragmentActivity extension method which returns the fragment object if found in passed tag value
- * @param tag the string value to find fragment
- * @return [Fragment] if found
- */
 fun FragmentActivity.getFragmentByTag(tag: String?): Fragment? {
     val fragmentManager = supportFragmentManager
     val fragment = fragmentManager.findFragmentByTag(tag)
@@ -112,10 +108,6 @@ fun FragmentActivity.getFragmentByTag(tag: String?): Fragment? {
     return null
 }
 
-/**
- * FragmentActivity extension method which remove the fragment object if found in passed tag value
- * @param tag the string value to find fragment
- */
 fun FragmentActivity.removeFragmentByTag(tag: String?) {
     val fragmentManager = supportFragmentManager
     val fragment = fragmentManager.findFragmentByTag(tag)

@@ -12,16 +12,16 @@ import com.tva.cashcoach.modules.addnewwallet.ui.AddNewWalletActivity
 
 class AccountSetupActivity :
     BaseActivity<ActivityAccountSetupBinding>(R.layout.activity_account_setup) {
-    private val viewModel: AccountSetupVM by viewModels<AccountSetupVM>()
+    private val viewModel: AccountSetupVM by viewModels()
 
     private val REQUEST_CODE_ADD_NEW_WALLET_ACTIVITY: Int = 511
 
-    override fun onInitialized(): Unit {
+    override fun onInitialized() {
         viewModel.navArguments = intent.extras?.getBundle("bundle")
         binding.accountSetupVM = viewModel
     }
 
-    override fun setUpClicks(): Unit {
+    override fun setUpClicks() {
         binding.btnLetsGo.setOnClickListener {
             val destIntent = AddNewWalletActivity.getIntent(this, null)
             startActivityForResult(destIntent, REQUEST_CODE_ADD_NEW_WALLET_ACTIVITY)

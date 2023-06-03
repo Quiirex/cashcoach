@@ -118,4 +118,8 @@
     <string name="lbl_graph_budget">Graf proračuna</string>
     <string name="lbl_graph_income">Kategorije prihodkov</string>
     <string name="lbl_graph_expense">Kategoprije odhodkov</string>
+    <string name="do_you_want_to_logout">Si prepričan/a, da se želiš odjaviti?</string>
+    <string name="yes">Ja</string>
+    <string name="no">Ne</string>
+    <string name="lbl_incomes">Dohodki</string>
 </resources>

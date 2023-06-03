@@ -28,11 +28,34 @@
             <androidx.appcompat.widget.Toolbar
                 android:gravity="center_horizontal"
                 android:id="@+id/toolbarToolbar"
-                android:layout_height="@dimen/_20pxh"
+                android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/_14pxh"
                 android:layout_marginStart="@dimen/_14pxh"
                 android:layout_width="match_parent"
                 app:contentInsetStart="0dp">
+
+                <LinearLayout
+                    android:id="@+id/linearRowavatar"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_height="@dimen/_40pxh"
+                        android:layout_width="@dimen/_40pxh"
+                        app:cardElevation="0dp"
+                        app:cardCornerRadius="@dimen/_60pxh">
+
+                        <ImageView
+                            android:id="@+id/imageAvatar"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="fitXY"
+                            circular="@{true}"
+                            tools:ignore="ContentDescription"
+                            tools:src="@drawable/img_avatar" />
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
 
             </androidx.appcompat.widget.Toolbar>
 
@@ -43,7 +66,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/_14pxh"
                 android:layout_marginStart="@dimen/_14pxh"
-                android:layout_marginTop="@dimen/_13pxv"
+                android:layout_marginTop="@dimen/_5pxv"
                 android:layout_width="wrap_content"
                 android:singleLine="true"
                 android:text="@{homeScreenVM.homeScreenModel.txtCurrentBudget}"
@@ -69,7 +92,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/_14pxh"
                 android:layout_marginStart="@dimen/_14pxh"
-                android:layout_marginTop="@dimen/_25pxv"
+                android:layout_marginTop="@dimen/_15pxv"
                 android:layout_width="match_parent"
                 android:orientation="horizontal">
 
@@ -92,16 +115,26 @@
                         android:layout_width="0dp"
                         android:orientation="vertical">
 
-                        <TextView
-                            android:id="@+id/txtIncome"
-                            style="@style/txtIntermedium14_1"
+                        <LinearLayout
                             android:gravity="center"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:ellipsize="end"
-                            android:singleLine="true"
-                            android:text="@{homeScreenVM.homeScreenModel.txtIncome}"
-                            tools:text="@string/lbl_income" />
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/txtIncome"
+                                style="@style/txtIntermedium14_1"
+                                android:gravity="center"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="@{homeScreenVM.homeScreenModel.txtIncomes}"
+                                tools:text="@string/lbl_incomes" />
+
+                            <ImageView
+                                android:layout_height="@dimen/_20pxh"
+                                android:layout_width="@dimen/_25pxh"
+                                android:src="@drawable/baseline_trending_up_24" />
+                        </LinearLayout>
 
                         <TextView
                             android:ellipsize="end"
@@ -110,7 +143,7 @@
                             android:layout_height="wrap_content"
                             android:layout_width="match_parent"
                             android:singleLine="true"
-                            android:text="0€"
+                            android:text=""
                             style="@style/txtIntersemibold22"
                             tools:text="0€" />
                     </LinearLayout>
@@ -136,16 +169,26 @@
                         android:layout_width="0dp"
                         android:orientation="vertical">
 
-                        <TextView
-                            android:ellipsize="end"
-                            android:id="@+id/txtExpenses"
+                        <LinearLayout
                             android:gravity="center"
-                            android:layout_height="wrap_content"
                             android:layout_width="match_parent"
-                            android:singleLine="true"
-                            android:text="@{homeScreenVM.homeScreenModel.txtExpenses}"
-                            style="@style/txtIntermedium14_1"
-                            tools:text="@string/lbl_expenses" />
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/txtExpenses"
+                                style="@style/txtIntermedium14_1"
+                                android:gravity="center"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="@{homeScreenVM.homeScreenModel.txtExpenses}"
+                                tools:text="@string/lbl_expense" />
+
+                            <ImageView
+                                android:layout_height="@dimen/_20pxh"
+                                android:layout_width="@dimen/_25pxh"
+                                android:src="@drawable/baseline_trending_down_24" />
+                        </LinearLayout>
 
                         <TextView
                             android:ellipsize="end"
@@ -154,7 +197,7 @@
                             android:layout_height="wrap_content"
                             android:layout_width="match_parent"
                             android:singleLine="true"
-                            android:text="0€"
+                            android:text=""
                             style="@style/txtIntersemibold22"
                             tools:text="0€" />
                     </LinearLayout>
@@ -164,7 +207,7 @@
             <LinearLayout
                 android:id="@+id/linearRowspendfrequency"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_8pxv"
+                android:layout_marginTop="@dimen/_5pxv"
                 android:layout_width="match_parent"
                 android:orientation="horizontal"
                 style="@style/groupStylewhite_A700">

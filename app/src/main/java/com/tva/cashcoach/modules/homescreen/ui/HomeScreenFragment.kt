@@ -8,17 +8,24 @@ import androidx.lifecycle.lifecycleScope
 import com.tva.cashcoach.R
 import com.tva.cashcoach.appcomponents.base.BaseFragment
 import com.tva.cashcoach.appcomponents.model.transaction.TransactionDao
+import com.tva.cashcoach.appcomponents.model.user.UserDao
 import com.tva.cashcoach.appcomponents.persistence.repository.transaction.TransactionRepository
+import com.tva.cashcoach.appcomponents.persistence.repository.user.UserRepository
+import com.tva.cashcoach.appcomponents.utility.ImageHelper
 import com.tva.cashcoach.databinding.FragmentHomeScreenBinding
 import com.tva.cashcoach.modules.expensedetail.ui.ExpenseDetailActivity
-import com.tva.cashcoach.modules.homescreen.data.model.SpinnerDropdownMonthModel
 import com.tva.cashcoach.modules.homescreen.data.viewmodel.HomeScreenVM
+import com.tva.cashcoach.modules.homescreencontainer.ui.HomeScreenContainerActivity
 import com.tva.cashcoach.modules.incomedetail.ui.IncomeDetailActivity
 import com.tva.cashcoach.modules.newexpense.ui.NewExpenseActivity
 import com.tva.cashcoach.modules.newincome.ui.NewIncomeActivity
+import com.tva.cashcoach.modules.profile.ui.ProfileFragment
 import com.tva.cashcoach.modules.transaction.data.model.TransactionRowModel
 import com.tva.cashcoach.modules.transaction.ui.TransactionAdapter
+import com.tva.cashcoach.modules.transaction.ui.TransactionFragment
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class HomeScreenFragment : BaseFragment<FragmentHomeScreenBinding>(R.layout.fragment_home_screen) {
     private val viewModel: HomeScreenVM by viewModels()
@@ -29,20 +36,26 @@ class HomeScreenFragment : BaseFragment<FragmentHomeScreenBinding>(R.layout.frag
 
     private lateinit var transactionDao: TransactionDao
 
+    private lateinit var userDao: UserDao
+
+    private lateinit var userRepository: UserRepository
+
+    private lateinit var imageHelper: ImageHelper
+
     private var curr_wallet_id = ""
 
-    override fun onInitialized() {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         viewModel.navArguments = arguments
-        viewModel.spinnerDropdownMonthList.value = mutableListOf(
-            SpinnerDropdownMonthModel("Item1"),
-            SpinnerDropdownMonthModel("Item2"),
-            SpinnerDropdownMonthModel("Item3"),
-            SpinnerDropdownMonthModel("Item4"),
-            SpinnerDropdownMonthModel("Item5")
-        )
 
         transactionDao = appDb.getTransactionDao()
         transactionRepository = TransactionRepository(transactionDao)
+
+        userDao = appDb.getUserDao()
+        userRepository = UserRepository(userDao)
+
+        imageHelper = ImageHelper()
 
         transactionAdapter = TransactionAdapter(
             transactionRepository,
@@ -74,7 +87,8 @@ class HomeScreenFragment : BaseFragment<FragmentHomeScreenBinding>(R.layout.frag
         }
 
         binding.btnSeeAll.setOnClickListener {
-
+            activity?.supportFragmentManager?.beginTransaction()
+                ?.replace(R.id.fragmentContainer, TransactionFragment())?.commit()
         }
 
         binding.txtSpendFrequency.setOnClickListener {
@@ -86,35 +100,39 @@ class HomeScreenFragment : BaseFragment<FragmentHomeScreenBinding>(R.layout.frag
 
         curr_wallet_id = preferenceHelper.getString("curr_wallet_id", "")
 
+        val currentUserId = preferenceHelper.getString("curr_user_uid", "")
+
         lifecycleScope.launch {
             transactionAdapter.fetchTransactions(curr_wallet_id)
-            if (preferenceHelper.getString("curr_user_currency", "") == "EUR") {
-                binding.valIncome.text =
-                    String.format("%.2f€", transactionAdapter.fetchIncomesSum(curr_wallet_id))
-                binding.valExpenses.text =
-                    String.format("%.2f€", transactionAdapter.fetchExpensesSum(curr_wallet_id))
-                binding.valBudget.text = String.format(
-                    "%.2f€",
-                    transactionAdapter.fetchIncomesSum(curr_wallet_id) - transactionAdapter.fetchExpensesSum(
-                        curr_wallet_id
-                    )
-                )
-            } else {
-                binding.valIncome.text =
-                    String.format("%.2f$", transactionAdapter.fetchIncomesSum(curr_wallet_id))
-                binding.valExpenses.text =
-                    String.format("%.2f$", transactionAdapter.fetchExpensesSum(curr_wallet_id))
-                binding.valBudget.text = String.format(
-                    "%.2f$",
-                    transactionAdapter.fetchIncomesSum(curr_wallet_id) - transactionAdapter.fetchExpensesSum(
-                        curr_wallet_id
-                    )
-                )
+            val currencySymbol =
+                if (preferenceHelper.getString("curr_user_currency", "") == "EUR") "€" else "$"
+            val incomesSum = transactionAdapter.fetchIncomesSum(curr_wallet_id)
+            val expensesSum = transactionAdapter.fetchExpensesSum(curr_wallet_id)
+            val budget = incomesSum - expensesSum
+            binding.valIncome.text = "${incomesSum.format()}$currencySymbol"
+            binding.valExpenses.text = "${expensesSum.format()}$currencySymbol"
+            binding.valBudget.text = "${budget.format()}$currencySymbol"
+
+            val currentUser = withContext(Dispatchers.IO) {
+                userRepository.get(currentUserId)
             }
+
+            val currentUserAvatarURL = currentUser?.avatar ?: ""
+            val currentUserAvatarBitmap = withContext(Dispatchers.IO) {
+                imageHelper.getBitmapFromURL(currentUserAvatarURL)
+            }
+
+            binding.imageAvatar.setImageBitmap(currentUserAvatarBitmap)
         }
     }
 
+    private fun Double.format(): String = String.format("%.2f", this)
+
     override fun setUpClicks() {
+        binding.imageAvatar.setOnClickListener {
+            activity?.supportFragmentManager?.beginTransaction()
+                ?.replace(R.id.fragmentContainer, ProfileFragment())?.commit()
+        }
     }
 
     fun onClickRecyclerTransactions(
@@ -122,46 +140,49 @@ class HomeScreenFragment : BaseFragment<FragmentHomeScreenBinding>(R.layout.frag
         position: Int,
         transaction: TransactionRowModel
     ) {
-        when (transaction.type) {
-            "expense" -> {
-                val intent = Intent(context, ExpenseDetailActivity::class.java)
-                val bundle = Bundle()
-                bundle.putString("value", transaction.value.toString())
-                bundle.putString("date", transaction.date)
-                bundle.putString("category_id", transaction.category_id)
-                bundle.putString("wallet_id", transaction.wallet_id.toString())
-                bundle.putString("description", transaction.description)
-                bundle.putString("currency", transaction.currency)
-                bundle.putInt("id", transaction.id)
-                intent.putExtra("bundle", bundle)
-                startActivity(intent)
-            }
-
-            "income" -> {
-                val intent = Intent(context, IncomeDetailActivity::class.java)
-                val bundle = Bundle()
-                bundle.putString("value", transaction.value.toString())
-                bundle.putString("date", transaction.date)
-                bundle.putString("category_id", transaction.category_id)
-                bundle.putString("wallet_id", transaction.wallet_id.toString())
-                bundle.putString("description", transaction.description)
-                bundle.putString("currency", transaction.currency)
-                bundle.putInt("id", transaction.id)
-                intent.putExtra("bundle", bundle)
-                startActivity(intent)
-            }
+        val intent = when (transaction.type) {
+            "expense" -> Intent(context, ExpenseDetailActivity::class.java)
+            "income" -> Intent(context, IncomeDetailActivity::class.java)
+            else -> null
         }
+
+        intent?.let {
+            val bundle = Bundle().apply {
+                putString("value", transaction.value.toString())
+                putString("date", transaction.date)
+                putString("category_id", transaction.category_id)
+                putString("wallet_id", transaction.wallet_id.toString())
+                putString("description", transaction.description)
+                putString("currency", transaction.currency)
+                putInt("id", transaction.id)
+            }
+            it.putExtra("bundle", bundle)
+            startActivity(it)
+        }
+    }
+
+    private fun updateButtonColors() {
+        (activity as? HomeScreenContainerActivity)?.updateButtonColors(TAG)
     }
 
     override fun onResume() {
         super.onResume()
+        currentFragmentTag = TAG
+        updateButtonColors()
         lifecycleScope.launch {
             transactionAdapter.fetchTransactions(preferenceHelper.getString("curr_wallet_id", ""))
         }
     }
 
+    override fun onPause() {
+        super.onPause()
+        currentFragmentTag = null
+    }
+
     companion object {
         const val TAG: String = "HOME_SCREEN_FRAGMENT"
+
+        var currentFragmentTag: String? = null
 
         fun getInstance(bundle: Bundle?): HomeScreenFragment {
             val fragment = HomeScreenFragment()

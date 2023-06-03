@@ -3,6 +3,7 @@ package com.tva.cashcoach.modules.transaction.ui
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.tva.cashcoach.R
@@ -11,8 +12,8 @@ import com.tva.cashcoach.appcomponents.model.transaction.TransactionDao
 import com.tva.cashcoach.appcomponents.persistence.repository.transaction.TransactionRepository
 import com.tva.cashcoach.databinding.FragmentTransactionBinding
 import com.tva.cashcoach.modules.expensedetail.ui.ExpenseDetailActivity
+import com.tva.cashcoach.modules.homescreencontainer.ui.HomeScreenContainerActivity
 import com.tva.cashcoach.modules.incomedetail.ui.IncomeDetailActivity
-import com.tva.cashcoach.modules.transaction.data.model.SpinnerDropdownMonthModel
 import com.tva.cashcoach.modules.transaction.data.model.TransactionRowModel
 import com.tva.cashcoach.modules.transaction.data.viewmodel.TransactionVM
 import kotlinx.coroutines.launch
@@ -20,10 +21,6 @@ import kotlinx.coroutines.launch
 class TransactionFragment :
     BaseFragment<FragmentTransactionBinding>(R.layout.fragment_transaction) {
     private val viewModel: TransactionVM by viewModels()
-
-    private val REQUEST_CODE_DETAIL_INCOME: Int = 12
-
-    private val REQUEST_CODE_DETAIL_EXPENSE: Int = 13
 
     private lateinit var transactionAdapter: TransactionAdapter
 
@@ -33,24 +30,9 @@ class TransactionFragment :
 
     override fun onInitialized() {
         viewModel.navArguments = arguments
-        viewModel.spinnerDropdownMonthList.value = mutableListOf(
-            SpinnerDropdownMonthModel("Item1"),
-            SpinnerDropdownMonthModel("Item2"),
-            SpinnerDropdownMonthModel("Item3"),
-            SpinnerDropdownMonthModel("Item4"),
-            SpinnerDropdownMonthModel("Item5")
-        )
 
         transactionDao = appDb.getTransactionDao()
         transactionRepository = TransactionRepository(transactionDao)
-
-//        val spinnerDropdownMonthAdapter =
-//            SpinnerDropdownMonthAdapter(
-//                requireActivity(),
-//                R.layout.spinner_item,
-//                viewModel.spinnerDropdownMonthList.value ?: mutableListOf()
-//            )
-//        binding.spinnerDropdownMonth.adapter = spinnerDropdownMonthAdapter
 
         transactionAdapter = TransactionAdapter(
             transactionRepository,
@@ -70,9 +52,7 @@ class TransactionFragment :
                 }
             }
         )
-//        viewModel.recyclerTransactions.observe(requireActivity()) {
-//            listtrashAdapter.updateData(it)
-//        }
+
         binding.transactionVM = viewModel
 
         lifecycleScope.launch {
@@ -81,6 +61,9 @@ class TransactionFragment :
     }
 
     override fun setUpClicks() {
+        binding.btnSort.setOnClickListener {
+            Toast.makeText(context, "Tu pride popup za sorting", Toast.LENGTH_SHORT).show()
+        }
     }
 
     fun onClickRecyclerTransactions(
@@ -88,46 +71,49 @@ class TransactionFragment :
         position: Int,
         transaction: TransactionRowModel
     ) {
-        when (transaction.type) {
-            "expense" -> {
-                val intent = Intent(context, ExpenseDetailActivity::class.java)
-                val bundle = Bundle()
-                bundle.putString("value", transaction.value.toString())
-                bundle.putString("date", transaction.date)
-                bundle.putString("category_id", transaction.category_id)
-                bundle.putString("wallet_id", transaction.wallet_id.toString())
-                bundle.putString("description", transaction.description)
-                bundle.putString("currency", transaction.currency)
-                bundle.putInt("id", transaction.id)
-                intent.putExtra("bundle", bundle)
-                startActivity(intent)
-            }
-
-            "income" -> {
-                val intent = Intent(context, IncomeDetailActivity::class.java)
-                val bundle = Bundle()
-                bundle.putString("value", transaction.value.toString())
-                bundle.putString("date", transaction.date)
-                bundle.putString("category_id", transaction.category_id)
-                bundle.putString("wallet_id", transaction.wallet_id.toString())
-                bundle.putString("description", transaction.description)
-                bundle.putString("currency", transaction.currency)
-                bundle.putInt("id", transaction.id)
-                intent.putExtra("bundle", bundle)
-                startActivity(intent)
-            }
+        val intent = when (transaction.type) {
+            "expense" -> Intent(context, ExpenseDetailActivity::class.java)
+            "income" -> Intent(context, IncomeDetailActivity::class.java)
+            else -> null
         }
+
+        intent?.let {
+            val bundle = Bundle().apply {
+                putString("value", transaction.value.toString())
+                putString("date", transaction.date)
+                putString("category_id", transaction.category_id)
+                putString("wallet_id", transaction.wallet_id.toString())
+                putString("description", transaction.description)
+                putString("currency", transaction.currency)
+                putInt("id", transaction.id)
+            }
+            it.putExtra("bundle", bundle)
+            startActivity(it)
+        }
+    }
+
+    private fun updateButtonColors() {
+        (activity as? HomeScreenContainerActivity)?.updateButtonColors(TAG)
     }
 
     override fun onResume() {
         super.onResume()
+        currentFragmentTag = TAG
+        updateButtonColors()
         lifecycleScope.launch {
             transactionAdapter.fetchTransactions(preferenceHelper.getString("curr_wallet_id", ""))
         }
     }
 
+    override fun onPause() {
+        super.onPause()
+        currentFragmentTag = null
+    }
+
     companion object {
         const val TAG: String = "TRANSACTION_FRAGMENT"
+
+        var currentFragmentTag: String? = null
 
         fun getInstance(bundle: Bundle?): TransactionFragment {
             val fragment = TransactionFragment()

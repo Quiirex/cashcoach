@@ -147,4 +147,8 @@
     <string name="lbl_graph_budget">Budget graph</string>
     <string name="lbl_graph_income">Income categories</string>
     <string name="lbl_graph_expense">Expense categories</string>
+    <string name="do_you_want_to_logout">Are you sure that you want to log out?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="lbl_incomes">Incomes</string>
 </resources>
