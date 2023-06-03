@@ -33,7 +33,7 @@ class TransactionAdapter(
     override fun onBindViewHolder(holder: TransactionViewHolder, position: Int) {
         val transaction = transactions[position]
         val transactionRowModel = TransactionRowModel(
-            transaction.category_id.toString(),
+            transaction.category,
             transaction.description,
             transaction.value.toString(),
             transaction.date.toString(),

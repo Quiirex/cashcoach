@@ -3,6 +3,7 @@ package com.tva.cashcoach.modules.financialreport.ui
 import android.app.DatePickerDialog
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.InputType
@@ -14,6 +15,7 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.lifecycleScope
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartModel
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartType
@@ -36,6 +38,7 @@ import org.koin.android.ext.android.bind
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
+import java.util.Dictionary
 import java.util.Locale
 
 class FinancialReportActivity :
@@ -52,6 +55,7 @@ class FinancialReportActivity :
 
     private lateinit var transactions: List<Transaction>
 
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onInitialized() {
         viewModel.navArguments = intent.extras?.getBundle("bundle")
         viewModel.spinnerDropdownMonthList.value = mutableListOf(
@@ -66,8 +70,7 @@ class FinancialReportActivity :
         transactionRepository = TransactionRepository(transactionDao)
 
         transactionAdapter = TransactionAdapter(
-            transactionRepository,
-            preferenceHelper
+            transactionRepository, preferenceHelper
         )
 
         viewModel.spinnerDropdownTransaList.value = mutableListOf(
@@ -81,11 +84,11 @@ class FinancialReportActivity :
         lifecycleScope.launch {
             transactions = transactionAdapter.fetchAllTransactions(
                 preferenceHelper.getString(
-                    "curr_wallet_id",
-                    ""
+                    "curr_wallet_id", ""
                 )
             )
-            graph(setDefaultDates().first, setDefaultDates().second)
+            budgetGraph(setDefaultDates().first, setDefaultDates().second)
+            incomeGraph(setDefaultDates().first, setDefaultDates().second)
         }
 
         setUpDatePickers()
@@ -145,7 +148,7 @@ class FinancialReportActivity :
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
 
             override fun afterTextChanged(s: Editable?) {
-                updateGraph()
+                updateBudgetGraph()
             }
         })
 
@@ -154,12 +157,12 @@ class FinancialReportActivity :
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
 
             override fun afterTextChanged(s: Editable?) {
-                updateGraph()
+                updateBudgetGraph()
             }
         })
     }
 
-    fun updateGraph() {
+    fun updateBudgetGraph() {
         val startDateEditText: EditText = findViewById(R.id.startDate)
         val endDateEditText: EditText = findViewById(R.id.endDate)
         val dateFormat = SimpleDateFormat("dd.MM.yyyy", Locale.US)
@@ -171,7 +174,7 @@ class FinancialReportActivity :
         calendar.time = endDate
         calendar.add(Calendar.DAY_OF_MONTH, 1)
         endDate = calendar.time
-        graph(startDate, endDate)
+        budgetGraph(startDate, endDate)
     }
 
     fun setDefaultDates(): Pair<Date, Date> {
@@ -192,7 +195,7 @@ class FinancialReportActivity :
         return Pair(startDate.time, currentDate)
     }
 
-    fun graph(startDate: Date, endDate: Date) {
+    fun budgetGraph(startDate: Date, endDate: Date) {
         val budgetList = mutableListOf<Double>()
         var budget = 0.0
 
@@ -212,20 +215,45 @@ class FinancialReportActivity :
             }
         }
         budgetList.removeAt(0)
-        val chart = findViewById<AAChartView>(R.id.chartView)
-        val aaChartModel: AAChartModel = AAChartModel()
-            .chartType(AAChartType.Areaspline)
-            .dataLabelsEnabled(true)
-            .colorsTheme(arrayOf("#3D85C6"))
+        val chart = findViewById<AAChartView>(R.id.BudgetChartView)
+        val aaChartModel: AAChartModel =
+            AAChartModel().chartType(AAChartType.Areaspline).dataLabelsEnabled(true)
+                .colorsTheme(arrayOf("#3D85C6")).series(
+                    arrayOf(
+                        AASeriesElement().name("Budget").data(budgetList.toTypedArray())
+                    )
+                )
+        chart.aa_drawChartWithChartModel(aaChartModel)
+    }
+
+    @RequiresApi(Build.VERSION_CODES.N)
+    fun incomeGraph(startDate: Date, endDate: Date) {
+        val incomes: MutableMap<String, Double> = HashMap()
+
+        for (transaction in transactions) {
+            if (transaction.date in startDate..endDate && transaction.type == "income") {
+                val category = transaction.category
+                incomes[category] = incomes.getOrDefault(category, 0.0) + transaction.value
+            }
+        }
+
+        val chart = findViewById<AAChartView>(R.id.IncomeChartView)
+        val aaChartModel = AAChartModel()
+            .chartType(AAChartType.Pie)
+            .title("Pie Chart")
+            .categories(incomes.keys.map { it.toString() }.toTypedArray())
             .series(
                 arrayOf(
                     AASeriesElement()
-                        .name("Budget")
-                        .data(budgetList.toTypedArray())
+                        .name(R.string.lbl_categories.toString())
+                        .data(incomes.values.map { it as Any }.toTypedArray())
                 )
             )
+
+
         chart.aa_drawChartWithChartModel(aaChartModel)
     }
+
 
     override fun setUpClicks() {
         binding.imageBack.setOnClickListener {
@@ -234,9 +262,7 @@ class FinancialReportActivity :
     }
 
     fun onClickRecyclerTransactions(
-        view: View,
-        position: Int,
-        item: TransactionRowModel
+        view: View, position: Int, item: TransactionRowModel
     ): Unit {
         when (view.id) {
         }

@@ -57,7 +57,7 @@ class WalletHelper(
                     value = budget,
                     description = "Wallet budget",
                     date = Date(),
-                    category_id = 0,
+                    category = "Initial",
                     wallet_id = insertedWalletId,
                     type = "income",
                     currency = "EUR"

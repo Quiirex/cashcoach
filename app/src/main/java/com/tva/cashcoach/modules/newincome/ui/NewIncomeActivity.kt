@@ -74,7 +74,7 @@ class NewIncomeActivity : BaseActivity<ActivityNewIncomeBinding>(R.layout.activi
                 value = binding.etValue.text.toString().toDouble(),
                 description = binding.etDescription.text.toString(),
                 date = Date(),
-                category_id = 1,
+                category = "iz spinnerja",
                 wallet_id = preferenceHelper.getString("curr_wallet_id", "").toInt(),
                 type = "income",
                 currency = "EUR"

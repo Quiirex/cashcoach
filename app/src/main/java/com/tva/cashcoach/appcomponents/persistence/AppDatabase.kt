@@ -18,7 +18,7 @@ import com.tva.cashcoach.appcomponents.utility.Converters
 
 @Database(
     entities = [User::class, Wallet::class, Category::class, Transaction::class],
-    version = 11,
+    version = 12,
     exportSchema = false
 )
 @TypeConverters(Converters::class)

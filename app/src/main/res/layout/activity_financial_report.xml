@@ -81,75 +81,129 @@
             android:orientation="vertical"
             tools:ignore="MissingClass">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <EditText
-                android:id="@+id/startDate"
-                style="@style/etSolidRoundedOutline_1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_16pxh"
-                android:layout_marginEnd="@dimen/_8pxh"
-                android:layout_weight="1"
-                android:background="@drawable/rectangle_bg_white_a700_border_gray_100_radius_17"
-                android:hint="@string/lbl_start_date"
-                android:inputType="date"
-                android:lineSpacingExtra="@dimen/_4pxh"
-                android:paddingStart="@dimen/_16pxh"
-                android:paddingTop="@dimen/_18pxv"
-                android:paddingEnd="@dimen/_8pxh"
-                android:paddingBottom="@dimen/_17pxv"
-                android:singleLine="true"
-                android:textColor="@color/black"
-                android:textColorHint="@color/gray_500" />
-
-            <EditText
-                android:id="@+id/endDate"
-                style="@style/etSolidRoundedOutline_1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_8pxh"
-                android:layout_marginEnd="@dimen/_16pxh"
-                android:layout_weight="1"
-                android:background="@drawable/rectangle_bg_white_a700_border_gray_100_radius_17"
-                android:hint="@string/lbl_end_date"
-                android:inputType="date"
-                android:lineSpacingExtra="@dimen/_4pxh"
-                android:paddingStart="@dimen/_8pxh"
-                android:paddingTop="@dimen/_18pxv"
-                android:paddingEnd="@dimen/_16pxh"
-                android:paddingBottom="@dimen/_17pxv"
-                android:singleLine="true"
-                android:textColor="@color/black"
-                android:textColorHint="@color/gray_500" />
-        </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearFinancialRepor"
-        style="@style/groupStylewhite_A700"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="start"
-        android:orientation="vertical">
-
-        <LinearLayout
-            android:id="@+id/linearFinancialRepor1"
-            style="@style/groupStylewhite_A700"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="start"
-            android:orientation="vertical"
-            tools:ignore="MissingClass">
-
-
-            <com.github.aachartmodel.aainfographics.aachartcreator.AAChartView
-                android:id="@+id/chartView"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_300pxv" />
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/startDate"
+                    style="@style/etSolidRoundedOutline_1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_16pxh"
+                    android:layout_marginEnd="@dimen/_8pxh"
+                    android:layout_weight="1"
+                    android:background="@drawable/rectangle_bg_white_a700_border_gray_100_radius_17"
+                    android:hint="@string/lbl_start_date"
+                    android:inputType="date"
+                    android:lineSpacingExtra="@dimen/_4pxh"
+                    android:paddingStart="@dimen/_16pxh"
+                    android:paddingTop="@dimen/_18pxv"
+                    android:paddingEnd="@dimen/_8pxh"
+                    android:paddingBottom="@dimen/_17pxv"
+                    android:singleLine="true"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/gray_500" />
+
+                <EditText
+                    android:id="@+id/endDate"
+                    style="@style/etSolidRoundedOutline_1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8pxh"
+                    android:layout_marginEnd="@dimen/_16pxh"
+                    android:layout_weight="1"
+                    android:background="@drawable/rectangle_bg_white_a700_border_gray_100_radius_17"
+                    android:hint="@string/lbl_end_date"
+                    android:inputType="date"
+                    android:lineSpacingExtra="@dimen/_4pxh"
+                    android:paddingStart="@dimen/_8pxh"
+                    android:paddingTop="@dimen/_18pxv"
+                    android:paddingEnd="@dimen/_16pxh"
+                    android:paddingBottom="@dimen/_17pxv"
+                    android:singleLine="true"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/gray_500" />
+            </LinearLayout>
         </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/linearFinancialRepor"
+                style="@style/groupStylewhite_A700"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/linearFinancialRepor1"
+                    style="@style/groupStylewhite_A700"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:orientation="vertical"
+                    tools:ignore="MissingClass">
+
+                    <TextView
+                        android:id="@+id/txtBudgetGraph"
+                        style="@style/txtIntersemibold16_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_15pxh"
+                        android:layout_marginTop="@dimen/_12pxv"
+                        android:layout_marginEnd="@dimen/_15pxh"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:text="@{financialReportLineChartVM.financialReportModel.txtGraphBudget}"
+                        tools:text="@string/lbl_graph_budget" />
+
+                    <com.github.aachartmodel.aainfographics.aachartcreator.AAChartView
+                        android:id="@+id/BudgetChartView"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_300pxv" />
+
+                    <TextView
+                        android:id="@+id/txtIncomeGraph"
+                        style="@style/txtIntersemibold16_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_15pxh"
+                        android:layout_marginTop="@dimen/_12pxv"
+                        android:layout_marginEnd="@dimen/_15pxh"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:text="@{financialReportLineChartVM.financialReportModel.txtGraphIncome}"
+                        tools:text="@string/lbl_graph_income" />
+
+                    <com.github.aachartmodel.aainfographics.aachartcreator.AAChartView
+                        android:id="@+id/IncomeChartView"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_300pxv" />
+
+                    <TextView
+                        android:id="@+id/txtExpenseGraph"
+                        style="@style/txtIntersemibold16_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_15pxh"
+                        android:layout_marginTop="@dimen/_12pxv"
+                        android:layout_marginEnd="@dimen/_15pxh"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:text="@{financialReportLineChartVM.financialReportModel.txtGraphExpense}"
+                        tools:text="@string/lbl_graph_expense" />
+
+                    <com.github.aachartmodel.aainfographics.aachartcreator.AAChartView
+                        android:id="@+id/ExpenseChartView"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_300pxv" />
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
     </LinearLayout>
-</LinearLayout></layout>
+</layout>

@@ -122,4 +122,5 @@
     <string name="yes">Ja</string>
     <string name="no">Ne</string>
     <string name="lbl_incomes">Dohodki</string>
+    <string name="lbl_categories">Kategorije</string>
 </resources>

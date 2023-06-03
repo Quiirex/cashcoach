@@ -151,4 +151,5 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="lbl_incomes">Incomes</string>
+    <string name="lbl_categories">Categories</string>
 </resources>
