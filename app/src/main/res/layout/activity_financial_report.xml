@@ -73,146 +73,83 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/linearFinancialRepor"
+            android:id="@+id/dateFilters"
             style="@style/groupStylewhite_A700"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="start"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            tools:ignore="MissingClass">
 
-            <LinearLayout
-                android:id="@+id/linearFinancialRepor1"
-                style="@style/groupStylewhite_A700"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="start"
-                android:orientation="vertical"
-                tools:ignore="MissingClass">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-
-                <com.github.aachartmodel.aainfographics.aachartcreator.AAChartView
-                    android:id="@+id/chartView"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_300pxv" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/dateFilters"
-                style="@style/groupStylewhite_A700"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="start"
-                android:orientation="vertical"
-                tools:ignore="MissingClass">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <EditText
-                        android:id="@+id/startDate"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginEnd="@dimen/_8pxh"
-                        android:layout_marginStart="@dimen/_16pxh"
-                        android:layout_marginTop="@dimen/_24pxv"
-                        android:hint="@string/lbl_start_date"
-                        android:inputType="date"
-                        android:lineSpacingExtra="@dimen/_4pxh"
-                        android:paddingBottom="@dimen/_17pxv"
-                        android:paddingEnd="@dimen/_8pxh"
-                        android:paddingStart="@dimen/_16pxh"
-                        android:paddingTop="@dimen/_18pxv"
-                        android:singleLine="true"
-                        android:textColorHint="@color/gray_500"
-                        android:textColor="@color/black"
-                        android:background="@drawable/rectangle_bg_white_a700_border_gray_100_radius_17"
-                        style="@style/etSolidRoundedOutline_1" />
-
-                    <EditText
-                        android:id="@+id/endDate"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginEnd="@dimen/_16pxh"
-                        android:layout_marginStart="@dimen/_8pxh"
-                        android:layout_marginTop="@dimen/_24pxv"
-                        android:hint="@string/lbl_end_date"
-                        android:inputType="date"
-                        android:lineSpacingExtra="@dimen/_4pxh"
-                        android:paddingBottom="@dimen/_17pxv"
-                        android:paddingEnd="@dimen/_16pxh"
-                        android:paddingStart="@dimen/_8pxh"
-                        android:paddingTop="@dimen/_18pxv"
-                        android:singleLine="true"
-                        android:textColorHint="@color/gray_500"
-                        android:textColor="@color/black"
-                        android:background="@drawable/rectangle_bg_white_a700_border_gray_100_radius_17"
-                        style="@style/etSolidRoundedOutline_1" />
-                    <Button
-                        android:id="@+id/updateGraph"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.35"
-                        android:layout_marginEnd="@dimen/_16pxh"
-                        android:layout_marginStart="@dimen/_8pxh"
-                        android:layout_marginTop="@dimen/_24pxv"
-                        android:drawableStart="@drawable/img_ticket"
-                        android:gravity="center_vertical"/>
-
-
-                </LinearLayout>
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:id="@+id/linearRowsort"
-                style="@style/groupStylewhite_A700"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_8pxv"
-                android:orientation="horizontal">
-
-                <Spinner
-                    android:id="@+id/spinnerDropdownTransa"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_16pxh"
-                    android:layout_marginTop="@dimen/_12pxv"
-                    android:layout_marginBottom="@dimen/_12pxv"
-                    android:layout_weight="0.77"
-                    tools:listitem="@layout/spinner_item" />
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btnSort"
-                    style="@style/btnRoundedOutline"
-                    android:layout_width="@dimen/_40pxh"
-                    android:layout_height="@dimen/_40pxh"
-                    android:layout_marginStart="@dimen/_172pxh"
-                    android:layout_marginTop="@dimen/_12pxv"
-                    android:layout_marginEnd="@dimen/_16pxh"
-                    android:layout_marginBottom="@dimen/_12pxv"
-                    android:ellipsize="end"
-                    android:gravity="center"
-                    android:paddingHorizontal="@dimen/_8pxh"
-                    android:paddingVertical="@dimen/_8pxv"
-                    android:singleLine="true"
-                    android:textAllCaps="false" />
-            </LinearLayout>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerTransactions"
-                itemSpace="@{@dimen/_8pxh}"
-                android:layout_width="match_parent"
+            <EditText
+                android:id="@+id/startDate"
+                style="@style/etSolidRoundedOutline_1"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_16pxh"
+                android:layout_marginEnd="@dimen/_8pxh"
+                android:layout_weight="1"
+                android:background="@drawable/rectangle_bg_white_a700_border_gray_100_radius_17"
+                android:hint="@string/lbl_start_date"
+                android:inputType="date"
+                android:lineSpacingExtra="@dimen/_4pxh"
+                android:paddingStart="@dimen/_16pxh"
+                android:paddingTop="@dimen/_18pxv"
+                android:paddingEnd="@dimen/_8pxh"
+                android:paddingBottom="@dimen/_17pxv"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray_500" />
+
+            <EditText
+                android:id="@+id/endDate"
+                style="@style/etSolidRoundedOutline_1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_8pxh"
                 android:layout_marginEnd="@dimen/_16pxh"
-                android:gravity="center_horizontal"
-                android:orientation="vertical"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/row_transaction" />
+                android:layout_weight="1"
+                android:background="@drawable/rectangle_bg_white_a700_border_gray_100_radius_17"
+                android:hint="@string/lbl_end_date"
+                android:inputType="date"
+                android:lineSpacingExtra="@dimen/_4pxh"
+                android:paddingStart="@dimen/_8pxh"
+                android:paddingTop="@dimen/_18pxv"
+                android:paddingEnd="@dimen/_16pxh"
+                android:paddingBottom="@dimen/_17pxv"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray_500" />
         </LinearLayout>
     </LinearLayout>
-</layout>
+
+    <LinearLayout
+        android:id="@+id/linearFinancialRepor"
+        style="@style/groupStylewhite_A700"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/linearFinancialRepor1"
+            style="@style/groupStylewhite_A700"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:orientation="vertical"
+            tools:ignore="MissingClass">
+
+
+            <com.github.aachartmodel.aainfographics.aachartcreator.AAChartView
+                android:id="@+id/chartView"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_300pxv" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout></layout>

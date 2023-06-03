@@ -120,6 +120,8 @@ class TransactionAdapter(
         notifyDataSetChanged()
     }
 
+
+
     suspend fun fetchAllTransactions(wallet_id: String): List<Transaction> {
         return withContext(Dispatchers.IO) {
             transactionRepository.getAllTransactions(wallet_id)

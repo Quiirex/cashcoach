@@ -19,6 +19,12 @@ data class FinancialReportModel(
     /**
      * TODO Replace with dynamic value
      */
-    var txtIncome: String? = MyApp.getInstance().resources.getString(R.string.lbl_income)
+    var txtIncome: String? = MyApp.getInstance().resources.getString(R.string.lbl_income),
+
+    var txtGraphBudget: String? = MyApp.getInstance().resources.getString(R.string.lbl_graph_budget),
+    var txtGraphIncome: String? = MyApp.getInstance().resources.getString(R.string.lbl_graph_income),
+    var txtGraphExpense: String? = MyApp.getInstance().resources.getString(R.string.lbl_graph_expense)
+
+
 
 )

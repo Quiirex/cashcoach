@@ -114,4 +114,8 @@
     <string name="lbl_wallet_with_colon">Denarnica:</string>
     <string name="lbl_start_date">Začetni datum</string>
     <string name="lbl_end_date">Končni datum</string>
+    <string name="lbl_filter_date">Datum filter</string>
+    <string name="lbl_graph_budget">Graf proračuna</string>
+    <string name="lbl_graph_income">Kategorije prihodkov</string>
+    <string name="lbl_graph_expense">Kategoprije odhodkov</string>
 </resources>

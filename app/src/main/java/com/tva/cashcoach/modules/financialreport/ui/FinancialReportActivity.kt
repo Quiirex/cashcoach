@@ -1,11 +1,18 @@
 package com.tva.cashcoach.modules.financialreport.ui
 
+import android.app.DatePickerDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.InputType
+import android.text.TextWatcher
 import android.view.View
 import android.widget.Button
+import android.widget.DatePicker
 import android.widget.EditText
+import android.widget.ImageView
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartModel
@@ -25,6 +32,7 @@ import com.tva.cashcoach.modules.financialreport.data.viewmodel.FinancialReportV
 import com.tva.cashcoach.modules.transaction.data.model.TransactionRowModel
 import com.tva.cashcoach.modules.transaction.ui.TransactionAdapter
 import kotlinx.coroutines.launch
+import org.koin.android.ext.android.bind
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
@@ -57,14 +65,6 @@ class FinancialReportActivity :
         transactionDao = appDb.getTransactionDao()
         transactionRepository = TransactionRepository(transactionDao)
 
-//        val spinnerDropdownMonthAdapter =
-//            SpinnerDropdownMonthAdapter(
-//                this,
-//                R.layout.spinner_item,
-//                viewModel.spinnerDropdownMonthList.value ?: mutableListOf()
-//            )
-//        binding.spinnerDropdownMonth.adapter = spinnerDropdownMonthAdapter
-
         transactionAdapter = TransactionAdapter(
             transactionRepository,
             preferenceHelper
@@ -77,50 +77,113 @@ class FinancialReportActivity :
             SpinnerDropdownTransaModel("Item4"),
             SpinnerDropdownTransaModel("Item5")
         )
-//        val spinnerDropdownTransaAdapter =
-//            SpinnerDropdownTransaAdapter(
-//                this,
-//                R.layout.spinner_item,
-//                viewModel.spinnerDropdownTransaList.value ?: mutableListOf()
-//            )
-//        binding.spinnerDropdownTransa.adapter = spinnerDropdownTransaAdapter
-
-        binding.recyclerTransactions.adapter = transactionAdapter
-
-        transactionAdapter.setOnItemClickListener(
-            object : TransactionAdapter.OnItemClickListener {
-                override fun onItemClick(
-                    view: View,
-                    position: Int,
-                    transaction: TransactionRowModel
-                ) {
-                    onClickRecyclerTransactions(view, position, transaction)
-                }
-            }
-        )
-        binding.financialReportLineChartVM = viewModel
 
         lifecycleScope.launch {
-            transactions = transactionAdapter.fetchAllTransactions(preferenceHelper.getString("curr_wallet_id", ""))
-            transactionAdapter.fetchTransactions(preferenceHelper.getString("curr_wallet_id", ""))
+            transactions = transactionAdapter.fetchAllTransactions(
+                preferenceHelper.getString(
+                    "curr_wallet_id",
+                    ""
+                )
+            )
             graph(setDefaultDates().first, setDefaultDates().second)
         }
 
+        setUpDatePickers()
+    }
+
+    private fun setUpDatePickers() {
+        val startDateEditText: EditText = findViewById(R.id.startDate)
+        val endDateEditText: EditText = findViewById(R.id.endDate)
+
+        startDateEditText.apply {
+            isFocusable = false
+            isFocusableInTouchMode = false
+            setOnClickListener {
+                showDatePicker(startDateEditText)
+            }
+        }
+
+        endDateEditText.apply {
+            isFocusable = false
+            isFocusableInTouchMode = false
+            setOnClickListener {
+                showDatePicker(endDateEditText)
+            }
+        }
+    }
+
+
+    private fun showDatePicker(editText: EditText) {
+        val calendar = Calendar.getInstance()
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH)
+        val day = calendar.get(Calendar.DAY_OF_MONTH)
+
+        val datePickerDialog = DatePickerDialog(
+            this,
+            R.style.DatePickerTheme,
+            { view: DatePicker, year: Int, month: Int, dayOfMonth: Int ->
+                val selectedDate = Calendar.getInstance()
+                selectedDate.set(year, month, dayOfMonth)
+
+                val dateFormat = SimpleDateFormat("dd.MM.yyyy", Locale.US)
+                val dateString = dateFormat.format(selectedDate.time)
+                editText.setText(dateString)
+            },
+            year,
+            month,
+            day
+        )
+
+        datePickerDialog.show()
+        setUpDateInputListeners()
+    }
+
+    private fun setUpDateInputListeners() {
+        binding.startDate.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+
+            override fun afterTextChanged(s: Editable?) {
+                updateGraph()
+            }
+        })
+
+        binding.endDate.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+
+            override fun afterTextChanged(s: Editable?) {
+                updateGraph()
+            }
+        })
+    }
+
+    fun updateGraph() {
+        val startDateEditText: EditText = findViewById(R.id.startDate)
+        val endDateEditText: EditText = findViewById(R.id.endDate)
+        val dateFormat = SimpleDateFormat("dd.MM.yyyy", Locale.US)
+        val startDateString = startDateEditText.text.toString()
+        val endDateString = endDateEditText.text.toString()
+        val startDate = dateFormat.parse(startDateString)
+        var endDate = dateFormat.parse(endDateString)
+        val calendar = Calendar.getInstance()
+        calendar.time = endDate
+        calendar.add(Calendar.DAY_OF_MONTH, 1)
+        endDate = calendar.time
+        graph(startDate, endDate)
     }
 
     fun setDefaultDates(): Pair<Date, Date> {
         val startDateEditText: EditText = findViewById(R.id.startDate)
         val endDateEditText: EditText = findViewById(R.id.endDate)
 
-        // Get today's date
         val currentDate = Calendar.getInstance().time
         val dateFormat = SimpleDateFormat("dd.MM.yyyy", Locale.US)
 
-        // Set the end date to today's date
         val endDateString = dateFormat.format(currentDate)
         endDateEditText.setText(endDateString)
 
-        // Calculate the start date as one week before today
         val startDate = Calendar.getInstance()
         startDate.add(Calendar.DAY_OF_MONTH, -7)
         val startDateString = dateFormat.format(startDate.time)
@@ -133,6 +196,11 @@ class FinancialReportActivity :
         val budgetList = mutableListOf<Double>()
         var budget = 0.0
 
+        val relevantTransactions = transactions.filter { it.date <= startDate }
+        budget =
+            relevantTransactions.sumByDouble { if (it.type == "income") it.value else -it.value }
+        budgetList.add(budget)
+
         for (transaction in transactions) {
             if (transaction.date in startDate..endDate) {
                 if (transaction.type == "income") {
@@ -143,7 +211,7 @@ class FinancialReportActivity :
                 budgetList.add(budget)
             }
         }
-
+        budgetList.removeAt(0)
         val chart = findViewById<AAChartView>(R.id.chartView)
         val aaChartModel: AAChartModel = AAChartModel()
             .chartType(AAChartType.Areaspline)
@@ -163,30 +231,6 @@ class FinancialReportActivity :
         binding.imageBack.setOnClickListener {
             finish()
         }
-
-        binding.updateGraph.setOnClickListener {
-            val startDateEditText: EditText = findViewById(R.id.startDate)
-            val endDateEditText: EditText = findViewById(R.id.endDate)
-
-            val dateFormat = SimpleDateFormat("dd.MM.yyyy", Locale.US)
-
-            val updateGraphButton: Button = findViewById(R.id.updateGraph)
-            updateGraphButton.setOnClickListener {
-                val startDateString = startDateEditText.text.toString()
-                val endDateString = endDateEditText.text.toString()
-
-                val startDate = dateFormat.parse(startDateString)
-                var endDate = dateFormat.parse(endDateString)
-
-                // Move end date one day forward
-                val calendar = Calendar.getInstance()
-                calendar.time = endDate
-                calendar.add(Calendar.DAY_OF_MONTH, 1)
-                endDate = calendar.time
-
-                graph(startDate, endDate)
-            }
-        }
     }
 
     fun onClickRecyclerTransactions(
@@ -197,6 +241,7 @@ class FinancialReportActivity :
         when (view.id) {
         }
     }
+
 
     companion object {
         const val TAG: String = "FINANCIAL_REPORT_LINE_CHART_ACTIVITY"
