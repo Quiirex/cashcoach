@@ -91,12 +91,21 @@ class HomeScreenFragment : BaseFragment<FragmentHomeScreenBinding>(R.layout.frag
                 ?.replace(R.id.fragmentContainer, TransactionFragment())?.commit()
         }
 
+
         binding.homeScreenVM = viewModel
 
         curr_wallet_id = preferenceHelper.getString("curr_wallet_id", "")
 
-        val currentUserId = preferenceHelper.getString("curr_user_uid", "")
+        loadData()
+    }
 
+    override fun onResume() {
+        super.onResume()
+        loadData()
+    }
+
+    private fun loadData() {
+        val currentUserId = preferenceHelper.getString("curr_user_uid", "")
         lifecycleScope.launch {
             transactionAdapter.fetchTransactions(curr_wallet_id)
             val currencySymbol =
@@ -120,7 +129,6 @@ class HomeScreenFragment : BaseFragment<FragmentHomeScreenBinding>(R.layout.frag
             binding.imageAvatar.setImageBitmap(currentUserAvatarBitmap)
         }
     }
-
     private fun Double.format(): String = String.format("%.2f", this)
 
     override fun setUpClicks() {
