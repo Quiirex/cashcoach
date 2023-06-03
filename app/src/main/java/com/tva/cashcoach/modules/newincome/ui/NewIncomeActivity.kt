@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Spinner
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.tva.cashcoach.R
@@ -68,6 +69,7 @@ class NewIncomeActivity : BaseActivity<ActivityNewIncomeBinding>(R.layout.activi
 
     override fun setUpClicks() {
         binding.btnContinue.setOnClickListener {
+
             val spinner = findViewById<Spinner>(R.id.spinnerCategory)
             val (selectedCategory) = spinner.selectedItem as SpinnerCategoryModel
 

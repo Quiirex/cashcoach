@@ -33,7 +33,6 @@
                 android:layout_marginStart="@dimen/_20pxh"
                 android:layout_marginTop="@dimen/_22pxv"
                 android:layout_marginEnd="@dimen/_20pxh"
-                android:layout_marginBottom="@dimen/_19pxv"
                 android:gravity="start"
                 app:contentInsetStart="0dp">
 
@@ -149,54 +148,15 @@
                     android:orientation="vertical"
                     tools:ignore="MissingClass">
 
-                    <TextView
-                        android:id="@+id/txtBudgetGraph"
-                        style="@style/txtIntersemibold16_2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_15pxh"
-                        android:layout_marginTop="@dimen/_12pxv"
-                        android:layout_marginEnd="@dimen/_15pxh"
-                        android:ellipsize="end"
-                        android:singleLine="true"
-                        android:text="@{financialReportLineChartVM.financialReportModel.txtGraphBudget}"
-                        tools:text="@string/lbl_graph_budget" />
-
                     <com.github.aachartmodel.aainfographics.aachartcreator.AAChartView
                         android:id="@+id/BudgetChartView"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_300pxv" />
 
-                    <TextView
-                        android:id="@+id/txtIncomeGraph"
-                        style="@style/txtIntersemibold16_2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_15pxh"
-                        android:layout_marginTop="@dimen/_12pxv"
-                        android:layout_marginEnd="@dimen/_15pxh"
-                        android:ellipsize="end"
-                        android:singleLine="true"
-                        android:text="@{financialReportLineChartVM.financialReportModel.txtGraphIncome}"
-                        tools:text="@string/lbl_graph_income" />
-
                     <com.github.aachartmodel.aainfographics.aachartcreator.AAChartView
                         android:id="@+id/IncomeChartView"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_300pxv" />
-
-                    <TextView
-                        android:id="@+id/txtExpenseGraph"
-                        style="@style/txtIntersemibold16_2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_15pxh"
-                        android:layout_marginTop="@dimen/_12pxv"
-                        android:layout_marginEnd="@dimen/_15pxh"
-                        android:ellipsize="end"
-                        android:singleLine="true"
-                        android:text="@{financialReportLineChartVM.financialReportModel.txtGraphExpense}"
-                        tools:text="@string/lbl_graph_expense" />
 
                     <com.github.aachartmodel.aainfographics.aachartcreator.AAChartView
                         android:id="@+id/ExpenseChartView"

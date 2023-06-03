@@ -6,10 +6,14 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.text.Editable
+import android.text.InputType
 import android.text.TextWatcher
 import android.view.View
+import android.widget.Button
 import android.widget.DatePicker
 import android.widget.EditText
+import android.widget.ImageView
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.lifecycleScope
@@ -23,13 +27,18 @@ import com.tva.cashcoach.appcomponents.model.transaction.Transaction
 import com.tva.cashcoach.appcomponents.model.transaction.TransactionDao
 import com.tva.cashcoach.appcomponents.persistence.repository.transaction.TransactionRepository
 import com.tva.cashcoach.databinding.ActivityFinancialReportBinding
+import com.tva.cashcoach.modules.financialreport.data.model.Listtrash1RowModel
+import com.tva.cashcoach.modules.financialreport.data.model.SpinnerDropdownMonthModel
+import com.tva.cashcoach.modules.financialreport.data.model.SpinnerDropdownTransaModel
 import com.tva.cashcoach.modules.financialreport.data.viewmodel.FinancialReportVM
 import com.tva.cashcoach.modules.transaction.data.model.TransactionRowModel
 import com.tva.cashcoach.modules.transaction.ui.TransactionAdapter
 import kotlinx.coroutines.launch
+import org.koin.android.ext.android.bind
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
+import java.util.Dictionary
 import java.util.Locale
 
 class FinancialReportActivity :
@@ -49,12 +58,27 @@ class FinancialReportActivity :
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onInitialized() {
         viewModel.navArguments = intent.extras?.getBundle("bundle")
+        viewModel.spinnerDropdownMonthList.value = mutableListOf(
+            SpinnerDropdownMonthModel("Item1"),
+            SpinnerDropdownMonthModel("Item2"),
+            SpinnerDropdownMonthModel("Item3"),
+            SpinnerDropdownMonthModel("Item4"),
+            SpinnerDropdownMonthModel("Item5")
+        )
 
         transactionDao = appDb.getTransactionDao()
         transactionRepository = TransactionRepository(transactionDao)
 
         transactionAdapter = TransactionAdapter(
             transactionRepository, preferenceHelper
+        )
+
+        viewModel.spinnerDropdownTransaList.value = mutableListOf(
+            SpinnerDropdownTransaModel("Item1"),
+            SpinnerDropdownTransaModel("Item2"),
+            SpinnerDropdownTransaModel("Item3"),
+            SpinnerDropdownTransaModel("Item4"),
+            SpinnerDropdownTransaModel("Item5")
         )
 
         lifecycleScope.launch {
@@ -65,6 +89,7 @@ class FinancialReportActivity :
             )
             budgetGraph(setDefaultDates().first, setDefaultDates().second)
             incomeGraph(setDefaultDates().first, setDefaultDates().second)
+            expenseGraph(setDefaultDates().first, setDefaultDates().second)
         }
 
         setUpDatePickers()
@@ -124,7 +149,7 @@ class FinancialReportActivity :
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
 
             override fun afterTextChanged(s: Editable?) {
-                updateBudgetGraph()
+                updateGraphs()
             }
         })
 
@@ -133,12 +158,12 @@ class FinancialReportActivity :
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
 
             override fun afterTextChanged(s: Editable?) {
-                updateBudgetGraph()
+                updateGraphs()
             }
         })
     }
 
-    fun updateBudgetGraph() {
+    fun updateGraphs() {
         val startDateEditText: EditText = findViewById(R.id.startDate)
         val endDateEditText: EditText = findViewById(R.id.endDate)
         val dateFormat = SimpleDateFormat("dd.MM.yyyy", Locale.US)
@@ -151,6 +176,8 @@ class FinancialReportActivity :
         calendar.add(Calendar.DAY_OF_MONTH, 1)
         endDate = calendar.time
         budgetGraph(startDate, endDate)
+        incomeGraph(startDate, endDate)
+        expenseGraph(startDate, endDate)
     }
 
     fun setDefaultDates(): Pair<Date, Date> {
@@ -177,7 +204,7 @@ class FinancialReportActivity :
 
         val relevantTransactions = transactions.filter { it.date <= startDate }
         budget =
-            relevantTransactions.sumOf { if (it.type == "income") it.value else -it.value }
+            relevantTransactions.sumByDouble { if (it.type == "income") it.value else -it.value }
         budgetList.add(budget)
 
         for (transaction in transactions) {
@@ -193,7 +220,11 @@ class FinancialReportActivity :
         budgetList.removeAt(0)
         val chart = findViewById<AAChartView>(R.id.BudgetChartView)
         val aaChartModel: AAChartModel =
-            AAChartModel().chartType(AAChartType.Areaspline).dataLabelsEnabled(true)
+            AAChartModel().chartType(AAChartType.Areaspline)
+                .title(getString(R.string.lbl_graph_budget))
+                .dataLabelsEnabled(true)
+                .yAxisVisible(false)
+                .xAxisVisible(false)
                 .colorsTheme(arrayOf("#3D85C6")).series(
                     arrayOf(
                         AASeriesElement().name("Budget").data(budgetList.toTypedArray())
@@ -202,12 +233,11 @@ class FinancialReportActivity :
         chart.aa_drawChartWithChartModel(aaChartModel)
     }
 
-    @RequiresApi(Build.VERSION_CODES.N)
     fun incomeGraph(startDate: Date, endDate: Date) {
         val incomes: MutableMap<String, Double> = HashMap()
 
         for (transaction in transactions) {
-            if (transaction.date in startDate..endDate && transaction.type == "income") {
+            if (transaction.date in startDate..endDate && transaction.type == "income" && transaction.category != "Initial") {
                 val category = transaction.category
                 incomes[category] = incomes.getOrDefault(category, 0.0) + transaction.value
             }
@@ -215,17 +245,44 @@ class FinancialReportActivity :
 
         val chart = findViewById<AAChartView>(R.id.IncomeChartView)
         val aaChartModel = AAChartModel()
+            .title(getString(R.string.lbl_graph_income))
             .chartType(AAChartType.Pie)
-            .title("Pie Chart")
-            .categories(incomes.keys.map { it.toString() }.toTypedArray())
+            .categories(incomes.keys.toTypedArray())
             .series(
                 arrayOf(
                     AASeriesElement()
-                        .name(R.string.lbl_categories.toString())
-                        .data(incomes.values.map { it }.toTypedArray())
+                        .data(
+                            incomes.entries.map { arrayOf(it.key, it.value) }.toTypedArray()
+                        )
                 )
             )
 
+        chart.aa_drawChartWithChartModel(aaChartModel)
+    }
+
+    fun expenseGraph(startDate: Date, endDate: Date) {
+        val expenses: MutableMap<String, Double> = HashMap()
+
+        for (transaction in transactions) {
+            if (transaction.date in startDate..endDate && transaction.type == "expense") {
+                val category = transaction.category
+                expenses[category] = expenses.getOrDefault(category, 0.0) + transaction.value
+            }
+        }
+
+        val chart = findViewById<AAChartView>(R.id.ExpenseChartView)
+        val aaChartModel = AAChartModel()
+            .title(getString(R.string.lbl_graph_expense))
+            .chartType(AAChartType.Pie)
+            .categories(expenses.keys.toTypedArray())
+            .series(
+                arrayOf(
+                    AASeriesElement()
+                        .data(
+                            expenses.entries.map { arrayOf(it.key, it.value) }.toTypedArray()
+                        )
+                )
+            )
 
         chart.aa_drawChartWithChartModel(aaChartModel)
     }
@@ -236,14 +293,6 @@ class FinancialReportActivity :
             finish()
         }
     }
-
-    fun onClickRecyclerTransactions(
-        view: View, position: Int, item: TransactionRowModel
-    ): Unit {
-        when (view.id) {
-        }
-    }
-
 
     companion object {
         const val TAG: String = "FINANCIAL_REPORT_LINE_CHART_ACTIVITY"
