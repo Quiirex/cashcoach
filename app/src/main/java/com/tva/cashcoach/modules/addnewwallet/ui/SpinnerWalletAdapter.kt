@@ -1,4 +1,4 @@
-package com.tva.cashcoach.modules.newexpense.ui
+package com.tva.cashcoach.modules.addnewwallet.ui
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -8,14 +8,14 @@ import android.widget.ArrayAdapter
 import android.widget.TextView
 import androidx.annotation.LayoutRes
 import com.tva.cashcoach.R
-import com.tva.cashcoach.modules.newexpense.data.model.SpinnerDropdownWalletModel
+import com.tva.cashcoach.modules.addnewwallet.data.model.SpinnerWalletModel
 
-class SpinnerDropdownWalletAdapter(
+class SpinnerWalletAdapter(
     private val mContext: Context,
     @LayoutRes
     private val layoutResource: Int,
-    private val allItems: List<SpinnerDropdownWalletModel>
-) : ArrayAdapter<SpinnerDropdownWalletModel>(mContext, layoutResource, allItems) {
+    allItems: List<SpinnerWalletModel>,
+) : ArrayAdapter<SpinnerWalletModel>(mContext, layoutResource, allItems) {
     override fun getView(
         position: Int,
         convertView: View?,

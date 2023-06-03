@@ -543,4 +543,8 @@
         <item name="android:background">@drawable/rectangle_bg_white_a700_radius_tl_24_tr_24</item>
     </style>
 
+    <style name="SpinnerPopUpTheme">
+        <item name="android:background">@color/black</item>
+    </style>
+
 </resources>

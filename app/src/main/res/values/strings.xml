@@ -151,5 +151,18 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="lbl_incomes">Incomes</string>
+    <string name="select_a_wallet_type">Select a wallet type…</string>
+    <string name="bank_account">Bank account</string>
+    <string name="savings_account">Savings account</string>
+    <string name="other">Other</string>
+    <string name="food_drinks"><![CDATA[Food & Drinks]]></string>
+    <string name="clothes_shoes"><![CDATA[Clothes & Shoes]]></string>
+    <string name="transportation">Transportation</string>
+    <string name="health_beauty"><![CDATA[Health & Beauty]]></string>
+    <string name="home_utilities"><![CDATA[Home & Utilities]]></string>
+    <string name="entertainment">Entertainment</string>
+    <string name="gifts_donations"><![CDATA[Gifts & Donations]]></string>
+    <string name="education">Education</string>
+    <string name="lbl_choose_category">Choose a category…</string>
     <string name="lbl_categories">Categories</string>
 </resources>

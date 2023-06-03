@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.tva.cashcoach.modules.addnewwallet.data.model.AddNewWalletModel
-import com.tva.cashcoach.modules.addnewwallet.data.model.SpinnerDropdownWalletModel
+import com.tva.cashcoach.modules.addnewwallet.data.model.SpinnerWalletModel
 import org.koin.core.KoinComponent
 
 class AddNewWalletVM : ViewModel(), KoinComponent {
@@ -12,6 +12,6 @@ class AddNewWalletVM : ViewModel(), KoinComponent {
 
     var navArguments: Bundle? = null
 
-    val spinnerDropdownWalletList: MutableLiveData<MutableList<SpinnerDropdownWalletModel>> =
+    val spinnerWallet: MutableLiveData<MutableList<SpinnerWalletModel>> =
         MutableLiveData()
 }

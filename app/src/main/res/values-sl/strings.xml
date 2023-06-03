@@ -105,8 +105,8 @@
     <string name="new_income_added">Dohodek dodan</string>
     <string name="arrow_tag"><![CDATA[>]]></string>
     <string name="transactions">Transakcije</string>
-    <string name="please_enter_wallet_name">Vnesite ime denarnice</string>
-    <string name="please_enter_balance">Vnesite stanje</string>
+    <string name="please_enter_wallet_name">Vnesi ime denarnice</string>
+    <string name="please_enter_balance">Vnesi stanje</string>
     <string name="new_expense_added">Strošek dodan</string>
     <string name="make_this_your_default_wallet">Naj bo tvoja privzeta denarnica?</string>
     <string name="lbl_transactions">Transakcije</string>
@@ -122,5 +122,18 @@
     <string name="yes">Ja</string>
     <string name="no">Ne</string>
     <string name="lbl_incomes">Dohodki</string>
+    <string name="select_a_wallet_type">Izberi tip denarnice…</string>
+    <string name="bank_account">Bančni račun</string>
+    <string name="savings_account">Varčevalni račun</string>
+    <string name="other">Drugo</string>
+    <string name="food_drinks"><![CDATA[Hrana & Pijača]]></string>
+    <string name="clothes_shoes"><![CDATA[Oblačila & Obutev]]></string>
+    <string name="transportation">Prevoz</string>
+    <string name="health_beauty"><![CDATA[Zdravje & Lepota]]></string>
+    <string name="home_utilities"><![CDATA[Dom & Pripomočki]]></string>
+    <string name="entertainment">Zabava</string>
+    <string name="gifts_donations"><![CDATA[Darila & Donacije]]></string>
+    <string name="education">Izobraževanje</string>
+    <string name="lbl_choose_category">Izberi kategorijo…</string>
     <string name="lbl_categories">Kategorije</string>
 </resources>
