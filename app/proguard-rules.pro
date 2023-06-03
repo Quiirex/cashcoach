@@ -34,6 +34,7 @@
 -keep class javax.xml.stream.** { *; }
 -keep class retrofit.** { *; }
 -keep class com.google.appengine.** { *; }
+-keep class com.github.aachartmodel.aainfographics.** { *; }
 -keepattributes *Annotation*
 -keepattributes Signature
 -dontwarn com.squareup.okhttp.*

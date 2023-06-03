@@ -9,6 +9,10 @@ class TransactionRepository(private val transactionDao: TransactionDao) {
         return transactionDao.getAll(wallet_id)
     }
 
+    fun getAllTransactions(wallet_id: String): List<Transaction> {
+        return transactionDao.getAllTransactions(wallet_id)
+    }
+
     fun getIncomesSum(wallet_id: String): Double {
         return transactionDao.getIncomesSum(wallet_id)
     }
