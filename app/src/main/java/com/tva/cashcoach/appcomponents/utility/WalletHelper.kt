@@ -164,4 +164,17 @@ class WalletHelper(
             }
         }
     }
+
+    /**
+     * Returns wallet name by id
+     */
+    @OptIn(DelicateCoroutinesApi::class)
+    fun getWalletNameById(walletId: Int, callback: (String) -> Unit) {
+        GlobalScope.launch(Dispatchers.IO) {
+            val wallet = walletRepository.getById(walletId)
+            withContext(Dispatchers.Main) {
+                callback(wallet.name)
+            }
+        }
+    }
 }

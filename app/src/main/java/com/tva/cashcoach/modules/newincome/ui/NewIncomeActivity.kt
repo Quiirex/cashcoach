@@ -3,7 +3,7 @@ package com.tva.cashcoach.modules.newincome.ui
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
+import android.widget.Spinner
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.tva.cashcoach.R
@@ -68,30 +68,25 @@ class NewIncomeActivity : BaseActivity<ActivityNewIncomeBinding>(R.layout.activi
 
     override fun setUpClicks() {
         binding.btnContinue.setOnClickListener {
+            val spinner = findViewById<Spinner>(R.id.spinnerCategory)
+            val (selectedCategory) = spinner.selectedItem as SpinnerCategoryModel
 
             val newTransaction = Transaction(
                 id = null,
                 value = binding.etValue.text.toString().toDouble(),
                 description = binding.etDescription.text.toString(),
                 date = Date(),
-                category = "iz spinnerja",
+                category = selectedCategory,
                 wallet_id = preferenceHelper.getString("curr_wallet_id", "").toInt(),
                 type = "income",
-                currency = "EUR"
+                currency = preferenceHelper.getString("curr_user_currency", "")
             )
-
 
             lifecycleScope.launch {
                 withContext(Dispatchers.IO) {
                     transactionRepository.insert(newTransaction)
                 }
             }
-
-            Toast.makeText(
-                applicationContext,
-                getString(R.string.new_income_added),
-                Toast.LENGTH_SHORT
-            ).show()
 
             val destIntent = HomeScreenContainerActivity.getIntent(this, null)
             startActivityForResult(destIntent, REQUEST_CODE_HOME_SCREEN_CONTAINER_ACTIVITY)

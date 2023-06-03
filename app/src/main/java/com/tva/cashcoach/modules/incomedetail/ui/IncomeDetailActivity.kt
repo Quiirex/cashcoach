@@ -9,6 +9,9 @@ import com.tva.cashcoach.R
 import com.tva.cashcoach.appcomponents.base.BaseActivity
 import com.tva.cashcoach.appcomponents.model.transaction.TransactionDao
 import com.tva.cashcoach.appcomponents.persistence.repository.transaction.TransactionRepository
+import com.tva.cashcoach.appcomponents.persistence.repository.user.UserRepository
+import com.tva.cashcoach.appcomponents.persistence.repository.wallet.WalletRepository
+import com.tva.cashcoach.appcomponents.utility.WalletHelper
 import com.tva.cashcoach.databinding.ActivityIncomeDetailBinding
 import com.tva.cashcoach.modules.incomedetail.data.viewmodel.IncomeDetailVM
 import kotlinx.coroutines.Dispatchers
@@ -23,9 +26,24 @@ class IncomeDetailActivity :
 
     private lateinit var transactionRepository: TransactionRepository
 
+    private lateinit var walletHelper: WalletHelper
+
     override fun onInitialized() {
         viewModel.navArguments = intent.extras?.getBundle("bundle")
         binding.incomeDetailVM = viewModel
+
+        val walletDao = appDb.getWalletDao()
+        val walletRepository = WalletRepository(walletDao)
+        val userDao = appDb.getUserDao()
+        val userRepository = UserRepository(userDao)
+        val transactionDao = appDb.getTransactionDao()
+        val transactionRepository = TransactionRepository(transactionDao)
+
+        walletHelper = WalletHelper(
+            walletRepository,
+            userRepository,
+            transactionRepository
+        )
 
         val currency = when (viewModel.navArguments?.getString("currency")) {
             "EUR" -> "€"
@@ -35,12 +53,13 @@ class IncomeDetailActivity :
 
         binding.txtValue.text = viewModel.navArguments?.getString("value") + currency
         binding.txtDate.text = viewModel.navArguments?.getString("date")
-        binding.txtCategory.text = viewModel.navArguments?.getString("category_id")
-        binding.txtWallet.text = viewModel.navArguments?.getString("wallet_id")
+        binding.txtCategory.text = viewModel.navArguments?.getString("category")
+        binding.txtWallet.text = walletHelper.getWalletNameById(
+            viewModel.navArguments?.getString("wallet_id")!!.toInt()
+        ) { walletName ->
+            binding.txtWallet.text = walletName
+        }.toString()
         binding.txtDescription.text = viewModel.navArguments?.getString("description")
-
-        transactionDao = appDb.getTransactionDao()
-        transactionRepository = TransactionRepository(transactionDao)
     }
 
     override fun setUpClicks() {

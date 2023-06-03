@@ -1,6 +1,6 @@
 package com.tva.cashcoach.modules.newexpense.ui
 
-import android.widget.Toast
+import android.widget.Spinner
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.tva.cashcoach.R
@@ -65,15 +65,18 @@ class NewExpenseActivity : BaseActivity<ActivityNewExpenseBinding>(R.layout.acti
 
     override fun setUpClicks() {
         binding.btnContinue.setOnClickListener {
+            val spinner = findViewById<Spinner>(R.id.spinnerCategory)
+            val (selectedCategory) = spinner.selectedItem as SpinnerCategoryModel
+
             val newTransaction = Transaction(
                 id = null,
                 value = binding.etValue.text.toString().toDouble(),
                 description = binding.etDescription.text.toString(),
                 date = Date(),
-                category = "iz spinnerja",
+                category = selectedCategory,
                 wallet_id = preferenceHelper.getString("curr_wallet_id", "").toInt(),
                 type = "expense",
-                currency = "EUR"
+                currency = preferenceHelper.getString("curr_user_currency", "")
             )
 
             lifecycleScope.launch {
@@ -81,12 +84,6 @@ class NewExpenseActivity : BaseActivity<ActivityNewExpenseBinding>(R.layout.acti
                     transactionRepository.insert(newTransaction)
                 }
             }
-
-            Toast.makeText(
-                applicationContext,
-                getString(R.string.new_expense_added),
-                Toast.LENGTH_SHORT
-            ).show()
 
             val destIntent = HomeScreenContainerActivity.getIntent(this, null)
             startActivityForResult(destIntent, REQUEST_CODE_HOME_SCREEN_CONTAINER_ACTIVITY)
