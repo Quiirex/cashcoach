@@ -141,4 +141,6 @@
     <string name="budget">Haushalt</string>
     <string name="initial_budget">Ursprünglicher Haushalt</string>
     <string name="wallet_budget">Budget für die Brieftasche</string>
+    <string name="lbl_filter_apply">Filter</string>
+    <string name="lbl_filter_reset">" Zurücksetzen"</string>
 </resources>

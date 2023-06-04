@@ -1,29 +1,41 @@
 package com.tva.cashcoach.modules.transaction.ui
 
+import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
+import androidx.room.util.foreignKeyCheck
 import com.tva.cashcoach.R
 import com.tva.cashcoach.appcomponents.di.MyApp
 import com.tva.cashcoach.appcomponents.model.transaction.Transaction
 import com.tva.cashcoach.appcomponents.persistence.repository.transaction.TransactionRepository
 import com.tva.cashcoach.appcomponents.utility.PreferenceHelper
 import com.tva.cashcoach.databinding.RowTransactionBinding
+import com.tva.cashcoach.modules.newincome.data.model.SpinnerCategoryModel
+import com.tva.cashcoach.modules.newincome.ui.SpinnerCategoryAdapter
 import com.tva.cashcoach.modules.transaction.data.model.TransactionRowModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import kotlin.math.log
 
 class TransactionAdapter(
     private val transactionRepository: TransactionRepository,
     val preferenceHelper: PreferenceHelper
 ) :
     RecyclerView.Adapter<TransactionAdapter.TransactionViewHolder>() {
+
     private var clickListener: OnItemClickListener? = null
     private var transactions: List<Transaction> = emptyList()
+    private var filtered: MutableList<Transaction> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TransactionViewHolder {
         val view =
@@ -156,4 +168,74 @@ class TransactionAdapter(
         }
         notifyDataSetChanged()
     }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun filterTransactions(
+        startDate: Date?,
+        endDate: Date?,
+        transactionType: String?,
+        sortBy: String?,
+        categories: Array<String>?
+    ) {
+        Log.d(
+            "filterTransactions",
+            "startDate: $startDate, endDate: $endDate, transaction: $transactionType, sortBy: $sortBy, categories: $categories"
+        )
+        GlobalScope.launch(Dispatchers.IO) {
+            var transactions = transactionRepository.getAllTransactions(
+                preferenceHelper.getString(
+                    "curr_wallet_id",
+                    ""
+                )
+            )
+
+            for (transaction in transactions) {
+                if (transaction.date >= startDate && transaction.date <= endDate) {
+                    if (transactionType == "Income") {
+                        if (categories != null) {
+                            if (transaction.type.equals("income") && categories.contains(transaction.category)) {
+                                filtered.add(transaction);
+                            }
+                        }
+
+                    } else if (transactionType == "Expense") {
+                        if (categories != null) {
+                            if (transaction.type.equals("expense") && categories.contains(
+                                    transaction.category
+                                )
+                            ) {
+                                filtered.add(transaction);
+                            }
+                        }
+                    } else {
+                        if (categories != null) {
+                            if (categories.contains(transaction.category)) {
+                                filtered.add(transaction);
+                            }
+                        }
+                    }
+                }
+            }
+//            when (sortBy) {
+//                "Newest" -> {
+//                    filtered = filtered.sortedBy { it.date } as MutableList<Transaction>
+//                }
+//                "Oldest" -> {
+//                    filtered = filtered.sortedByDescending { it.date } as MutableList<Transaction>
+//                }
+//                "Highest" -> {
+//                    filtered = filtered.sortedByDescending { it.value } as MutableList<Transaction>
+//                }
+//                "Lowest" -> {
+//                    filtered = filtered.sortedBy { it.value } as MutableList<Transaction>
+//                }
+//            }
+
+        }
+        transactions = filtered
+        filtered.clear()
+        notifyDataSetChanged()
+
+    }
+
 }

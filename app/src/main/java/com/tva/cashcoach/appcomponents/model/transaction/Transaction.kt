@@ -13,6 +13,6 @@ data class Transaction(
     @ColumnInfo(name = "date") val date: Date = Date(),
     @ColumnInfo(name = "category") val category: String = "",
     @ColumnInfo(name = "wallet_id") val wallet_id: Int = 0,
-    @ColumnInfo(name = "type") val type: String = "",
+    @ColumnInfo(name = "type") var type: String = "",
     @ColumnInfo(name = "currency") val currency: String = ""
 )

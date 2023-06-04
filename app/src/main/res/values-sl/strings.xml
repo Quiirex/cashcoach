@@ -141,4 +141,6 @@
     <string name="budget">Proračun</string>
     <string name="initial_budget">Začetni proračun</string>
     <string name="wallet_budget">Proračun denarnice</string>
+    <string name="lbl_filter_apply">Filtriraj</string>
+    <string name="lbl_filter_reset">Ponastavi</string>
 </resources>

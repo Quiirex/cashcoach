@@ -170,4 +170,6 @@
     <string name="budget">Budget</string>
     <string name="initial_budget">Initial budget</string>
     <string name="wallet_budget">Wallet budget</string>
+    <string name="lbl_filter_apply">Filter</string>
+    <string name="lbl_filter_reset">Reset</string>
 </resources>

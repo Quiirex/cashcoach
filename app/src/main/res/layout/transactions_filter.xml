@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/rectangle_bg_white_a700_border_gray_100_radius_17">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="@dimen/_300pxh"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_16pxv"
+            android:background="@color/white_A700"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/txtIntersemibold18"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Date:" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/startDate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="Start"
+                    android:inputType="date" />
+
+                <EditText
+                    android:id="@+id/endDate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="End"
+                    android:inputType="date" />
+            </LinearLayout>
+
+            <TextView
+                style="@style/txtIntersemibold18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/_16pxh"
+                android:text="Transaction:" />
+
+            <RadioGroup
+                android:id="@+id/radioGroupFilterTransaction"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/radioButtonTransactionAll"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/custom_button"
+                    android:button="@null"
+                    android:checked="true"
+                    android:gravity="center"
+                    android:text="All"
+                    android:textColor="@drawable/custom_button_font" />
+
+                <RadioButton
+                    android:id="@+id/radioButtonTransactionIncome"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/custom_button"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="Income"
+
+                    android:textColor="@drawable/custom_button_font" />
+
+                <RadioButton
+                    android:id="@+id/radioButtonTransactionExpense"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/custom_button"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="Expense"
+                    android:textColor="@drawable/custom_button_font" />
+
+            </RadioGroup>
+
+            <TextView
+                style="@style/txtIntersemibold18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/_16pxh"
+                android:text="Sort by:" />
+
+            <RadioGroup
+                android:id="@+id/radioGroupFilterSortBy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/radioButtonSortNewest"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/custom_button"
+                    android:button="@null"
+                    android:checked="true"
+                    android:gravity="center"
+                    android:text="Newest"
+                    android:textColor="@drawable/custom_button_font" />
+
+                <RadioButton
+                    android:id="@+id/radioButtonSortOldest"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/custom_button"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="Oldest"
+                    android:textColor="@drawable/custom_button_font" />
+
+                <RadioButton
+                    android:id="@+id/radioButtonSortHighest"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/custom_button"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="Highest"
+                    android:textColor="@drawable/custom_button_font" />
+
+                <RadioButton
+                    android:id="@+id/radioButtonSortLowest"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/custom_button"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="Lowest"
+                    android:textColor="@drawable/custom_button_font" />
+
+            </RadioGroup>
+
+            <TextView
+                style="@style/txtIntersemibold18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/_16pxh"
+                android:text="Categories:" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <GridLayout
+                    android:id="@+id/CategoryFilter"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:columnCount="2"
+                    android:rowCount="5">
+
+                    <CheckBox
+                        android:id="@+id/radioFoodDrinks"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:background="@drawable/custom_button"
+                        android:button="@null"
+                        android:checked="true"
+                        android:gravity="center"
+                        android:text="Food &amp; Drinks"
+                        android:textColor="@drawable/custom_button_font" />
+
+                    <CheckBox
+                        android:id="@+id/radioClothesShoes"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:background="@drawable/custom_button"
+                        android:button="@null"
+                        android:checked="true"
+                        android:gravity="center"
+                        android:text="Clothes &amp; Shoes"
+                        android:textColor="@drawable/custom_button_font" />
+
+                    <CheckBox
+                        android:id="@+id/radioTransportation"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:background="@drawable/custom_button"
+                        android:button="@null"
+                        android:checked="true"
+                        android:gravity="center"
+                        android:text="Transportation"
+                        android:textColor="@drawable/custom_button_font" />
+
+                    <CheckBox
+                        android:id="@+id/radioHealthBeauty"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:background="@drawable/custom_button"
+                        android:button="@null"
+                        android:checked="true"
+                        android:gravity="center"
+                        android:text="Health &amp; Beauty"
+                        android:textColor="@drawable/custom_button_font" />
+
+                    <CheckBox
+                        android:id="@+id/radioHomeUtilities"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:background="@drawable/custom_button"
+                        android:button="@null"
+                        android:checked="true"
+                        android:gravity="center"
+                        android:text="Home &amp; Utilities"
+                        android:textColor="@drawable/custom_button_font" />
+
+                    <CheckBox
+                        android:id="@+id/radioEntertainment"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:background="@drawable/custom_button"
+                        android:button="@null"
+                        android:checked="true"
+                        android:gravity="center"
+                        android:text="Entertainment"
+                        android:textColor="@drawable/custom_button_font" />
+
+                    <CheckBox
+                        android:id="@+id/radioGiftsDonations"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:background="@drawable/custom_button"
+                        android:button="@null"
+                        android:checked="true"
+                        android:gravity="center"
+                        android:text="Gifts &amp; Donations"
+                        android:textColor="@drawable/custom_button_font" />
+
+                    <CheckBox
+                        android:id="@+id/radioEducation"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:background="@drawable/custom_button"
+                        android:button="@null"
+                        android:checked="true"
+                        android:gravity="center"
+                        android:text="Education"
+                        android:textColor="@drawable/custom_button_font" />
+
+                    <CheckBox
+                        android:id="@+id/radioOther"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:background="@drawable/custom_button"
+                        android:button="@null"
+                        android:checked="true"
+                        android:gravity="center"
+                        android:text="Other"
+                        android:textColor="@drawable/custom_button_font" />
+
+                    <CheckBox
+                        android:id="@+id/radioInitial"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:background="@drawable/custom_button"
+                        android:button="@null"
+                        android:checked="true"
+                        android:gravity="center"
+                        android:text="Initial budget"
+                        android:textColor="@drawable/custom_button_font" />
+
+                </GridLayout>
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/_16pxh">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/buttonReset"
+                    style="@style/btnSolidRounded_3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_8pxh"
+                    android:layout_weight="1"
+                    android:text="Reset"
+                    android:textAllCaps="false" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/buttonApply"
+                    style="@style/btnSolidRounded_3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_8pxh"
+                    android:layout_weight="1"
+                    android:text="Apply"
+                    android:textAllCaps="false" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</layout>

@@ -6,10 +6,11 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
+import java.util.Date
+
 
 @Dao
 interface TransactionDao {
-
     @Query("SELECT * FROM `transaction` WHERE wallet_id = :wallet_id ORDER BY id DESC")
     fun getAll(wallet_id: String): List<Transaction>
 

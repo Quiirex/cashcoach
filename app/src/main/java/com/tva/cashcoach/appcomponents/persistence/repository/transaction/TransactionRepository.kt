@@ -2,6 +2,7 @@ package com.tva.cashcoach.appcomponents.persistence.repository.transaction
 
 import com.tva.cashcoach.appcomponents.model.transaction.Transaction
 import com.tva.cashcoach.appcomponents.model.transaction.TransactionDao
+import java.util.Date
 
 class TransactionRepository(private val transactionDao: TransactionDao) {
 
