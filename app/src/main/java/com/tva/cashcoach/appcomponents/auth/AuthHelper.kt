@@ -8,7 +8,6 @@ import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 import com.tva.cashcoach.appcomponents.model.user.User
-import com.tva.cashcoach.appcomponents.persistence.AppDatabase
 import com.tva.cashcoach.appcomponents.persistence.repository.user.UserRepository
 import com.tva.cashcoach.appcomponents.utility.PreferenceHelper
 import kotlinx.coroutines.DelicateCoroutinesApi
@@ -27,7 +26,6 @@ class AuthHelper(
     private val activity: ComponentActivity,
     private val onSuccess: (user: FirebaseUser) -> Unit,
     private val onError: (errorCode: String) -> Unit,
-    private val appDb: AppDatabase,
     private val preferenceHelper: PreferenceHelper,
     private val userRepository: UserRepository
 ) {
@@ -99,9 +97,16 @@ class AuthHelper(
                                     currency = "EUR", // default value
                                     avatar = "https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg", // default value
                                     default_wallet_id = 1 // default value
+                                ),
+                            ) {
+                                createFirestoreUser(
+                                    id = it.toInt(),
+                                    uid = user.uid,
+                                    email = email,
+                                    name = name,
+                                    surname = surname
                                 )
-                            )
-                            createFirestoreUser(user.uid, email, name, surname)
+                            }
                         } catch (e: Exception) {
                             onError("ERROR_USER_IS_NULL")
                         }
@@ -133,7 +138,13 @@ class AuthHelper(
      * @param surname The user's surname.
      */
     @OptIn(DelicateCoroutinesApi::class)
-    private fun createFirestoreUser(uid: String, email: String, name: String, surname: String) {
+    private fun createFirestoreUser(
+        id: Int,
+        uid: String,
+        email: String,
+        name: String,
+        surname: String
+    ) {
         val userRef = FirebaseFirestore.getInstance().collection("users")
             .document(uid)
         userRef.get()
@@ -163,7 +174,7 @@ class AuthHelper(
                 } else {
                     // User does not exist in Firestore, save the user
                     val user = User(
-                        id = null,
+                        id = id,
                         uid = uid,
                         name = name,
                         surname = surname,
@@ -206,31 +217,15 @@ class AuthHelper(
     }
 
     /**
-     * Inserts a user into the local database.
-     *
+     * Checks if user exists in local db and if it does, inserts a user into the local db.
      * @param user The user to insert.
+     * @return callback of the ID of the inserted user.
      */
     @OptIn(DelicateCoroutinesApi::class)
-    private fun insertUserInLocalDb(user: User) {
-        userExistsInLocalDb(user.uid) { exists ->
-            if (!exists) {
-                GlobalScope.launch(Dispatchers.IO) {
-                    appDb.getUserDao().insert(user)
-                }
-            }
-        }
-    }
-
-    /**
-     * Checks if a user exists in the local database.
-     * @param id The user's ID.
-     * @return True if the user exists, false otherwise.
-     */
-    @OptIn(DelicateCoroutinesApi::class)
-    private fun userExistsInLocalDb(uid: String, callback: (Boolean) -> Unit) {
+    private fun insertUserInLocalDb(user: User, callback: (Long) -> Unit) {
         GlobalScope.launch(Dispatchers.IO) {
-            val user = appDb.getUserDao().getByUid(uid)
-            callback(user != null)
+            val id = userRepository.insert(user)
+            callback(id)
         }
     }
 

@@ -5,6 +5,10 @@ import com.tva.cashcoach.appcomponents.model.transaction.TransactionDao
 
 class TransactionRepository(private val transactionDao: TransactionDao) {
 
+    fun getById(id: Int): Transaction? {
+        return transactionDao.getById(id)
+    }
+
     fun getAll(wallet_id: String): List<Transaction> {
         return transactionDao.getAll(wallet_id)
     }
@@ -21,8 +25,8 @@ class TransactionRepository(private val transactionDao: TransactionDao) {
         return transactionDao.getExpensesSum(wallet_id)
     }
 
-    fun insert(transaction: Transaction) {
-        transactionDao.insert(transaction)
+    fun insert(transaction: Transaction): Long {
+        return transactionDao.insert(transaction)
     }
 
     fun delete(transaction: Transaction) {

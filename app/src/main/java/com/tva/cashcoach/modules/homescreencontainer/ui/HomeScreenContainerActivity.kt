@@ -36,11 +36,15 @@ class HomeScreenContainerActivity :
     override fun onInitialized() {
         viewModel.navArguments = intent.extras?.getBundle("bundle")
         binding.homeScreenContainerVM = viewModel
+
         val userDao = appDb.getUserDao()
         val userRepository = UserRepository(userDao)
+
         googleAuth =
-            GoogleAuthHelper(this, { _, _ -> }, {}, appDb, preferenceHelper, userRepository)
-        auth = AuthHelper(this, {}, {}, appDb, preferenceHelper, userRepository)
+            GoogleAuthHelper(this, { _, _ -> }, {}, preferenceHelper, userRepository)
+
+        auth = AuthHelper(this, {}, {}, preferenceHelper, userRepository)
+
         val destFragment = HomeScreenFragment.getInstance(null)
         this.loadFragment(
             R.id.fragmentContainer,

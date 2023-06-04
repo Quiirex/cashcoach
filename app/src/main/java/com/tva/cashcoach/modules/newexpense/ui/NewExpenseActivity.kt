@@ -1,7 +1,6 @@
 package com.tva.cashcoach.modules.newexpense.ui
 
 import android.widget.Spinner
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.tva.cashcoach.R
@@ -9,8 +8,13 @@ import com.tva.cashcoach.appcomponents.base.BaseActivity
 import com.tva.cashcoach.appcomponents.model.category.CategoryDao
 import com.tva.cashcoach.appcomponents.model.transaction.Transaction
 import com.tva.cashcoach.appcomponents.model.transaction.TransactionDao
+import com.tva.cashcoach.appcomponents.model.user.UserDao
+import com.tva.cashcoach.appcomponents.model.wallet.WalletDao
 import com.tva.cashcoach.appcomponents.persistence.repository.category.CategoryRepository
 import com.tva.cashcoach.appcomponents.persistence.repository.transaction.TransactionRepository
+import com.tva.cashcoach.appcomponents.persistence.repository.user.UserRepository
+import com.tva.cashcoach.appcomponents.persistence.repository.wallet.WalletRepository
+import com.tva.cashcoach.appcomponents.utility.WalletHelper
 import com.tva.cashcoach.databinding.ActivityNewExpenseBinding
 import com.tva.cashcoach.modules.homescreencontainer.ui.HomeScreenContainerActivity
 import com.tva.cashcoach.modules.newexpense.data.model.SpinnerCategoryModel
@@ -20,7 +24,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.koin.android.ext.android.bind
 import java.util.Date
 
 class NewExpenseActivity : BaseActivity<ActivityNewExpenseBinding>(R.layout.activity_new_expense) {
@@ -34,6 +37,16 @@ class NewExpenseActivity : BaseActivity<ActivityNewExpenseBinding>(R.layout.acti
 
     private lateinit var categoryRepository: CategoryRepository
 
+    private lateinit var userDao: UserDao
+
+    private lateinit var userRepository: UserRepository
+
+    private lateinit var walletDao: WalletDao
+
+    private lateinit var walletRepository: WalletRepository
+
+    private lateinit var walletHelper: WalletHelper
+
     private val REQUEST_CODE_HOME_SCREEN_CONTAINER_ACTIVITY: Int = 355
 
     @OptIn(DelicateCoroutinesApi::class)
@@ -42,6 +55,21 @@ class NewExpenseActivity : BaseActivity<ActivityNewExpenseBinding>(R.layout.acti
 
         categoryDao = appDb.getCategoryDao()
         categoryRepository = CategoryRepository(categoryDao)
+
+        userDao = appDb.getUserDao()
+        userRepository = UserRepository(userDao)
+
+        walletDao = appDb.getWalletDao()
+        walletRepository = WalletRepository(walletDao)
+
+        transactionDao = appDb.getTransactionDao()
+        transactionRepository = TransactionRepository(transactionDao)
+
+        walletHelper = WalletHelper(
+            walletRepository = walletRepository,
+            userRepository = userRepository,
+            transactionRepository = transactionRepository
+        )
 
         GlobalScope.launch(Dispatchers.IO) {
             val categories = categoryRepository.getAll()
@@ -60,9 +88,6 @@ class NewExpenseActivity : BaseActivity<ActivityNewExpenseBinding>(R.layout.acti
         }
 
         binding.newExpenseVM = viewModel
-
-        transactionDao = appDb.getTransactionDao()
-        transactionRepository = TransactionRepository(transactionDao)
     }
 
     override fun setUpClicks() {
@@ -84,12 +109,21 @@ class NewExpenseActivity : BaseActivity<ActivityNewExpenseBinding>(R.layout.acti
 
             lifecycleScope.launch {
                 withContext(Dispatchers.IO) {
-                    transactionRepository.insert(newTransaction)
+                    val insertedTransactionId = transactionRepository.insert(newTransaction)
+                    val tempTransaction = newTransaction.copy(id = insertedTransactionId.toInt())
+
+                    walletHelper.addTransactionToFirestore(tempTransaction) { isSuccess ->
+                        if (isSuccess) {
+                            val destIntent =
+                                HomeScreenContainerActivity.getIntent(this@NewExpenseActivity, null)
+                            startActivityForResult(
+                                destIntent,
+                                REQUEST_CODE_HOME_SCREEN_CONTAINER_ACTIVITY
+                            )
+                        }
+                    }
                 }
             }
-
-            val destIntent = HomeScreenContainerActivity.getIntent(this, null)
-            startActivityForResult(destIntent, REQUEST_CODE_HOME_SCREEN_CONTAINER_ACTIVITY)
         }
         binding.imageBack.setOnClickListener {
             finish()

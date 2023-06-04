@@ -57,7 +57,7 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
                         ).show()
                     }
                 }
-            }, appDb, preferenceHelper, userRepository
+            }, preferenceHelper, userRepository
         )
     }
 

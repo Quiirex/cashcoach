@@ -52,7 +52,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
                     getString(R.string.an_error_occurred_please_try_again_later),
                     Toast.LENGTH_SHORT
                 ).show()
-            }, appDb, preferenceHelper, userRepository
+            }, preferenceHelper, userRepository
         )
         auth = AuthHelper(this,
             {
@@ -75,7 +75,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
                         ).show()
                     }
                 }
-            }, appDb, preferenceHelper, userRepository
+            }, preferenceHelper, userRepository
         )
         if (preferenceHelper.getString("curr_user_uid", "") != "") {
             if (preferenceHelper.getBoolean("googleSignedIn", false)) {

@@ -51,7 +51,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
         userRepository = UserRepository(userDao)
 
         authHelper =
-            AuthHelper(ComponentActivity(), {}, {}, appDb, preferenceHelper, userRepository)
+            AuthHelper(ComponentActivity(), {}, {}, preferenceHelper, userRepository)
         imageHelper = ImageHelper()
 
         val currentUserId = preferenceHelper.getString("curr_user_uid", "")

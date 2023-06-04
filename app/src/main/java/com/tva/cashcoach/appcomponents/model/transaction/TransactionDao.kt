@@ -9,6 +9,7 @@ import androidx.room.Update
 
 @Dao
 interface TransactionDao {
+
     @Query("SELECT * FROM `transaction` WHERE wallet_id = :wallet_id ORDER BY id DESC")
     fun getAll(wallet_id: String): List<Transaction>
 
@@ -25,7 +26,7 @@ interface TransactionDao {
     fun getById(id: Int): Transaction?
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insert(transaction: Transaction)
+    fun insert(transaction: Transaction): Long
 
     @Query("DELETE FROM `transaction` WHERE id = :id")
     fun deleteById(id: Int)

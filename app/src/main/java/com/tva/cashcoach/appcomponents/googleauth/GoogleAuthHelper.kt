@@ -15,7 +15,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.firestore.FirebaseFirestore
 import com.tva.cashcoach.appcomponents.model.user.User
-import com.tva.cashcoach.appcomponents.persistence.AppDatabase
 import com.tva.cashcoach.appcomponents.persistence.repository.user.UserRepository
 import com.tva.cashcoach.appcomponents.utility.PreferenceHelper
 import kotlinx.coroutines.DelicateCoroutinesApi
@@ -34,7 +33,6 @@ class GoogleAuthHelper(
     private val activity: ComponentActivity,
     private val onSuccess: (account: GoogleSignInAccount, reqSetup: Boolean) -> Unit,
     private val onError: (statusCode: Int) -> Unit,
-    private val appDb: AppDatabase,
     private val preferenceHelper: PreferenceHelper,
     private val userRepository: UserRepository
 ) {
@@ -216,7 +214,7 @@ class GoogleAuthHelper(
         userExistsInLocalDb(user.uid) { exists ->
             if (!exists) {
                 GlobalScope.launch(Dispatchers.IO) {
-                    appDb.getUserDao().insert(user)
+                    userRepository.insert(user)
                 }
             }
         }
@@ -230,7 +228,7 @@ class GoogleAuthHelper(
     @OptIn(DelicateCoroutinesApi::class)
     private fun userExistsInLocalDb(uid: String, callback: (Boolean) -> Unit) {
         GlobalScope.launch(Dispatchers.IO) {
-            val user = appDb.getUserDao().getByUid(uid)
+            val user = userRepository.getByUid(uid)
             callback(user != null)
         }
     }

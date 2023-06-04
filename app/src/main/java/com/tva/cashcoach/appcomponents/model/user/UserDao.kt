@@ -26,7 +26,7 @@ interface UserDao {
     fun setDefaultWalletId(uid: String, walletId: Int)
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insert(user: User)
+    fun insert(user: User): Long
 
     @Delete
     fun delete(user: User)

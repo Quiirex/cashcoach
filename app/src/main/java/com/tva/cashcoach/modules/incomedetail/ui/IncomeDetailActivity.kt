@@ -83,6 +83,24 @@ class IncomeDetailActivity :
                             }
                         }
                     }
+                    lifecycleScope.launch {
+                        withContext(Dispatchers.IO) {
+                            try {
+                                val transaction =
+                                    transactionRepository.getById(viewModel.navArguments?.getInt("id")!!)
+                                // remove transaction from firestore
+                                if (transaction != null) {
+                                    walletHelper.removeTransactionFromFirestore(
+                                        transaction,
+                                        viewModel.navArguments?.getString("wallet_id")!!.toInt()
+                                    ) {
+                                    }
+                                }
+                            } catch (e: Exception) {
+                                e.printStackTrace()
+                            }
+                        }
+                    }
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }

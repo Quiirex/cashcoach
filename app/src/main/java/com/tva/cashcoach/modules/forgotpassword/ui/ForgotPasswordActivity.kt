@@ -25,7 +25,7 @@ class ForgotPasswordActivity :
         val userDao = appDb.getUserDao()
         val userRepository = UserRepository(userDao)
 
-        auth = AuthHelper(this, {}, {}, appDb, preferenceHelper, userRepository)
+        auth = AuthHelper(this, {}, {}, preferenceHelper, userRepository)
     }
 
     override fun setUpClicks() {

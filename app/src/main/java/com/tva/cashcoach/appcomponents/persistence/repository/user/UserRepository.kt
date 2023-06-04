@@ -8,11 +8,15 @@ class UserRepository(private val userDao: UserDao) {
 
     val allUsers: LiveData<List<User>> = userDao.getAll()
 
-    fun insert(user: User) {
-        userDao.insert(user)
+    fun insert(user: User): Long {
+        return userDao.insert(user)
     }
 
     fun get(uid: String): User? {
+        return userDao.getByUid(uid)
+    }
+    
+    fun getByUid(uid: String): User? {
         return userDao.getByUid(uid)
     }
 
