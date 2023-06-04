@@ -238,14 +238,14 @@ class WalletHelper(
                         callback(false)
                     } else {
                         for (wallet in wallets) {
-                            if (wallet["wallet_id"] == walletId) {
+                            if (wallet["wallet_id"] == walletId.toString()) {
                                 val transactions =
                                     wallet[transaction.type] as? ArrayList<HashMap<String, Any>>
                                 if (transactions == null) {
                                     callback(false)
                                 } else {
                                     for (transactionMap in transactions) {
-                                        if (transactionMap["transaction_id"] == transaction.id) {
+                                        if (transactionMap["transaction_id"] == transaction.id.toString()) {
                                             transactions.remove(transactionMap)
                                             wallet[transaction.type] = transactions
                                             userRef.update("wallets", wallets)
