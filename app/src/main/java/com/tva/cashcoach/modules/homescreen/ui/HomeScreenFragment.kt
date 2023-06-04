@@ -99,11 +99,6 @@ class HomeScreenFragment : BaseFragment<FragmentHomeScreenBinding>(R.layout.frag
         loadData()
     }
 
-    override fun onResume() {
-        super.onResume()
-        loadData()
-    }
-
     private fun loadData() {
         val currentUserId = preferenceHelper.getString("curr_user_uid", "")
         lifecycleScope.launch {
@@ -129,6 +124,7 @@ class HomeScreenFragment : BaseFragment<FragmentHomeScreenBinding>(R.layout.frag
             binding.imageAvatar.setImageBitmap(currentUserAvatarBitmap)
         }
     }
+
     private fun Double.format(): String = String.format("%.2f", this)
 
     override fun setUpClicks() {
@@ -170,6 +166,7 @@ class HomeScreenFragment : BaseFragment<FragmentHomeScreenBinding>(R.layout.frag
 
     override fun onResume() {
         super.onResume()
+        loadData()
         currentFragmentTag = TAG
         updateButtonColors()
         lifecycleScope.launch {
