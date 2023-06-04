@@ -62,7 +62,8 @@ class WalletsActivity : BaseActivity<ActivityWalletsBinding>(R.layout.activity_w
         binding.recyclerWallets.adapter = walletsAdapter
 
         walletHelper.getTotalBalanceOfWallets { totalBalance ->
-            binding.txtTotalBudget.text = totalBalance.toString() + "€"
+            binding.txtTotalBudget.text =
+                totalBalance.format() + preferenceHelper.getString("curr_user_currency", "")
         }
 
         walletsAdapter.setOnItemClickListener(
@@ -80,6 +81,8 @@ class WalletsActivity : BaseActivity<ActivityWalletsBinding>(R.layout.activity_w
             walletsAdapter.fetchWallets()
         }
     }
+
+    private fun Double.format(): String = String.format("%.2f", this)
 
     override fun setUpClicks() {
         binding.btnAddNewWalletOne.setOnClickListener {
@@ -110,7 +113,11 @@ class WalletsActivity : BaseActivity<ActivityWalletsBinding>(R.layout.activity_w
             if (resultCode == RESULT_OK) {
                 lifecycleScope.launch {
                     walletHelper.getTotalBalanceOfWallets { totalBalance ->
-                        binding.txtTotalBudget.text = totalBalance.toString() + "€"
+                        binding.txtTotalBudget.text =
+                            totalBalance.format() + preferenceHelper.getString(
+                                "curr_user_currency",
+                                ""
+                            )
                     }
                     walletsAdapter.fetchWallets()
                 }

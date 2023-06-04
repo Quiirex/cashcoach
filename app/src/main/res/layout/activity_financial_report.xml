@@ -89,7 +89,7 @@
                 <EditText
                     android:id="@+id/startDate"
                     style="@style/etSolidRoundedOutline_1"
-                    android:gravity="end"
+                    android:gravity="center"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_16pxh"
@@ -110,7 +110,7 @@
                 <EditText
                     android:id="@+id/endDate"
                     style="@style/etSolidRoundedOutline_1"
-                    android:gravity="end"
+                    android:gravity="center"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_8pxh"

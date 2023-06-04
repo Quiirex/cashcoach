@@ -18,6 +18,7 @@ import com.tva.cashcoach.modules.addnewwallet.data.model.SpinnerWalletModel
 import com.tva.cashcoach.modules.addnewwallet.data.viewmodel.AddNewWalletVM
 import com.tva.cashcoach.modules.signupsuccess.ui.SignupSuccessActivity
 
+
 class AddNewWalletActivity :
     BaseActivity<ActivityAddNewWalletBinding>(R.layout.activity_add_new_wallet) {
     private val viewModel: AddNewWalletVM by viewModels()
