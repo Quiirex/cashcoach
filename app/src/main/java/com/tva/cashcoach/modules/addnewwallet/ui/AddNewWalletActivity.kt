@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Spinner
 import androidx.activity.viewModels
 import com.tva.cashcoach.R
 import com.tva.cashcoach.appcomponents.base.BaseActivity
@@ -58,44 +59,44 @@ class AddNewWalletActivity :
             finish()
         }
         binding.btnContinue.setOnClickListener {
-            if (binding.etInputWalletNa.text.toString().isEmpty()) {
-                binding.etInputWalletNa.error = getString(R.string.please_enter_wallet_name)
+            if (binding.etWalletName.text.toString().isEmpty()) {
+                binding.etWalletName.error = getString(R.string.please_enter_wallet_name)
                 return@setOnClickListener
             }
-            if (binding.etPrice.text.toString().isEmpty()) {
-                binding.etPrice.error = getString(R.string.please_enter_balance)
+            if (binding.etBalance.text.toString().isEmpty()) {
+                binding.etBalance.error = getString(R.string.please_enter_balance)
                 return@setOnClickListener
             }
-            // TODO: Add wallet type check when spinners are fixed
+
+            val spinner = findViewById<Spinner>(R.id.spinnerWallet)
+            val (selectedCategory) = spinner.selectedItem as SpinnerWalletModel
 
             walletHelper.addWallet(
-                binding.etInputWalletNa.text.toString(),
-                "Type 1",
-                binding.etPrice.text.toString().toDouble()
+                binding.etWalletName.text.toString(),
+                selectedCategory,
+                binding.etBalance.text.toString().toDouble()
             ) { insertedWalletId ->
                 if (insertedWalletId >= 0) {
                     val bundle = intent.getBundleExtra("bundle")
                     var firstSetup = true
 
                     if (bundle != null) {
-                        Log.d(TAG, "Bundle is not null")
                         if (bundle.containsKey("firstSetup")) {
-                            Log.d(TAG, "Bundle contains 'firstSetup' key")
                             firstSetup = bundle.getBoolean("firstSetup")
                         } else {
-                            Log.d(TAG, "Bundle does not contain 'firstSetup' key")
+                            Log.e(TAG, "Bundle does not contain key firstSetup")
                         }
                     } else {
-                        Log.d(TAG, "Bundle is null")
+                        Log.e(TAG, "Bundle is null")
                     }
 
                     if (firstSetup) {
                         val setDefaultWallet = walletHelper.setDefaultWallet(insertedWalletId)
-                        if (preferenceHelper.getString("curr_wallet_id", "") == "")
-                            preferenceHelper.putString(
-                                "curr_wallet_id",
-                                insertedWalletId.toString()
-                            )
+                        preferenceHelper.putString(
+                            "curr_wallet_id",
+                            insertedWalletId.toString()
+                        )
+                        preferenceHelper.putString("curr_user_currency", "EUR")
                         if (setDefaultWallet) {
                             val destIntent = SignupSuccessActivity.getIntent(this, null)
                             startActivityForResult(

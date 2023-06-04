@@ -149,41 +149,6 @@
                     android:text=""
                     tools:text="@string/lbl_salary" />
             </LinearLayout>
-
-            <LinearLayout
-                android:gravity="center_vertical"
-                android:id="@+id/linearRowwallet"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_15pxv"
-                android:layout_marginEnd="@dimen/_20pxh"
-                android:layout_marginStart="@dimen/_20pxh"
-                android:layout_width="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:ellipsize="end"
-                    android:id="@+id/txtLabelWallet"
-                    android:layout_height="wrap_content"
-                    android:layout_width="match_parent"
-                    android:lineSpacingExtra="@dimen/_3pxh"
-                    android:singleLine="true"
-                    android:gravity="center"
-                    android:text="@{expenseDetailVM.expenseDetailModel.txtWallet}"
-                    style="@style/txtInterbold16"
-                    tools:text="@string/lbl_wallet_with_colon" />
-
-                <TextView
-                    android:ellipsize="end"
-                    android:gravity="start"
-                    android:id="@+id/txtWallet"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:singleLine="true"
-                    android:layout_marginStart="@dimen/_5pxh"
-                    android:text=""
-                    style="@style/txtIntersemibold16_3"
-                    tools:text="@string/lbl_main_wallet" />
-            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout

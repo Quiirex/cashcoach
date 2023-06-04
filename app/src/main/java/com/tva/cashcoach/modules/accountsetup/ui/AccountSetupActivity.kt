@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.tva.cashcoach.R
 import com.tva.cashcoach.appcomponents.base.BaseActivity
 import com.tva.cashcoach.appcomponents.model.category.Category
@@ -14,9 +15,7 @@ import com.tva.cashcoach.modules.accountsetup.data.viewmodel.AccountSetupVM
 import com.tva.cashcoach.modules.addnewwallet.ui.AddNewWalletActivity
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class AccountSetupActivity :
     BaseActivity<ActivityAccountSetupBinding>(R.layout.activity_account_setup) {
@@ -36,20 +35,21 @@ class AccountSetupActivity :
         categoryDao = appDb.getCategoryDao()
         categoryRepository = CategoryRepository(categoryDao)
 
-        val categories = listOf(
-            Category(null, getString(R.string.food_drinks)),
-            Category(null, getString(R.string.clothes_shoes)),
-            Category(null, getString(R.string.transportation)),
-            Category(null, getString(R.string.health_beauty)),
-            Category(null, getString(R.string.home_utilities)),
-            Category(null, getString(R.string.entertainment)),
-            Category(null, getString(R.string.gifts_donations)),
-            Category(null, getString(R.string.education)),
-            Category(null, getString(R.string.other)),
-        )
-        GlobalScope.launch(Dispatchers.IO) {
-            withContext(Dispatchers.IO) {
-                categoryRepository.insertAll(categories)
+        lifecycleScope.launch(Dispatchers.IO) {
+            val categories = categoryRepository.getAll()
+            if (categories.isEmpty()) {
+                val categoriesList = listOf(
+                    Category(null, getString(R.string.food_drinks)),
+                    Category(null, getString(R.string.clothes_shoes)),
+                    Category(null, getString(R.string.transportation)),
+                    Category(null, getString(R.string.health_beauty)),
+                    Category(null, getString(R.string.home_utilities)),
+                    Category(null, getString(R.string.entertainment)),
+                    Category(null, getString(R.string.gifts_donations)),
+                    Category(null, getString(R.string.education)),
+                    Category(null, getString(R.string.other)),
+                )
+                categoryRepository.insertAll(categoriesList)
             }
         }
     }

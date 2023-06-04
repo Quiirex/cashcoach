@@ -96,10 +96,10 @@ class HomeScreenFragment : BaseFragment<FragmentHomeScreenBinding>(R.layout.frag
 
         curr_wallet_id = preferenceHelper.getString("curr_wallet_id", "")
 
-        loadData()
+        loadTransactionData()
     }
 
-    private fun loadData() {
+    private fun loadTransactionData() {
         val currentUserId = preferenceHelper.getString("curr_user_uid", "")
         lifecycleScope.launch {
             transactionAdapter.fetchTransactions(curr_wallet_id)
@@ -166,7 +166,7 @@ class HomeScreenFragment : BaseFragment<FragmentHomeScreenBinding>(R.layout.frag
 
     override fun onResume() {
         super.onResume()
-        loadData()
+        loadTransactionData()
         currentFragmentTag = TAG
         updateButtonColors()
         lifecycleScope.launch {

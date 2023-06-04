@@ -3,14 +3,12 @@ package com.tva.cashcoach.modules.financialreport.ui
 import android.app.DatePickerDialog
 import android.content.Context
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.DatePicker
 import android.widget.EditText
 import androidx.activity.viewModels
-import androidx.annotation.RequiresApi
 import androidx.lifecycle.lifecycleScope
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartModel
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartType
@@ -34,8 +32,6 @@ class FinancialReportActivity :
     BaseActivity<ActivityFinancialReportBinding>(R.layout.activity_financial_report) {
     private val viewModel: FinancialReportVM by viewModels()
 
-    private val REQUEST_CODE_FINANCIAL_REPORT_PIE_CHART_ACTIVITY: Int = 545
-
     private lateinit var transactionAdapter: TransactionAdapter
 
     private lateinit var transactionRepository: TransactionRepository
@@ -44,7 +40,6 @@ class FinancialReportActivity :
 
     private lateinit var transactions: List<Transaction>
 
-    @RequiresApi(Build.VERSION_CODES.N)
     override fun onInitialized() {
         viewModel.navArguments = intent.extras?.getBundle("bundle")
 
@@ -54,7 +49,7 @@ class FinancialReportActivity :
         transactionAdapter = TransactionAdapter(
             transactionRepository, preferenceHelper
         )
-        
+
         lifecycleScope.launch {
             transactions = transactionAdapter.fetchAllTransactions(
                 preferenceHelper.getString(
@@ -100,7 +95,7 @@ class FinancialReportActivity :
         val datePickerDialog = DatePickerDialog(
             this,
             R.style.DatePickerTheme,
-            { view: DatePicker, year: Int, month: Int, dayOfMonth: Int ->
+            { _: DatePicker, year: Int, month: Int, dayOfMonth: Int ->
                 val selectedDate = Calendar.getInstance()
                 selectedDate.set(year, month, dayOfMonth)
 
@@ -146,15 +141,29 @@ class FinancialReportActivity :
         val startDate = dateFormat.parse(startDateString)
         var endDate = dateFormat.parse(endDateString)
         val calendar = Calendar.getInstance()
-        calendar.time = endDate
+        if (endDate != null) {
+            calendar.time = endDate
+        }
         calendar.add(Calendar.DAY_OF_MONTH, 1)
         endDate = calendar.time
-        budgetGraph(startDate, endDate)
-        incomeGraph(startDate, endDate)
-        expenseGraph(startDate, endDate)
+        if (startDate != null) {
+            if (endDate != null) {
+                budgetGraph(startDate, endDate)
+            }
+        }
+        if (startDate != null) {
+            if (endDate != null) {
+                incomeGraph(startDate, endDate)
+            }
+        }
+        if (startDate != null) {
+            if (endDate != null) {
+                expenseGraph(startDate, endDate)
+            }
+        }
     }
 
-    fun setDefaultDates(): Pair<Date, Date> {
+    private fun setDefaultDates(): Pair<Date, Date> {
         val startDateEditText: EditText = findViewById(R.id.startDate)
         val endDateEditText: EditText = findViewById(R.id.endDate)
 
@@ -172,9 +181,9 @@ class FinancialReportActivity :
         return Pair(startDate.time, currentDate)
     }
 
-    fun budgetGraph(startDate: Date, endDate: Date) {
+    private fun budgetGraph(startDate: Date, endDate: Date) {
         val budgetList = mutableListOf<Double>()
-        var budget = 0.0
+        var budget: Double
 
         val relevantTransactions = transactions.filter { it.date <= startDate }
         budget =
@@ -201,17 +210,21 @@ class FinancialReportActivity :
                 .xAxisVisible(false)
                 .colorsTheme(arrayOf("#3D85C6")).series(
                     arrayOf(
-                        AASeriesElement().name("Budget").data(budgetList.toTypedArray())
+                        AASeriesElement().name(getString(R.string.budget))
+                            .data(budgetList.toTypedArray())
                     )
                 )
         chart.aa_drawChartWithChartModel(aaChartModel)
     }
 
-    fun incomeGraph(startDate: Date, endDate: Date) {
+    private fun incomeGraph(startDate: Date, endDate: Date) {
         val incomes: MutableMap<String, Double> = HashMap()
 
         for (transaction in transactions) {
-            if (transaction.date in startDate..endDate && transaction.type == "income" && transaction.category != "Initial") {
+            if (transaction.date in startDate..endDate && transaction.type == "income" && transaction.category != getString(
+                    R.string.initial_budget
+                )
+            ) {
                 val category = transaction.category
                 incomes[category] = incomes.getOrDefault(category, 0.0) + transaction.value
             }
@@ -234,7 +247,7 @@ class FinancialReportActivity :
         chart.aa_drawChartWithChartModel(aaChartModel)
     }
 
-    fun expenseGraph(startDate: Date, endDate: Date) {
+    private fun expenseGraph(startDate: Date, endDate: Date) {
         val expenses: MutableMap<String, Double> = HashMap()
 
         for (transaction in transactions) {

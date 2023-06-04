@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="financialReportLineChartVM"
             type="com.tva.cashcoach.modules.financialreport.data.viewmodel.FinancialReportVM" />
@@ -64,7 +65,7 @@
                         android:ellipsize="end"
                         android:gravity="center"
                         android:singleLine="true"
-                        android:text="@{financialReportLineChartVM.financialReportModel.txtTitle}"
+                        android:text="@string/msg_financial_repor"
                         tools:text="@string/msg_financial_repor" />
                 </LinearLayout>
             </androidx.appcompat.widget.Toolbar>
@@ -76,6 +77,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="start"
+            android:layout_marginTop="@dimen/_12pxh"
             android:orientation="vertical"
             tools:ignore="MissingClass">
 
@@ -87,6 +89,7 @@
                 <EditText
                     android:id="@+id/startDate"
                     style="@style/etSolidRoundedOutline_1"
+                    android:gravity="end"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_16pxh"
@@ -107,6 +110,7 @@
                 <EditText
                     android:id="@+id/endDate"
                     style="@style/etSolidRoundedOutline_1"
+                    android:gravity="end"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_8pxh"
@@ -143,6 +147,7 @@
                     style="@style/groupStylewhite_A700"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_12pxh"
                     android:gravity="start"
                     android:orientation="vertical"
                     tools:ignore="MissingClass">

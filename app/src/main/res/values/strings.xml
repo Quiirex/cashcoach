@@ -167,4 +167,7 @@
     <string name="lbl_categories">Categories</string>
     <string name="delete_transaction">Delete transaction?</string>
     <string name="are_you_sure_you_want_to_delete_this_transaction">Are you sure you want to delete this transaction?</string>
+    <string name="budget">Budget</string>
+    <string name="initial_budget">Initial budget</string>
+    <string name="wallet_budget">Wallet budget</string>
 </resources>

@@ -34,9 +34,6 @@ interface UserDao {
     @Query("UPDATE user SET currency = :currency WHERE uid = :uid")
     fun updateCurrencyByUid(uid: String, currency: String)
 
-    @Query("UPDATE user SET language = :language WHERE uid = :uid")
-    fun updateLanguageByUid(uid: String, language: String)
-
     @Query("DELETE FROM user")
     fun wipeTable()
 }

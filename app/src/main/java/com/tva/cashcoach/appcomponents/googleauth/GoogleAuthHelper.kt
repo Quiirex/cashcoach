@@ -150,11 +150,9 @@ class GoogleAuthHelper(
                                             surname = account.familyName ?: "",
                                             email = account.email ?: "",
                                             currency = "EUR", // default value
-                                            language = "en", // default value
-                                            theme = "light", // default value
                                             avatar = account.photoUrl?.toString()
                                                 ?: "https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg",
-                                            default_wallet_id = 0 // default value
+                                            default_wallet_id = 1 // default value
                                         )
                                         userRef.set(user)
                                             .addOnSuccessListener {

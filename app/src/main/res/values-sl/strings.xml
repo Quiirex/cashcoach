@@ -117,7 +117,7 @@
     <string name="lbl_filter_date">Datum filter</string>
     <string name="lbl_graph_budget">Graf proračuna</string>
     <string name="lbl_graph_income">Kategorije prihodkov</string>
-    <string name="lbl_graph_expense">Kategoprije odhodkov</string>
+    <string name="lbl_graph_expense">Kategorije odhodkov</string>
     <string name="do_you_want_to_logout">Si prepričan/a, da se želiš odjaviti?</string>
     <string name="yes">Ja</string>
     <string name="no">Ne</string>
@@ -138,4 +138,7 @@
     <string name="lbl_categories">Kategorije</string>
     <string name="delete_transaction">Izbriši transakcijo?</string>
     <string name="are_you_sure_you_want_to_delete_this_transaction">Si prepričan/a, da želiš izbrisati to transakcijo?</string>
+    <string name="budget">Proračun</string>
+    <string name="initial_budget">Začetni proračun</string>
+    <string name="wallet_budget">Proračun denarnice</string>
 </resources>

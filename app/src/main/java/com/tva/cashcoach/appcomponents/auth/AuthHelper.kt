@@ -97,10 +97,8 @@ class AuthHelper(
                                     surname = surname,
                                     email = email,
                                     currency = "EUR", // default value
-                                    language = "en", // default value
-                                    theme = "light", // default value
                                     avatar = "https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg", // default value
-                                    default_wallet_id = 0 // default value
+                                    default_wallet_id = 1 // default value
                                 )
                             )
                             createFirestoreUser(user.uid, email, name, surname)
@@ -171,10 +169,8 @@ class AuthHelper(
                         surname = surname,
                         email = email,
                         currency = "EUR", // default value
-                        language = "en", // default value
-                        theme = "light", // default value
                         avatar = "https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg", // default value
-                        default_wallet_id = 0 // default value
+                        default_wallet_id = 1 // default value
                     )
                     userRef.set(user)
                         .addOnSuccessListener {

@@ -27,7 +27,6 @@
             android:paddingHorizontal="@dimen/_10pxh"
             android:paddingVertical="@dimen/_10pxv"
             android:scaleType="fitCenter"
-            android:src="@drawable/img_trash"
             tools:ignore="ContentDescription" />
 
         <LinearLayout

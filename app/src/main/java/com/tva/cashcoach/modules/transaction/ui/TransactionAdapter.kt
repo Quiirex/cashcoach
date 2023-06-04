@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.tva.cashcoach.R
+import com.tva.cashcoach.appcomponents.di.MyApp
 import com.tva.cashcoach.appcomponents.model.transaction.Transaction
 import com.tva.cashcoach.appcomponents.persistence.repository.transaction.TransactionRepository
 import com.tva.cashcoach.appcomponents.utility.PreferenceHelper
@@ -47,6 +48,20 @@ class TransactionAdapter(
         holder.binding.transactionRowModel = transactionRowModel
         holder.binding.txtCategory.text = transaction.category
         holder.binding.txtDescription.text = transaction.description
+        holder.binding.imageTransaction.setImageResource(
+            when (transaction.category) {
+                MyApp.getInstance().resources.getString(R.string.food_drinks) -> R.drawable.baseline_food_drinks
+                MyApp.getInstance().resources.getString(R.string.clothes_shoes) -> R.drawable.baseline_clothes_shoes
+                MyApp.getInstance().resources.getString(R.string.transportation) -> R.drawable.baseline_transportation
+                MyApp.getInstance().resources.getString(R.string.health_beauty) -> R.drawable.baseline_health_beauty
+                MyApp.getInstance().resources.getString(R.string.home_utilities) -> R.drawable.baseline_home_utilities
+                MyApp.getInstance().resources.getString(R.string.entertainment) -> R.drawable.baseline_entertainment
+                MyApp.getInstance().resources.getString(R.string.gifts_donations) -> R.drawable.baseline_gifts
+                MyApp.getInstance().resources.getString(R.string.education) -> R.drawable.baseline_education
+                MyApp.getInstance().resources.getString(R.string.other) -> R.drawable.baseline_attach_money
+                else -> R.drawable.baseline_attach_money
+            }
+        )
 
         val date = formatDate(transaction.date.toString())
         holder.binding.txtTime.text = date

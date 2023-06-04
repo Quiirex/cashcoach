@@ -32,10 +32,6 @@ class UserRepository(private val userDao: UserDao) {
         userDao.updateCurrencyByUid(uid, currency)
     }
 
-    fun updateLanguageByUid(uid: String, language: String) {
-        userDao.updateLanguageByUid(uid, language)
-    }
-
     fun wipeTable() {
         userDao.wipeTable()
     }

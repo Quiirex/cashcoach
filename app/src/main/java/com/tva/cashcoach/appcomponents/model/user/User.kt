@@ -12,8 +12,6 @@ data class User(
     @ColumnInfo(name = "surname") val surname: String = "",
     @ColumnInfo(name = "email") val email: String = "",
     @ColumnInfo(name = "currency") val currency: String = "",
-    @ColumnInfo(name = "language") val language: String = "",
-    @ColumnInfo(name = "theme") val theme: String = "",
     @ColumnInfo(name = "avatar") val avatar: String = "",
     @ColumnInfo(name = "default_wallet_id") var default_wallet_id: Int = 0,
 )

@@ -56,11 +56,6 @@ class ExpenseDetailActivity :
         binding.txtValue.text = viewModel.navArguments?.getString("value") + currency
         binding.txtDate.text = viewModel.navArguments?.getString("date")
         binding.txtCategory.text = viewModel.navArguments?.getString("category")
-        binding.txtWallet.text = walletHelper.getWalletNameById(
-            viewModel.navArguments?.getString("wallet_id")!!.toInt()
-        ) { walletName ->
-            binding.txtWallet.text = walletName
-        }.toString()
         binding.txtDescription.text = viewModel.navArguments?.getString("description")
 
         this@ExpenseDetailActivity.transactionDao = appDb.getTransactionDao()

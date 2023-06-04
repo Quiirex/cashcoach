@@ -3,6 +3,7 @@ package com.tva.cashcoach.appcomponents.utility
 import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.tva.cashcoach.R
 import com.tva.cashcoach.appcomponents.di.MyApp
 import com.tva.cashcoach.appcomponents.model.transaction.Transaction
 import com.tva.cashcoach.appcomponents.model.wallet.Wallet
@@ -55,9 +56,9 @@ class WalletHelper(
                 val newTransaction = Transaction(
                     id = null,
                     value = budget,
-                    description = "Wallet budget",
+                    description = MyApp.getInstance().resources.getString(R.string.wallet_budget),
                     date = Date(),
-                    category = "Initial",
+                    category = MyApp.getInstance().resources.getString(R.string.initial_budget),
                     wallet_id = insertedWalletId,
                     type = "income",
                     currency = "EUR"

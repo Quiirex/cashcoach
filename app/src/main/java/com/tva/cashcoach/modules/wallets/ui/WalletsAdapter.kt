@@ -36,8 +36,14 @@ class WalletsAdapter(
         val walletsRowModel = WalletsRowModel(wallet.name, wallet.balance)
         holder.binding.accountsRowModel = walletsRowModel
         holder.binding.txtWalletName.text = wallet.name
-        holder.binding.txtWalletBalance.text =
-            wallet.balance.toString() + "€" // TODO: Change to currency
+
+        val currency = when (preferenceHelper.getString("curr_user_currency", "EUR")) {
+            "EUR" -> "€"
+            "USD" -> "$"
+            else -> "€"
+        }
+
+        holder.binding.txtWalletBalance.text = wallet.balance.toString() + currency
 
         // Get the default_wallet_id from the preferenceHelper
         val defaultWalletId = preferenceHelper.getString("curr_wallet_id", "").toInt()
