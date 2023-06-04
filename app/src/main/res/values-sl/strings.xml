@@ -141,4 +141,6 @@
     <string name="budget">Proračun</string>
     <string name="initial_budget">Začetni proračun</string>
     <string name="wallet_budget">Proračun denarnice</string>
+    <string name="ok">OK</string>
+    <string name="about_app">CashCoach. je mobilna aplikacija za operacijski sistem Android, ki omogoča uporabnikom enostavno spremljanje stroškov in prihodkov. Aplikacija vključuje več funkcij, kot so vnašanje podatkov o transakcijah, določanje ciljev za prihranke, spremljanje mesečnih in letnih stroškov ter grafe in preglednice. Aplikacija temelji na enostavnem in intuitivnem uporabniškem vmesniku, ki omogoča hitro in učinkovito spremljanje financ. Aplikacija nudi storitve v smislu vnosa prihodkov in beleženje stroškov (kategorija, vrednost, datum). Uporabnik lahko vidi svojo skupno porabo, porabo po različnih kategorijah stroškov in porabo v različnih časovnih obdobjih.</string>
 </resources>

@@ -1,6 +1,8 @@
 package com.tva.cashcoach.modules.settings.ui
 
+import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -45,6 +47,21 @@ class SettingsActivity : BaseActivity<ActivitySettingsBinding>(R.layout.activity
         binding.linearRowCurrency.setOnClickListener {
             val destIntent = SettingsCurrencyActivity.getIntent(this, null)
             startActivityForResult(destIntent, REQUEST_CODE_SETTINGS_CURRENCY_ACTIVITY)
+        }
+        binding.linearRowAbout.setOnClickListener {
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle(getString(R.string.lbl_about))
+            builder.setMessage(getString(R.string.about_app))
+            builder.setPositiveButton(getString(R.string.ok)) { dialog, _ ->
+                dialog.dismiss()
+            }
+            val dialog = builder.create()
+            dialog.window?.setBackgroundDrawableResource(R.drawable.dialog_rounded_corners)
+            dialog.setOnShowListener {
+                dialog.getButton(DialogInterface.BUTTON_POSITIVE)
+                    .setTextColor(resources.getColor(android.R.color.black))
+            }
+            dialog.show()
         }
     }
 

@@ -13,7 +13,6 @@ import com.tva.cashcoach.appcomponents.persistence.repository.category.CategoryR
 import com.tva.cashcoach.databinding.ActivityAccountSetupBinding
 import com.tva.cashcoach.modules.accountsetup.data.viewmodel.AccountSetupVM
 import com.tva.cashcoach.modules.addnewwallet.ui.AddNewWalletActivity
-import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -27,7 +26,6 @@ class AccountSetupActivity :
 
     private lateinit var categoryRepository: CategoryRepository
 
-    @OptIn(DelicateCoroutinesApi::class)
     override fun onInitialized() {
         viewModel.navArguments = intent.extras?.getBundle("bundle")
         binding.accountSetupVM = viewModel
