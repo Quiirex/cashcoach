@@ -22,8 +22,6 @@ import kotlinx.coroutines.withContext
 class SettingsActivity : BaseActivity<ActivitySettingsBinding>(R.layout.activity_settings) {
     private val viewModel: SettingsVM by viewModels()
 
-    private val REQUEST_CODE_SETTINGS_LANGUAGE_ACTIVITY: Int = 171
-
     private val REQUEST_CODE_SETTINGS_CURRENCY_ACTIVITY: Int = 461
 
     private lateinit var userDao: UserDao

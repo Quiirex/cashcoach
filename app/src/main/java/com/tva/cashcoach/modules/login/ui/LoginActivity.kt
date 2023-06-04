@@ -14,6 +14,7 @@ import com.tva.cashcoach.databinding.ActivityLoginBinding
 import com.tva.cashcoach.modules.accountsetup.ui.AccountSetupActivity
 import com.tva.cashcoach.modules.forgotpassword.ui.ForgotPasswordActivity
 import com.tva.cashcoach.modules.homescreencontainer.ui.HomeScreenContainerActivity
+import com.tva.cashcoach.modules.loadingscreen.ui.LoadingScreenFragment
 import com.tva.cashcoach.modules.login.data.viewmodel.LoginVM
 import com.tva.cashcoach.modules.signup.ui.SignUpActivity
 
@@ -32,9 +33,12 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
 
     private lateinit var auth: AuthHelper
 
+    private val loadingDialogFragment by lazy { LoadingScreenFragment() }
+
     override fun onInitialized() {
         viewModel.navArguments = intent.extras?.getBundle("bundle")
         binding.loginVM = viewModel
+
         val userDao = appDb.getUserDao()
         val userRepository = UserRepository(userDao)
         googleAuth = GoogleAuthHelper(this,
@@ -92,6 +96,10 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
             startActivityForResult(destIntent, REQUEST_CODE_SIGN_UP_ACTIVITY)
         }
         binding.linearButtonLoginGoogle.setOnClickListener {
+            if (!loadingDialogFragment.isAdded) {
+                loadingDialogFragment.show(supportFragmentManager, "loader")
+            }
+
             googleAuth.login()
         }
         binding.btnLogin.setOnClickListener {
@@ -108,6 +116,10 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
                 binding.etInputPassword.error = getString(R.string.password_is_required)
                 binding.etInputPassword.requestFocus()
                 return@setOnClickListener
+            }
+
+            if (!loadingDialogFragment.isAdded) {
+                loadingDialogFragment.show(supportFragmentManager, "loader")
             }
 
             auth.login(email, password)
@@ -130,6 +142,9 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
                 binding.etInputPassword.text.clear()
                 binding.etInputEmail.clearFocus()
                 binding.etInputPassword.clearFocus()
+                if (loadingDialogFragment.isAdded) {
+                    loadingDialogFragment.dismissAllowingStateLoss()
+                }
             }
 
             REQUEST_CODE_SIGN_UP_ACTIVITY -> {
@@ -137,6 +152,9 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
                 binding.etInputPassword.text.clear()
                 binding.etInputEmail.clearFocus()
                 binding.etInputPassword.clearFocus()
+                if (loadingDialogFragment.isAdded) {
+                    loadingDialogFragment.dismissAllowingStateLoss()
+                }
             }
 
             REQUEST_CODE_FORGOT_PASSWORD_ACTIVITY -> {
@@ -144,6 +162,9 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
                 binding.etInputPassword.text.clear()
                 binding.etInputEmail.clearFocus()
                 binding.etInputPassword.clearFocus()
+                if (loadingDialogFragment.isAdded) {
+                    loadingDialogFragment.dismissAllowingStateLoss()
+                }
             }
         }
     }

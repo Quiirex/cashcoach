@@ -19,12 +19,15 @@ import com.tva.cashcoach.databinding.ActivityNewExpenseBinding
 import com.tva.cashcoach.modules.homescreencontainer.ui.HomeScreenContainerActivity
 import com.tva.cashcoach.modules.newexpense.data.model.SpinnerCategoryModel
 import com.tva.cashcoach.modules.newexpense.data.viewmodel.NewExpenseVM
+import com.tva.cashcoach.modules.successscreen.ui.SuccessScreenFragment
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.util.Date
+import java.util.concurrent.TimeUnit
 
 class NewExpenseActivity : BaseActivity<ActivityNewExpenseBinding>(R.layout.activity_new_expense) {
     private val viewModel: NewExpenseVM by viewModels()
@@ -48,6 +51,8 @@ class NewExpenseActivity : BaseActivity<ActivityNewExpenseBinding>(R.layout.acti
     private lateinit var walletHelper: WalletHelper
 
     private val REQUEST_CODE_HOME_SCREEN_CONTAINER_ACTIVITY: Int = 355
+
+    private val successDialogFragment by lazy { SuccessScreenFragment() }
 
     @OptIn(DelicateCoroutinesApi::class)
     override fun onInitialized() {
@@ -92,7 +97,6 @@ class NewExpenseActivity : BaseActivity<ActivityNewExpenseBinding>(R.layout.acti
 
     override fun setUpClicks() {
         binding.btnContinue.setOnClickListener {
-
             val spinner = findViewById<Spinner>(R.id.spinnerCategory)
             val (selectedCategory) = spinner.selectedItem as SpinnerCategoryModel
 
@@ -114,12 +118,24 @@ class NewExpenseActivity : BaseActivity<ActivityNewExpenseBinding>(R.layout.acti
 
                     walletHelper.addTransactionToFirestore(tempTransaction) { isSuccess ->
                         if (isSuccess) {
-                            val destIntent =
-                                HomeScreenContainerActivity.getIntent(this@NewExpenseActivity, null)
-                            startActivityForResult(
-                                destIntent,
-                                REQUEST_CODE_HOME_SCREEN_CONTAINER_ACTIVITY
-                            )
+                            if (!successDialogFragment.isAdded) {
+                                successDialogFragment.show(supportFragmentManager, "loader")
+                            }
+                            lifecycleScope.launch {
+                                delay(TimeUnit.MILLISECONDS.toMillis(1300))
+                                if (successDialogFragment.isAdded) {
+                                    successDialogFragment.dismissAllowingStateLoss()
+                                }
+                                val destIntent =
+                                    HomeScreenContainerActivity.getIntent(
+                                        this@NewExpenseActivity,
+                                        null
+                                    )
+                                startActivityForResult(
+                                    destIntent,
+                                    REQUEST_CODE_HOME_SCREEN_CONTAINER_ACTIVITY
+                                )
+                            }
                         }
                     }
                 }

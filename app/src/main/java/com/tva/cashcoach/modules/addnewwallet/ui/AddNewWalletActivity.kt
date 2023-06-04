@@ -16,6 +16,7 @@ import com.tva.cashcoach.appcomponents.utility.WalletHelper
 import com.tva.cashcoach.databinding.ActivityAddNewWalletBinding
 import com.tva.cashcoach.modules.addnewwallet.data.model.SpinnerWalletModel
 import com.tva.cashcoach.modules.addnewwallet.data.viewmodel.AddNewWalletVM
+import com.tva.cashcoach.modules.loadingscreen.ui.LoadingScreenFragment
 import com.tva.cashcoach.modules.signupsuccess.ui.SignupSuccessActivity
 
 
@@ -26,6 +27,8 @@ class AddNewWalletActivity :
     private val REQUEST_CODE_HOME_SCREEN_CONTAINER_ACTIVITY: Int = 303
 
     private lateinit var walletHelper: WalletHelper
+
+    private val loadingDialogFragment by lazy { LoadingScreenFragment() }
 
     override fun onInitialized() {
         viewModel.navArguments = intent.extras?.getBundle("bundle")
@@ -72,6 +75,10 @@ class AddNewWalletActivity :
             val spinner = findViewById<Spinner>(R.id.spinnerWallet)
             val (selectedCategory) = spinner.selectedItem as SpinnerWalletModel
 
+            if (!loadingDialogFragment.isAdded) {
+                loadingDialogFragment.show(supportFragmentManager, "loader")
+            }
+
             walletHelper.addWallet(
                 binding.etWalletName.text.toString(),
                 selectedCategory,
@@ -104,15 +111,27 @@ class AddNewWalletActivity :
                                 destIntent,
                                 REQUEST_CODE_HOME_SCREEN_CONTAINER_ACTIVITY
                             )
+                            if (loadingDialogFragment.isAdded) {
+                                loadingDialogFragment.dismissAllowingStateLoss()
+                            }
                         } else {
+                            if (loadingDialogFragment.isAdded) {
+                                loadingDialogFragment.dismissAllowingStateLoss()
+                            }
                             setResult(Activity.RESULT_CANCELED)
                             finish()
                         }
                     } else {
+                        if (loadingDialogFragment.isAdded) {
+                            loadingDialogFragment.dismissAllowingStateLoss()
+                        }
                         setResult(Activity.RESULT_OK)
                         finish()
                     }
                 } else {
+                    if (loadingDialogFragment.isAdded) {
+                        loadingDialogFragment.dismissAllowingStateLoss()
+                    }
                     setResult(Activity.RESULT_CANCELED)
                     finish()
                 }
