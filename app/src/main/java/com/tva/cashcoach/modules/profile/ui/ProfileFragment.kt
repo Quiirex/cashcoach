@@ -16,6 +16,7 @@ import com.tva.cashcoach.appcomponents.persistence.repository.user.UserRepositor
 import com.tva.cashcoach.appcomponents.utility.ImageHelper
 import com.tva.cashcoach.databinding.FragmentProfileBinding
 import com.tva.cashcoach.modules.homescreencontainer.ui.HomeScreenContainerActivity
+import com.tva.cashcoach.modules.loadingscreen.ui.LoadingScreenFragment
 import com.tva.cashcoach.modules.login.ui.LoginActivity
 import com.tva.cashcoach.modules.profile.data.viewmodel.ProfileVM
 import com.tva.cashcoach.modules.settings.ui.SettingsActivity
@@ -40,6 +41,8 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
     private lateinit var userDao: UserDao
 
     private lateinit var userRepository: UserRepository
+
+    private val loadingDialogFragment by lazy { LoadingScreenFragment() }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -88,6 +91,12 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
             builder.setMessage(getString(R.string.do_you_want_to_logout))
             builder.setPositiveButton(R.string.yes) { _, _ ->
                 try {
+                    if (!loadingDialogFragment.isAdded) {
+                        loadingDialogFragment.show(
+                            requireActivity().supportFragmentManager,
+                            "loader"
+                        )
+                    }
                     authHelper.signOut()
                 } catch (e: Exception) {
                     Log.d("Auth", "Error signing out")

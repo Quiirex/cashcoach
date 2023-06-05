@@ -121,7 +121,7 @@
         <LinearLayout
             android:gravity="start"
             android:id="@+id/linearRowAbout"
-            android:layout_marginTop="@dimen/_440pxh"
+            android:layout_marginTop="@dimen/_500pxh"
             android:layout_height="@dimen/_60pxh"
             android:layout_width="match_parent"
             android:orientation="horizontal">
@@ -139,28 +139,6 @@
                 android:text="@string/lbl_about"
                 style="@style/txtIntermedium16"
                 tools:text="@string/lbl_about" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:gravity="start"
-            android:id="@+id/linearRowHelp"
-            android:layout_height="@dimen/_60pxh"
-            android:layout_width="match_parent"
-            android:orientation="horizontal">
-
-            <TextView
-                android:ellipsize="end"
-                android:id="@+id/txtHelp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/_50pxh"
-                android:layout_marginStart="@dimen/_30pxh"
-                android:layout_marginTop="@dimen/_18pxv"
-                android:layout_weight="0.55"
-                android:layout_width="0dp"
-                android:singleLine="true"
-                android:text="@string/lbl_help"
-                style="@style/txtIntermedium16"
-                tools:text="@string/lbl_help" />
         </LinearLayout>
     </LinearLayout>
 </layout>

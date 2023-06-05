@@ -143,4 +143,7 @@
     <string name="wallet_budget">Budget für die Brieftasche</string>
     <string name="lbl_filter_apply">Filter</string>
     <string name="lbl_filter_reset">" Zurücksetzen"</string>
+    <string name="ok">OK</string>
+    <string name="about_app">CashCoach. ist eine mobile App für Android, mit der Benutzer Ausgaben und Einnahmen einfach verfolgen können. Die App umfasst mehrere Funktionen wie die Eingabe von Transaktionsdaten, die Festlegung von Sparzielen, die Verfolgung von monatlichen und jährlichen Ausgaben sowie Grafiken und Tabellen. Die Anwendung basiert auf einer einfachen und intuitiven Benutzeroberfläche, die eine schnelle und effiziente Überwachung der Finanzen ermöglicht. Die Anwendung bietet Dienstleistungen in Bezug auf die Eingabe von Einnahmen und die Erfassung von Kosten (Kategorie, Wert, Datum). Der Nutzer kann seine Gesamtausgaben, die Ausgaben nach verschiedenen Kostenkategorien und die Ausgaben über verschiedene Zeiträume hinweg einsehen.</string>
+    <string name="no_user_associated_with_this_e_mail_address">Kein Benutzer mit dieser E-Mail-Adresse verbunden</string>
 </resources>

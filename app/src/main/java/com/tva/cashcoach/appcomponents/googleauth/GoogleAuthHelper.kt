@@ -14,6 +14,8 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.firestore.FirebaseFirestore
+import com.tva.cashcoach.R
+import com.tva.cashcoach.appcomponents.di.MyApp
 import com.tva.cashcoach.appcomponents.model.user.User
 import com.tva.cashcoach.appcomponents.persistence.repository.user.UserRepository
 import com.tva.cashcoach.appcomponents.utility.PreferenceHelper
@@ -88,8 +90,7 @@ class GoogleAuthHelper(
      */
     private fun configureGoogleSignIn() {
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken("337861660196-gfr7d3as1el012stvglf1uglc9gaelmh.apps.googleusercontent.com")
-            .requestProfile()
+            .requestIdToken(MyApp.getInstance().resources.getString(R.string.server_client_id))
             .requestEmail()
             .build()
         mGoogleSignInClient = GoogleSignIn.getClient(activity, gso)

@@ -15,6 +15,7 @@ import com.tva.cashcoach.extensions.containsNumber
 import com.tva.cashcoach.extensions.isValidEmail
 import com.tva.cashcoach.extensions.isValidPassword
 import com.tva.cashcoach.modules.accountsetup.ui.AccountSetupActivity
+import com.tva.cashcoach.modules.loadingscreen.ui.LoadingScreenFragment
 import com.tva.cashcoach.modules.login.ui.LoginActivity
 import com.tva.cashcoach.modules.signup.data.viewmodel.SignUpVM
 
@@ -30,6 +31,8 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
     private lateinit var userDao: UserDao
 
     private lateinit var userRepository: UserRepository
+
+    private val loadingDialogFragment by lazy { LoadingScreenFragment() }
 
     override fun onInitialized() {
         viewModel.navArguments = intent.extras?.getBundle("bundle")
@@ -149,6 +152,10 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
                 return@setOnClickListener
             }
 
+            if (!loadingDialogFragment.isAdded) {
+                loadingDialogFragment.show(supportFragmentManager, "loader")
+            }
+
             auth.signUp(email, password, name, surname)
         }
     }
@@ -171,6 +178,9 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
                 binding.etInputPassword.clearFocus()
                 binding.etInputPasswordOne.clearFocus()
                 binding.checkBoxTerms.clearFocus()
+                if (loadingDialogFragment.isAdded) {
+                    loadingDialogFragment.dismissAllowingStateLoss()
+                }
             }
 
             REQUEST_CODE_ACCOUNT_SETUP_ACTIVITY -> {
@@ -186,6 +196,9 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
                 binding.etInputPassword.clearFocus()
                 binding.etInputPasswordOne.clearFocus()
                 binding.checkBoxTerms.clearFocus()
+                if (loadingDialogFragment.isAdded) {
+                    loadingDialogFragment.dismissAllowingStateLoss()
+                }
             }
         }
     }

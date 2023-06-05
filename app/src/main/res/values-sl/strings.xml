@@ -76,18 +76,18 @@
     <string name="msg_use_device_them">Uporaba teme naprave</string>
     <string name="lbl_type">Tip</string>
     <string name="msg_let_s_set_up_yo">Nastavimo tvoj račun!</string>
-    <string name="msg_please_enter_valid_nu">Prosim, vnesi veljavno številko</string>
-    <string name="msg_please_enter_valid_pa">Prosim, vnesi veljavno geslo</string>
-    <string name="msg_please_enter_valid_email">Prosim, vnesi veljavni e-poštni naslov</string>
-    <string name="msg_please_enter_valid_text">Prosim, vnesi veljavno besedilo</string>
+    <string name="msg_please_enter_valid_nu">Prosimo, vnesi veljavno številko</string>
+    <string name="msg_please_enter_valid_pa">Prosimo, vnesi veljavno geslo</string>
+    <string name="msg_please_enter_valid_email">Prosimo, vnesi veljavni e-poštni naslov</string>
+    <string name="msg_please_enter_valid_text">Prosimo, vnesi veljavno besedilo</string>
     <string name="add_attachment">Add Attachment</string>
     <string name="error_field_required">Polje je obvezno</string>
-    <string name="error_invalid_email">E-pošta je neveljavna</string>
+    <string name="error_invalid_email">E-poštni naslov je neveljaven</string>
     <string name="error_passwords_mismatch">Gesli se ne ujemajata</string>
     <string name="error_terms_not_checked">Sprejeti moraš pogoje storitve.</string>
     <string name="error_contains_numeric">Polje ne sme vsebovati številk</string>
     <string name="error_invalid_password">Geslo mora vsebovati: \n- vsaj 1 veliko črko \n- vsaj 1 malo črko \n- vsaj 1 številko \n- vsaj 1 posebni znak \n- vsaj 10 znakov \n- brez presledkov</string>
-    <string name="email_is_required">E-pošta je obvezna</string>
+    <string name="email_is_required">E-poštni naslov je obvezen</string>
     <string name="password_is_required">Geslo je obvezno</string>
     <string name="an_error_occurred_please_try_again_later">Prišlo je do napake, poskusi znova kasneje</string>
     <string name="error_email_already_in_use">E-poštni naslov že uporabljen</string>
@@ -143,4 +143,7 @@
     <string name="wallet_budget">Proračun denarnice</string>
     <string name="lbl_filter_apply">Filtriraj</string>
     <string name="lbl_filter_reset">Ponastavi</string>
+    <string name="ok">OK</string>
+    <string name="about_app">CashCoach. je mobilna aplikacija za operacijski sistem Android, ki omogoča uporabnikom enostavno spremljanje stroškov in prihodkov. Aplikacija vključuje več funkcij, kot so vnašanje podatkov o transakcijah, določanje ciljev za prihranke, spremljanje mesečnih in letnih stroškov ter grafe in preglednice. Aplikacija temelji na enostavnem in intuitivnem uporabniškem vmesniku, ki omogoča hitro in učinkovito spremljanje financ. Aplikacija nudi storitve v smislu vnosa prihodkov in beleženje stroškov (kategorija, vrednost, datum). Uporabnik lahko vidi svojo skupno porabo, porabo po različnih kategorijah stroškov in porabo v različnih časovnih obdobjih.</string>
+    <string name="no_user_associated_with_this_e_mail_address">S tem e-poštnim naslovom ni povezan noben uporabnik</string>
 </resources>
