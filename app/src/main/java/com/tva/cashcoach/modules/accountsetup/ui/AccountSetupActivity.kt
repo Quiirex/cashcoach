@@ -6,10 +6,10 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.tva.cashcoach.R
-import com.tva.cashcoach.appcomponents.base.BaseActivity
-import com.tva.cashcoach.appcomponents.model.category.Category
-import com.tva.cashcoach.appcomponents.model.category.CategoryDao
-import com.tva.cashcoach.appcomponents.persistence.repository.category.CategoryRepository
+import com.tva.cashcoach.infrastructure.base.BaseActivity
+import com.tva.cashcoach.infrastructure.model.category.Category
+import com.tva.cashcoach.infrastructure.model.category.CategoryDao
+import com.tva.cashcoach.infrastructure.persistence.repository.category.CategoryRepository
 import com.tva.cashcoach.databinding.ActivityAccountSetupBinding
 import com.tva.cashcoach.modules.accountsetup.data.viewmodel.AccountSetupVM
 import com.tva.cashcoach.modules.addnewwallet.ui.AddNewWalletActivity

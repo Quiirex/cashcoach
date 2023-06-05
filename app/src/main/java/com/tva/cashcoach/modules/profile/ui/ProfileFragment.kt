@@ -9,12 +9,12 @@ import androidx.activity.ComponentActivity
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.tva.cashcoach.R
-import com.tva.cashcoach.appcomponents.auth.AuthHelper
-import com.tva.cashcoach.appcomponents.base.BaseFragment
-import com.tva.cashcoach.appcomponents.model.user.UserDao
-import com.tva.cashcoach.appcomponents.persistence.repository.user.UserRepository
-import com.tva.cashcoach.appcomponents.utility.ImageHelper
 import com.tva.cashcoach.databinding.FragmentProfileBinding
+import com.tva.cashcoach.infrastructure.auth.AuthHelper
+import com.tva.cashcoach.infrastructure.base.BaseFragment
+import com.tva.cashcoach.infrastructure.model.user.UserDao
+import com.tva.cashcoach.infrastructure.persistence.repository.user.UserRepository
+import com.tva.cashcoach.infrastructure.ui.loadImageFromURL
 import com.tva.cashcoach.modules.homescreencontainer.ui.HomeScreenContainerActivity
 import com.tva.cashcoach.modules.loadingscreen.ui.LoadingScreenFragment
 import com.tva.cashcoach.modules.login.ui.LoginActivity
@@ -36,8 +36,6 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
 
     private lateinit var authHelper: AuthHelper
 
-    private lateinit var imageHelper: ImageHelper
-
     private lateinit var userDao: UserDao
 
     private lateinit var userRepository: UserRepository
@@ -55,7 +53,6 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
 
         authHelper =
             AuthHelper(ComponentActivity(), {}, {}, preferenceHelper, userRepository)
-        imageHelper = ImageHelper()
 
         val currentUserId = preferenceHelper.getString("curr_user_uid", "")
 
@@ -66,13 +63,18 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
 
             val currentUserFirstName = currentUser?.name ?: ""
             val currentUserLastName = currentUser?.surname ?: ""
-            val currentUserAvatarURL = currentUser?.avatar ?: ""
-            val currentUserAvatarBitmap = withContext(Dispatchers.IO) {
-                imageHelper.getBitmapFromURL(currentUserAvatarURL)
-            }
+
+            loadImageFromURL(
+                binding.imageAvatar,
+                currentUser?.avatar
+                    ?: "https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg",
+                null,
+                null,
+                0.0f,
+                true
+            )
 
             binding.txtNameSurname.text = "$currentUserFirstName $currentUserLastName"
-            binding.imageAvatar.setImageBitmap(currentUserAvatarBitmap)
         }
     }
 

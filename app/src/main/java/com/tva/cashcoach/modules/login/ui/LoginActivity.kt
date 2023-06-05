@@ -6,10 +6,10 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import com.tva.cashcoach.R
-import com.tva.cashcoach.appcomponents.auth.AuthHelper
-import com.tva.cashcoach.appcomponents.base.BaseActivity
-import com.tva.cashcoach.appcomponents.googleauth.GoogleAuthHelper
-import com.tva.cashcoach.appcomponents.persistence.repository.user.UserRepository
+import com.tva.cashcoach.infrastructure.auth.AuthHelper
+import com.tva.cashcoach.infrastructure.auth.GoogleAuthHelper
+import com.tva.cashcoach.infrastructure.base.BaseActivity
+import com.tva.cashcoach.infrastructure.persistence.repository.user.UserRepository
 import com.tva.cashcoach.databinding.ActivityLoginBinding
 import com.tva.cashcoach.modules.accountsetup.ui.AccountSetupActivity
 import com.tva.cashcoach.modules.forgotpassword.ui.ForgotPasswordActivity

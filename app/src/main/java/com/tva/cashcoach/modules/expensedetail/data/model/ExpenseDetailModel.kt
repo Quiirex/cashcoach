@@ -1,7 +1,7 @@
 package com.tva.cashcoach.modules.expensedetail.`data`.model
 
 import com.tva.cashcoach.R
-import com.tva.cashcoach.appcomponents.di.MyApp
+import com.tva.cashcoach.infrastructure.application.MyApp
 
 data class ExpenseDetailModel(
     /**

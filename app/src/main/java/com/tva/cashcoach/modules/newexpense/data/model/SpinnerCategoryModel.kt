@@ -1,6 +1,6 @@
 package com.tva.cashcoach.modules.newexpense.`data`.model
 
-import com.tva.cashcoach.appcomponents.model.category.Category
+import com.tva.cashcoach.infrastructure.model.category.Category
 
 data class SpinnerCategoryModel(
     val itemName: String

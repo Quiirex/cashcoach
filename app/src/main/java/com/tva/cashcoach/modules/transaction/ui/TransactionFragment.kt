@@ -12,23 +12,18 @@ import android.widget.CheckBox
 import android.widget.DatePicker
 import android.widget.EditText
 import android.widget.GridLayout
-import android.widget.LinearLayout
 import android.widget.RadioButton
 import android.widget.RadioGroup
-import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.tva.cashcoach.R
-import com.tva.cashcoach.appcomponents.base.BaseFragment
-import com.tva.cashcoach.appcomponents.model.transaction.TransactionDao
-import com.tva.cashcoach.appcomponents.persistence.repository.transaction.TransactionRepository
+import com.tva.cashcoach.infrastructure.base.BaseFragment
+import com.tva.cashcoach.infrastructure.model.transaction.TransactionDao
+import com.tva.cashcoach.infrastructure.persistence.repository.transaction.TransactionRepository
 import com.tva.cashcoach.databinding.FragmentTransactionBinding
 import com.tva.cashcoach.modules.expensedetail.ui.ExpenseDetailActivity
 import com.tva.cashcoach.modules.homescreencontainer.ui.HomeScreenContainerActivity
 import com.tva.cashcoach.modules.incomedetail.ui.IncomeDetailActivity
-import com.tva.cashcoach.modules.newexpense.ui.NewExpenseActivity
-import com.tva.cashcoach.modules.newincome.ui.NewIncomeActivity
 import com.tva.cashcoach.modules.transaction.data.model.TransactionRowModel
 import com.tva.cashcoach.modules.transaction.data.viewmodel.TransactionVM
 import kotlinx.coroutines.launch
@@ -152,7 +147,13 @@ class TransactionFragment :
         }
 
         // Pass the filter parameters to the adapter to update the dataset
-        transactionAdapter.filterTransactions(startDate, endDate, transactionType, sortBy, selectedCategories)
+        transactionAdapter.filterTransactions(
+            startDate,
+            endDate,
+            transactionType,
+            sortBy,
+            selectedCategories
+        )
         dialog.dismiss()
 
     }

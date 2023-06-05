@@ -15,10 +15,10 @@ import com.github.aachartmodel.aainfographics.aachartcreator.AAChartType
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartView
 import com.github.aachartmodel.aainfographics.aachartcreator.AASeriesElement
 import com.tva.cashcoach.R
-import com.tva.cashcoach.appcomponents.base.BaseActivity
-import com.tva.cashcoach.appcomponents.model.transaction.Transaction
-import com.tva.cashcoach.appcomponents.model.transaction.TransactionDao
-import com.tva.cashcoach.appcomponents.persistence.repository.transaction.TransactionRepository
+import com.tva.cashcoach.infrastructure.base.BaseActivity
+import com.tva.cashcoach.infrastructure.model.transaction.Transaction
+import com.tva.cashcoach.infrastructure.model.transaction.TransactionDao
+import com.tva.cashcoach.infrastructure.persistence.repository.transaction.TransactionRepository
 import com.tva.cashcoach.databinding.ActivityFinancialReportBinding
 import com.tva.cashcoach.modules.financialreport.data.viewmodel.FinancialReportVM
 import com.tva.cashcoach.modules.transaction.ui.TransactionAdapter

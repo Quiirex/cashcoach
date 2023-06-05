@@ -7,9 +7,9 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.tva.cashcoach.R
-import com.tva.cashcoach.appcomponents.base.BaseActivity
-import com.tva.cashcoach.appcomponents.model.user.UserDao
-import com.tva.cashcoach.appcomponents.persistence.repository.user.UserRepository
+import com.tva.cashcoach.infrastructure.base.BaseActivity
+import com.tva.cashcoach.infrastructure.model.user.UserDao
+import com.tva.cashcoach.infrastructure.persistence.repository.user.UserRepository
 import com.tva.cashcoach.databinding.ActivitySettingsCurrencyBinding
 import com.tva.cashcoach.modules.settingscurrency.data.viewmodel.SettingsCurrencyVM
 import kotlinx.coroutines.Dispatchers

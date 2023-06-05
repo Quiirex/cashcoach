@@ -9,10 +9,10 @@ import android.os.Bundle
 import android.widget.LinearLayout
 import androidx.activity.viewModels
 import com.tva.cashcoach.R
-import com.tva.cashcoach.appcomponents.auth.AuthHelper
-import com.tva.cashcoach.appcomponents.base.BaseActivity
-import com.tva.cashcoach.appcomponents.googleauth.GoogleAuthHelper
-import com.tva.cashcoach.appcomponents.persistence.repository.user.UserRepository
+import com.tva.cashcoach.infrastructure.auth.AuthHelper
+import com.tva.cashcoach.infrastructure.auth.GoogleAuthHelper
+import com.tva.cashcoach.infrastructure.base.BaseActivity
+import com.tva.cashcoach.infrastructure.persistence.repository.user.UserRepository
 import com.tva.cashcoach.databinding.ActivityHomeScreenContainerBinding
 import com.tva.cashcoach.extensions.loadFragment
 import com.tva.cashcoach.modules.financialreport.ui.FinancialReportActivity

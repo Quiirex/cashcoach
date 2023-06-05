@@ -6,13 +6,13 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.tva.cashcoach.R
-import com.tva.cashcoach.appcomponents.base.BaseFragment
-import com.tva.cashcoach.appcomponents.model.transaction.TransactionDao
-import com.tva.cashcoach.appcomponents.model.user.UserDao
-import com.tva.cashcoach.appcomponents.persistence.repository.transaction.TransactionRepository
-import com.tva.cashcoach.appcomponents.persistence.repository.user.UserRepository
-import com.tva.cashcoach.appcomponents.utility.ImageHelper
 import com.tva.cashcoach.databinding.FragmentHomeScreenBinding
+import com.tva.cashcoach.infrastructure.base.BaseFragment
+import com.tva.cashcoach.infrastructure.model.transaction.TransactionDao
+import com.tva.cashcoach.infrastructure.model.user.UserDao
+import com.tva.cashcoach.infrastructure.persistence.repository.transaction.TransactionRepository
+import com.tva.cashcoach.infrastructure.persistence.repository.user.UserRepository
+import com.tva.cashcoach.infrastructure.ui.loadImageFromURL
 import com.tva.cashcoach.modules.expensedetail.ui.ExpenseDetailActivity
 import com.tva.cashcoach.modules.homescreen.data.viewmodel.HomeScreenVM
 import com.tva.cashcoach.modules.homescreencontainer.ui.HomeScreenContainerActivity
@@ -40,8 +40,6 @@ class HomeScreenFragment : BaseFragment<FragmentHomeScreenBinding>(R.layout.frag
 
     private lateinit var userRepository: UserRepository
 
-    private lateinit var imageHelper: ImageHelper
-
     private var curr_wallet_id = ""
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -54,8 +52,6 @@ class HomeScreenFragment : BaseFragment<FragmentHomeScreenBinding>(R.layout.frag
 
         userDao = appDb.getUserDao()
         userRepository = UserRepository(userDao)
-
-        imageHelper = ImageHelper()
 
         transactionAdapter = TransactionAdapter(
             transactionRepository,
@@ -116,12 +112,15 @@ class HomeScreenFragment : BaseFragment<FragmentHomeScreenBinding>(R.layout.frag
                 userRepository.get(currentUserId)
             }
 
-            val currentUserAvatarURL = currentUser?.avatar ?: ""
-            val currentUserAvatarBitmap = withContext(Dispatchers.IO) {
-                imageHelper.getBitmapFromURL(currentUserAvatarURL)
-            }
-
-            binding.imageAvatar.setImageBitmap(currentUserAvatarBitmap)
+            loadImageFromURL(
+                binding.imageAvatar,
+                currentUser?.avatar
+                    ?: "https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg",
+                null,
+                null,
+                0.0f,
+                true
+            )
         }
     }
 

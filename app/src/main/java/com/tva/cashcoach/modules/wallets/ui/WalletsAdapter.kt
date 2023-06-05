@@ -7,9 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.tva.cashcoach.R
-import com.tva.cashcoach.appcomponents.model.wallet.Wallet
-import com.tva.cashcoach.appcomponents.persistence.repository.wallet.WalletRepository
-import com.tva.cashcoach.appcomponents.utility.PreferenceHelper
+import com.tva.cashcoach.infrastructure.model.wallet.Wallet
+import com.tva.cashcoach.infrastructure.persistence.repository.wallet.WalletRepository
+import com.tva.cashcoach.infrastructure.utility.PreferenceHelper
 import com.tva.cashcoach.databinding.RowWalletBinding
 import com.tva.cashcoach.modules.wallets.data.model.WalletsRowModel
 import kotlinx.coroutines.Dispatchers

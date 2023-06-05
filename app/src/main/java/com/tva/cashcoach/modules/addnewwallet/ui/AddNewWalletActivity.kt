@@ -8,11 +8,11 @@ import android.util.Log
 import android.widget.Spinner
 import androidx.activity.viewModels
 import com.tva.cashcoach.R
-import com.tva.cashcoach.appcomponents.base.BaseActivity
-import com.tva.cashcoach.appcomponents.persistence.repository.transaction.TransactionRepository
-import com.tva.cashcoach.appcomponents.persistence.repository.user.UserRepository
-import com.tva.cashcoach.appcomponents.persistence.repository.wallet.WalletRepository
-import com.tva.cashcoach.appcomponents.utility.WalletHelper
+import com.tva.cashcoach.infrastructure.base.BaseActivity
+import com.tva.cashcoach.infrastructure.persistence.repository.transaction.TransactionRepository
+import com.tva.cashcoach.infrastructure.persistence.repository.user.UserRepository
+import com.tva.cashcoach.infrastructure.persistence.repository.wallet.WalletRepository
+import com.tva.cashcoach.infrastructure.utility.WalletHelper
 import com.tva.cashcoach.databinding.ActivityAddNewWalletBinding
 import com.tva.cashcoach.modules.addnewwallet.data.model.SpinnerWalletModel
 import com.tva.cashcoach.modules.addnewwallet.data.viewmodel.AddNewWalletVM

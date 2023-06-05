@@ -7,9 +7,9 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.tva.cashcoach.R
-import com.tva.cashcoach.appcomponents.auth.AuthHelper
-import com.tva.cashcoach.appcomponents.base.BaseActivity
-import com.tva.cashcoach.appcomponents.persistence.repository.user.UserRepository
+import com.tva.cashcoach.infrastructure.auth.AuthHelper
+import com.tva.cashcoach.infrastructure.base.BaseActivity
+import com.tva.cashcoach.infrastructure.persistence.repository.user.UserRepository
 import com.tva.cashcoach.databinding.ActivityForgotPasswordBinding
 import com.tva.cashcoach.modules.forgotpassword.data.viewmodel.ForgotPasswordVM
 import com.tva.cashcoach.modules.successscreen.ui.SuccessScreenFragment

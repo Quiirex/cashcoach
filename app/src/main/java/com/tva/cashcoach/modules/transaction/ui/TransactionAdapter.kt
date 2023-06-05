@@ -5,18 +5,13 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
-import androidx.room.util.foreignKeyCheck
 import com.tva.cashcoach.R
-import com.tva.cashcoach.appcomponents.di.MyApp
-import com.tva.cashcoach.appcomponents.model.transaction.Transaction
-import com.tva.cashcoach.appcomponents.persistence.repository.transaction.TransactionRepository
-import com.tva.cashcoach.appcomponents.utility.PreferenceHelper
+import com.tva.cashcoach.infrastructure.application.MyApp
+import com.tva.cashcoach.infrastructure.model.transaction.Transaction
+import com.tva.cashcoach.infrastructure.persistence.repository.transaction.TransactionRepository
+import com.tva.cashcoach.infrastructure.utility.PreferenceHelper
 import com.tva.cashcoach.databinding.RowTransactionBinding
-import com.tva.cashcoach.modules.newincome.data.model.SpinnerCategoryModel
-import com.tva.cashcoach.modules.newincome.ui.SpinnerCategoryAdapter
 import com.tva.cashcoach.modules.transaction.data.model.TransactionRowModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -25,7 +20,6 @@ import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
-import kotlin.math.log
 
 class TransactionAdapter(
     private val transactionRepository: TransactionRepository,
