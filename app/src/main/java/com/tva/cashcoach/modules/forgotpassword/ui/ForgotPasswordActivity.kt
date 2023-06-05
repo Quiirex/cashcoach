@@ -51,7 +51,7 @@ class ForgotPasswordActivity :
                     successDialogFragment.show(supportFragmentManager, "loader")
                 }
                 lifecycleScope.launch {
-                    delay(TimeUnit.MILLISECONDS.toMillis(1300))
+                    delay(TimeUnit.MILLISECONDS.toMillis(1700))
                     if (successDialogFragment.isAdded) {
                         successDialogFragment.dismissAllowingStateLoss()
                     }

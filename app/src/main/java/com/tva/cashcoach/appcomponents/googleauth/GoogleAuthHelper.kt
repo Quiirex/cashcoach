@@ -91,6 +91,7 @@ class GoogleAuthHelper(
     private fun configureGoogleSignIn() {
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(MyApp.getInstance().resources.getString(R.string.server_client_id))
+            .requestProfile()
             .requestEmail()
             .build()
         mGoogleSignInClient = GoogleSignIn.getClient(activity, gso)
