@@ -8,7 +8,7 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
-import com.tva.cashcoach.infrastructure.application.MyApp
+import com.tva.cashcoach.infrastructure.application.App
 import com.tva.cashcoach.infrastructure.persistence.AppDatabase
 import com.tva.cashcoach.infrastructure.utility.PreferenceHelper
 import org.koin.android.ext.android.get
@@ -35,7 +35,7 @@ abstract class BaseFragment<T : ViewDataBinding>(@LayoutRes val layoutId: Int) :
         binding = DataBindingUtil.inflate(inflater, layoutId, container, false)
         binding.lifecycleOwner = requireActivity()
         appDb = AppDatabase.getDatabase(requireContext())
-        preferenceHelper = MyApp.getInstance().get()
+        preferenceHelper = App.getInstance().get()
         return binding.root
     }
 

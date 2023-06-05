@@ -12,14 +12,14 @@ import org.koin.dsl.module
 /**
  * The application class which used to start koin for dependency injection
  */
-class MyApp : Application() {
+class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
         instance = this
         startKoin {
             androidLogger()
-            androidContext(this@MyApp)
+            androidContext(this@App)
             loadKoinModules(getKoinModules())
         }
     }
@@ -50,11 +50,11 @@ class MyApp : Application() {
     companion object {
 
         // the application instance
-        private lateinit var instance: MyApp
+        private lateinit var instance: App
 
         /**
          * method to get instance of application object
          */
-        fun getInstance(): MyApp = instance
+        fun getInstance(): App = instance
     }
 }

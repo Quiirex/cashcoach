@@ -9,7 +9,7 @@ import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.tva.cashcoach.R
 import com.tva.cashcoach.infrastructure.base.BaseActivity
-import com.tva.cashcoach.infrastructure.application.MyApp
+import com.tva.cashcoach.infrastructure.application.App
 import com.tva.cashcoach.infrastructure.model.user.UserDao
 import com.tva.cashcoach.infrastructure.persistence.repository.user.UserRepository
 import com.tva.cashcoach.databinding.ActivitySettingsBinding
@@ -73,10 +73,10 @@ class SettingsActivity : BaseActivity<ActivitySettingsBinding>(R.layout.activity
 
             when (currentUser?.currency ?: "") {
                 "EUR" -> binding.txtCurrentCurrency.text =
-                    MyApp.getInstance().resources.getString(R.string.lbl_eur)
+                    App.getInstance().resources.getString(R.string.lbl_eur)
 
                 "USD" -> binding.txtCurrentCurrency.text =
-                    MyApp.getInstance().resources.getString(R.string.lbl_usd)
+                    App.getInstance().resources.getString(R.string.lbl_usd)
             }
         }
     }

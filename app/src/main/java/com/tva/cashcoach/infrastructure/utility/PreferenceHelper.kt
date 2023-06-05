@@ -4,7 +4,7 @@ import android.content.SharedPreferences
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKeys
 import com.tva.cashcoach.R
-import com.tva.cashcoach.infrastructure.application.MyApp
+import com.tva.cashcoach.infrastructure.application.App
 
 /**
  * class which used to manage application shared preference
@@ -13,9 +13,9 @@ class PreferenceHelper {
     private val masterKeyAlias: String = createGetMasterKey()
 
     private val sharedPreference: SharedPreferences = EncryptedSharedPreferences.create(
-        MyApp.getInstance().resources.getString(R.string.app_name),
+        App.getInstance().resources.getString(R.string.app_name),
         masterKeyAlias,
-        MyApp.getInstance().applicationContext,
+        App.getInstance().applicationContext,
         EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
         EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
     )

@@ -4,7 +4,7 @@ import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.tva.cashcoach.R
-import com.tva.cashcoach.infrastructure.application.MyApp
+import com.tva.cashcoach.infrastructure.application.App
 import com.tva.cashcoach.infrastructure.model.transaction.Transaction
 import com.tva.cashcoach.infrastructure.model.wallet.Wallet
 import com.tva.cashcoach.infrastructure.persistence.repository.transaction.TransactionRepository
@@ -23,7 +23,7 @@ class WalletHelper(
     private val userRepository: UserRepository,
     private val transactionRepository: TransactionRepository
 ) {
-    var preferenceHelper: PreferenceHelper = MyApp.getInstance().get()
+    var preferenceHelper: PreferenceHelper = App.getInstance().get()
 
     /**
      * Adds a new wallet to the database.
@@ -65,9 +65,9 @@ class WalletHelper(
                 val newTransaction = Transaction(
                     id = null,
                     value = balance,
-                    description = MyApp.getInstance().resources.getString(R.string.wallet_budget),
+                    description = App.getInstance().resources.getString(R.string.wallet_budget),
                     date = Date(),
-                    category = MyApp.getInstance().resources.getString(R.string.initial_budget),
+                    category = App.getInstance().resources.getString(R.string.initial_budget),
                     wallet_id = insertedWalletId,
                     type = "income",
                     currency = "EUR"

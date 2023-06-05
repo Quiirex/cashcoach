@@ -1,14 +1,14 @@
 package com.tva.cashcoach.modules.homescreen.data.model
 
 import com.tva.cashcoach.R
-import com.tva.cashcoach.infrastructure.application.MyApp
+import com.tva.cashcoach.infrastructure.application.App
 
 data class HomeScreenModel(
     /**
      * TODO Replace with dynamic value
      */
     var txtCurrentBudget: String? =
-        MyApp.getInstance().resources.getString(R.string.lbl_current_budget),
+        App.getInstance().resources.getString(R.string.lbl_current_budget),
     /**
      * TODO Replace with dynamic value
      */
@@ -16,9 +16,9 @@ data class HomeScreenModel(
     /**
      * TODO Replace with dynamic value
      */
-    var txtIncome: String? = MyApp.getInstance().resources.getString(R.string.lbl_income),
+    var txtIncome: String? = App.getInstance().resources.getString(R.string.lbl_income),
 
-    var txtIncomes: String? = MyApp.getInstance().resources.getString(R.string.lbl_incomes),
+    var txtIncomes: String? = App.getInstance().resources.getString(R.string.lbl_incomes),
     /**
      * TODO Replace with dynamic value
      */
@@ -26,7 +26,7 @@ data class HomeScreenModel(
     /**
      * TODO Replace with dynamic value
      */
-    var txtExpenses: String? = MyApp.getInstance().resources.getString(R.string.lbl_expenses),
+    var txtExpenses: String? = App.getInstance().resources.getString(R.string.lbl_expenses),
     /**
      * TODO Replace with dynamic value
      */
@@ -34,19 +34,19 @@ data class HomeScreenModel(
     /**
      * TODO Replace with dynamic value
      */
-    var txtWeek: String? = MyApp.getInstance().resources.getString(R.string.lbl_week),
+    var txtWeek: String? = App.getInstance().resources.getString(R.string.lbl_week),
     /**
      * TODO Replace with dynamic value
      */
-    var txtMonth: String? = MyApp.getInstance().resources.getString(R.string.lbl_month),
+    var txtMonth: String? = App.getInstance().resources.getString(R.string.lbl_month),
     /**
      * TODO Replace with dynamic value
      */
-    var txtYear: String? = MyApp.getInstance().resources.getString(R.string.lbl_year),
+    var txtYear: String? = App.getInstance().resources.getString(R.string.lbl_year),
     /**
      * TODO Replace with dynamic value
      */
     var txtSpendFrequency: String? =
-        MyApp.getInstance().resources.getString(R.string.msg_recent_transact)
+        App.getInstance().resources.getString(R.string.msg_recent_transact)
 
 )

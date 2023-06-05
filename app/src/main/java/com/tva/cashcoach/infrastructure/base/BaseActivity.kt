@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import com.tva.cashcoach.infrastructure.application.MyApp
+import com.tva.cashcoach.infrastructure.application.App
 import com.tva.cashcoach.infrastructure.persistence.AppDatabase
 import com.tva.cashcoach.infrastructure.utility.PreferenceHelper
 import org.koin.android.ext.android.get
@@ -35,7 +35,7 @@ abstract class BaseActivity<T : ViewDataBinding>(@LayoutRes val layoutId: Int) :
         binding = DataBindingUtil.setContentView(this@BaseActivity, layoutId) as T
         binding.lifecycleOwner = this
         appDb = AppDatabase.getDatabase(this)
-        preferenceHelper = MyApp.getInstance().get()
+        preferenceHelper = App.getInstance().get()
         addObservers()
         setUpClicks()
         onInitialized()

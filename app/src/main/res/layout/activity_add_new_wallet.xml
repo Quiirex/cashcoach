@@ -104,7 +104,7 @@
                 android:background="@drawable/rectangle_bg_white_a700_border_gray_100_radius_16"
                 android:ellipsize="end"
                 android:hint="@string/lbl_name"
-                android:id="@+id/et_wallet_name"
+                android:id="@+id/etWalletName"
                 android:inputType="text"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/_16pxh"

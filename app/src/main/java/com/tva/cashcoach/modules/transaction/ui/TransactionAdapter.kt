@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.tva.cashcoach.R
-import com.tva.cashcoach.infrastructure.application.MyApp
+import com.tva.cashcoach.infrastructure.application.App
 import com.tva.cashcoach.infrastructure.model.transaction.Transaction
 import com.tva.cashcoach.infrastructure.persistence.repository.transaction.TransactionRepository
 import com.tva.cashcoach.infrastructure.utility.PreferenceHelper
@@ -56,15 +56,15 @@ class TransactionAdapter(
         holder.binding.txtDescription.text = transaction.description
         holder.binding.imageTransaction.setImageResource(
             when (transaction.category) {
-                MyApp.getInstance().resources.getString(R.string.food_drinks) -> R.drawable.baseline_food_drinks
-                MyApp.getInstance().resources.getString(R.string.clothes_shoes) -> R.drawable.baseline_clothes_shoes
-                MyApp.getInstance().resources.getString(R.string.transportation) -> R.drawable.baseline_transportation
-                MyApp.getInstance().resources.getString(R.string.health_beauty) -> R.drawable.baseline_health_beauty
-                MyApp.getInstance().resources.getString(R.string.home_utilities) -> R.drawable.baseline_home_utilities
-                MyApp.getInstance().resources.getString(R.string.entertainment) -> R.drawable.baseline_entertainment
-                MyApp.getInstance().resources.getString(R.string.gifts_donations) -> R.drawable.baseline_gifts
-                MyApp.getInstance().resources.getString(R.string.education) -> R.drawable.baseline_education
-                MyApp.getInstance().resources.getString(R.string.other) -> R.drawable.baseline_attach_money
+                App.getInstance().resources.getString(R.string.food_drinks) -> R.drawable.baseline_food_drinks
+                App.getInstance().resources.getString(R.string.clothes_shoes) -> R.drawable.baseline_clothes_shoes
+                App.getInstance().resources.getString(R.string.transportation) -> R.drawable.baseline_transportation
+                App.getInstance().resources.getString(R.string.health_beauty) -> R.drawable.baseline_health_beauty
+                App.getInstance().resources.getString(R.string.home_utilities) -> R.drawable.baseline_home_utilities
+                App.getInstance().resources.getString(R.string.entertainment) -> R.drawable.baseline_entertainment
+                App.getInstance().resources.getString(R.string.gifts_donations) -> R.drawable.baseline_gifts
+                App.getInstance().resources.getString(R.string.education) -> R.drawable.baseline_education
+                App.getInstance().resources.getString(R.string.other) -> R.drawable.baseline_attach_money
                 else -> R.drawable.baseline_attach_money
             }
         )

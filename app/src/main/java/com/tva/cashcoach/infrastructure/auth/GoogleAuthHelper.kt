@@ -15,7 +15,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.firestore.FirebaseFirestore
 import com.tva.cashcoach.R
-import com.tva.cashcoach.infrastructure.application.MyApp
+import com.tva.cashcoach.infrastructure.application.App
 import com.tva.cashcoach.infrastructure.model.user.User
 import com.tva.cashcoach.infrastructure.persistence.repository.user.UserRepository
 import com.tva.cashcoach.infrastructure.utility.PreferenceHelper
@@ -90,7 +90,7 @@ class GoogleAuthHelper(
      */
     private fun configureGoogleSignIn() {
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(MyApp.getInstance().resources.getString(R.string.server_client_id))
+            .requestIdToken(App.getInstance().resources.getString(R.string.server_client_id))
             .requestProfile()
             .requestEmail()
             .build()
