@@ -97,12 +97,26 @@ class HomeScreenFragment : BaseFragment<FragmentHomeScreenBinding>(R.layout.frag
 
     private fun loadTransactionData() {
         val currentUserId = preferenceHelper.getString("curr_user_uid", "")
+        val currency = preferenceHelper.getString("curr_user_currency", "")
         lifecycleScope.launch {
             transactionAdapter.fetchTransactions(curr_wallet_id)
             val currencySymbol =
-                if (preferenceHelper.getString("curr_user_currency", "") == "EUR") "€" else "$"
-            val incomesSum = transactionAdapter.fetchIncomesSum(curr_wallet_id)
-            val expensesSum = transactionAdapter.fetchExpensesSum(curr_wallet_id)
+                if (currency == "EUR") "€" else "$"
+            val incomesSumUsd = transactionAdapter.fetchIncomesSum(curr_wallet_id, "USD")
+            val expensesSumUsd = transactionAdapter.fetchExpensesSum(curr_wallet_id, "USD")
+            val incomesSumEur = transactionAdapter.fetchIncomesSum(curr_wallet_id, "EUR")
+            val expensesSumEur = transactionAdapter.fetchExpensesSum(curr_wallet_id, "EUR")
+            val incomesSum = when {
+                currency == "EUR" -> (incomesSumUsd / 1.07) + incomesSumEur
+                currency == "USD" -> (incomesSumEur * 1.07) + incomesSumUsd
+                else -> incomesSumUsd
+            }
+
+            val expensesSum = when {
+                currency == "EUR" -> (expensesSumUsd / 1.07) + expensesSumEur
+                currency == "USD" -> (expensesSumEur * 1.07) + expensesSumUsd
+                else -> expensesSumUsd
+            }
             val budget = incomesSum - expensesSum
             binding.valIncome.text = "${incomesSum.format()}$currencySymbol"
             binding.valExpenses.text = "${expensesSum.format()}$currencySymbol"

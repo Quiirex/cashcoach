@@ -82,8 +82,28 @@ class TransactionAdapter(
 
         val currency = preferenceHelper.getString("curr_user_currency", "")
         val amountWithCurrency = when (transaction.type) {
-            "income" -> "+ %.2f${if (currency == "EUR") "€" else "$"}".format(transaction.value)
-            "expense" -> "- %.2f${if (currency == "EUR") "€" else "$"}".format(transaction.value)
+            "income" -> {
+                val formattedValue = when {
+                    transaction.currency == "EUR" && currency == "USD" ->
+                        (transaction.value * 1.07).formatDecimal()
+                    transaction.currency == "USD" && currency == "EUR" ->
+                        (transaction.value / 1.07).formatDecimal()
+                    else ->
+                        transaction.value.formatDecimal()
+                }
+                "+ $formattedValue${if (currency == "EUR") "€" else "$"}"
+            }
+            "expense" -> {
+                val formattedValue = when {
+                    transaction.currency == "EUR" && currency == "USD" ->
+                        (transaction.value * 1.07).formatDecimal()
+                    transaction.currency == "USD" && currency == "EUR" ->
+                        (transaction.value / 1.07).formatDecimal()
+                    else ->
+                        transaction.value.formatDecimal()
+                }
+                "- $formattedValue${if (currency == "EUR") "€" else "$"}"
+            }
             else -> ""
         }
         holder.binding.txtAmount.text = amountWithCurrency
@@ -92,6 +112,15 @@ class TransactionAdapter(
             clickListener?.onItemClick(it, position, transactionRowModel)
         }
     }
+
+    private fun Double.formatDecimal(): String {
+        return if (this >= 0) {
+            "%.2f".format(this)
+        } else {
+            "-%.2f".format(-this)
+        }
+    }
+
 
     private fun formatDate(dateString: String): String {
         val inputFormat = SimpleDateFormat("E MMM dd HH:mm:ss Z yyyy", Locale.US)
@@ -149,16 +178,16 @@ class TransactionAdapter(
         notifyDataSetChanged()
     }
 
-    suspend fun fetchIncomesSum(wallet_id: String): Double {
+    suspend fun fetchIncomesSum(wallet_id: String, currency: String): Double {
         return withContext(Dispatchers.IO) {
-            transactionRepository.getIncomesSum(wallet_id)
+            transactionRepository.getIncomesSum(wallet_id, currency)
         }
         notifyDataSetChanged()
     }
 
-    suspend fun fetchExpensesSum(wallet_id: String): Double {
+    suspend fun fetchExpensesSum(wallet_id: String, currency: String): Double {
         return withContext(Dispatchers.IO) {
-            transactionRepository.getExpensesSum(wallet_id)
+            transactionRepository.getExpensesSum(wallet_id, currency)
         }
         notifyDataSetChanged()
     }

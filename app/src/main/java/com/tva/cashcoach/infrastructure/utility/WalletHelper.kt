@@ -274,6 +274,7 @@ class WalletHelper(
     @OptIn(DelicateCoroutinesApi::class)
     fun getTotalBalanceOfWallets(callback: (Double) -> Unit) {
         val userId = preferenceHelper.getString("curr_user_uid", "")
+        val currency = preferenceHelper.getString("curr_user_currency", "")
         if (userId == "") {
             callback(0.0)
             return

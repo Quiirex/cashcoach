@@ -2,6 +2,7 @@ package com.tva.cashcoach.infrastructure.persistence.repository.transaction
 
 import com.tva.cashcoach.infrastructure.model.transaction.Transaction
 import com.tva.cashcoach.infrastructure.model.transaction.TransactionDao
+import java.util.Currency
 
 class TransactionRepository(private val transactionDao: TransactionDao) {
 
@@ -17,12 +18,12 @@ class TransactionRepository(private val transactionDao: TransactionDao) {
         return transactionDao.getAllTransactions(wallet_id)
     }
 
-    fun getIncomesSum(wallet_id: String): Double {
-        return transactionDao.getIncomesSum(wallet_id)
+    fun getIncomesSum(wallet_id: String, currency: String): Double {
+        return transactionDao.getIncomesSum(wallet_id, currency)
     }
 
-    fun getExpensesSum(wallet_id: String): Double {
-        return transactionDao.getExpensesSum(wallet_id)
+    fun getExpensesSum(wallet_id: String, currency: String): Double {
+        return transactionDao.getExpensesSum(wallet_id, currency)
     }
 
     fun insert(transaction: Transaction): Long {

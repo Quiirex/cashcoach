@@ -23,10 +23,13 @@ import com.tva.cashcoach.databinding.ActivityFinancialReportBinding
 import com.tva.cashcoach.modules.financialreport.data.viewmodel.FinancialReportVM
 import com.tva.cashcoach.modules.transaction.ui.TransactionAdapter
 import kotlinx.coroutines.launch
+import java.math.BigDecimal
+import java.math.RoundingMode
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
+import kotlin.math.roundToInt
 
 class FinancialReportActivity :
     BaseActivity<ActivityFinancialReportBinding>(R.layout.activity_financial_report) {
@@ -189,17 +192,30 @@ class FinancialReportActivity :
         budget =
             relevantTransactions.sumOf { if (it.type == "income") it.value else -it.value }
         budgetList.add(budget)
-
+        val currency = preferenceHelper.getString("curr_user_currency", "EUR")
         for (transaction in transactions) {
             if (transaction.date in startDate..endDate) {
                 if (transaction.type == "income") {
-                    budget += transaction.value
+                    if (currency == "EUR" && transaction.currency == "USD") {
+                        budget += transaction.value / 1.07
+                    } else if (currency == "USD" && transaction.currency == "EUR") {
+                        budget += transaction.value * 1.07
+                    } else {
+                        budget += transaction.value
+                    }
                 } else if (transaction.type == "expense") {
-                    budget -= transaction.value
+                    if (currency == "EUR" && transaction.currency == "USD") {
+                        budget -= transaction.value / 1.07
+                    } else if (currency == "USD" && transaction.currency == "EUR") {
+                        budget -= transaction.value * 1.07
+                    } else {
+                        budget -= transaction.value
+                    }
                 }
                 budgetList.add(budget)
             }
         }
+
         budgetList.removeAt(0)
         val chart = findViewById<AAChartView>(R.id.BudgetChartView)
         val aaChartModel: AAChartModel =
@@ -219,6 +235,7 @@ class FinancialReportActivity :
 
     private fun incomeGraph(startDate: Date, endDate: Date) {
         val incomes: MutableMap<String, Double> = HashMap()
+        val currency = preferenceHelper.getString("curr_user_currency", "EUR")
 
         for (transaction in transactions) {
             if (transaction.date in startDate..endDate && transaction.type == "income" && transaction.category != getString(
@@ -226,7 +243,14 @@ class FinancialReportActivity :
                 )
             ) {
                 val category = transaction.category
-                incomes[category] = incomes.getOrDefault(category, 0.0) + transaction.value
+                if (currency == "EUR" && transaction.currency == "USD") {
+                    incomes[category] = BigDecimal(incomes.getOrDefault(category, 0.0) + transaction.value / 1.07).setScale(2, RoundingMode.HALF_UP).toDouble()
+                } else if (currency == "USD" && transaction.currency == "EUR") {
+                    incomes[category] = BigDecimal(incomes.getOrDefault(category, 0.0) + transaction.value * 1.07).setScale(2, RoundingMode.HALF_UP).toDouble()
+                } else {
+                    incomes[category] = BigDecimal(incomes.getOrDefault(category, 0.0)).setScale(2, RoundingMode.HALF_UP).toDouble()
+                }
+
             }
         }
 
@@ -249,11 +273,19 @@ class FinancialReportActivity :
 
     private fun expenseGraph(startDate: Date, endDate: Date) {
         val expenses: MutableMap<String, Double> = HashMap()
+        val currency = preferenceHelper.getString("curr_user_currency", "EUR")
 
         for (transaction in transactions) {
             if (transaction.date in startDate..endDate && transaction.type == "expense") {
                 val category = transaction.category
-                expenses[category] = expenses.getOrDefault(category, 0.0) + transaction.value
+                if (currency == "EUR" && transaction.currency == "USD") {
+                    expenses[category] = expenses.getOrDefault(category, 0.0) + transaction.value / 1.07
+                } else if (currency == "USD" && transaction.currency == "EUR") {
+                    expenses[category] = expenses.getOrDefault(category, 0.0) + transaction.value * 1.07
+                } else {
+                    expenses[category] = expenses.getOrDefault(category, 0.0) + transaction.value
+                }
+
             }
         }
 
