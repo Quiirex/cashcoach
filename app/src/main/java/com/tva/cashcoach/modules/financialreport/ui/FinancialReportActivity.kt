@@ -23,13 +23,10 @@ import com.tva.cashcoach.databinding.ActivityFinancialReportBinding
 import com.tva.cashcoach.modules.financialreport.data.viewmodel.FinancialReportVM
 import com.tva.cashcoach.modules.transaction.ui.TransactionAdapter
 import kotlinx.coroutines.launch
-import java.math.BigDecimal
-import java.math.RoundingMode
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
-import kotlin.math.roundToInt
 
 class FinancialReportActivity :
     BaseActivity<ActivityFinancialReportBinding>(R.layout.activity_financial_report) {
@@ -244,11 +241,11 @@ class FinancialReportActivity :
             ) {
                 val category = transaction.category
                 if (currency == "EUR" && transaction.currency == "USD") {
-                    incomes[category] = BigDecimal(incomes.getOrDefault(category, 0.0) + transaction.value / 1.07).setScale(2, RoundingMode.HALF_UP).toDouble()
+                    incomes[category] = incomes.getOrDefault(category, 0.0) + transaction.value / 1.07
                 } else if (currency == "USD" && transaction.currency == "EUR") {
-                    incomes[category] = BigDecimal(incomes.getOrDefault(category, 0.0) + transaction.value * 1.07).setScale(2, RoundingMode.HALF_UP).toDouble()
+                    incomes[category] = incomes.getOrDefault(category, 0.0) + transaction.value * 1.07
                 } else {
-                    incomes[category] = BigDecimal(incomes.getOrDefault(category, 0.0)).setScale(2, RoundingMode.HALF_UP).toDouble()
+                    incomes[category] = incomes.getOrDefault(category, 0.0) + transaction.value
                 }
 
             }
