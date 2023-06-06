@@ -8,12 +8,12 @@ import android.util.Log
 import android.widget.Spinner
 import androidx.activity.viewModels
 import com.tva.cashcoach.R
+import com.tva.cashcoach.databinding.ActivityAddNewWalletBinding
 import com.tva.cashcoach.infrastructure.base.BaseActivity
 import com.tva.cashcoach.infrastructure.persistence.repository.transaction.TransactionRepository
 import com.tva.cashcoach.infrastructure.persistence.repository.user.UserRepository
 import com.tva.cashcoach.infrastructure.persistence.repository.wallet.WalletRepository
 import com.tva.cashcoach.infrastructure.utility.WalletHelper
-import com.tva.cashcoach.databinding.ActivityAddNewWalletBinding
 import com.tva.cashcoach.modules.addnewwallet.data.model.SpinnerWalletModel
 import com.tva.cashcoach.modules.addnewwallet.data.viewmodel.AddNewWalletVM
 import com.tva.cashcoach.modules.loadingscreen.ui.LoadingScreenFragment
@@ -82,7 +82,8 @@ class AddNewWalletActivity :
             walletHelper.addWallet(
                 binding.etWalletName.text.toString(),
                 selectedCategory,
-                binding.etBalance.text.toString().toDouble()
+                binding.etBalance.text.toString().toDouble(),
+                "EUR",
             ) { insertedWalletId ->
                 if (insertedWalletId >= 0) {
                     val bundle = intent.getBundleExtra("bundle")

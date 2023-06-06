@@ -33,15 +33,20 @@ class WalletHelper(
      * @param balance The budget of the wallet.
      */
     @OptIn(DelicateCoroutinesApi::class)
-    fun addWallet(name: String, type: String, balance: Double, callback: (Int) -> Unit) {
+    fun addWallet(
+        name: String,
+        type: String,
+        balance: Double,
+        currency: String,
+        callback: (Int) -> Unit
+    ) {
         try {
             val userId = preferenceHelper.getString("curr_user_uid", "")
-            Log.w("WalletHelper", "current user id: $userId")
             if (userId == "") {
                 callback(-1)
                 return
             }
-            val tempWallet = Wallet(null, name, type, balance, userId)
+            val tempWallet = Wallet(null, name, type, balance, currency, userId)
             GlobalScope.launch(Dispatchers.IO) {
                 val insertedWalletId = walletRepository.insert(tempWallet).toInt()
 
@@ -50,6 +55,7 @@ class WalletHelper(
                     name = name,
                     type = type,
                     balance = balance,
+                    currency = currency,
                     user_id = userId
                 )
 
@@ -127,6 +133,7 @@ class WalletHelper(
                             "name" to wallet.name,
                             "type" to wallet.type,
                             "balance" to wallet.balance,
+                            "currency" to wallet.currency,
                             "wallet_id" to wallet.id.toString()
                         )
                         newWallets.add(newWallet)
@@ -137,6 +144,7 @@ class WalletHelper(
                             "name" to wallet.name,
                             "type" to wallet.type,
                             "balance" to wallet.balance,
+                            "currency" to wallet.currency,
                             "wallet_id" to wallet.id.toString()
                         )
                         wallets.add(newWallet)
@@ -300,6 +308,19 @@ class WalletHelper(
             val wallet = walletRepository.getById(walletId)
             withContext(Dispatchers.Main) {
                 callback(wallet.name)
+            }
+        }
+    }
+
+    /**
+     * Returns wallet by id
+     */
+    @OptIn(DelicateCoroutinesApi::class)
+    fun getWalletById(walletId: Int, callback: (Wallet) -> Unit) {
+        GlobalScope.launch(Dispatchers.IO) {
+            val wallet = walletRepository.getById(walletId)
+            withContext(Dispatchers.Main) {
+                callback(wallet)
             }
         }
     }

@@ -7,6 +7,7 @@ import android.view.View
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.tva.cashcoach.R
+import com.tva.cashcoach.databinding.ActivityWalletsBinding
 import com.tva.cashcoach.infrastructure.base.BaseActivity
 import com.tva.cashcoach.infrastructure.model.transaction.TransactionDao
 import com.tva.cashcoach.infrastructure.model.user.UserDao
@@ -15,7 +16,6 @@ import com.tva.cashcoach.infrastructure.persistence.repository.transaction.Trans
 import com.tva.cashcoach.infrastructure.persistence.repository.user.UserRepository
 import com.tva.cashcoach.infrastructure.persistence.repository.wallet.WalletRepository
 import com.tva.cashcoach.infrastructure.utility.WalletHelper
-import com.tva.cashcoach.databinding.ActivityWalletsBinding
 import com.tva.cashcoach.modules.addnewwallet.ui.AddNewWalletActivity
 import com.tva.cashcoach.modules.wallets.data.model.WalletsRowModel
 import com.tva.cashcoach.modules.wallets.data.viewmodel.WalletsVM
@@ -62,8 +62,38 @@ class WalletsActivity : BaseActivity<ActivityWalletsBinding>(R.layout.activity_w
         binding.recyclerWallets.adapter = walletsAdapter
 
         walletHelper.getTotalBalanceOfWallets { totalBalance ->
-            binding.txtTotalBudget.text =
-                totalBalance.format() + preferenceHelper.getString("curr_user_currency", "")
+            val currentWalletId = preferenceHelper.getString("curr_wallet_id", "").toInt()
+            walletHelper.getWalletById(currentWalletId) { wallet ->
+                val totalBalanceWithCurrency =
+                    when (preferenceHelper.getString("curr_user_currency", "")) {
+                        "USD" -> {
+                            when (wallet.currency) {
+                                "EUR" -> {
+                                    (totalBalance * 1.07).format() + "$"
+                                }
+
+                                else -> {
+                                    totalBalance.format() + "$"
+                                }
+                            }
+                        }
+
+                        "EUR" -> {
+                            when (wallet.currency) {
+                                "USD" -> {
+                                    (totalBalance / 1.07).format() + "€"
+                                }
+
+                                else -> {
+                                    totalBalance.format() + "€"
+                                }
+                            }
+                        }
+
+                        else -> ""
+                    }
+                binding.txtTotalBudget.text = totalBalanceWithCurrency
+            }
         }
 
         walletsAdapter.setOnItemClickListener(
@@ -122,6 +152,14 @@ class WalletsActivity : BaseActivity<ActivityWalletsBinding>(R.layout.activity_w
                     walletsAdapter.fetchWallets()
                 }
             }
+        }
+    }
+
+    private fun Double.formatDecimal(): String {
+        return if (this >= 0) {
+            "%.2f".format(this)
+        } else {
+            "-%.2f".format(-this)
         }
     }
 

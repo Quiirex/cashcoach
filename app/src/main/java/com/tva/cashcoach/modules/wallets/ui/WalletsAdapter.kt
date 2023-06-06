@@ -7,10 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.tva.cashcoach.R
+import com.tva.cashcoach.databinding.RowWalletBinding
 import com.tva.cashcoach.infrastructure.model.wallet.Wallet
 import com.tva.cashcoach.infrastructure.persistence.repository.wallet.WalletRepository
 import com.tva.cashcoach.infrastructure.utility.PreferenceHelper
-import com.tva.cashcoach.databinding.RowWalletBinding
 import com.tva.cashcoach.modules.wallets.data.model.WalletsRowModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -37,13 +37,31 @@ class WalletsAdapter(
         holder.binding.accountsRowModel = walletsRowModel
         holder.binding.txtWalletName.text = wallet.name
 
-        val currency = when (preferenceHelper.getString("curr_user_currency", "EUR")) {
-            "EUR" -> "€"
-            "USD" -> "$"
-            else -> "€"
+        val amountWithCurrency = when (wallet.currency) {
+            "EUR" -> {
+                when {
+                    preferenceHelper.getString("curr_user_currency", "") == "USD" ->
+                        (wallet.balance * 1.07).formatDecimal() + "$"
+
+                    else ->
+                        wallet.balance.formatDecimal() + "€"
+                }
+            }
+
+            "USD" -> {
+                when {
+                    preferenceHelper.getString("curr_user_currency", "") == "EUR" ->
+                        (wallet.balance / 1.07).formatDecimal() + "€"
+
+                    else ->
+                        wallet.balance.formatDecimal() + "$"
+                }
+            }
+
+            else -> ""
         }
 
-        holder.binding.txtWalletBalance.text = wallet.balance.toString() + currency
+        holder.binding.txtWalletBalance.text = amountWithCurrency
 
         // Get the default_wallet_id from the preferenceHelper
         val defaultWalletId = preferenceHelper.getString("curr_wallet_id", "").toInt()
@@ -66,6 +84,14 @@ class WalletsAdapter(
                 selectedPosition = position
                 notifyDataSetChanged()
             }
+        }
+    }
+
+    private fun Double.formatDecimal(): String {
+        return if (this >= 0) {
+            "%.2f".format(this)
+        } else {
+            "-%.2f".format(-this)
         }
     }
 
